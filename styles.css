@@ -126,6 +126,8 @@ footer {
     background-color: #0b1933;
     padding: 20px;
     text-align: center;
+    border-top: 2px solid lightblue;
+    padding-top: 40px;
 }
 
 .footer-content {
