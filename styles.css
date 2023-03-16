@@ -57,6 +57,11 @@ body {
         flex-direction: column; /* Stack the logo and navigation vertically */
         height: auto; /* Allow the header height to adjust automatically */
     }
+    .header-image {
+        max-width: 100%; /* Ensures the image doesn't exceed its container's width */
+        height: auto; /* Maintains the image's aspect ratio */
+        display: block; /* Removes the default space below the image */
+    }
 
     .nav {
         justify-content: center; /* Center the navigation links on smaller screens */
