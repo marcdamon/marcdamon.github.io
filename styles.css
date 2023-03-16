@@ -86,23 +86,24 @@ nav a:hover {
     margin-bottom: 2rem;
 }
 
-button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    cursor: pointer;
+.button {
+    display: inline-block;
+    background-color: #1e90ff;
+    color: white;
+    font-size: 18px; /* Increase the font size */
+    padding: 15px 30px; /* Add more padding to the button */
+    text-align: center;
+    text-decoration: none;
     border: none;
-    border-radius: 5px;
+    border-radius: 5px; /* Adjust the border-radius */
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.buy-button {
-    background-color: #28a745;
-    color: #fff;
+.button:hover {
+    background-color: #0070d1; /* Change the background color on hover */
 }
 
-.sell-button {
-    background-color: #ffc107;
-    color: #333;
-}
 
 .description {
     max-width: 800px;
