@@ -48,9 +48,20 @@ body {
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        flex-grow: 1; /* This will make the nav div take up the available space */
+        flex-grow: 1;
+        flex-wrap: wrap; /* This will make the nav div take up the available space */
+    }
+/* This media query will apply styles for screen widths up to 768px (iPad portrait) */
+@media screen and (max-width: 768px) {
+    .header {
+        flex-direction: column; /* Stack the logo and navigation vertically */
+        height: auto; /* Allow the header height to adjust automatically */
     }
 
+    .nav {
+        justify-content: center; /* Center the navigation links on smaller screens */
+    }
+}
 .logo {
     width: 250px;
     height: auto;
