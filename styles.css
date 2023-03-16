@@ -43,6 +43,7 @@ nav a:hover {
 .title {
     text-align: center;
     margin: 2rem 0;
+    max-width: 800px;
 }
 
 .buttons {
