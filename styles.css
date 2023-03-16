@@ -90,8 +90,8 @@ nav a:hover {
     display: inline-block;
     background-color: #0e52d7;
     color: white;
-    font-size: 18px; /* Increase the font size */
-    padding: 15px 30px; /* Add more padding to the button */
+    font-size: 30px; /* Increase the font size */
+    padding: 25px 35x; /* Add more padding to the button */
     text-align: center;
     text-decoration: none;
     border: none;
