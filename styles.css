@@ -104,7 +104,7 @@ nav a:hover {
     background-color: #0070d1; /* Change the background color on hover */
 }
 .big-button + .big-button {
-    margin-left: 40px; /* Add space between the buttons */
+    margin-left: 80px; /* Add space between the buttons */
 }
 .description {
     max-width: 800px;
