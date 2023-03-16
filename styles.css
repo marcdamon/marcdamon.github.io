@@ -86,29 +86,11 @@ nav a:hover {
     margin-bottom: 2rem;
 }
 
-.button {
+.big-button {
     display: inline-block;
     background-color: #0e52d7;
     color: white;
-    font-size: 30px; /* Increase the font size */
-    padding: 15px 30px; /* Add more padding to the button */
-    text-align: center;
-    text-decoration: none;
-    border: none;
-    border-radius: 5px; /* Adjust the border-radius */
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.button:hover {
-    background-color: #0070d1; /* Change the background color on hover */
-}
-
-.big-button {
-    display: inline-block;
-    background-color: #1e90ff;
-    color: white;
-    font-size: 18px; /* Increase the font size */
+    font-size: 25px; /* Increase the font size */
     padding: 15px 30px; /* Add more padding to the button */
     text-align: center;
     text-decoration: none;
