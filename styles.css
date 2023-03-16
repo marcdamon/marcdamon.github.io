@@ -22,6 +22,7 @@ body {
 
 .main-content {
     flex-grow: 1;
+    padding-bottom: 20px;
 }
 
 .header {
@@ -127,7 +128,6 @@ footer {
     padding: 20px;
     text-align: center;
     border-top: 2px solid lightblue;
-    padding-top: 40px;
 }
 
 .footer-content {
