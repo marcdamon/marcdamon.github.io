@@ -17,6 +17,7 @@ header {
     align-items: center;
     padding: 1rem;
     background-color: #0b1933;
+    height: 60px;
 }
 
 .logo {
@@ -36,7 +37,7 @@ nav a:hover {
 .header-image {
     display: block;
     width: 100%;
-    height: 60px;
+    height: auto;
 }
 
 .title {
