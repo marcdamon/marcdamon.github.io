@@ -109,3 +109,38 @@ footer {
 
    
 }
+.footer {
+    background-color: #1e90ff;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer-nav {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 0;
+}
+
+.footer-nav li a {
+    text-decoration: none;
+    color: white;
+}
+
+.social-media {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.social-media a {
+    text-decoration: none;
+    color: white;
+}
