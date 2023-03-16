@@ -7,7 +7,7 @@
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    background-color: #0077cc;
+    background-color: #0b1933;
     color: #fff;
 }
 
@@ -16,7 +16,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    background-color: #0077cc;
+    background-color: #0b1933;
 }
 
 .logo {
