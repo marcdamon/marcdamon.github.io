@@ -81,11 +81,10 @@ nav a:hover {
 .header-image {
     display: block;
     width: 100%;
-    height: auto;
-    max-width: 100%; /* Ensures the image doesn't exceed its container's width */
     height: auto; /* Maintains the image's aspect ratio */
-    display: block; /* Removes the default space below the image */
+    max-width: 100%; /* Ensures the image doesn't exceed its container's width */
 }
+
 
 .title {
     max-width: 800px;
