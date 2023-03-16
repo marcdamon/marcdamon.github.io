@@ -11,14 +11,31 @@ body {
     color: #fff;
 }
 
-header {
+.header {
+    background-color: #0b1933;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
-    background-color: #0b1933;
-    height: 60px;
-}
+    padding: 0 20px;
+    height: 80px; /* Adjust this value to change the header height */
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+
+    .header-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1; /* This will make the header-content div take up the available space */
+    }
+    
+    .nav {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-grow: 1; /* This will make the nav div take up the available space */
+    }
 
 .logo {
     width: 250px;
