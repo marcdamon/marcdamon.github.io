@@ -38,8 +38,11 @@
         }
         
         //Display calculated values
-        document.getElementById("fuelNeeded").innerHTML = fuelNeeded*2 + " Total Gallons Needed " + fuelNeeded + " Gallons Right Tank " + fuelNeeded + " Gallons Left Tank";
-        //document.getElementById("fuelNeeded").innerHTML = "Total Fuel Needed: " + FuelNeeded + " Right Tank: " + rightTank + " Left Tank: " + leftTank;
+
+        if(splitEvenToggle){ //If toggle is set to split evenly
+            document.getElementById("fuelNeeded").innerHTML = fuelNeeded*2 + " Total Gallons Needed " + fuelNeeded + " Gallons Right Tank " + fuelNeeded + " Gallons Left Tank";
+} else { //If toggle is not set to split evenly
+    document.getElementById("fuelNeeded").innerHTML = fuelNeeded + " Total Fuel Needed:"
         document.getElementById("imbalanceWarning").innerHTML = imbalanceWarning;
     }
 </script>
