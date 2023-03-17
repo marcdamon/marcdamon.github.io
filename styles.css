@@ -55,7 +55,7 @@ body {
 .nav-link {
     display: inline-block;
     position: relative;
-    padding: 0 5px;
+    padding: 0 10px;
 }
 
 .nav-link:not(:last-child)::after {
@@ -64,7 +64,7 @@ body {
     right: 0;
     top: 50%;
     transform: translateY(-50%);
-    height: 180%;
+    height: 150%;
     width: 1px;
     background-color: #fff;
 }
