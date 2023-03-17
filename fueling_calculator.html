@@ -16,7 +16,7 @@
       
         //Calculate fuel needed
         if(splitEvenToggle){ //If toggle is set to split evenly
-            fuelNeeded = Math.ceil(totalFuelNeeded/2 - leftTank - rightTank); // Divide total fuel needed by 2 and round up
+            fuelNeeded = Math.ceil(totalFuelNeeded/2); // Divide total fuel needed by 2 and round up
         }
         else{ //If toggle is not set to split evenly
             fuelNeeded = Math.ceil(totalFuelNeeded - leftTank - rightTank); // Calculate fuel needed
