@@ -21,10 +21,12 @@
                 rightTankFuel = fuelToAdd;
                 totalFuel = leftTankFuel + rightTankFuel;
             } else {
-                let remainingFuel = inputTotalFuelNeeded - leftTank - rightTank;
-                leftTankFuel = remainingFuel;
-                rightTankFuel = 0;
-                totalFuel = leftTankFuel + rightTankFuel;
+        let remainingFuel = inputTotalFuelNeeded - leftTank - rightTank;
+        let targetFuel = (leftTank + rightTank + remainingFuel) / 2;
+        leftTankFuel = targetFuel - leftTank;
+        rightTankFuel = targetFuel - rightTank;
+        totalFuel = leftTankFuel + rightTankFuel;
+
         
                 if (Math.abs(leftTank + leftTankFuel - rightTank) > 75) {
                     imbalanceWarning = "Warning: Fuel imbalance of more than 75 gallons!";
