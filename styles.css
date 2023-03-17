@@ -49,13 +49,13 @@ body {
     align-items: center;
     flex-grow: 1;
     flex-wrap: wrap;
+    font-size: larger;
 }
 
 .nav-link {
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
+    display: inline-block;
     position: relative;
+    padding: 0 10px;
 }
 
 .nav-link:not(:last-child)::after {
@@ -64,22 +64,10 @@ body {
     right: 0;
     top: 50%;
     transform: translateY(-50%);
-    height: 50%;
-    width: 2px;
+    height: 150%;
+    width: 1px;
     background-color: #fff;
 }
-
-nav a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 18px; /* Adjust the font size */
-    font-weight: bold; /* Make the text bolder */
-}
-
-nav a:hover {
-    color: #ddd;
-}
-
 
 .logo {
     width: 250px;
