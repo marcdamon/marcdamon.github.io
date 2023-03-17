@@ -30,7 +30,7 @@
             
         
                 if (Math.abs(leftTank + leftTankFuel - rightTank) > 75) {
-                    imbalanceWarning = "Warning: Fuel imbalance of more than 75 gallons!";
+                    imbalanceWarning = "Warning: Fuel imbalance of more than 75 gallons! per side";
                 }
         
             if (measurementType == "Gallons") {
@@ -75,10 +75,12 @@
 <label for="splitEven">Split Fuel Evenly</label><br/><br/>
 
 <label for="measurementType">Measurement Type: </label>
-<select id="measurementType">
+<select id="measurementType" onchange="calculateFuelNeeded()">
     <option value="Gallons">Gallons</option>
     <option value="Pounds">Pounds</option>
     <option value="Liters">Liters</option>
+</select>
+
 </select><br/><br/>
 
 <button onclick="calculateFuelNeeded()">Calculate</button><br/><br/>
