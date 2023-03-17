@@ -83,6 +83,7 @@ nav a:hover {
     justify-content: center;
     gap: 1rem;
     margin-bottom: 2rem;
+    padding: 40px;
 }
 
 .big-button {
@@ -91,7 +92,7 @@ nav a:hover {
     color: white;
     font-size: 25px;
     font-weight: bold;
-    padding: 15px 60px;
+    padding: 15px 30px;
     text-align: center;
     text-decoration: none;
     border: none;
