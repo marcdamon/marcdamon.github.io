@@ -19,8 +19,7 @@
             fuelNeeded = Math.ceil(totalFuelNeeded/2); // Divide total fuel needed by 2 and round up
         }
         else{ //If toggle is not set to split evenly
-            fuelNeeded = Math.ceil(totalFuelNeeded - (leftTank + rightTank)/2); // Calcul
-
+            fuelNeeded = Math.ceil(totalFuelNeeded - (leftTank + rightTank)/2); // Calculate fuel needed
             //Calculate fuel imbalance warning if fuel needed is more than 75 gallons
             if(fuelNeeded > 75){
                 imbalanceWarning = "Warning: Fuel imbalance of more than 75 gallons!";
