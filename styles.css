@@ -50,20 +50,21 @@ body {
         flex-wrap: wrap;
     }
     .nav-link {
-        position: relative;
-        padding: 0 10px; /* Add padding to the left and right of the link */
+        display: inline-block;
+        margin-right: 20px; /* Add right margin to the links */
+        padding: 0 10px;
     }
     
     .nav-link:not(:last-child)::after {
         content: "";
-        position: absolute;
-        right: -70px;
-        top: 50%;
-        transform: translateY(-50%);
-        height: 150%; /* Increase the height percentage */
-        width: 2px; /* Increase the width to make lines bolder */
+        display: inline-block;
+        margin-left: 20px; /* Add left margin to the separator lines */
+        height: 60%;
+        width: 2px;
         background-color: #fff;
+        vertical-align: middle;
     }
+    
 .logo {
     width: 250px;
     height: auto;
