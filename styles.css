@@ -43,20 +43,7 @@ body {
     flex-grow: 1;
 }
 
-.nav {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex-grow: 1;
-    flex-wrap: wrap;
-    font-size: larger;
-}
 
-.nav-link {
-    display: inline-block;
-    position: relative;
-    padding: 0 10px;
-}
 
 
 .logo {
