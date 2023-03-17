@@ -58,16 +58,6 @@ body {
     padding: 0 10px;
 }
 
-.nav-link:not(:last-child)::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 150%;
-    width: 1px;
-    background-color: #fff;
-}
 
 .logo {
     width: 250px;
