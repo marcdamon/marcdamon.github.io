@@ -13,6 +13,15 @@
         .form-group label {
           width: 150px; /* Adjust this value to match the longest label */
         }
+        .result-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .result-group label {
+    width: 150px; /* Adjust this value to match the longest label */
+  }
         .main-content {
     flex-grow: 1;
     padding-bottom: 60px;
@@ -128,9 +137,20 @@
 <button onclick="calculateFuelNeeded()">Calculate</button><br/><br/>
 
 
-<label>Total Fuel Needed: </label><span id="totalFuelNeededOutput"></span><br/>
-<label>Left Tank Fuel: </label><span id="leftTankFuelOutput"></span><br/>
-<label>Right Tank Fuel: </label><span id="rightTankFuelOutput"></span><br/>
+<div class="result-group">
+    <label>Total Fuel Needed: </label>
+    <span id="totalFuelNeededOutput"></span>
+  </div>
+  
+  <div class="result-group">
+    <label>Left Tank Fuel: </label>
+    <span id="leftTankFuelOutput"></span>
+  </div>
+  
+  <div class="result-group">
+    <label>Right Tank Fuel: </label>
+    <span id="rightTankFuelOutput"></span>
+  </div>
 <span id="imbalanceWarning"></span>
 
 
