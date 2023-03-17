@@ -47,10 +47,13 @@ body {
         justify-content: flex-end;
         align-items: center;
         flex-grow: 1;
-        flex-wrap: wrap; /* This will make the nav div take up the available space */
+        flex-wrap: wrap;
+    }
+    .nav-link {
         position: relative;
         padding: 0 10px; /* Add padding to the left and right of the link */
     }
+    
     .nav-link:not(:last-child)::after {
         content: "";
         position: absolute;
@@ -61,7 +64,6 @@ body {
         width: 1px;
         background-color: #fff;
     }
-
 .logo {
     width: 250px;
     height: auto;
