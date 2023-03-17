@@ -81,9 +81,8 @@ nav a:hover {
 .buttons {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: 5rem;
     margin-bottom: 2rem;
-    padding: 40px;
 }
 
 .big-button {
