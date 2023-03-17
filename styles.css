@@ -48,6 +48,7 @@ body {
         align-items: center;
         flex-grow: 1;
         flex-wrap: wrap;
+        font-weight: bold;
     }
     .nav-link {
         display: inline-block;
