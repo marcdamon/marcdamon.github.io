@@ -59,7 +59,7 @@ body {
         content: "";
         display: inline-block;
         margin-left: 20px; /* Add left margin to the separator lines */
-        height: 60%;
+        height: 1200%;
         width: 2px;
         background-color: #fff;
         vertical-align: middle;
