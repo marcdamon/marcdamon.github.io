@@ -49,13 +49,13 @@ body {
     align-items: center;
     flex-grow: 1;
     flex-wrap: wrap;
-    font-size: larger;
 }
 
 .nav-link {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
     position: relative;
-    padding: 0 10px;
 }
 
 .nav-link:not(:last-child)::after {
@@ -64,10 +64,22 @@ body {
     right: 0;
     top: 50%;
     transform: translateY(-50%);
-    height: 150%;
-    width: 1px;
+    height: 50%;
+    width: 2px;
     background-color: #fff;
 }
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px; /* Adjust the font size */
+    font-weight: bold; /* Make the text bolder */
+}
+
+nav a:hover {
+    color: #ddd;
+}
+
 
 .logo {
     width: 250px;
