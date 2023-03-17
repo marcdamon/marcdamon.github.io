@@ -27,11 +27,11 @@
         rightTankFuel = targetFuel - rightTank;
         totalFuel = leftTankFuel + rightTankFuel;
     }
-            }
+            
         
                 if (Math.abs(leftTank + leftTankFuel - rightTank) > 75) {
                     imbalanceWarning = "Warning: Fuel imbalance of more than 75 gallons!";
-               
+                }
         
             if (measurementType == "Gallons") {
                 totalFuel = totalFuel;
