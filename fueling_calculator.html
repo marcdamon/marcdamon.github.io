@@ -17,16 +17,16 @@
         
             if (splitEvenToggle) {
                 let fuelToAdd = (inputTotalFuelNeeded - leftTank - rightTank) / 2;
-                leftTankFuel = leftTank + fuelToAdd;
-                rightTankFuel = rightTank + fuelToAdd;
+                leftTankFuel = fuelToAdd;
+                rightTankFuel = fuelToAdd;
                 totalFuel = leftTankFuel + rightTankFuel;
             } else {
                 let remainingFuel = inputTotalFuelNeeded - leftTank - rightTank;
-                leftTankFuel = leftTank + remainingFuel;
-                rightTankFuel = rightTank;
+                leftTankFuel = remainingFuel;
+                rightTankFuel = 0;
                 totalFuel = leftTankFuel + rightTankFuel;
         
-                if (Math.abs(leftTankFuel - rightTankFuel) > 75) {
+                if (Math.abs(leftTank + leftTankFuel - rightTank) > 75) {
                     imbalanceWarning = "Warning: Fuel imbalance of more than 75 gallons!";
                 }
             }
@@ -51,6 +51,7 @@
             document.getElementById("imbalanceWarning").innerHTML = imbalanceWarning;
         }
         </script>
+        
         
         
 
