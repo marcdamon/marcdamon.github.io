@@ -22,9 +22,8 @@
                 totalFuel = leftTankFuel + rightTankFuel;
             } else {
                 let remainingFuel = inputTotalFuelNeeded - leftTank - rightTank;
-                let halfRemainingFuel = remainingFuel / 2;
-                leftTankFuel = leftTank + halfRemainingFuel;
-                rightTankFuel = rightTank + halfRemainingFuel;
+                leftTankFuel = leftTank + remainingFuel;
+                rightTankFuel = rightTank;
                 totalFuel = leftTankFuel + rightTankFuel;
         
                 if (Math.abs(leftTankFuel - rightTankFuel) > 75) {
@@ -52,6 +51,7 @@
             document.getElementById("imbalanceWarning").innerHTML = imbalanceWarning;
         }
         </script>
+        
         
 
 </head>
