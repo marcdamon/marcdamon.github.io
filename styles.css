@@ -53,8 +53,9 @@ body {
 }
 
 .nav-link {
+    display: inline-block;
     position: relative;
-    padding: 0 10px;
+    padding: 0 30px;
 }
 
 .nav-link:not(:last-child)::after {
