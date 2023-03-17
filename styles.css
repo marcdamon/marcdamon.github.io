@@ -182,9 +182,4 @@ footer {
     .header-content {
         margin-bottom: 10px; /* Add more space between the logo and the nav bar */
     }
-
-    .logo {
-        max-height: 200px; /* Limit the logo height on smaller screens */
-    }
 }
-
