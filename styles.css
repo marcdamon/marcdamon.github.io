@@ -48,19 +48,20 @@ body {
         align-items: center;
         flex-grow: 1;
         flex-wrap: wrap; /* This will make the nav div take up the available space */
+        position: relative;
+        padding: 0 10px; /* Add padding to the left and right of the link */
     }
-/* This media query will apply styles for screen widths up to 768px (iPad portrait) */
-@media screen and (max-width: 768px) {
-    .header {
-        flex-direction: column; /* Stack the logo and navigation vertically */
-        height: auto; /* Allow the header height to adjust automatically */
+    .nav-link:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 50%;
+        width: 1px;
+        background-color: #fff;
     }
-   
 
-    .nav {
-        justify-content: center; /* Center the navigation links on smaller screens */
-    }
-}
 .logo {
     width: 250px;
     height: auto;
@@ -171,7 +172,7 @@ footer {
     .header {
         flex-direction: column;
         height: auto;
-        padding: -80px; /* Reduce the top and bottom padding around the logo */
+        padding: -0px; /* Reduce the top and bottom padding around the logo */
     }
 
     .nav {
