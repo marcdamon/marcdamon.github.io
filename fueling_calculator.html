@@ -4,58 +4,55 @@
     <title>Page Title</title>
 
 
-<script>
-
-
-
-function calculateFuelNeeded(){
-        let leftTank = parseFloat(document.getElementById("leftTank").value);
-        let rightTank = parseFloat(document.getElementById("rightTank").value);
-        let totalFuelNeeded = parseFloat(document.getElementById("totalFuelNeeded").value);
-        let splitEvenToggle = document.getElementById("splitEven").checked;
-        let measurementType = document.getElementById("measurementType").value;
-        let imbalanceWarning = "";
-
-        let totalFuel, leftTankFuel, rightTankFuel;
-
-        if (splitEvenToggle) {
-            totalFuel = totalFuelNeeded;
-            let fuelToAdd = (totalFuel - leftTank - rightTank) / 2;
-            leftTankFuel = leftTank + fuelToAdd;
-            rightTankFuel = rightTank + fuelToAdd;
-        } else {
-            let remainingFuel = totalFuelNeeded - leftTank - rightTank;
-            let halfRemainingFuel = remainingFuel / 2;
-            leftTankFuel = leftTank + halfRemainingFuel;
-            rightTankFuel = rightTank + halfRemainingFuel;
-            totalFuel = leftTankFuel + rightTankFuel;
-
-            if (Math.abs(leftTankFuel - rightTankFuel) > 75) {
-                imbalanceWarning = "Warning: Fuel imbalance of more than 75 gallons!";
+    <script>
+        function calculateFuelNeeded() {
+            let leftTank = parseFloat(document.getElementById("leftTank").value);
+            let rightTank = parseFloat(document.getElementById("rightTank").value);
+            let inputTotalFuelNeeded = parseFloat(document.getElementById("totalFuelNeeded").value);
+            let splitEvenToggle = document.getElementById("splitEven").checked;
+            let measurementType = document.getElementById("measurementType").value;
+            let imbalanceWarning = "";
+        
+            let totalFuel, leftTankFuel, rightTankFuel;
+        
+            if (splitEvenToggle) {
+                let fuelToAdd = (inputTotalFuelNeeded - leftTank - rightTank) / 2;
+                leftTankFuel = leftTank + fuelToAdd;
+                rightTankFuel = rightTank + fuelToAdd;
+                totalFuel = leftTankFuel + rightTankFuel;
+            } else {
+                let remainingFuel = inputTotalFuelNeeded - leftTank - rightTank;
+                let halfRemainingFuel = remainingFuel / 2;
+                leftTankFuel = leftTank + halfRemainingFuel;
+                rightTankFuel = rightTank + halfRemainingFuel;
+                totalFuel = leftTankFuel + rightTankFuel;
+        
+                if (Math.abs(leftTankFuel - rightTankFuel) > 75) {
+                    imbalanceWarning = "Warning: Fuel imbalance of more than 75 gallons!";
+                }
             }
+        
+            if (measurementType == "Gallons") {
+                totalFuel = totalFuel;
+                leftTankFuel = leftTankFuel;
+                rightTankFuel = rightTankFuel;
+            } else if (measurementType == "Pounds") {
+                totalFuel = totalFuel * 6;
+                leftTankFuel = leftTankFuel * 6;
+                rightTankFuel = rightTankFuel * 6;
+            } else if (measurementType == "Liters") {
+                totalFuel = totalFuel * 3.785;
+                leftTankFuel = leftTankFuel * 3.785;
+                rightTankFuel = rightTankFuel * 3.785;
+            }
+        
+            document.getElementById("totalFuelNeededOutput").innerHTML = totalFuel.toFixed(2) + " Total " + measurementType + " Needed";
+            document.getElementById("leftTankFuelOutput").innerHTML = leftTankFuel.toFixed(2) + " " + measurementType + " Left Tank";
+            document.getElementById("rightTankFuelOutput").innerHTML = rightTankFuel.toFixed(2) + " " + measurementType + " Right Tank";
+            document.getElementById("imbalanceWarning").innerHTML = imbalanceWarning;
         }
-
-        if (measurementType == "Gallons") {
-            totalFuel = totalFuel;
-            leftTankFuel = leftTankFuel;
-            rightTankFuel = rightTankFuel;
-        } else if (measurementType == "Pounds") {
-            totalFuel = totalFuel * 6;
-            leftTankFuel = leftTankFuel * 6;
-            rightTankFuel = rightTankFuel * 6;
-        } else if (measurementType == "Liters") {
-            totalFuel = totalFuel * 3.785;
-            leftTankFuel = leftTankFuel * 3.785;
-            rightTankFuel = rightTankFuel * 3.785;
-        }
-
-        document.getElementById("totalFuelNeededOutput").innerHTML = totalFuel.toFixed(2) + " Total " + measurementType + " Needed";
-        document.getElementById("leftTankFuelOutput").innerHTML = leftTankFuel.toFixed(2) + " " + measurementType + " Left Tank";
-        document.getElementById("rightTankFuelOutput").innerHTML = rightTankFuel.toFixed(2) + " " + measurementType + " Right Tank";
-        document.getElementById("imbalanceWarning").innerHTML = imbalanceWarning;
-    }
- 
-</script>
+        </script>
+        
 
 </head>
 
