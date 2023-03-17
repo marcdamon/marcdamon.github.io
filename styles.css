@@ -184,7 +184,7 @@ footer {
     }
 
     .logo {
-        max-height: 50px; /* Limit the logo height on smaller screens */
+        max-height: 100px; /* Limit the logo height on smaller screens */
     }
 }
 
