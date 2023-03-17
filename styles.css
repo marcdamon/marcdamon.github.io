@@ -63,8 +63,8 @@ body {
     right: 0;
     top: 50%;
     transform: translateY(-50%);
-    height: 120%;
-    width: 2px;
+    height: 180%;
+    width: 1px;
     background-color: #fff;
 }
 
