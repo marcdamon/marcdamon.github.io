@@ -54,51 +54,7 @@ function calculateFuelNeeded(){
         document.getElementById("imbalanceWarning").innerHTML = imbalanceWarning;
     }
 
-    /*function calculateFuelNeeded(){
-        let leftTank = document.getElementById("leftTank").value; //Get left tank fuel input
-        let rightTank = document.getElementById("rightTank").value; //Get right tank fuel input
-        let totalFuelNeeded = document.getElementById("totalFuelNeeded").value; //Get total fuel needed input
-        let splitEvenToggle = document.getElementById("splitEven").checked;
-        let fuelNeeded = 0; // Variable to store calculated fuel needed for each tank
-        let measurementType = document.getElementById("measurementType").value; //Get measurement type
-        let imbalanceWarning = "";
-      
-
-
-
-
-        //Calculate fuel needed
-        if(splitEvenToggle){ //If toggle is set to split evenly
-            fuelNeeded = Math.ceil(totalFuelNeeded - leftTank - rightTank)/2; // Divide total fuel needed by 2 and round up
-        }
-        else{ //If toggle is not set to split evenly
-            fuelNeeded = Math.ceil(totalFuelNeeded - leftTank - rightTank); // Calculate fuel needed
-            //Calculate fuel imbalance warning if fuel needed is more than 75 gallons
-            if(fuelNeeded > 75){
-                imbalanceWarning = "Warning: Fuel imbalance of more than 75 gallons!";
-            }
-        }
-       
-        //Convert fuel needed to selected measurement type
-        if(measurementType == "Gallons"){
-            fuelNeeded = fuelNeeded;
-        }
-        else if(measurementType == "Pounds"){
-            fuelNeeded = fuelNeeded * 6; //1 gallon = 6 pounds
-        }
-        else if(measurementType == "Liters"){
-            fuelNeeded = fuelNeeded * 3.785; //1 gallon = 3.785 liters
-        }
-        
-        //Display calculated values
-
-        if(splitEvenToggle){ //If toggle is set to split evenly
-            document.getElementById("fuelNeeded").innerHTML = fuelNeeded*2 + " Total Gallons Needed " + fuelNeeded + " Gallons Right Tank " + fuelNeeded + " Gallons Left Tank";
-} else { //If toggle is not set to split evenly
-    document.getElementById("fuelNeeded").innerHTML = fuelNeeded + " Total Gallons Fuel Needed:"
-        document.getElementById("imbalanceWarning").innerHTML = imbalanceWarning;
-    }
-}*/
+ 
 </script>
 
 </head>
@@ -133,16 +89,6 @@ function calculateFuelNeeded(){
 <label>Right Tank Fuel: </label><span id="rightTankFuelOutput"></span><br/>
 <span id="imbalanceWarning"></span>
 
-
-
-/*
-
-<label>Fuel Needed: </label><span id="fuelNeeded"></span><br/>
-<p></p>
-<p>
-</p>
-<span id="imbalanceWarning"></span>
-*/
 <body>
 
 </body>
