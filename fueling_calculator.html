@@ -91,6 +91,72 @@
 <label>Right Tank Fuel: </label><span id="rightTankFuelOutput"></span><br/>
 <span id="imbalanceWarning"></span>
 
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  .aircraft {
+    display: inline-block;
+    position: relative;
+    background-color: #333;
+  }
+
+  .body {
+    width: 100px;
+    height: 400px;
+    border-radius: 50px;
+  }
+
+  .wing {
+    position: absolute;
+    width: 300px;
+    height: 30px;
+    background-color: #333;
+    left: 50%;
+    margin-left: -150px;
+    top: 50%;
+    margin-top: -15px;
+  }
+
+  .tail {
+    position: absolute;
+    width: 80px;
+    height: 30px;
+    background-color: #333;
+    left: 50%;
+    margin-left: -40px;
+    bottom: 10px;
+  }
+
+  .nose {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 50px solid #333;
+    top: -50px;
+    left: 50%;
+    margin-left: -30px;
+  }
+</style>
+</head>
+<body>
+
+<div class="aircraft">
+  <div class="body"></div>
+  <div class="wing"></div>
+  <div class="tail"></div>
+  <div class="nose"></div>
+</div>
+
+</body>
+</html>
+
+
+
 <body>
 
 </body>
