@@ -9,7 +9,7 @@
         let leftTank = document.getElementById("leftTank").value; //Get left tank fuel input
         let rightTank = document.getElementById("rightTank").value; //Get right tank fuel input
         let totalFuelNeeded = document.getElementById("totalFuelNeeded").value; //Get total fuel needed input
-        let splitEvenToggle = document.getElementById("fuelNeeded").innerHTML = "Right Tank: " + fuelNeeded + " Left Tank: " + fuelNeeded;
+        let splitEvenToggle = document.getElementById("fuelNeeded").innerHTML = "Right Tank: " + rightTank + " Left Tank: " + leftTank;
         let fuelNeeded = 0; // Variable to store calculated fuel needed for each tank
         let measurementType = document.getElementById("measurementType").value; //Get measurement type
         let imbalanceWarning = "";
