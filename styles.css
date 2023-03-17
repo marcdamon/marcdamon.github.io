@@ -74,9 +74,13 @@ body {
 }
 
 nav a {
+    margin-left: 1rem;
     text-decoration: none;
     color: #fff;
+    font-size: 24px; /* Increase the font size */
+    font-weight: bold; /* Make the text bolder */
 }
+
 
 nav a:hover {
     color: #ddd;
