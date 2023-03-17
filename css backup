@@ -1,0 +1,189 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #0b1933;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+.main-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding-bottom: 60px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0b1933;
+    padding: 20px;
+    height: 100px;
+    box-sizing: border-box; /* Add this line to include padding in the height calculation */
+}
+
+    .header-content {
+        display: flex;
+        justify-content: flex start;
+        align-items: center;
+        flex-grow: 1; /* This will make the header-content div take up the available space */
+    }
+    
+    .nav {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-grow: 1;
+        flex-wrap: wrap;
+    }
+    .nav-link {
+        display: inline-block;
+        margin-right: 20px; /* Add right margin to the links */
+        padding: 0 10px;
+    }
+    
+    .nav-link:not(:last-child)::after {
+        content: "";
+        display: inline-block;
+        margin-left: 20px; /* Add left margin to the separator lines */
+        height: 1200%;
+        width: 2px;
+        background-color: #fff;
+        vertical-align: middle;
+    }
+    
+.logo {
+    width: 250px;
+    height: auto;
+}
+
+nav a {
+    margin-left: 1rem;
+    text-decoration: none;
+    color: #fff;
+}
+
+nav a:hover {
+    color: #ddd;
+}
+
+.header-image {
+    display: block;
+    width: 100%;
+    height: auto; /* Maintains the image's aspect ratio */
+    max-width: 100%; /* Ensures the image doesn't exceed its container's width */
+}
+
+
+.title {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 30px 1rem;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.big-button {
+    display: inline-block;
+    background-color: #0e52d7;
+    color: white;
+    font-size: 25px; /* Increase the font size */
+    font-weight: bold;
+    padding: 15px 30px; /* Add more padding to the button */
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 10px; /* Adjust the border-radius */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.big-button:hover {
+    background-color: #0070d1; /* Change the background color on hover */
+}
+.big-button + .big-button {
+    margin-left: 80px; /* Add space between the buttons */
+}
+.description {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+}
+
+.footer {
+    background-color: #0b1933;
+    padding: 20px;
+    text-align: center;
+    border-top: 2px solid #0e52d7;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer-nav {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 0;
+}
+
+.footer-nav li a {
+    text-decoration: none;
+    color: white;
+}
+
+.social-media {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.social-media a {
+    text-decoration: none;
+    color: white;
+}
+@media screen and (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        height: auto;
+        padding: -0px; /* Reduce the top and bottom padding around the logo */
+    }
+
+    .nav {
+        justify-content: center;
+        margin-top: 10px; /* Add some space between the logo and the navigation links */
+    }
+
+    .header-content {
+        margin-bottom: 10px; /* Add more space between the logo and the nav bar */
+    }
+}
