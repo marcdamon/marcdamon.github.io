@@ -42,7 +42,7 @@
         if(splitEvenToggle){ //If toggle is set to split evenly
             document.getElementById("fuelNeeded").innerHTML = fuelNeeded*2 + " Total Gallons Needed " + fuelNeeded + " Gallons Right Tank " + fuelNeeded + " Gallons Left Tank";
 } else { //If toggle is not set to split evenly
-    document.getElementById("fuelNeeded").innerHTML = fuelNeeded + " Total Fuel Needed:"
+    document.getElementById("fuelNeeded").innerHTML = fuelNeeded + " Total Gallons Fuel Needed:"
         document.getElementById("imbalanceWarning").innerHTML = imbalanceWarning;
     }
 }
@@ -75,6 +75,9 @@
 <button onclick="calculateFuelNeeded()">Calculate</button><br/><br/>
 
 <label>Fuel Needed: </label><span id="fuelNeeded"></span><br/>
+<p></p>
+<p>
+</p>
 <span id="imbalanceWarning"></span>
 
 <body>
