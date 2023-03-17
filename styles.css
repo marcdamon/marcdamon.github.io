@@ -60,8 +60,8 @@ body {
         right: 0;
         top: 50%;
         transform: translateY(-50%);
-        height: 60%; /* Increase the height percentage */
-        width: 2px; /* Increase the width to make lines bolder */
+        height: 100%; /* Increase the height percentage */
+        width: 4px; /* Increase the width to make lines bolder */
         background-color: #fff;
     }
 .logo {
