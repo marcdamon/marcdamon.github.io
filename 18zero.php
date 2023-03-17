@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <header class="header">
+<?php include 'header.php'; ?>
+  /*  <header class="header">
         <div class="header-content">
             <a href="18zero.html"><img src="images/logo.png" alt="Company Logo" class="logo">
         </div>
@@ -21,7 +21,7 @@
             <a href="#" class="nav-link">Contact</a>
           </nav>
     </header>
-
+*/
 
     <div class="main-container">
         <main class="main-content">
