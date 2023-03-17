@@ -171,12 +171,15 @@ footer {
     .header {
         flex-direction: column;
         height: auto;
-        padding: 10px 10px;
+        padding: 10px; /* Reduce the top and bottom padding around the logo */
     }
 
     .nav {
         justify-content: center;
-        margin-top: 10px; 
-        padding-bottom: 15;
+        margin-top: 10px; /* Add some space between the logo and the navigation links */
+    }
+
+    .header-content {
+        margin-bottom: 10px; /* Add more space between the logo and the nav bar */
     }
 }
