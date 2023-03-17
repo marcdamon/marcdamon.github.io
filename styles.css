@@ -34,6 +34,7 @@ body {
     padding: 20px;
     height: 90px;
     box-sizing: border-box;
+    border-bottom: 2px solid #0e52d7;
 }
 
 .header-content {
@@ -55,8 +56,7 @@ nav a {
     margin-left: 1rem;
     text-decoration: none;
     color: #fff;
-    font-size: 20px; /* Increase the font size */
-    border-bottom: 2px solid #0e52d7;
+    font-size: 20px; /* Increase the font size */3
 
 }
 
