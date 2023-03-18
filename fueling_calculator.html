@@ -28,6 +28,32 @@
     padding: 30px;
     text-align: center;
 }
+.container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .input-group {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .input-wrapper {
+            margin: 0 1rem;
+        }
+
+        .result-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 1rem;
+        }
+
+        .result-group label {
+            margin-bottom: 0.5rem;
+        }
 
       </style>
 
@@ -107,6 +133,49 @@
 
 
 <h1>Fuel Calculator for Jet Aircraft</h1>
+
+
+
+<div class="container">
+    <div class="input-group">
+        <div class="input-wrapper">
+            <label for="leftTank">Left Tank: </label>
+            <input type="number" id="leftTank" style="width: 70px;" /><br/><br/>
+        </div>
+
+        <div class="input-wrapper">
+            <label for="rightTank">Right Tank: </label>
+            <input type="number" id="rightTank" style="width: 70px;" /><br/><br/>
+        </div>
+
+        <div class="input-wrapper">
+            <label for="totalFuelNeeded">Total Fuel Needed: </label>
+            <input type="number" id="totalFuelNeeded" style="width: 70px;" /><br/><br/>
+        </div>
+    </div>
+
+    <div class="input-group">
+        <div class="result-group">
+            <label>Total Fuel Needed: </label>
+            <span id="totalFuelNeededOutput"></span>
+        </div>
+
+        <div class="result-group">
+            <label>Left Tank Fuel: </label>
+            <span id="leftTankFuelOutput"></span>
+        </div>
+
+        <div class="result-group">
+            <label>Right Tank Fuel: </label>
+            <span id="rightTankFuelOutput"></span>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 
 <div class="form-group">
   <label for="leftTank">Left Tank: </label>
