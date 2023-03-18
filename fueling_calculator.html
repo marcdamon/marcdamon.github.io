@@ -4,6 +4,15 @@
     <title>Page Title</title>
 
     <style>
+        /* Add this code */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+        /* End of the added code */
+
         .form-group {
           display: flex;
           align-items: center;
@@ -56,8 +65,6 @@
         }
 
       </style>
-
-    <script>
         function calculateFuelNeeded() {
             let leftTank = parseFloat(document.getElementById("leftTank").value);
             let rightTank = parseFloat(document.getElementById("rightTank").value);
