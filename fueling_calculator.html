@@ -22,10 +22,11 @@
   .result-group label {
     width: 150px; /* Adjust this value to match the longest label */
   }
-        .main-content {
+        .main-calculator-content {
     flex-grow: 1;
     padding-bottom: 60px;
     padding: 30px;
+    text-align: center;
 }
 
       </style>
@@ -56,7 +57,7 @@
             
         
                 if (Math.abs(leftTank + leftTankFuel - rightTank) > 75) {
-                    imbalanceWarning = "Warning: Fuel imbalance of more than 75 gallons! per side";
+                    imbalanceWarning = "Warning: Fuel imbalance of more than 75 gallons per side";
                 }
         
             if (measurementType == "Gallons") {
@@ -100,8 +101,8 @@
         </header>
     
     
-        <div class="main-container">
-            <main class="main-content">    
+        <div class="main-calculator-container">
+            <main class="main-calculator-content">    
         
 
 
