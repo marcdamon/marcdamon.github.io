@@ -216,15 +216,5 @@ body {
     cursor: pointer;
   }
   
-  .content-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-  }
-  
-  #question-container,
-  #answer-container {
-    flex-shrink: 0;
-  }
+
   
