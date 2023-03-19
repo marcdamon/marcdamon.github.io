@@ -182,7 +182,9 @@ body {
     display: flex;
     justify-content: center;
     gap: 50px;
-    padding-top: 100px;
+  }
+  .main-button-container {
+    margin-top: 2rem;
   }
   
   .navigation-button-container button {
