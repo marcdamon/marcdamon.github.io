@@ -202,18 +202,8 @@ body {
     cursor: pointer;
   }
   
-  .review-button-container button {
-    padding: 10px 20px;
-    font-size: 1.1rem;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-
-  .show-button-container button {
-    padding: 10px 20px;
-    font-size: 1.1rem;
-    border-radius: 10px;
-    cursor: pointer;
+  #mark-for-review {
+    width: 150px; /* Adjust the value as needed */
   }
   
 
