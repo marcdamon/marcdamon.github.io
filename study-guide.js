@@ -33,3 +33,12 @@ function generateRandomOrder(length) {
     }
   });
   
+
+  randomToggle.addEventListener("change", () => {
+    if (randomToggle.checked) {
+      localStorage.setItem("randomOrder", "true");
+    } else {
+      localStorage.setItem("randomOrder", "false");
+    }
+  });
+  

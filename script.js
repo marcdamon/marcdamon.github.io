@@ -1,4 +1,19 @@
+const randomOrder = localStorage.getItem("randomOrder") === "true";
 
+function generateRandomOrder(length) {
+  const indices = Array.from({ length }, (_, i) => i);
+  for (let i = indices.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [indices[i], indices[j]] = [indices[j], indices[i]];
+  }
+  return indices;
+}
+
+const orderedQuestions = randomOrder ? generateRandomOrder(questions.length).map(index => questions[index]) : questions.slice();
+
+  
+  
+  
   const questions = [
     {
       question: "What are the requirements for a pilot to carry passengers as PIC?",
