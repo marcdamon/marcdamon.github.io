@@ -26,7 +26,16 @@
         <h1>Welcome to the Study Guide</h1>
         <p>Select a study mode:</p>
         
+
+
+
+        document.getElementById("review-questions").addEventListener("click", () => {
+            window.location.href = "questions_without_answers.html";
+         
         <button id="review-questions-answers">Review all questions with answers shown</button>
+    });
+
+    
         <button id="review-questions">Review all questions</button>
         <button id="review-uncertain-questions">Review uncertain questions only</button>
         
