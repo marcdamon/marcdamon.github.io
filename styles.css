@@ -218,21 +218,7 @@ body {
   }
   
 
-  .button-styling #prev-question {
-    grid-area: prev;
-  }
   
-  .button-styling #show-answer {
-    grid-area: show;
-  }
-  
-  .button-styling #mark-for-review {
-    grid-area: mark;
-  }
-  
-  .button-styling #next-question {
-    grid-area: next;
-  }
 
   
  
