@@ -84,7 +84,7 @@ document.getElementById("next-question").addEventListener("click", () => {
     currentQuestionIndex = orderedQuestions.length - 1;
     alert("You've reached the end of the questions.");
   }
-});
+
 
 showQuestion();
 
@@ -121,3 +121,8 @@ function showQuestion() {
     // Update the "Mark for review" button text
     updateMarkForReviewBtn();
   }
+
+
+
+
+});
