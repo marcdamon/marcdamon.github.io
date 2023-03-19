@@ -1,0 +1,114 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <!DOCTYPE html>
+<html lang="en">
+
+<script
+const questions = [
+  {
+    question: "Question 1?",
+    answer: "Answer 1"
+  },
+  // Add more questions and answers
+];
+
+let currentQuestionIndex = 0;
+let reviewQuestions = [];
+
+const questionElement = document.getElementById("question");
+const answerElement = document.getElementById("answer");
+
+function showQuestion() {
+  questionElement.textContent = questions[currentQuestionIndex].question;
+  answerElement.textContent = questions[currentQuestionIndex].answer;
+  answerElement.hidden = true;
+}
+
+document.getElementById("show-answer").addEventListener("click", () => {
+  answerElement.hidden = !answerElement.hidden;
+});
+
+document.getElementById("save-for-review").addEventListener("click", () => {
+  reviewQuestions.push(questions[currentQuestionIndex]);
+});
+
+document.getElementById("next-question").addEventListener("click", () => {
+  currentQuestionIndex++;
+  if (currentQuestionIndex < questions.length) {
+    showQuestion();
+  } else {
+    alert("You've reached the end of the questions.");
+  }
+});
+
+showQuestion();
+</script>
+
+
+
+
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-content">
+            <a href="18zero.html"><img src="images/logo.png" alt="Company Logo" class="logo">
+        </div>
+        <nav>
+            <a href="#" class="nav-link">Buy</a>
+            <a href="#" class="nav-link">Sell</a>
+            <a href="#" class="nav-link">Flight Logic</a>
+            <a href="#" class="nav-link">Contact</a>
+          </nav>
+    </header>
+
+
+    <div class="main-container">
+        <main class="main-content">
+
+
+
+
+
+            <div id="question-container">
+                <h2 id="question"></h2>
+                <button id="show-answer">Show Answer</button>
+                <p id="answer" hidden></p>
+                <button id="save-for-review">Save for Review</button>
+                <button id="next-question">Next Question</button>
+              </div>
+              <script src="script.js"></script>
+
+
+
+
+
+
+    </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2023 18ZERO. All rights reserved.</p>
+            <nav>
+                <ul class="footer-nav">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="social-media">
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+    </div>
+</body>
+</html>
+
+
+
+
