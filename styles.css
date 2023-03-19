@@ -235,7 +235,13 @@ body {
   }
 
   
-
+  @media (min-width: 600px) {
+    .main-button-container {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-areas: "prev show mark next";
+    }
+  }
+  
 
 
 
