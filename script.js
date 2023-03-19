@@ -74,6 +74,18 @@ function generateRandomOrder(length) {
   document.getElementById("show-answer").addEventListener("click", () => {
     answerElement.hidden = !answerElement.hidden;
   });
+
+  document.getElementById("prev-question").addEventListener("click", () => {
+    currentQuestionIndex--;
+    if (currentQuestionIndex >= 0) {
+      showQuestion();
+    } else {
+      currentQuestionIndex = 0;
+      alert("You've reached the beginning of the questions.");
+    }
+  });
+
+  
   
   document.getElementById("next-question").addEventListener("click", () => {
     currentQuestionIndex++;
