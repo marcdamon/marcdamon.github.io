@@ -167,8 +167,15 @@ nav a:hover {
 }
 
 
-
-
-
-
+/*--------------------------------------------------------------------------------
+aviation_study_app
+*/
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  button {
+    margin: 1em;
+  }
 
