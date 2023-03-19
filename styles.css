@@ -180,7 +180,16 @@ body {
   }
   .button-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 50px;
   }
+  
+  .button-container button {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
   
 
