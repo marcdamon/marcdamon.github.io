@@ -149,12 +149,12 @@ nav a:hover {
     color: white;
 }
 
-@media screen and (max-width: 768px) {
+/*@media screen and (max-width: 768px) {
     .header {
         flex-direction: column;
         height: auto;
-        padding: 20px 20px; /* Adjust the padding here */
-    }
+        padding: 20px 20px; /* Adjust the padding here 
+    }*/
 
     .nav {
         justify-content: center;
@@ -235,7 +235,7 @@ body {
   }
 
   
-  @media (min-width: 500px) {
+  @media (min-width: 00px) {
     .main-button-container {
       grid-template-columns: 1fr 1fr 1fr 1fr;
       grid-template-areas: "prev show mark next";
