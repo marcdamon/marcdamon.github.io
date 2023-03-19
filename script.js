@@ -54,80 +54,56 @@ function generateRandomOrder(length) {
   
 
 
+  const orderedQuestions = randomOrder ? generateRandomOrder(questions.length).map(index => questions[index]) : questions.slice();
 
-const orderedQuestions = randomOrder ? generateRandomOrder(questions.length).map(index => questions[index]) : questions.slice();
-
-let currentQuestionIndex = 0;
-let reviewQuestions = [];
-
-const questionElement = document.getElementById("question");
-const questionLabelElement = document.getElementById("question-label");
-const answerElement = document.getElementById("answer");
-
-function showQuestion() {
-  questionElement.textContent = orderedQuestions[currentQuestionIndex].question;
-  answerElement.textContent = orderedQuestions[currentQuestionIndex].answer;
-  answerElement.hidden = true;
-  questionLabelElement.textContent = `Question ${currentQuestionIndex + 1} of ${orderedQuestions.length}`;
-}
-
-document.getElementById("show-answer").addEventListener("click", () => {
-  answerElement.hidden = !answerElement.hidden;
-});
-
-
-document.getElementById("next-question").addEventListener("click", () => {
-  currentQuestionIndex++;
-  if (currentQuestionIndex < orderedQuestions.length) {
-    showQuestion();
-  } else {
-    currentQuestionIndex = orderedQuestions.length - 1;
-    alert("You've reached the end of the questions.");
+  let currentQuestionIndex = 0;
+  let reviewQuestions = [];
+  
+  const questionElement = document.getElementById("question");
+  const questionLabelElement = document.getElementById("question-label");
+  const answerElement = document.getElementById("answer");
+  
+  function showQuestion() {
+    questionElement.textContent = orderedQuestions[currentQuestionIndex].question;
+    answerElement.textContent = orderedQuestions[currentQuestionIndex].answer;
+    answerElement.hidden = true;
+    questionLabelElement.textContent = `Question ${currentQuestionIndex + 1} of ${orderedQuestions.length}`;
+    updateMarkForReviewBtn();
   }
-
-
-
-// ... (your existing code)
-
-// Add a "Mark for review" button in your HTML and get its reference
-const markForReviewBtn = document.getElementById("mark-for-review");
-
-// Create a Set to store marked question indices
-const markedQuestions = new Set();
-
-// Update the "Mark for review" button text based on the current question's marked status
-function updateMarkForReviewBtn() {
-  if (markedQuestions.has(currentQuestionIndex)) {
-    markForReviewBtn.textContent = "Unmark for review";
-  } else {
-    markForReviewBtn.textContent = "Mark for review";
+  
+  document.getElementById("show-answer").addEventListener("click", () => {
+    answerElement.hidden = !answerElement.hidden;
+  });
+  
+  document.getElementById("next-question").addEventListener("click", () => {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < orderedQuestions.length) {
+      showQuestion();
+    } else {
+      currentQuestionIndex = orderedQuestions.length - 1;
+      alert("You've reached the end of the questions.");
+    }
+  });
+  
+  const markForReviewBtn = document.getElementById("mark-for-review");
+  const markedQuestions = new Set();
+  
+  function updateMarkForReviewBtn() {
+    if (markedQuestions.has(currentQuestionIndex)) {
+      markForReviewBtn.textContent = "Unmark for review";
+    } else {
+      markForReviewBtn.textContent = "Mark for review";
+    }
   }
-}
-
-// Toggle the marked status of the current question
-markForReviewBtn.addEventListener("click", () => {
-  if (markedQuestions.has(currentQuestionIndex)) {
-    markedQuestions.delete(currentQuestionIndex);
-  } else {
-    markedQuestions.add(currentQuestionIndex);
-  }
-  updateMarkForReviewBtn();
-});
-
-// Update the "Mark for review" button text when the question changes
-function showQuestion() {
-  // ... (your existing showQuestion code)
-
-  // Update the "Mark for review" button text
-  updateMarkForReviewBtn();
-}
-
-// ... (your existing code)
-
-
-
-
-});
-
-showQuestion();
-
+  
+  markForReviewBtn.addEventListener("click", () => {
+    if (markedQuestions.has(currentQuestionIndex)) {
+      markedQuestions.delete(currentQuestionIndex);
+    } else {
+      markedQuestions.add(currentQuestionIndex);
+    }
+    updateMarkForReviewBtn();
+  });
+  
+  showQuestion();
+  
