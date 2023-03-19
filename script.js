@@ -107,8 +107,9 @@ document.getElementById("review-questions-answers").addEventListener("click", ()
   });
   
   document.getElementById("review-questions").addEventListener("click", () => {
-    // Implement the functionality for reviewing all questions
+    window.location.href = "questions_without_answers.html";
   });
+  
   
   document.getElementById("review-uncertain-questions").addEventListener("click", () => {
     // Implement the functionality for reviewing uncertain questions only
