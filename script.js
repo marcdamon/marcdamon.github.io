@@ -110,7 +110,6 @@ document.getElementById("review-questions-answers").addEventListener("click", ()
     window.location.href = "questions_without_answers.html";
   });
   
-  
   document.getElementById("review-uncertain-questions").addEventListener("click", () => {
     // Implement the functionality for reviewing uncertain questions only
   });
