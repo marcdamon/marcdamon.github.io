@@ -203,7 +203,8 @@ body {
   }
 
   #question-container {
-    padding-top: 20px; /* Adjust the value as needed */
+    padding-top: 20px; 
+    padding-bottom: 20px;
   }
   
   #mark-for-review {
