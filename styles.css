@@ -237,7 +237,7 @@ body {
   
  
   
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 668px) {
     .button-styling button {
       flex: 1 0 20%;
       max-width: 20%;
