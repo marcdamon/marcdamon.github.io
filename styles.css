@@ -188,11 +188,13 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "prev show" "mark next";
     gap: 50px;
     padding-bottom: 20px;
   }
+  
   
   
   .button-styling button {
@@ -216,7 +218,31 @@ body {
   }
   
 
+  .button-styling #prev-question {
+    grid-area: prev;
+  }
+  
+  .button-styling #show-answer {
+    grid-area: show;
+  }
+  
+  .button-styling #mark-for-review {
+    grid-area: mark;
+  }
+  
+  .button-styling #next-question {
+    grid-area: next;
+  }
 
+  
+
+  @media (min-width: 600px) {
+    .main-button-container {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-areas: "prev show mark next";
+    }
+  }
+  
 
 
 
