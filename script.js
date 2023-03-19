@@ -78,28 +78,8 @@ document.getElementById("next-question").addEventListener("click", () => {
     currentQuestionIndex = orderedQuestions.length - 1;
     alert("You've reached the end of the questions.");
   }
-
-
-
-
-
-
-
-document.getElementById("show-answer").addEventListener("click", () => {
-  answerElement.hidden = !answerElement.hidden;
-});
-
-document.getElementById("save-for-review").addEventListener("click", () => {
-  reviewQuestions.push(questions[currentQuestionIndex]);
-});
-
-document.getElementById("next-question").addEventListener("click", () => {
-  currentQuestionIndex++;
-  if (currentQuestionIndex < questions.length) {
-    showQuestion();
-  } else {
-    alert("You've reached the end of the questions.");
-  }
 });
 
 showQuestion();
+
+
