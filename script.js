@@ -70,3 +70,38 @@
   });
   
   showQuestion();
+
+
+
+  // Add this line to the existing variable declarations
+const questionLabelElement = document.getElementById("question-label");
+
+// Update the showQuestion function with the following:
+function showQuestion() {
+  questionElement.textContent = questions[currentQuestionIndex].question;
+  answerElement.textContent = questions[currentQuestionIndex].answer;
+  answerElement.hidden = true;
+  questionLabelElement.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
+}
+
+// Add event listeners for the previous and next question buttons
+document.getElementById("prev-question").addEventListener("click", () => {
+  currentQuestionIndex--;
+  if (currentQuestionIndex >= 0) {
+    showQuestion();
+  } else {
+    currentQuestionIndex = 0;
+    alert("You've reached the beginning of the questions.");
+  }
+});
+
+document.getElementById("next-question").addEventListener("click", () => {
+  currentQuestionIndex++;
+  if (currentQuestionIndex < questions.length) {
+    showQuestion();
+  } else {
+    currentQuestionIndex = questions.length - 1;
+    alert("You've reached the end of the questions.");
+  }
+});
+
