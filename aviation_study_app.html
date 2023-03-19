@@ -1,68 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Study Guide</title>
     <link rel="stylesheet" href="styles.css">
-    <!DOCTYPE html>
-<html lang="en">
-
-<script>
-
-
-const questions = [
-  {
-    question: "What are the requirements for a pilot to carry passengers as PIC?",
-    answer: "The pilot must have completed 3 takeoffs & landings in the same category, class, and type (if a type rating is required) within the last 90 days."
-  },
-  {
-    question: "What are the requirements for night currency to carry passengers as PIC?",
-    answer: "The pilot must have completed 3 takeoffs & landings to a full stop within 1 hour after sunset to 1 hour before sunrise."
-  }
-];
-
-
-
-
-
-let currentQuestionIndex = 0;
-let reviewQuestions = [];
-
-const questionElement = document.getElementById("question");
-const answerElement = document.getElementById("answer");
-
-function showQuestion() {
-  questionElement.textContent = questions[currentQuestionIndex].question;
-  answerElement.textContent = questions[currentQuestionIndex].answer;
-  answerElement.hidden = true;
-}
-
-document.getElementById("show-answer").addEventListener("click", () => {
-  answerElement.hidden = !answerElement.hidden;
-});
-
-document.getElementById("save-for-review").addEventListener("click", () => {
-  reviewQuestions.push(questions[currentQuestionIndex]);
-});
-
-document.getElementById("next-question").addEventListener("click", () => {
-  currentQuestionIndex++;
-  if (currentQuestionIndex < questions.length) {
-    showQuestion();
-  } else {
-    alert("You've reached the end of the questions.");
-  }
-});
-
-showQuestion();
-</script>
-
-
-
-
 </head>
 <body>
 
-    <header class="header">
+<header class="header">
+
+
         <div class="header-content">
             <a href="18zero.html"><img src="images/logo.png" alt="Company Logo" class="logo">
         </div>
@@ -74,29 +22,23 @@ showQuestion();
           </nav>
     </header>
 
-
-    <div class="main-container">
-        <main class="main-content">
-
-
-
-
-
-            <div id="question-container">
-                <h2 id="question"></h2>
-                <button id="show-answer">Show Answer</button>
-                <p id="answer" hidden></p>
-                <button id="save-for-review">Save for Review</button>
-                <button id="next-question">Next Question</button>
-              </div>
-        
-
-
-
-
-
-
+<div class="main-container">
+    <main class="main-content">
+        <div id="question-container">
+            <h2 id="question"></h2>
+            <button id="show-answer">Show Answer</button>
+            <p id="answer" hidden></p>
+            <button id="save-for-review">Save for Review</button>
+            <button id="next-question">Next Question</button>
+        </div>
     </main>
+
+
+
+
+
+
+
     <footer class="footer">
         <div class="footer-content">
             <p>&copy; 2023 18ZERO. All rights reserved.</p>
@@ -115,6 +57,58 @@ showQuestion();
         </div>
     </footer>
     </div>
+
+  </div>
+
+  <script>
+  const questions = [
+    {
+      question: "What are the requirements for a pilot to carry passengers as PIC?",
+      answer: "The pilot must have completed 3 takeoffs & landings in the same category, class, and type (if a type rating is required) within the last 90 days."
+    },
+    {
+      question: "What are the requirements for night currency to carry passengers as PIC?",
+      answer: "The pilot must have completed 3 takeoffs & landings to a full stop within 1 hour after sunset to 1 hour before sunrise."
+    }
+  ];
+  
+  let currentQuestionIndex = 0;
+  let reviewQuestions = [];
+  
+  const questionElement = document.getElementById("question");
+  const answerElement = document.getElementById("answer");
+  
+  function showQuestion() {
+    questionElement.textContent = questions[currentQuestionIndex].question;
+    answerElement.textContent = questions[currentQuestionIndex].answer;
+    answerElement.hidden = true;
+  }
+  
+  document.getElementById("show-answer").addEventListener("click", () => {
+    answerElement.hidden = !answerElement.hidden;
+  });
+  
+  document.getElementById("save-for-review").addEventListener("click", () => {
+    reviewQuestions.push(questions[currentQuestionIndex]);
+  });
+  
+  document.getElementById("next-question").addEventListener("click", () => {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+      showQuestion();
+    } else {
+      alert("You've reached the end of the questions.");
+    }
+  });
+  
+  showQuestion();
+  </script>
+  
+  </body>
+  </html>
+
+
+  
 </body>
 </html>
 
