@@ -188,11 +188,27 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "prev show" "mark next";
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 50px;
     padding-bottom: 20px;
+  }
+  
+  .button-styling button {
+    flex: 1 0 40%;
+    max-width: 40%;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  @media screen and (min-width: 468px) {
+    .button-styling button {
+      flex: 1 0 20%;
+      max-width: 20%;
+    }
   }
   
   
@@ -221,31 +237,7 @@ body {
   
 
   
- 
-  
-  @media screen and (min-width: 468px) {
-    .header {
-      flex-direction: column;
-      height: auto;
-      padding: 20px 20px; /* Adjust the padding here */
-    }
-  
-    .nav {
-      justify-content: center;
-      margin-top: 10px;
-    }
-  
-    .header-content {
-      margin-bottom: 10px;
-    }
-  
-    /* Add the new styles below */
-    .main-button-container {
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      grid-template-areas: "prev show mark next";
-    }
-  }
-  
+
   
 
 
