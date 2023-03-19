@@ -210,11 +210,11 @@ body {
   }
   
   #mark-for-review {
-    width: 187px; 
+    min-width: 187px; 
   }
   
   #show-answer {
-    width: 187px; 
+    min-width: 187px;
   }
   
 
@@ -237,7 +237,7 @@ body {
   
  
   
-  @media screen and (min-width: 668px) {
+  @media screen and (min-width: 768px) {
     .button-styling button {
       flex: 1 0 20%;
       max-width: 20%;
