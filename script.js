@@ -84,6 +84,49 @@ document.getElementById("next-question").addEventListener("click", () => {
     currentQuestionIndex = orderedQuestions.length - 1;
     alert("You've reached the end of the questions.");
   }
+
+
+
+// ... (your existing code)
+
+// Add a "Mark for review" button in your HTML and get its reference
+const markForReviewBtn = document.getElementById("mark-for-review");
+
+// Create a Set to store marked question indices
+const markedQuestions = new Set();
+
+// Update the "Mark for review" button text based on the current question's marked status
+function updateMarkForReviewBtn() {
+  if (markedQuestions.has(currentQuestionIndex)) {
+    markForReviewBtn.textContent = "Unmark for review";
+  } else {
+    markForReviewBtn.textContent = "Mark for review";
+  }
+}
+
+// Toggle the marked status of the current question
+markForReviewBtn.addEventListener("click", () => {
+  if (markedQuestions.has(currentQuestionIndex)) {
+    markedQuestions.delete(currentQuestionIndex);
+  } else {
+    markedQuestions.add(currentQuestionIndex);
+  }
+  updateMarkForReviewBtn();
+});
+
+// Update the "Mark for review" button text when the question changes
+function showQuestion() {
+  // ... (your existing showQuestion code)
+
+  // Update the "Mark for review" button text
+  updateMarkForReviewBtn();
+}
+
+// ... (your existing code)
+
+
+
+
 });
 
 showQuestion();
