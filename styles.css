@@ -209,11 +209,11 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 100%; /* Adjust this value if needed */
+    height: 100%;
   }
   
   #question-container,
   #answer-container {
-    flex-shrink: 0; /* Prevents the containers from shrinking */
+    flex-shrink: 0;
   }
   
