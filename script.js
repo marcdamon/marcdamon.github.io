@@ -44,12 +44,14 @@
   let reviewQuestions = [];
   
   const questionElement = document.getElementById("question");
+  const questionLabelElement = document.getElementById("question-label");
   const answerElement = document.getElementById("answer");
   
   function showQuestion() {
     questionElement.textContent = questions[currentQuestionIndex].question;
     answerElement.textContent = questions[currentQuestionIndex].answer;
     answerElement.hidden = true;
+    questionLabelElement.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
   }
   
   document.getElementById("show-answer").addEventListener("click", () => {
@@ -73,16 +75,8 @@
 
 
 
-  // Add this line to the existing variable declarations
-const questionLabelElement = document.getElementById("question-label");
 
-// Update the showQuestion function with the following:
-function showQuestion() {
-  questionElement.textContent = questions[currentQuestionIndex].question;
-  answerElement.textContent = questions[currentQuestionIndex].answer;
-  answerElement.hidden = true;
-  questionLabelElement.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
-}
+
 
 // Add event listeners for the previous and next question buttons
 document.getElementById("prev-question").addEventListener("click", () => {
