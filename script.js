@@ -9,9 +9,6 @@ function generateRandomOrder(length) {
   return indices;
 }
 
-const orderedQuestions = randomOrder ? generateRandomOrder(questions.length).map(index => questions[index]) : questions.slice();
-
-  
   
   
   const questions = [
@@ -55,62 +52,32 @@ const orderedQuestions = randomOrder ? generateRandomOrder(questions.length).map
     
   ];
   
-  let currentQuestionIndex = 0;
-  let reviewQuestions = [];
-  
-  const questionElement = document.getElementById("question");
-  const questionLabelElement = document.getElementById("question-label");
-  const answerElement = document.getElementById("answer");
-  
-  function showQuestion() {
-    questionElement.textContent = questions[currentQuestionIndex].question;
-    answerElement.textContent = questions[currentQuestionIndex].answer;
-    answerElement.hidden = true;
-    questionLabelElement.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
-  }
-  
-  document.getElementById("show-answer").addEventListener("click", () => {
-    answerElement.hidden = !answerElement.hidden;
-  });
-  
-  document.getElementById("save-for-review").addEventListener("click", () => {
-    reviewQuestions.push(questions[currentQuestionIndex]);
-  });
-  
-  document.getElementById("next-question").addEventListener("click", () => {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-      showQuestion();
-    } else {
-      alert("You've reached the end of the questions.");
-    }
-  });
-  
-  showQuestion();
+  const orderedQuestions = randomOrder ? generateRandomOrder(questions.length).map(index => questions[index]) : questions.slice();
 
+let currentQuestionIndex = 0;
+let reviewQuestions = [];
 
+const questionElement = document.getElementById("question");
+const questionLabelElement = document.getElementById("question-label");
+const answerElement = document.getElementById("answer");
 
+function showQuestion() {
+  questionElement.textContent = orderedQuestions[currentQuestionIndex].question;
+  answerElement.textContent = orderedQuestions[currentQuestionIndex].answer;
+  answerElement.hidden = true;
+  questionLabelElement.textContent = `Question ${currentQuestionIndex + 1} of ${orderedQuestions.length}`;
+}
 
-
-
-// Add event listeners for the previous and next question buttons
-document.getElementById("prev-question").addEventListener("click", () => {
-  currentQuestionIndex--;
-  if (currentQuestionIndex >= 0) {
-    showQuestion();
-  } else {
-    currentQuestionIndex = 0;
-    alert("You've reached the beginning of the questions.");
-  }
-});
+// ... (keep your original event listeners here, but make sure to use 'orderedQuestions' instead of 'questions')
 
 document.getElementById("next-question").addEventListener("click", () => {
   currentQuestionIndex++;
-  if (currentQuestionIndex < questions.length) {
+  if (currentQuestionIndex < orderedQuestions.length) {
     showQuestion();
   } else {
-    currentQuestionIndex = questions.length - 1;
+    currentQuestionIndex = orderedQuestions.length - 1;
     alert("You've reached the end of the questions.");
   }
 });
 
+showQuestion();
