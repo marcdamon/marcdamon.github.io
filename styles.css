@@ -209,7 +209,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 100%; /* Adjust this value if needed */
+    min-height: 300%; /* Adjust this value if needed */
   }
   
   #question-container,
