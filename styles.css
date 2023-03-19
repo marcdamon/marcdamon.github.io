@@ -188,12 +188,13 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(187px, 1fr));
+    display: flex;
     justify-content: center;
-    gap: 50px;
+    flex-wrap: wrap;
+    gap: 20px;
     padding-bottom: 20px;
 }
+
   
   .button-styling button {
     flex: 1 0 40%;
@@ -239,10 +240,11 @@ body {
   
   @media screen and (max-width: 768px) {
     .main-button-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        justify-content: space-evenly;
     }
 }
+
+  
 
 
   
