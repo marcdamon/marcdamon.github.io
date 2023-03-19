@@ -192,14 +192,10 @@ body {
     justify-content: center;
     gap: 50px;
     padding-bottom: 200px;
-    padding: 10px 20px;
-    font-size: 1.1rem;
-    border-radius: 10px;
-    cursor: pointer;
   }
   
   
-  .navigation-button-container button {
+  .button-styling button {
     padding: 10px 20px;
     font-size: 1.1rem;
     border-radius: 10px;
