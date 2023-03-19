@@ -192,6 +192,9 @@ body {
     justify-content: center;
     gap: 50px;
     padding-bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
   }
   
   
@@ -215,3 +218,21 @@ body {
     width: 187px; 
   }
   
+
+
+
+  
+  @media (max-width: 600px) {
+    .main-button-container #prev-question {
+      order: 1;
+    }
+    .main-button-container #show-answer {
+      order: 2;
+    }
+    .main-button-container #mark-for-review {
+      order: 3;
+    }
+    .main-button-container #next-question {
+      order: 4;
+    }
+  }
