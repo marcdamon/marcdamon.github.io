@@ -237,7 +237,7 @@ body {
   
  
   
-  @media screen and (max-width: 468px) {
+  @media screen and (min-width: 468px) {
     .header {
       flex-direction: column;
       height: auto;
@@ -259,6 +259,7 @@ body {
       grid-template-areas: "prev show mark next";
     }
   }
+  
   
 
 
