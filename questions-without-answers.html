@@ -22,21 +22,31 @@
           </nav>
     </header>
 
-    <div class="main-button-container">
-        <div class="show-button-container">
-          <button id="show-answer">Show Answer</button>
-        </div>
-      
-        <div class="navigation-button-container">
-          <button id="prev-question">&#8592; Previous Question</button>
-          <button id="next-question">Next Question &#8594;</button>
-        </div>
-      
-        <div class="review-button-container">
-          <button id="mark-for-review">Mark for review</button>
-        </div>
-      </div>
-      
+    <div class="main-container">
+        <main class="main-content">
+          <div class="content-wrapper">
+            <div id="question-container">
+              <h2 id="question"></h2>
+            </div>
+            <div id="answer-container">
+              <p id="answer" hidden></p>
+              <p id="question-label"></p>
+            </div>
+            <div class="main-button-container">
+              <div class="show-button-container">
+                <button id="show-answer">Show Answer</button>
+              </div>
+              
+              <div class="review-button-container">
+                <button id="mark-for-review">Mark for review</button>
+
+                <div class="navigation-button-container">
+                    <button id="prev-question">&#8592; Previous Question</button>
+                    <button id="next-question">Next Question &#8594;</button>
+                  </div>
+              </div>
+            </div>
+          </div>
         </main>
       </div>
       
