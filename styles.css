@@ -16,11 +16,9 @@ body {
 }
 
 .main-container {
-    display: grid;
+    display: flex;
     flex-direction: column;
     flex-grow: 1;
-    grid-template-rows: auto 1fr auto;
-    height: 100%;
 }
 
 .main-content {
@@ -184,6 +182,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 50px;
+    padding-top: 100px;
   }
   
   .navigation-button-container button {
@@ -208,18 +207,14 @@ body {
   }
   
   .content-wrapper {
-    grid-row: 2;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 100%;
   }
   
   #question-container,
   #answer-container {
     flex-shrink: 0;
-  }
-  
-  .main-button-container {
-    grid-row: 3;
   }
   
