@@ -57,7 +57,6 @@ function generateRandomOrder(length) {
   const orderedQuestions = randomOrder ? generateRandomOrder(questions.length).map(index => questions[index]) : questions.slice();
 
   let currentQuestionIndex = 0;
-  let reviewQuestions = [];
   
   const questionElement = document.getElementById("question");
   const questionLabelElement = document.getElementById("question-label");
