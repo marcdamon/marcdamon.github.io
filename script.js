@@ -52,7 +52,22 @@ function generateRandomOrder(length) {
     
   ];
   
-  const orderedQuestions = randomOrder ? generateRandomOrder(questions.length).map(index => questions[index]) : questions.slice();
+  const randomOrder = localStorage.getItem("randomOrder") === "true";
+
+function generateRandomOrder(length) {
+  const indices = Array.from({ length }, (_, i) => i);
+  for (let i = indices.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [indices[i], indices[j]] = [indices[j], indices[i]];
+  }
+  return indices;
+}
+
+const questions = [
+  // ... (keep your original questions array here)
+];
+
+const orderedQuestions = randomOrder ? generateRandomOrder(questions.length).map(index => questions[index]) : questions.slice();
 
 let currentQuestionIndex = 0;
 let reviewQuestions = [];
@@ -68,6 +83,10 @@ function showQuestion() {
   questionLabelElement.textContent = `Question ${currentQuestionIndex + 1} of ${orderedQuestions.length}`;
 }
 
+document.getElementById("show-answer").addEventListener("click", () => {
+  answerElement.hidden = !answerElement.hidden;
+});
+
 // ... (keep your original event listeners here, but make sure to use 'orderedQuestions' instead of 'questions')
 
 document.getElementById("next-question").addEventListener("click", () => {
@@ -81,5 +100,3 @@ document.getElementById("next-question").addEventListener("click", () => {
 });
 
 showQuestion();
-
-
