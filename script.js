@@ -72,7 +72,13 @@ function generateRandomOrder(length) {
   
   document.getElementById("show-answer").addEventListener("click", () => {
     answerElement.hidden = !answerElement.hidden;
+    if (answerElement.hidden) {
+      document.getElementById("show-answer").textContent = "Show Answer";
+    } else {
+      document.getElementById("show-answer").textContent = "Hide Answer";
+    }
   });
+  
 
   document.getElementById("prev-question").addEventListener("click", () => {
     currentQuestionIndex--;
