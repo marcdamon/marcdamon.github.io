@@ -203,22 +203,6 @@ body {
     border-radius: 10px;
     cursor: pointer;
   }
-  
-  @media screen and (min-width: 468px) {
-    .button-styling button {
-      flex: 1 0 20%;
-      max-width: 20%;
-    }
-  }
-  
-  
-  
-  .button-styling button {
-    padding: 10px 20px;
-    font-size: 1.1rem;
-    border-radius: 10px;
-    cursor: pointer;
-  }
 
   #question-container {
     padding-top: 20px; 
@@ -234,10 +218,31 @@ body {
   }
   
 
+  .button-styling #prev-question {
+    grid-area: prev;
+  }
   
+  .button-styling #show-answer {
+    grid-area: show;
+  }
+  
+  .button-styling #mark-for-review {
+    grid-area: mark;
+  }
+  
+  .button-styling #next-question {
+    grid-area: next;
+  }
 
   
-
+ 
+  
+  @media screen and (min-width: 468px) {
+    .button-styling button {
+      flex: 1 0 20%;
+      max-width: 20%;
+    }
+  }
   
 
 
