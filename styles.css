@@ -201,6 +201,10 @@ body {
     border-radius: 10px;
     cursor: pointer;
   }
+
+  #question-container {
+    padding-top: 20px; /* Adjust the value as needed */
+  }
   
   #mark-for-review {
     width: 187px; /* Adjust the value as needed */
