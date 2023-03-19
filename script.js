@@ -1,4 +1,4 @@
-<script>
+
   const questions = [
     {
       question: "What are the requirements for a pilot to carry passengers as PIC?",
@@ -70,4 +70,3 @@
   });
   
   showQuestion();
-  </script>
