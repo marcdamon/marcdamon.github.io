@@ -184,8 +184,16 @@ body {
     gap: 50px;
   }
   .main-button-container {
-    margin-top: 20rem;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding-bottom: 50px;
   }
+  
   
   .navigation-button-container button {
     padding: 10px 20px;
