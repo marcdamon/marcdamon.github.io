@@ -47,7 +47,7 @@ function generateRandomOrder(length) {
   {
     question: "What is the required frequency of a flight review to act as PIC?",
     answer: "A flight review is required since the beginning of the 24 calendar months before the month of the flight, consisting of a minimum of 1 hour of flight training and 1 hour of ground training conducted by an authorized instructor."
-  }
+  },
   {
     question: "Emergency Engine Shutdown on Ground (6 Items)",
     answer: "1. Power Level IDLE<br>2. Fuel Pump (if used) OFF<br>3. Mixture Cutoff<br>4. Fuel Selector OFF<br>5. Ignition Switch OFF<br>6. Bat-Alt Master Switches OFF."
