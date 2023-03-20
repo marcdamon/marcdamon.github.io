@@ -50,12 +50,7 @@ function generateRandomOrder(length) {
   }
   {
     question: "Emergency Engine Shutdown on Ground (6 Items)",
-    answer: "1. Power Level IDLE<br>
-    2. Fuel Pump (if used) OFF<br>
-    3. Mixture Cutoff<br>
-    4. Fuel Selector OFF<br>
-    5. Ignition Switch OFF<br>
-    6. Bat-Alt Master Switches OFF."
+    answer: "1. Power Level IDLE<br>2. Fuel Pump (if used) OFF<br>3. Mixture Cutoff<br>4. Fuel Selector OFF<br>5. Ignition Switch OFF<br>6. Bat-Alt Master Switches OFF."
   }
     
   ];
