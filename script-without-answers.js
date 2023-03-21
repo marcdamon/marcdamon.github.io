@@ -1,4 +1,5 @@
-import { orderedQuestions } from ".script-questions.js";
+import { orderedQuestions } from "./script-questions.js";
+
 
 
   let currentQuestionIndex = 0;
