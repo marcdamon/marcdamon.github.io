@@ -1,17 +1,5 @@
-const randomOrder = localStorage.getItem("randomOrder") === "true";
+import { orderedQuestions } from "./questions.js";
 
-function generateRandomOrder(length) {
-  const indices = Array.from({ length }, (_, i) => i);
-  for (let i = indices.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [indices[i], indices[j]] = [indices[j], indices[i]];
-  }
-  return indices;
-}
-  
-
-
-  const orderedQuestions = randomOrder ? generateRandomOrder(questions.length).map(index => questions[index]) : questions.slice();
 
   let currentQuestionIndex = 0;
   
@@ -81,3 +69,6 @@ function generateRandomOrder(length) {
   
   showQuestion();
   
+
+
+  export { orderedQuestions };

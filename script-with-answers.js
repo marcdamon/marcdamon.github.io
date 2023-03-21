@@ -1,8 +1,5 @@
+import { orderedQuestions } from "./questions.js";
 
-  
-
-
-  const orderedQuestions = randomOrder ? generateRandomOrder(questions.length).map(index => questions[index]) : questions.slice();
 
   let currentQuestionIndex = 0;
   
@@ -72,3 +69,6 @@
   
   showQuestion();
   
+
+
+  export { orderedQuestions };
