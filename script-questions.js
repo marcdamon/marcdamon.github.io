@@ -59,3 +59,5 @@ function generateRandomOrder(length) {
 
 
   const orderedQuestions = randomOrder ? generateRandomOrder(questions.length).map(index => questions[index]) : questions.slice();
+
+  export { orderedQuestions };
