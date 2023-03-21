@@ -1,5 +1,5 @@
 document.getElementById("review-questions-answers").addEventListener("click", () => {
-    // Implement the functionality for reviewing all questions with answers shown
+  window.location.href = "questions-with-answers.html";
 });
 
 document.getElementById("review-questions").addEventListener("click", () => {
