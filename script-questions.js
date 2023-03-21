@@ -1,17 +1,11 @@
-const randomOrder = localStorage.getItem("randomOrder") === "true";
 
-function generateRandomOrder(length) {
-  const indices = Array.from({ length }, (_, i) => i);
-  for (let i = indices.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [indices[i], indices[j]] = [indices[j], indices[i]];
-  }
-  return indices;
-}
 
-  
-  
+
+
+
+
   const questions = [
+      
     {
       question: "What are the requirements for a pilot to carry passengers as PIC?",
       answer: "The pilot must have completed 3 takeoffs & landings in the same category, class, and type (if a type rating is required) within the last 90 days."
@@ -55,9 +49,18 @@ function generateRandomOrder(length) {
     
   ];
   
+  export const randomOrder = localStorage.getItem("randomOrder") === "true";
   
-
-
-  const orderedQuestions = randomOrder ? generateRandomOrder(questions.length).map(index => questions[index]) : questions.slice();
-
-  export { orderedQuestions };
+  export function generateRandomOrder(length) {
+    const indices = Array.from({ length }, (_, i) => i);
+    for (let i = indices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+    return indices;
+  }
+  
+  export const orderedQuestions = randomOrder
+    ? generateRandomOrder(questions.length).map((index) => questions[index])
+    : questions.slice();
+  
