@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Guide</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="header">
+
+
+        <div class="header-content">
+            <a href="18zero.html"><img src="images/logo.png" alt="Company Logo" class="logo">
+        </div>
+        <nav>
+            <a href="#" class="nav-link">Buy</a>
+            <a href="#" class="nav-link">Sell</a>
+            <a href="#" class="nav-link">Flight Logic</a>
+            <a href="#" class="nav-link">Contact</a>
+          </nav>
+    </header>
+
+    <div class="main-container">
+        <main class="main-content">
+
+          <div class="content-wrapper">
+            <p id="question-label"></p>
+
+            <div id="question-container">
+              <h2 id="question"></h2>
+            </div>
+            <div id="answer-container">
+              <p id="answer" hidden></p>
+              
+            </div>
+
+
+
+
+            <div class="main-button-container">
+
+
+              <div class="button-styling">
+
+                <button id="prev-question">&#8592;</button>
+
+
+                <button id="show-answer">Show Answer</button>
+              
+
+                <button id="mark-for-review">Mark for review</button>
+            
+                
+                <button id="next-question">&#8594;</button>
+            
+            </div>
+
+              
+
+
+
+
+
+            </div>
+          </div>
+        </main>
+      </div>
+      
+      
+
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+  
+  
+  </body>
+  </html>
+
+
+
+
+
