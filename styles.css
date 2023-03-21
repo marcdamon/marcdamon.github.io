@@ -204,6 +204,14 @@ body {
     border-radius: 10px;
     cursor: pointer;
   }
+  .study-button-styling button {
+    flex: 1 0 40%;
+    max-width: 40%;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    cursor: pointer;
+  }
 
   #question-container {
     padding-top: 20px; 
