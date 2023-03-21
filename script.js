@@ -68,13 +68,13 @@ function generateRandomOrder(length) {
   function showQuestion() {
     questionElement.textContent = orderedQuestions[currentQuestionIndex].question;
     answerElement.textContent = orderedQuestions[currentQuestionIndex].answer;
-    answerElement.hidden = true;
+    answerElement.hidden = false;
     questionLabelElement.textContent = `Question ${currentQuestionIndex + 1} of ${orderedQuestions.length}`;
     updateMarkForReviewBtn();
   }
   
   document.getElementById("show-answer").addEventListener("click", () => {
-    answerElement.showQuestion = !answerElement.showQuestion;
+    answerElement.hidden = !answerElement.hidden;
     if (answerElement.hidden) {
       document.getElementById("show-answer").textContent = "Show Answer";
     } else {
