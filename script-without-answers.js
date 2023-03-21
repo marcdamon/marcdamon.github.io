@@ -71,4 +71,3 @@ import { orderedQuestions } from "./questions.js";
   
 
 
-  export { orderedQuestions };
