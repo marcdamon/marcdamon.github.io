@@ -74,7 +74,7 @@ function generateRandomOrder(length) {
   }
   
   document.getElementById("show-answer").addEventListener("click", () => {
-    answerElement.hidden = !answerElement.hidden;
+    answerElement.showQuestion = !answerElement.showQuestion;
     if (answerElement.hidden) {
       document.getElementById("show-answer").textContent = "Show Answer";
     } else {
