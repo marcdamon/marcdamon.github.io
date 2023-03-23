@@ -1,5 +1,11 @@
 import { orderedQuestions } from "./script-questions.js";
 
+document.addEventListener("DOMContentLoaded", () => {
+  showQuestion();
+});
+
+
+
 let currentQuestionIndex = 0;
 
 const questionElement = document.getElementById("question");
@@ -63,6 +69,3 @@ markForReviewBtn.addEventListener("click", () => {
   updateMarkForReviewBtn();
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  showQuestion();
-});
