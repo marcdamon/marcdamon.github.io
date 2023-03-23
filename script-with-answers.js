@@ -25,6 +25,8 @@ import { orderedQuestions } from "./script-questions.js";
   });
   
 
+
+
   document.getElementById("prev-question").addEventListener("click", () => {
     currentQuestionIndex--;
     if (currentQuestionIndex >= 0) {
@@ -69,4 +71,5 @@ import { orderedQuestions } from "./script-questions.js";
   
   showQuestion();
   
+
 

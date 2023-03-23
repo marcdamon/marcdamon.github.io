@@ -1,3 +1,6 @@
+
+
+
 import { orderedQuestions } from "./script-questions.js";
 
 
@@ -70,5 +73,4 @@ import { orderedQuestions } from "./script-questions.js";
   
   showQuestion();
   
-
 
