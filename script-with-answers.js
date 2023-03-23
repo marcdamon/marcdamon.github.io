@@ -1,6 +1,6 @@
 import { orderedQuestions } from "./script-questions.js";
 
-function saveMarkedQuestions() {
+function saveMarkedQuestions(markedQuestions) {
   localStorage.setItem('markedQuestions', JSON.stringify(Array.from(markedQuestions)));
 }
 
@@ -19,43 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
     updateMarkForReviewBtn();
   }
 
-  document.getElementById("show-answer").addEventListener("click", () => {
-    answerElement.hidden = !answerElement.hidden;
-    if (answerElement.hidden) {
-      document.getElementById("show-answer").textContent = "Show Answer";
-    } else {
-      document.getElementById("show-answer").textContent = "Hide Answer";
-    }
-  });
-
-  document.getElementById("prev-question").addEventListener("click", () => {
-    currentQuestionIndex--;
-    if (currentQuestionIndex >= 0) {
-      showQuestion();
-    } else {
-      currentQuestionIndex = 0;
-      alert("You've reached the beginning of the questions.");
-    }
-  });
-
-  document.getElementById("next-question").addEventListener("click", () => {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < orderedQuestions.length) {
-      showQuestion();
-    } else {
-      currentQuestionIndex = orderedQuestions.length - 1;
-      alert("You've reached the end of the questions.");
-    }
-  });
+  // ...
 
   const markForReviewBtn = document.getElementById("mark-for-review");
   const markedQuestions = new Set();
-
- 
-  
-
-
-
 
   function updateMarkForReviewBtn() {
     if (markedQuestions.has(currentQuestionIndex)) {
@@ -64,37 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
       markForReviewBtn.textContent = "Mark for review";
     }
   }
-  
-  // Add this new function to update the marked questions on page load
-  function updateMarkedQuestionsOnLoad() {
-    const loadedMarkedQuestions = localStorage.getItem('markedQuestions');
-    if (loadedMarkedQuestions) {
-      const parsedMarkedQuestions = JSON.parse(loadedMarkedQuestions);
-      parsedMarkedQuestions.forEach((questionIndex) => {
-        markedQuestions.add(questionIndex);
-      });
-    }
-    updateMarkForReviewBtn();
-  }
-  
-  // Call the new function in the DOMContentLoaded event listener
-  document.addEventListener("DOMContentLoaded", () => {
-    // ...
-  
-    // Load marked questions from localStorage and update the mark for review button
-    updateMarkedQuestionsOnLoad();
-  
-    // ...
-  });
-
-
-
-
-
-
-
-
-  
 
   markForReviewBtn.addEventListener("click", () => {
     if (markedQuestions.has(currentQuestionIndex)) {
@@ -103,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
       markedQuestions.add(currentQuestionIndex);
     }
     updateMarkForReviewBtn();
-    saveMarkedQuestions();
+    saveMarkedQuestions(markedQuestions);
   });
 
   // Load marked questions from localStorage.
@@ -117,11 +53,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
   showQuestion();
 });
-
-
-
-
-
-
-
-
