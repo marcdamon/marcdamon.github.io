@@ -27,6 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("show-answer").textContent = "Hide Answer";
     }
   });
+  
+  document.getElementById("show-answer").textContent = "Hide Answer";
+  
 
   document.getElementById("prev-question").addEventListener("click", () => {
     currentQuestionIndex--;
