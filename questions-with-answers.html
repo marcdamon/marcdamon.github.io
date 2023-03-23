@@ -37,7 +37,7 @@
             </div>
 
 
-test 23
+test 24
 
             <div class="main-button-container">
 
@@ -76,19 +76,39 @@ test 23
 
   <script type="module" src="script-questions.js"></script>
 <script type="module" src="script-with-answers.js"></script>
-<script>function getQueryParams() {
-  const queryParams = {};
-  const queryString = window.location.search.substring(1);
-  const pairs = queryString.split('&');
-  
-  for (const pair of pairs) {
+
+
+<script>
+  function getQueryParams() {
+    const queryParams = {};
+    const queryString = window.location.search.substring(1);
+    const pairs = queryString.split('&');
+
+    for (const pair of pairs) {
       const [key, value] = pair.split('=');
       queryParams[decodeURIComponent(key)] = decodeURIComponent(value);
+    }
+
+    return queryParams;
   }
 
-  return queryParams;
-}
+  function displayMarkedQuestions() {
+    const queryParams = getQueryParams();
+    const reviewMarked = queryParams.reviewMarked === "true";
+
+    if (reviewMarked) {
+      const markedQuestionIndexes = queryParams["marked[]"].split(',').map(Number);
+
+      // Now you have the marked question indexes.
+      // Use this array to display the questions in your review page.
+      // You can replace the orderedQuestions array with a filtered array containing only the marked questions
+      // and update the navigation functions accordingly.
+    }
+  }
+
+  displayMarkedQuestions();
 </script>
+
   
   
   </body>

@@ -66,9 +66,12 @@
 
   <script src="study-guide.js"></script>
   <script>
-    function goToMarkedQuestions() {
-        window.location.href = "questions-with-answers.html?reviewMarked=true";
-    }
+  function goToMarkedQuestions() {
+  const markedQuestionIndexes = Array.from(markedQuestions);
+  const queryParams = markedQuestionIndexes.map((index) => `marked[]=${index}`).join('&');
+  window.location.href = `questions-with-answers.html?reviewMarked=true&${queryParams}`;
+}
+
     </script>
 
   
