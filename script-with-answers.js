@@ -19,9 +19,9 @@ import { orderedQuestions } from "./script-questions.js";
   document.getElementById("show-answer").addEventListener("click", () => {
     answerElement.hidden = !answerElement.hidden;
     if (answerElement.hidden) {
-      document.getElementById("show-answer").textContent = "Show Answer";
-    } else {
       document.getElementById("show-answer").textContent = "Hide Answer";
+    } else {
+      document.getElementById("show-answer").textContent = "Show Answer";
     }
   });
   
