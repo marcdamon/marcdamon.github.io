@@ -51,6 +51,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const markForReviewBtn = document.getElementById("mark-for-review");
   const markedQuestions = new Set();
 
+ 
+  
+
+
+
+
   function updateMarkForReviewBtn() {
     if (markedQuestions.has(currentQuestionIndex)) {
       markForReviewBtn.textContent = "Unmark for review";
@@ -58,6 +64,37 @@ document.addEventListener("DOMContentLoaded", () => {
       markForReviewBtn.textContent = "Mark for review";
     }
   }
+  
+  // Add this new function to update the marked questions on page load
+  function updateMarkedQuestionsOnLoad() {
+    const loadedMarkedQuestions = localStorage.getItem('markedQuestions');
+    if (loadedMarkedQuestions) {
+      const parsedMarkedQuestions = JSON.parse(loadedMarkedQuestions);
+      parsedMarkedQuestions.forEach((questionIndex) => {
+        markedQuestions.add(questionIndex);
+      });
+    }
+    updateMarkForReviewBtn();
+  }
+  
+  // Call the new function in the DOMContentLoaded event listener
+  document.addEventListener("DOMContentLoaded", () => {
+    // ...
+  
+    // Load marked questions from localStorage and update the mark for review button
+    updateMarkedQuestionsOnLoad();
+  
+    // ...
+  });
+
+
+
+
+
+
+
+
+  
 
   markForReviewBtn.addEventListener("click", () => {
     if (markedQuestions.has(currentQuestionIndex)) {
@@ -80,3 +117,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   showQuestion();
 });
+
+
+
+
+
+
+
+
