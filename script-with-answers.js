@@ -32,6 +32,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function loadMarkedQuestions() {
+    const loadedMarkedQuestions = localStorage.getItem('markedQuestions');
+    if (loadedMarkedQuestions) {
+      const parsedMarkedQuestions = JSON.parse(loadedMarkedQuestions);
+      parsedMarkedQuestions.forEach((questionIndex) => {
+        markedQuestions.add(questionIndex);
+      });
+    }
+  }
+
   markForReviewBtn.addEventListener("click", () => {
     if (markedQuestions.has(currentQuestionIndex)) {
       markedQuestions.delete(currentQuestionIndex);
@@ -42,14 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
     saveMarkedQuestions(markedQuestions);
   });
 
-  // Load marked questions from localStorage.
-  const loadedMarkedQuestions = localStorage.getItem('markedQuestions');
-  if (loadedMarkedQuestions) {
-    const parsedMarkedQuestions = JSON.parse(loadedMarkedQuestions);
-    parsedMarkedQuestions.forEach((questionIndex) => {
-      markedQuestions.add(questionIndex);
-    });
-  }
-
+  loadMarkedQuestions();
   showQuestion();
 });
