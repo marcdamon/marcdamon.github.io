@@ -1,13 +1,10 @@
-import { orderedQuestions } from "./script-questions.js";
-
-
-
+document.addEventListener("DOMContentLoaded", () => {
   let currentQuestionIndex = 0;
-  
+
   const questionElement = document.getElementById("question");
   const questionLabelElement = document.getElementById("question-label");
   const answerElement = document.getElementById("answer");
-  
+
   function showQuestion() {
     questionElement.textContent = orderedQuestions[currentQuestionIndex].question;
     answerElement.textContent = orderedQuestions[currentQuestionIndex].answer;
@@ -15,10 +12,6 @@ import { orderedQuestions } from "./script-questions.js";
     questionLabelElement.textContent = `Question ${currentQuestionIndex + 1} of ${orderedQuestions.length}`;
     updateMarkForReviewBtn();
   }
-  
-  
-
-
 
   document.getElementById("show-answer").addEventListener("click", () => {
     answerElement.hidden = !answerElement.hidden;
@@ -28,13 +21,6 @@ import { orderedQuestions } from "./script-questions.js";
       document.getElementById("show-answer").textContent = "Hide Answer";
     }
   });
-  
-  document.getElementById("show-answer").textContent = "Hide Answer";
-
-  
-
-
-  
 
   document.getElementById("prev-question").addEventListener("click", () => {
     currentQuestionIndex--;
@@ -46,8 +32,6 @@ import { orderedQuestions } from "./script-questions.js";
     }
   });
 
-  
-  
   document.getElementById("next-question").addEventListener("click", () => {
     currentQuestionIndex++;
     if (currentQuestionIndex < orderedQuestions.length) {
@@ -57,10 +41,10 @@ import { orderedQuestions } from "./script-questions.js";
       alert("You've reached the end of the questions.");
     }
   });
-  
+
   const markForReviewBtn = document.getElementById("mark-for-review");
   const markedQuestions = new Set();
-  
+
   function updateMarkForReviewBtn() {
     if (markedQuestions.has(currentQuestionIndex)) {
       markForReviewBtn.textContent = "Unmark for review";
@@ -68,7 +52,7 @@ import { orderedQuestions } from "./script-questions.js";
       markForReviewBtn.textContent = "Mark for review";
     }
   }
-  
+
   markForReviewBtn.addEventListener("click", () => {
     if (markedQuestions.has(currentQuestionIndex)) {
       markedQuestions.delete(currentQuestionIndex);
@@ -77,5 +61,7 @@ import { orderedQuestions } from "./script-questions.js";
     }
     updateMarkForReviewBtn();
   });
-  
+
   showQuestion();
+  document.getElementById("show-answer").textContent = "Hide Answer";
+});
