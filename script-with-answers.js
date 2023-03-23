@@ -1,18 +1,19 @@
 import { orderedQuestions } from "./script-questions.js";
 
-let currentQuestionIndex = 0;
+(function () {
+  let currentQuestionIndex = 0;
 
-const questionElement = document.getElementById("question");
-const questionLabelElement = document.getElementById("question-label");
-const answerElement = document.getElementById("answer");
+  const questionElement = document.getElementById("question");
+  const questionLabelElement = document.getElementById("question-label");
+  const answerElement = document.getElementById("answer");
 
-function showQuestion() {
-  questionElement.textContent = orderedQuestions[currentQuestionIndex].question;
-  answerElement.textContent = orderedQuestions[currentQuestionIndex].answer;
-  answerElement.hidden = false; // Changed from true to false
-  questionLabelElement.textContent = `Question ${currentQuestionIndex + 1} of ${orderedQuestions.length}`;
-  updateMarkForReviewBtn();
-}
+  function showQuestion() {
+    questionElement.textContent = orderedQuestions[currentQuestionIndex].question;
+    answerElement.textContent = orderedQuestions[currentQuestionIndex].answer;
+    answerElement.hidden = false; // Changed from true to false
+    questionLabelElement.textContent = `Question ${currentQuestionIndex + 1} of ${orderedQuestions.length}`;
+    updateMarkForReviewBtn();
+  }
   
  
 
@@ -77,3 +78,4 @@ function showQuestion() {
   document.addEventListener("DOMContentLoaded", () => {
     showQuestion();
   });
+})();
