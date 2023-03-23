@@ -10,11 +10,14 @@ import { orderedQuestions } from "./script-questions.js";
   function showQuestion() {
     questionElement.textContent = orderedQuestions[currentQuestionIndex].question;
     answerElement.textContent = orderedQuestions[currentQuestionIndex].answer;
-    answerElement.hidden = false;
+    answerElement.hidden = false; // Changed from true to false
     questionLabelElement.textContent = `Question ${currentQuestionIndex + 1} of ${orderedQuestions.length}`;
     updateMarkForReviewBtn();
   }
   
+ 
+
+
   document.getElementById("show-answer").addEventListener("click", () => {
     answerElement.hidden = !answerElement.hidden;
     if (answerElement.hidden) {
