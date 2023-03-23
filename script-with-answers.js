@@ -1,10 +1,13 @@
-document.addEventListener("DOMContentLoaded", () => {
-  let currentQuestionIndex = 0;
+import { orderedQuestions } from "./script-questions.js";
 
+
+
+  let currentQuestionIndex = 0;
+  
   const questionElement = document.getElementById("question");
   const questionLabelElement = document.getElementById("question-label");
   const answerElement = document.getElementById("answer");
-
+  
   function showQuestion() {
     questionElement.textContent = orderedQuestions[currentQuestionIndex].question;
     answerElement.textContent = orderedQuestions[currentQuestionIndex].answer;
@@ -12,6 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
     questionLabelElement.textContent = `Question ${currentQuestionIndex + 1} of ${orderedQuestions.length}`;
     updateMarkForReviewBtn();
   }
+  
+  
+
+
 
   document.getElementById("show-answer").addEventListener("click", () => {
     answerElement.hidden = !answerElement.hidden;
@@ -21,6 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("show-answer").textContent = "Hide Answer";
     }
   });
+  
+  document.getElementById("show-answer").textContent = "Hide Answer";
+
+  
+
+
+  
 
   document.getElementById("prev-question").addEventListener("click", () => {
     currentQuestionIndex--;
@@ -32,6 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  
+  
   document.getElementById("next-question").addEventListener("click", () => {
     currentQuestionIndex++;
     if (currentQuestionIndex < orderedQuestions.length) {
@@ -41,10 +57,10 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("You've reached the end of the questions.");
     }
   });
-
+  
   const markForReviewBtn = document.getElementById("mark-for-review");
   const markedQuestions = new Set();
-
+  
   function updateMarkForReviewBtn() {
     if (markedQuestions.has(currentQuestionIndex)) {
       markForReviewBtn.textContent = "Unmark for review";
@@ -52,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
       markForReviewBtn.textContent = "Mark for review";
     }
   }
-
+  
   markForReviewBtn.addEventListener("click", () => {
     if (markedQuestions.has(currentQuestionIndex)) {
       markedQuestions.delete(currentQuestionIndex);
@@ -61,7 +77,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     updateMarkForReviewBtn();
   });
-
+  
   showQuestion();
-  document.getElementById("show-answer").textContent = "Hide Answer";
-});
