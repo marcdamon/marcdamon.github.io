@@ -1,6 +1,6 @@
 import { orderedQuestions } from "./script-questions.js";
 
-function saveMarkedQuestions(markedQuestions) {
+function saveMarkedQuestions() {
   localStorage.setItem('markedQuestions', JSON.stringify(Array.from(markedQuestions)));
 }
 
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  const markForReviewBtn = document.getElementById("mark-for-review");
+   const markForReviewBtn = document.getElementById("mark-for-review");
   const markedQuestions = new Set();
 
   function updateMarkForReviewBtn() {
@@ -82,3 +82,8 @@ document.addEventListener("DOMContentLoaded", () => {
   loadMarkedQuestions();
   showQuestion();
 });
+
+
+
+
+
