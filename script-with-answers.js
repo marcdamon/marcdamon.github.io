@@ -1,48 +1,16 @@
 import { orderedQuestions } from "./script-questions.js";
 
-//store the current question index
 function saveMarkedQuestions() {
   localStorage.setItem('markedQuestions', JSON.stringify(Array.from(markedQuestions)));
 }
-//call the save function
-markForReviewBtn.addEventListener("click", () => {
-  if (markedQuestions.has(currentQuestionIndex)) {
-    markedQuestions.delete(currentQuestionIndex);
-  } else {
-    markedQuestions.add(currentQuestionIndex);
-  }
-  updateMarkForReviewBtn();
-  saveMarkedQuestions();
-});
-//load the saved questions
+
 document.addEventListener("DOMContentLoaded", () => {
-  // Load marked questions from localStorage.
-  const loadedMarkedQuestions = localStorage.getItem('markedQuestions');
-  if (loadedMarkedQuestions) {
-    const parsedMarkedQuestions = JSON.parse(loadedMarkedQuestions);
-    parsedMarkedQuestions.forEach((questionIndex) => {
-      markedQuestions.add(questionIndex);
-    });
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
   let currentQuestionIndex = 0;
-  
+
   const questionElement = document.getElementById("question");
   const questionLabelElement = document.getElementById("question-label");
   const answerElement = document.getElementById("answer");
-  
+
   function showQuestion() {
     questionElement.textContent = orderedQuestions[currentQuestionIndex].question;
     answerElement.textContent = orderedQuestions[currentQuestionIndex].answer;
@@ -50,8 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
     questionLabelElement.textContent = `Question ${currentQuestionIndex + 1} of ${orderedQuestions.length}`;
     updateMarkForReviewBtn();
   }
-  
-  
 
   document.getElementById("show-answer").addEventListener("click", () => {
     answerElement.hidden = !answerElement.hidden;
@@ -61,25 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("show-answer").textContent = "Hide Answer";
     }
   });
-  
-  document.getElementById("show-answer").textContent = "Hide Answer";
-
-
-  document.getElementById("show-answer").addEventListener("click", () => {
-    answerElement.hidden = !answerElement.hidden;
-    if (answerElement.hidden) {
-      document.getElementById("show-answer").textContent = "Show Answer";
-    } else {
-      document.getElementById("show-answer").textContent = "Hide Answer";
-    }
-  });
-  
-  document.getElementById("show-answer").textContent = "Hide Answer";
-
-  
-
-  
-  
 
   document.getElementById("prev-question").addEventListener("click", () => {
     currentQuestionIndex--;
@@ -91,8 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  
-  
   document.getElementById("next-question").addEventListener("click", () => {
     currentQuestionIndex++;
     if (currentQuestionIndex < orderedQuestions.length) {
@@ -102,10 +47,10 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("You've reached the end of the questions.");
     }
   });
-  
+
   const markForReviewBtn = document.getElementById("mark-for-review");
   const markedQuestions = new Set();
-  
+
   function updateMarkForReviewBtn() {
     if (markedQuestions.has(currentQuestionIndex)) {
       markForReviewBtn.textContent = "Unmark for review";
@@ -113,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
       markForReviewBtn.textContent = "Mark for review";
     }
   }
-  
+
   markForReviewBtn.addEventListener("click", () => {
     if (markedQuestions.has(currentQuestionIndex)) {
       markedQuestions.delete(currentQuestionIndex);
@@ -121,13 +66,17 @@ document.addEventListener("DOMContentLoaded", () => {
       markedQuestions.add(currentQuestionIndex);
     }
     updateMarkForReviewBtn();
+    saveMarkedQuestions();
   });
-  
+
+  // Load marked questions from localStorage.
+  const loadedMarkedQuestions = localStorage.getItem('markedQuestions');
+  if (loadedMarkedQuestions) {
+    const parsedMarkedQuestions = JSON.parse(loadedMarkedQuestions);
+    parsedMarkedQuestions.forEach((questionIndex) => {
+      markedQuestions.add(questionIndex);
+    });
+  }
+
   showQuestion();
-
-
-
-
-
-    // Rest of the code...
 });
