@@ -82,8 +82,3 @@ document.addEventListener("DOMContentLoaded", () => {
   loadMarkedQuestions();
   showQuestion();
 });
-
-
-
-
-
