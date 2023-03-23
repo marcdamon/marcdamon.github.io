@@ -1,24 +1,7 @@
-import { orderedQuestions } from "./script-questions.js";
-
 document.addEventListener("DOMContentLoaded", () => {
   showQuestion();
 });
 
-
-
-let currentQuestionIndex = 0;
-
-const questionElement = document.getElementById("question");
-const questionLabelElement = document.getElementById("question-label");
-const answerElement = document.getElementById("answer");
-
-function showQuestion() {
-  questionElement.textContent = orderedQuestions[currentQuestionIndex].question;
-  answerElement.textContent = orderedQuestions[currentQuestionIndex].answer;
-  answerElement.hidden = false;
-  questionLabelElement.textContent = `Question ${currentQuestionIndex + 1} of ${orderedQuestions.length}`;
-  updateMarkForReviewBtn();
-}
 
 document.getElementById("show-answer").addEventListener("click", () => {
   answerElement.hidden = !answerElement.hidden;
@@ -69,3 +52,6 @@ markForReviewBtn.addEventListener("click", () => {
   updateMarkForReviewBtn();
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  showQuestion();
+});
