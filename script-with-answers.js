@@ -1,5 +1,40 @@
 import { orderedQuestions } from "./script-questions.js";
 
+//store the current question index
+function saveMarkedQuestions() {
+  localStorage.setItem('markedQuestions', JSON.stringify(Array.from(markedQuestions)));
+}
+//call the save function
+markForReviewBtn.addEventListener("click", () => {
+  if (markedQuestions.has(currentQuestionIndex)) {
+    markedQuestions.delete(currentQuestionIndex);
+  } else {
+    markedQuestions.add(currentQuestionIndex);
+  }
+  updateMarkForReviewBtn();
+  saveMarkedQuestions();
+});
+//load the saved questions
+document.addEventListener("DOMContentLoaded", () => {
+  // Load marked questions from localStorage.
+  const loadedMarkedQuestions = localStorage.getItem('markedQuestions');
+  if (loadedMarkedQuestions) {
+    const parsedMarkedQuestions = JSON.parse(loadedMarkedQuestions);
+    parsedMarkedQuestions.forEach((questionIndex) => {
+      markedQuestions.add(questionIndex);
+    });
+  }
+
+
+
+
+
+
+
+
+
+
+
 
 
   let currentQuestionIndex = 0;
@@ -18,6 +53,16 @@ import { orderedQuestions } from "./script-questions.js";
   
   
 
+  document.getElementById("show-answer").addEventListener("click", () => {
+    answerElement.hidden = !answerElement.hidden;
+    if (answerElement.hidden) {
+      document.getElementById("show-answer").textContent = "Show Answer";
+    } else {
+      document.getElementById("show-answer").textContent = "Hide Answer";
+    }
+  });
+  
+  document.getElementById("show-answer").textContent = "Hide Answer";
 
 
   document.getElementById("show-answer").addEventListener("click", () => {
@@ -33,7 +78,7 @@ import { orderedQuestions } from "./script-questions.js";
 
   
 
-
+  
   
 
   document.getElementById("prev-question").addEventListener("click", () => {
@@ -79,3 +124,10 @@ import { orderedQuestions } from "./script-questions.js";
   });
   
   showQuestion();
+
+
+
+
+
+    // Rest of the code...
+});
