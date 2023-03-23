@@ -30,7 +30,8 @@
         <div class="study-button-styling">
         <button id="review-questions-answers">Review all questions with answers shown</button>
         <button id="review-questions">Review all questions</button>
-        <button id="review-uncertain-questions">Review uncertain questions only</button>
+        <button id="review-Marked-questions" onclick="goToMarkedQuestions()">Review Marked questions only</button>
+
         
         <div class="toggle-container">
             <label for="random-toggle">Random order:</label>
@@ -64,6 +65,11 @@
   </div>
 
   <script src="study-guide.js"></script>
+  <script>
+    function goToMarkedQuestions() {
+        window.location.href = "questions.html?reviewMarked=true";
+    }
+    </script>
 
   
   
