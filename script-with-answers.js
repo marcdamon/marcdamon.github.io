@@ -1,16 +1,25 @@
+import { orderedQuestions } from "./script-questions.js";
+
 document.addEventListener("DOMContentLoaded", () => {
-  showQuestion();
-});
+  let currentQuestionIndex = 0;
 
+  const questionElement = document.getElementById("question");
+  const questionLabelElement = document.getElementById("question-label");
+  const answerElement = document.getElementById("answer");
 
-document.getElementById("show-answer").addEventListener("click", () => {
-  answerElement.hidden = !answerElement.hidden;
-  if (answerElement.hidden) {
-    document.getElementById("show-answer").textContent = "Show Answer";
-  } else {
-    document.getElementById("show-answer").textContent = "Hide Answer";
+  function showQuestion() {
+    questionElement.textContent = orderedQuestions[currentQuestionIndex].question;
+    answerElement.textContent = orderedQuestions[currentQuestionIndex].answer;
+    answerElement.hidden = false;
+    questionLabelElement.textContent = `Question ${currentQuestionIndex + 1} of ${orderedQuestions.length}`;
+    updateMarkForReviewBtn();
   }
-});
+
+
+
+
+
+
 
 document.getElementById("prev-question").addEventListener("click", () => {
   currentQuestionIndex--;
@@ -54,4 +63,8 @@ markForReviewBtn.addEventListener("click", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   showQuestion();
+});
+
+
+showQuestion();
 });
