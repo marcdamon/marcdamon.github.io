@@ -87,6 +87,17 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+<script>
+function goToMarkedQuestions() {
+    window.location.href = "questions.html?reviewMarked=true";
+}
+</script>
+
+
+
+
+
+
 
 
 
