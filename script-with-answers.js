@@ -87,11 +87,19 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-<script>
-function goToMarkedQuestions() {
-    window.location.href = "questions.html?reviewMarked=true";
+function getQueryParams() {
+  const queryParams = {};
+  const queryString = window.location.search.substring(1);
+  const pairs = queryString.split('&');
+  
+  for (const pair of pairs) {
+      const [key, value] = pair.split('=');
+      queryParams[decodeURIComponent(key)] = decodeURIComponent(value);
+  }
+
+  return queryParams;
 }
-</script>
+
 
 
 
