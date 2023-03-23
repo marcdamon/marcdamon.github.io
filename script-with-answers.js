@@ -18,6 +18,8 @@ import { orderedQuestions } from "./script-questions.js";
   
   
 
+
+
   document.getElementById("show-answer").addEventListener("click", () => {
     answerElement.hidden = !answerElement.hidden;
     if (answerElement.hidden) {
@@ -27,6 +29,11 @@ import { orderedQuestions } from "./script-questions.js";
     }
   });
   
+  document.getElementById("show-answer").textContent = "Hide Answer";
+
+  
+
+
   
 
   document.getElementById("prev-question").addEventListener("click", () => {
