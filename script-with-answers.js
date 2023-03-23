@@ -19,7 +19,34 @@ document.addEventListener("DOMContentLoaded", () => {
     updateMarkForReviewBtn();
   }
 
-  // ...
+  document.getElementById("show-answer").addEventListener("click", () => {
+    answerElement.hidden = !answerElement.hidden;
+    if (answerElement.hidden) {
+      document.getElementById("show-answer").textContent = "Show Answer";
+    } else {
+      document.getElementById("show-answer").textContent = "Hide Answer";
+    }
+  });
+
+  document.getElementById("prev-question").addEventListener("click", () => {
+    currentQuestionIndex--;
+    if (currentQuestionIndex >= 0) {
+      showQuestion();
+    } else {
+      currentQuestionIndex = 0;
+      alert("You've reached the beginning of the questions.");
+    }
+  });
+
+  document.getElementById("next-question").addEventListener("click", () => {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < orderedQuestions.length) {
+      showQuestion();
+    } else {
+      currentQuestionIndex = orderedQuestions.length - 1;
+      alert("You've reached the end of the questions.");
+    }
+  });
 
   const markForReviewBtn = document.getElementById("mark-for-review");
   const markedQuestions = new Set();
@@ -55,3 +82,8 @@ document.addEventListener("DOMContentLoaded", () => {
   loadMarkedQuestions();
   showQuestion();
 });
+
+
+
+
+
