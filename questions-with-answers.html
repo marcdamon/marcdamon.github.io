@@ -37,7 +37,7 @@
             </div>
 
 
-test 22
+test 23
 
             <div class="main-button-container">
 
@@ -76,7 +76,19 @@ test 22
 
   <script type="module" src="script-questions.js"></script>
 <script type="module" src="script-with-answers.js"></script>
+<script>function getQueryParams() {
+  const queryParams = {};
+  const queryString = window.location.search.substring(1);
+  const pairs = queryString.split('&');
+  
+  for (const pair of pairs) {
+      const [key, value] = pair.split('=');
+      queryParams[decodeURIComponent(key)] = decodeURIComponent(value);
+  }
 
+  return queryParams;
+}
+</script>
   
   
   </body>
