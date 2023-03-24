@@ -65,21 +65,10 @@
   </div>
 
 
-  <script type="module">
-    import { markedQuestions, loadMarkedQuestions } from "./marked-questions.js";
-    loadMarkedQuestions();
-    // ...
-  </script>
+
   
   <script src="study-guide.js"></script>
-  <script>
-  function goToMarkedQuestions() {
-  const markedQuestionIndexes = Array.from(markedQuestions);
-  const queryParams = markedQuestionIndexes.map((index) => `marked[]=${index}`).join('&');
-  window.location.href = `questions-with-answers.html?reviewMarked=true&${queryParams}`;
-}
-
-    </script>
+  
 
   
   
