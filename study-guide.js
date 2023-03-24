@@ -10,6 +10,7 @@ function goToMarkedQuestions() {
 }
 
 
+document.getElementById("review-Marked-questions").addEventListener("click", goToMarkedQuestions);
 
 
 
