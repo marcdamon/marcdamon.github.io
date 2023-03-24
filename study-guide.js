@@ -1,3 +1,20 @@
+
+import { markedQuestions, loadMarkedQuestions } from "./marked-questions.js";
+
+loadMarkedQuestions();
+
+function goToMarkedQuestions() {
+  const markedQuestionIndexes = Array.from(markedQuestions);
+  const queryParams = markedQuestionIndexes.map((index) => `marked[]=${index}`).join('&');
+  window.location.href = `questions-with-answers.html?reviewMarked=true&${queryParams}`;
+}
+
+
+
+
+
+
+
 document.getElementById("review-questions-answers").addEventListener("click", () => {
   window.location.href = "questions-with-answers.html";
 });
