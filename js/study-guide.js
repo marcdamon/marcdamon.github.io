@@ -1,20 +1,26 @@
+const reviewQuestionsAnswers = document.getElementById("review-questions-answers");
+const reviewQuestions = document.getElementById("review-questions");
+const reviewUncertainQuestions = document.getElementById("review-uncertain-questions");
 
+if (reviewQuestionsAnswers) {
+  reviewQuestionsAnswers.addEventListener("click", () => {
+    window.location.href = "questions-with-answers.html";
+  });
+}
 
-
-
-
-
-document.getElementById("review-questions-answers").addEventListener("click", () => {
-  window.location.href = "questions-with-answers.html";
-});
-
-document.getElementById("review-questions").addEventListener("click", () => {
+if (reviewQuestions) {
+  reviewQuestions.addEventListener("click", () => {
     window.location.href = "questions-without-answers.html";
-});
+  });
+}
 
-document.getElementById("review-uncertain-questions").addEventListener("click", () => {
+if (reviewUncertainQuestions) {
+  reviewUncertainQuestions.addEventListener("click", () => {
     // Implement the functionality for reviewing uncertain questions only
-});
+  });
+}
+
+
 
 const randomToggle = document.getElementById("random-toggle");
 
