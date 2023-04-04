@@ -1,4 +1,6 @@
-import { orderedQuestions } from "./script-questions.js";
+import { getQuestion, getTotalQuestions } from "./dataAccess.js";
+
+
 
 function saveMarkedQuestions() {
   localStorage.setItem('markedQuestions', JSON.stringify(Array.from(markedQuestions)));
@@ -12,12 +14,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const answerElement = document.getElementById("answer");
 
   function showQuestion() {
-    questionElement.textContent = orderedQuestions[currentQuestionIndex].question;
-    answerElement.textContent = orderedQuestions[currentQuestionIndex].answer;
-    answerElement.hidden = false;
-    questionLabelElement.textContent = `Question ${currentQuestionIndex + 1} of ${orderedQuestions.length}`;
+    const currentQuestion = getQuestion(currentQuestionIndex);
+    questionElement.textContent = currentQuestion.question;
+    answerElement.textContent = currentQuestion.answer;
+    questionLabelElement.textContent = `Question ${currentQuestionIndex + 1} of ${getTotalQuestions()}`;
     updateMarkForReviewBtn();
+  
+    // Set the visibility of the answers
+    answerElement.hidden = false; // Always show the answers on the page that should show answers by default
+    document.getElementById("show-answer").textContent = "Hide Answer";
   }
+  
 
   document.getElementById("show-answer").addEventListener("click", () => {
     answerElement.hidden = !answerElement.hidden;
@@ -43,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("next-question").addEventListener("click", () => {
     currentQuestionIndex++;
-    if (currentQuestionIndex < orderedQuestions.length) {
+    if (currentQuestionIndex < getTotalQuestions()) {
       showQuestion();
     } else {
       currentQuestionIndex = orderedQuestions.length - 1;
