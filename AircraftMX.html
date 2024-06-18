@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aircraft Maintenance Tracker</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Aircraft Maintenance Tracker</h1>
+    <form id="updateForm">
+        <label for="flightHours">Update Flight Hours:</label>
+        <input type="number" id="flightHours" name="flightHours" required>
+        <button type="submit">Update</button>
+    </form>
+    <table id="maintenanceTable">
+        <thead>
+            <tr>
+                <th>nNumber</th>
+                <th>serialNumber</th>
+                <th>year</th>
+                <th>make</th>
+                <th>model</</th>
+                <th>description</th>
+                <th>flightHours</th>
+                <th>date</th>
+                <th>engineSNEW</th>
+                <th>propellerSNEW</th>
+                <th>calculateMxFrom</th>
+                <th>Category</th>
+                <th>hours/time</th>
+                <th>itemsToTrack</th>
+                <th>MXdate</th>
+                <th>MXflightHours</th>
+                <th>nextServiceDueAt</th>
+                <th>remainingTime</th>
+                <th>remainingDays</th>
+                <th>remainingHours</th>
+                <th>timeBetweenService</th>
+                <th>timeElapsed</th>
+                <th>percentageUsed</th>
+                <th>squaks</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <button id="signin-button">Sign In</button>
+    <button id="signout-button">Sign Out</button>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="AircraftMX.js"></script> <!-- Link to your JavaScript file -->
+</body>
+</html>
