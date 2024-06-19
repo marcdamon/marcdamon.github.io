@@ -2,62 +2,214 @@
 <html>
 <head>
     <title>Aircraft Maintenance Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
+/* Sidebar menu */
+#sidebarMenu {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+#sidebarMenu a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+#sidebarMenu a:hover {
+    color: #f1f1f1;
+}
+
+#mainContainer, #dashboardContainer {
+    margin-left: 250px;
+    transition: margin-left 0.5s;
+    padding: 20px;
+    background-color: #000;  /* Set background color to black */
+}
+
+@media screen and (max-width: 767px) {
+    #sidebarMenu {
+        width: 0;
+        padding-top: 15px;
+    }
+    #sidebarMenu a {
+        font-size: 18px;
+    }
+    #mainContainer, #dashboardContainer {
+        margin-left: 0;
+        padding: 10px;
+    }
+}
+
+/* Main content */
+body {
+    font-family: "Lato", sans-serif;
+    transition: background-color .5s;
+    background-color: #000;  /* Set background color to black */
+    color: #fff;  /* Set text color to white for better contrast */
+}
+
+.main {
+    padding: 16px;
+    transition: margin-left .5s;
+}
+
+/* Content styling */
+.reminder {
+    background-color: #333;
+    color: white;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 600px;  /* Experiment with this value */
+    width: calc(100% - 20px);  /* Ensures it takes the full width available up to the max-width */
+    box-sizing: border-box;  /* Ensure padding is included in the width calculation */
+}
+
+.reminder-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.due-label, .value {
+    font-size: 16px;
+}
+
+.reminder-content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.progress-bar {
+    background-color: #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 10px;
+    height: 20px;
+}
+
+.progress {
+    height: 100%;
+    text-align: center;
+    line-height: 20px;
+    color: white;
+}
+
+.squawks-container {
+    margin-top: 20px;
+}
+
+.squawks-container h2 {
+    display: flex;
+    align-items: center;
+}
+
+#squawkInputContainer {
+    margin-top: 10px;
+}
+
+.squawk-item {
+    display: flex;
+    align-items: center;
+}
+
+.squawk-item input {
+    margin-left: 10px;
+}
+
+/* Responsive design */
+@media screen and (max-width: 767px) {
+    .reminder {
+        font-size: 14px;
+        max-width: 100%;  /* Allow the table to take the full width on small screens */
+    }
+    .item {
+        font-size: 16px;
+    }
+    .due-label, .value {
+        font-size: 14px;
+    }
+    .label {
+        font-size: 12px;
+    }
+    .progress-bar {
+        height: 15px;
+    }
+    .progress {
+        line-height: 15px;
+    }
+}
+
+
+
+
+
+        
     </style>
 </head>
 <body>
-    <h1>Aircraft Maintenance Tracker</h1>
-    <form id="updateForm">
-        <label for="flightHours">Update Flight Hours:</label>
-        <input type="number" id="flightHours" name="flightHours" required>
-        <button type="submit">Update</button>
-    </form>
-    <table id="maintenanceTable">
-        <thead>
-            <tr>
-                <th>nNumber</th>
-                <th>serialNumber</th>
-                <th>year</th>
-                <th>make</th>
-                <th>model</</th>
-                <th>description</th>
-                <th>flightHours</th>
-                <th>date</th>
-                <th>engineSNEW</th>
-                <th>propellerSNEW</th>
-                <th>calculateMxFrom</th>
-                <th>Category</th>
-                <th>hours/time</th>
-                <th>itemsToTrack</th>
-                <th>MXdate</th>
-                <th>MXflightHours</th>
-                <th>nextServiceDueAt</th>
-                <th>remainingTime</th>
-                <th>remainingDays</th>
-                <th>remainingHours</th>
-                <th>timeBetweenService</th>
-                <th>timeElapsed</th>
-                <th>percentageUsed</th>
-                <th>squaks</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    <button id="signin-button">Sign In</button>
-    <button id="signout-button">Sign Out</button>
-    <script src="https://apis.google.com/js/api.js"></script>
+    <div class="sidebar-menu" id="sidebarMenu">
+        <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebarMenu()">&times;</a>
+        <a href="javascript:void(0)" onclick="openDashboard()">Dashboard</a>
+        <div style="height: 10px;"></div>
+        <div id="aircraftList"></div>
+    </div>
+    <span class="open-sidebar" onclick="toggleSidebarMenu()">&#9776;</span>
+    <div class="container" id="mainContainer">
+        <div class="header" id="aircraftHeader">
+            <div>
+                <h1 id="registration"></h1>
+                <p id="makeModel"></p>
+            </div>
+            <div class="flight-hours">
+                <h2>Flight Hours: </h2><span id="currentFlightHours">0</span> HRS
+            </div>
+        </div>
+        <form id="updateForm" class="update-form">
+            <label for="flightHours">Update Flight Hours:</label>
+            <input type="number" id="flightHours" name="flightHours" required>
+            <button type="submit">Update</button>
+        </form>
+        <div class="maintenance-reminders">
+            <h2>Maintenance Reminders</h2>
+            <div id="maintenanceReminders"></div>
+        </div>
+        <div class="buttons">
+            <button id="signin-button">Sign In</button>
+            <button id="signout-button">Sign Out</button>
+        </div>
+    </div>
+    <div class="container" id="dashboardContainer" style="display:none;">
+        <div class="maintenance-reminders">
+            <h2>Dashboard</h2>
+            <div id="dashboardReminders"></div>
+        </div>
+    </div>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://apis.google.com/js/api.js" async defer></script>
     <script src="AircraftMX.js"></script> <!-- Link to your JavaScript file -->
 </body>
 </html>
