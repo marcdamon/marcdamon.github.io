@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aircraft Maintenance Tracker</title>
+    <link rel="stylesheet" href="AircraftMX.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="AircraftMX.js" defer></script>
+    <script src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+</head>
+<body>
+    <div class="sidebar-menu" id="sidebarMenu">
+        <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebarMenu()">&times;</a>
+        <div id="aircraftList"></div>
+    </div>
+    <span class="open-sidebar" onclick="toggleSidebarMenu()">&#9776;</span>
+    <div class="container" id="mainContainer">
+        <div class="header" id="aircraftHeader">
+            <div>
+                <h1 id="registration"></h1>
+                <p id="makeModel"></p>
+            </div>
+            <div class="flight-hours">
+                <h2>Flight Hours: </h2><span id="currentFlightHours">0</span> HRS
+            </div>
+        </div>
+        <form id="updateForm" class="update-form">
+            <label for="flightHours">Update Flight Hours:</label>
+            <input type="number" id="flightHours" name="flightHours" required>
+            <button type="submit">Update</button>
+        </form>
+        <div class="maintenance-reminders">
+            <h2>Maintenance Reminders</h2>
+            <div id="maintenanceReminders"></div>
+        </div>
+        <div class="buttons">
+            <button id="signin-button">Sign In</button>
+            <button id="signout-button">Sign Out</button>
+        </div>
+    </div>
+    <div class="container" id="dashboardContainer" style="display:none;">
+        <div class="maintenance-reminders">
+            <h2>Dashboard</h2>
+            <div id="dashboardReminders"></div>
+        </div>
+    </div>
+</body>
+</html>
