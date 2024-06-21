@@ -1,12 +1,9 @@
 import { initializeAuth } from './auth.js';
 import { fetchSheetData, updateFlightHours } from './data.js';
 import { adjustSidebar } from './ui.js';
+import { API_KEY, DISCOVERY_DOCS } from './config.js';
 
-const CLIENT_ID = '816027223942-4rqrbc07n383r8dddfb04rqoojm5480f.apps.googleusercontent.com';
-const SCOPES = "https://www.googleapis.com/auth/spreadsheets";
-const SPREADSHEET_ID = '1mK2LE_oudXFydiAD_iSuvuL7rPvf6NU8_LlXEVvQQHQ';
-
-function gapiLoaded() {
+export function gapiLoaded() {
     console.log("Loading Google API client...");
     gapi.load('client', initializeGapiClient);
 }
@@ -21,9 +18,9 @@ function initializeGapiClient() {
         let token = localStorage.getItem('gapiToken');
         if (token) {
             gapi.client.setToken({ access_token: token });
-            fetchSheetData(SPREADSHEET_ID);
+            fetchSheetData();
         } else {
-            initializeAuth(CLIENT_ID, SCOPES, () => fetchSheetData(SPREADSHEET_ID));
+            initializeAuth(() => fetchSheetData());
         }
     }, function(error) {
         console.error("Error initializing GAPI client:", error.details);
@@ -45,7 +42,7 @@ document.getElementById('updateForm').addEventListener('submit', function(e) {
     e.preventDefault();
     const flightHours = document.getElementById('flightHours').value;
     console.log("Update form submitted.");
-    updateFlightHours(SPREADSHEET_ID, flightHours);
+    updateFlightHours(flightHours);
 });
 
 document.getElementById('signout-button').addEventListener('click', function() {
