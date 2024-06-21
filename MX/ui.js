@@ -29,8 +29,7 @@ export function updateAircraftList(data) {
 }
 
 export function updateDisplay(nNumber) {
-    selectedAircraft = nNumber;
-    const aircraft = aircraftData.filter(row => row[0] === nNumber);
+    const aircraft = window.aircraftData.filter(row => row[0] === nNumber);
 
     if (aircraft.length > 0) {
         document.getElementById('mainContainer').style.display = 'block';
@@ -44,22 +43,22 @@ export function updateDisplay(nNumber) {
 }
 
 export function updateHeader(values) {
-    const registration = values[0]; // Column A
-    const make = values[3]; // Column D
-    const model = values[4]; // Column E
+    const registration = values[0];
+    const make = values[3];
+    const model = values[4];
 
     document.getElementById('registration').textContent = registration;
     document.getElementById('makeModel').textContent = `${make} ${model}`;
 }
 
 export function updateCurrentFlightHours(values) {
-    const flightHours = values[6]; // Assuming flight hours are in cell G2
+    const flightHours = values[6];
     document.getElementById('currentFlightHours').textContent = flightHours;
 }
 
 export function updateMaintenanceReminders(values) {
     const container = document.getElementById('maintenanceReminders');
-    container.innerHTML = ''; // Clear existing reminders
+    container.innerHTML = '';
 
     let currentCategory = '';
     const categoryTitles = {
@@ -68,16 +67,15 @@ export function updateMaintenanceReminders(values) {
         'Misc': 'Miscellaneous Items'
     };
 
-    for (let i = 0; i < values.length; i++) { // Start with the first item
-        const row = values[i];
-        const category = row[11]; // Column L for Category
-        const itemsToTrack = row[14]; // Column O
-        const remainingTime = row[18]; // Column S
-        const sendReminder = parseFloat(row[19]); // Column T
-        const remainingHours = parseFloat(row[21]); // Column V
-        const remainingDays = parseFloat(row[20]); // Column U
-        const percentageUsed = parseFloat(row[24]); // Column Y
-        let progressBarColor = '#007bff'; // Default blue
+    values.forEach(row => {
+        const category = row[11];
+        const itemsToTrack = row[14];
+        const remainingTime = row[18];
+        const sendReminder = parseFloat(row[19]);
+        const remainingHours = parseFloat(row[21]);
+        const remainingDays = parseFloat(row[20]);
+        const percentageUsed = parseFloat(row[24]);
+        let progressBarColor = '#007bff';
 
         if (remainingHours <= 0 || remainingDays <= 0) {
             progressBarColor = 'red';
@@ -137,13 +135,12 @@ export function updateMaintenanceReminders(values) {
             reminder.appendChild(progressBar);
             container.appendChild(reminder);
         }
-    }
+    });
 }
 
 export function updateSquawks(values) {
     const container = document.getElementById('maintenanceReminders');
 
-    // Clear existing squawks section
     const existingSquawksContainer = document.getElementById('squawksContainer');
     if (existingSquawksContainer) {
         container.removeChild(existingSquawksContainer);
@@ -169,7 +166,7 @@ export function updateSquawks(values) {
     const squawkInput = document.createElement('input');
     squawkInput.type = 'text';
     squawkInput.id = 'newSquawk';
-    squawkInput.style.width = '100%'; // Make input full width
+    squawkInput.style.width = '100%';
     const squawkSaveButton = document.createElement('button');
     squawkSaveButton.textContent = 'Save';
     squawkSaveButton.onclick = saveSquawk;
@@ -181,8 +178,8 @@ export function updateSquawks(values) {
     squawkList.id = 'squawkList';
     squawksContainer.appendChild(squawkList);
 
-    for (let i = 0; i < values.length; i++) {
-        const squawk = values[i][25]; // Column Z for squawks
+    values.forEach(row => {
+        const squawk = row[25];
         if (squawk) {
             const squawkItems = squawk.split('\n');
             squawkItems.forEach((sq, index) => {
@@ -202,7 +199,109 @@ export function updateSquawks(values) {
                 squawkList.appendChild(squawkItem);
             });
         }
-    }
+    });
 
     container.appendChild(squawksContainer);
+}
+
+export function openDashboard() {
+    document.getElementById('mainContainer').style.display = 'none';
+    document.getElementById('dashboardContainer').style.display = 'block';
+
+    const container = document.getElementById('dashboardReminders');
+    container.innerHTML = '';
+
+    const categoryTitles = {
+        'MX': 'General Maintenance',
+        'LLP': 'Life Limited Parts',
+        'Misc': 'Miscellaneous Items'
+    };
+
+    const dashboardItems = window.aircraftData.filter(row => {
+        const remainingHours = parseFloat(row[21]);
+        const remainingDays = parseFloat(row[20]);
+        const sendReminder = parseFloat(row[19]);
+
+        return remainingHours <= sendReminder || remainingDays <= sendReminder;
+    });
+
+    let currentAircraft = '';
+
+    dashboardItems.forEach(row => {
+        const nNumber = row[0];
+        const year = row[2];
+        const make = row[3];
+        const model = row[4];
+        const category = row[11];
+        const itemsToTrack = row[14];
+        const remainingTime = row[18];
+        const percentageUsed = parseFloat(row[24]);
+        let progressBarColor = '#007bff';
+
+        if (parseFloat(row[21]) <= 0 || parseFloat(row[20]) <= 0) {
+            progressBarColor = 'red';
+        } else if (parseFloat(row[21]) <= parseFloat(row[19]) || parseFloat(row[20]) <= parseFloat(row[19])) {
+            progressBarColor = 'yellow';
+        }
+
+        if (nNumber !== currentAircraft) {
+            currentAircraft = nNumber;
+            const aircraftTitle = document.createElement('h2');
+            aircraftTitle.textContent = `${nNumber} - ${year} ${make} ${model}`;
+            container.appendChild(aircraftTitle);
+        }
+
+        const reminder = document.createElement('div');
+        reminder.className = 'reminder';
+
+        const header = document.createElement('div');
+        header.className = 'reminder-header';
+
+        const item = document.createElement('div');
+        item.className = 'item';
+        item.textContent = itemsToTrack;
+
+        const dueLabel = document.createElement('div');
+        dueLabel.className = 'due-label';
+        dueLabel.textContent = 'Due in:';
+
+        const value = document.createElement('div');
+        value.className = 'value';
+        value.textContent = remainingTime;
+
+        header.appendChild(item);
+        header.appendChild(dueLabel);
+
+        const content = document.createElement('div');
+        content.className = 'reminder-content';
+
+        const label = document.createElement('div');
+        label.className = 'label';
+        label.textContent = 'Next Maintenance:';
+
+        content.appendChild(label);
+        content.appendChild(value);
+
+        const progressBar = document.createElement('div');
+        progressBar.className = 'progress-bar';
+        const progress = document.createElement('div');
+        progress.className = 'progress';
+        progress.style.width = `${percentageUsed}%`;
+        progress.style.backgroundColor = progressBarColor;
+
+        progressBar.appendChild(progress);
+        reminder.appendChild(header);
+        reminder.appendChild(content);
+        reminder.appendChild(progressBar);
+        container.appendChild(reminder);
+    });
+}
+
+export function adjustSidebar() {
+    const sidebarMenu = document.getElementById('sidebarMenu');
+    if (window.innerWidth >= 768) {
+        sidebarMenu.style.width = '250px';
+    } else {
+        sidebarMenu.style.width = '0';
+    }
 }

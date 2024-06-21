@@ -1,18 +1,16 @@
-let tokenClient;
-
-export function initializeAuth(CLIENT_ID, SCOPES, fetchSheetData) {
+export function initializeAuth(clientId, scopes, callback) {
     google.accounts.id.initialize({
-        client_id: CLIENT_ID,
-        callback: (response) => handleCredentialResponse(response, fetchSheetData),
+        client_id: clientId,
+        callback: (response) => handleCredentialResponse(response, callback),
     });
     document.getElementById('signin-button').onclick = () => google.accounts.id.prompt();
 }
 
-function handleCredentialResponse(response, fetchSheetData) {
+function handleCredentialResponse(response, callback) {
     console.log("Credential response received:", response);
-    tokenClient = google.accounts.oauth2.initTokenClient({
-        client_id: CLIENT_ID,
-        scope: SCOPES,
+    const tokenClient = google.accounts.oauth2.initTokenClient({
+        client_id: response.client_id,
+        scope: response.scope,
         callback: (tokenResponse) => {
             if (tokenResponse.error) {
                 console.error("Error receiving token response:", tokenResponse.error);
@@ -20,7 +18,7 @@ function handleCredentialResponse(response, fetchSheetData) {
             }
             console.log("Token response received:", tokenResponse);
             localStorage.setItem('gapiToken', tokenResponse.access_token);
-            fetchSheetData();
+            callback();
         },
     });
     tokenClient.requestAccessToken({ prompt: '' });
