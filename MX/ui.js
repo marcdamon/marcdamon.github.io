@@ -1,35 +1,6 @@
-export function updateAircraftList(data) {
-    const aircraftListContainer = document.getElementById('aircraftList');
-    aircraftListContainer.innerHTML = ''; // Clear existing list
-
-    // Add Dashboard link
-    const dashboardLink = document.createElement('a');
-    dashboardLink.href = 'javascript:void(0)';
-    dashboardLink.textContent = 'Dashboard';
-    dashboardLink.onclick = openDashboard;
-    aircraftListContainer.appendChild(dashboardLink);
-
-    // Add a space
-    const space = document.createElement('div');
-    space.style.height = '10px';
-    aircraftListContainer.appendChild(space);
-
-    // Get unique aircraft
-    const uniqueAircraft = [...new Set(data.map(row => row[0]))];
-
-    uniqueAircraft.forEach(nNumber => {
-        const listItem = document.createElement('a');
-        listItem.href = 'javascript:void(0)';
-        listItem.textContent = nNumber;
-        listItem.onclick = () => {
-            updateDisplay(nNumber);
-        };
-        aircraftListContainer.appendChild(listItem);
-    });
-}
-
-export function updateDisplay(nNumber) {
-    const aircraft = window.aircraftData.filter(row => row[0] === nNumber);
+function updateDisplay(nNumber) {
+    selectedAircraft = nNumber;
+    const aircraft = aircraftData.filter(row => row[0] === nNumber);
 
     if (aircraft.length > 0) {
         document.getElementById('mainContainer').style.display = 'block';
@@ -42,7 +13,7 @@ export function updateDisplay(nNumber) {
     }
 }
 
-export function updateHeader(values) {
+function updateHeader(values) {
     const registration = values[0];
     const make = values[3];
     const model = values[4];
@@ -51,12 +22,12 @@ export function updateHeader(values) {
     document.getElementById('makeModel').textContent = `${make} ${model}`;
 }
 
-export function updateCurrentFlightHours(values) {
+function updateCurrentFlightHours(values) {
     const flightHours = values[6];
     document.getElementById('currentFlightHours').textContent = flightHours;
 }
 
-export function updateMaintenanceReminders(values) {
+function updateMaintenanceReminders(values) {
     const container = document.getElementById('maintenanceReminders');
     container.innerHTML = '';
 
@@ -67,7 +38,8 @@ export function updateMaintenanceReminders(values) {
         'Misc': 'Miscellaneous Items'
     };
 
-    values.forEach(row => {
+    for (let i = 0; i < values.length; i++) {
+        const row = values[i];
         const category = row[11];
         const itemsToTrack = row[14];
         const remainingTime = row[18];
@@ -135,10 +107,10 @@ export function updateMaintenanceReminders(values) {
             reminder.appendChild(progressBar);
             container.appendChild(reminder);
         }
-    });
+    }
 }
 
-export function updateSquawks(values) {
+function updateSquawks(values) {
     const container = document.getElementById('maintenanceReminders');
 
     const existingSquawksContainer = document.getElementById('squawksContainer');
@@ -178,8 +150,8 @@ export function updateSquawks(values) {
     squawkList.id = 'squawkList';
     squawksContainer.appendChild(squawkList);
 
-    values.forEach(row => {
-        const squawk = row[25];
+    for (let i = 0; i < values.length; i++) {
+        const squawk = values[i][25];
         if (squawk) {
             const squawkItems = squawk.split('\n');
             squawkItems.forEach((sq, index) => {
@@ -199,12 +171,69 @@ export function updateSquawks(values) {
                 squawkList.appendChild(squawkItem);
             });
         }
-    });
+    }
 
     container.appendChild(squawksContainer);
 }
 
-export function openDashboard() {
+function openSquawkInput() {
+    const squawkInputContainer = document.getElementById('squawkInputContainer');
+    squawkInputContainer.style.display = 'block';
+}
+
+function saveSquawk() {
+    const newSquawk = document.getElementById('newSquawk').value;
+    if (newSquawk) {
+        const rowIndex = aircraftData.findIndex(row => row[0] === selectedAircraft);
+        if (rowIndex !== -1) {
+            if (!aircraftData[rowIndex][25]) {
+                aircraftData[rowIndex][25] = newSquawk;
+            } else {
+                aircraftData[rowIndex][25] += `\n${newSquawk}`;
+            }
+            const cellAddress = `Sheet1!Z${rowIndex + 2}`;
+            gapi.client.sheets.spreadsheets.values.update({
+                spreadsheetId: SPREADSHEET_ID,
+                range: cellAddress,
+                valueInputOption: 'USER_ENTERED',
+                resource: {
+                    values: [[aircraftData[rowIndex][25]]]
+                }
+            }).then((response) => {
+                console.log(`${response.result.updatedCells} cells updated.`);
+                document.getElementById('newSquawk').value = '';
+                updateSquawks([aircraftData[rowIndex]]);
+            }, function(error) {
+                console.error('Error updating Google Sheets:', error);
+            });
+        }
+    }
+}
+
+function markSquawkComplete(squawkIndex) {
+    const rowIndex = aircraftData.findIndex(row => row[0] === selectedAircraft);
+    if (rowIndex !== -1) {
+        const squawks = aircraftData[rowIndex][25].split('\n');
+        squawks.splice(squawkIndex, 1);
+        aircraftData[rowIndex][25] = squawks.join('\n');
+        const cellAddress = `Sheet1!Z${rowIndex + 2}`;
+        gapi.client.sheets.spreadsheets.values.update({
+            spreadsheetId: SPREADSHEET_ID,
+            range: cellAddress,
+            valueInputOption: 'USER_ENTERED',
+            resource: {
+                values: [[aircraftData[rowIndex][25]]]
+            }
+        }).then((response) => {
+            console.log(`${response.result.updatedCells} cells updated.`);
+            updateSquawks([aircraftData[rowIndex]]);
+        }, function(error) {
+            console.error('Error updating Google Sheets:', error);
+        });
+    }
+}
+
+function openDashboard() {
     document.getElementById('mainContainer').style.display = 'none';
     document.getElementById('dashboardContainer').style.display = 'block';
 
@@ -217,7 +246,7 @@ export function openDashboard() {
         'Misc': 'Miscellaneous Items'
     };
 
-    const dashboardItems = window.aircraftData.filter(row => {
+    const dashboardItems = aircraftData.filter(row => {
         const remainingHours = parseFloat(row[21]);
         const remainingDays = parseFloat(row[20]);
         const sendReminder = parseFloat(row[19]);
@@ -297,11 +326,21 @@ export function openDashboard() {
     });
 }
 
-export function adjustSidebar() {
-    const sidebarMenu = document.getElementById('sidebarMenu');
-    if (window.innerWidth >= 768) {
-        sidebarMenu.style.width = '250px';
-    } else {
-        sidebarMenu.style.width = '0';
-    }
+function updateFlightHours() {
+    let flightHours = document.getElementById('flightHours').value;
+
+    console.log("Updating flight hours...");
+    gapi.client.sheets.spreadsheets.values.update({
+        spreadsheetId: SPREADSHEET_ID,
+        range: 'Sheet1!G2',
+        valueInputOption: 'USER_ENTERED',
+        resource: {
+            values: [[flightHours]]
+        }
+    }).then((response) => {
+        console.log(`${response.result.updatedCells} cells updated.`);
+        fetchSheetData();
+    }, function(error) {
+        console.error('Error updating Google Sheets:', error);
+    });
 }
