@@ -51,9 +51,11 @@ function gisLoaded() {
     document.getElementById('signin-button').onclick = () => google.accounts.id.prompt();
 }
 
-document.getElementById('signout-button').addEventListener('click', function() {
-    console.log("Sign out button clicked.");
-    localStorage.removeItem('gapiToken');
-    google.accounts.id.disableAutoSelect();
-    location.reload();
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('signout-button').addEventListener('click', function() {
+        console.log("Sign out button clicked.");
+        localStorage.removeItem('gapiToken');
+        google.accounts.id.disableAutoSelect();
+        location.reload();
+    });
 });
