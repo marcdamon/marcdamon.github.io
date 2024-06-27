@@ -48,3 +48,23 @@ function updateAircraftList(data) {
         aircraftListContainer.appendChild(listItem);
     });
 }
+
+async function updateGoogleSheet(rowIndex, mxDate, mxFlightHours, nextServiceDueAt) {
+    const range = `Sheet1!P${rowIndex + 2}:R${rowIndex + 2}`;
+    const values = [[mxDate, mxFlightHours, nextServiceDueAt]];
+
+    try {
+        const response = await gapi.client.sheets.spreadsheets.values.update({
+            spreadsheetId: SPREADSHEET_ID,
+            range: range,
+            valueInputOption: 'USER_ENTERED',
+            resource: {
+                values: values
+            }
+        });
+        console.log(`${response.result.updatedCells} cells updated.`);
+        fetchSheetData();
+    } catch (error) {
+        console.error('Error updating Google Sheets:', error);
+    }
+}

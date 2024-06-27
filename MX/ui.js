@@ -3,6 +3,7 @@ function updateDisplay(nNumber) {
     const aircraft = aircraftData.filter(row => row[0] === nNumber);
 
     if (aircraft.length > 0) {
+        console.log('Displaying data for:', nNumber);
         document.getElementById('mainContainer').style.display = 'block';
         document.getElementById('dashboardContainer').style.display = 'none';
 
@@ -37,6 +38,8 @@ function updateMaintenanceReminders(values) {
         'LLP': 'Life Limited Parts',
         'Misc': 'Miscellaneous Items'
     };
+
+    console.log("Updating maintenance reminders");
 
     for (let i = 0; i < values.length; i++) {
         const row = values[i];
@@ -81,8 +84,16 @@ function updateMaintenanceReminders(values) {
             value.className = 'value';
             value.textContent = remainingTime;
 
+            const updateLink = document.createElement('a');
+            updateLink.href = 'javascript:void(0)';
+            updateLink.textContent = 'Update';
+            updateLink.onclick = () => openUpdateModal(itemsToTrack);
+
+            console.log(`Adding update link for item: ${itemsToTrack}`);
+
             header.appendChild(item);
             header.appendChild(dueLabel);
+            header.appendChild(updateLink);
 
             const content = document.createElement('div');
             content.className = 'reminder-content';
@@ -107,6 +118,75 @@ function updateMaintenanceReminders(values) {
             reminder.appendChild(progressBar);
             container.appendChild(reminder);
         }
+    }
+}
+
+function openUpdateModal(itemsToTrack) {
+    console.log(`Opening update modal for item: ${itemsToTrack}`);
+    const selectedRow = aircraftData.find(row => row[14] === itemsToTrack);
+
+    // Update modal header with the maintenance item name
+    document.getElementById('modalHeader').textContent = itemsToTrack;
+
+    document.getElementById('mxDate').value = selectedRow[15]; // Assuming column P is index 15
+    document.getElementById('mxFlightHours').value = selectedRow[16]; // Assuming column Q is index 16
+
+    if (selectedRow[13] === 'manual') { // Assuming column N is index 13
+        document.getElementById('nextServiceDueContainer').style.display = 'flex';
+        document.getElementById('nextServiceDueAt').type = 'date';
+        document.getElementById('nextServiceDueAt').value = selectedRow[17]; // Assuming column R is index 17
+    } else {
+        document.getElementById('nextServiceDueContainer').style.display = 'none';
+    }
+
+    const updateModal = document.getElementById('updateModal');
+    updateModal.style.display = 'block';
+
+    document.getElementById('itemUpdateForm').onsubmit = function(event) {
+        event.preventDefault();
+        const mxDate = document.getElementById('mxDate').value;
+        const mxFlightHours = document.getElementById('mxFlightHours').value;
+        const nextServiceDueAt = document.getElementById('nextServiceDueAt').value;
+        const rowIndex = aircraftData.findIndex(row => row[14] === itemsToTrack);
+
+        updateGoogleSheet(rowIndex, mxDate, mxFlightHours, nextServiceDueAt, selectedRow[13] === 'manual');
+        closeUpdateModal();
+    };
+}
+
+function closeUpdateModal() {
+    document.getElementById('updateModal').style.display = 'none';
+}
+
+
+
+function closeUpdateModal() {
+    document.getElementById('updateModal').style.display = 'none';
+}
+
+
+
+function closeUpdateModal() {
+    document.getElementById('updateModal').style.display = 'none';
+}
+
+async function updateGoogleSheet(rowIndex, mxDate, mxFlightHours, nextServiceDueAt, isManual) {
+    const range = isManual ? `Sheet1!P${rowIndex + 2}:R${rowIndex + 2}` : `Sheet1!P${rowIndex + 2}:Q${rowIndex + 2}`;
+    const values = isManual ? [[mxDate, mxFlightHours, nextServiceDueAt]] : [[mxDate, mxFlightHours]];
+
+    try {
+        const response = await gapi.client.sheets.spreadsheets.values.update({
+            spreadsheetId: SPREADSHEET_ID,
+            range: range,
+            valueInputOption: 'USER_ENTERED',
+            resource: {
+                values: values
+            }
+        });
+        console.log(`${response.result.updatedCells} cells updated.`);
+        fetchSheetData();
+    } catch (error) {
+        console.error('Error updating Google Sheets:', error);
     }
 }
 
@@ -326,21 +406,28 @@ function openDashboard() {
     });
 }
 
-function updateFlightHours() {
-    let flightHours = document.getElementById('flightHours').value;
+document.addEventListener('DOMContentLoaded', function() {
+    const itemUpdateForm = document.getElementById('itemUpdateForm');
+    if (itemUpdateForm) {
+        itemUpdateForm.addEventListener('submit', function(event) {
+            event.preventDefault();
 
-    console.log("Updating flight hours...");
-    gapi.client.sheets.spreadsheets.values.update({
-        spreadsheetId: SPREADSHEET_ID,
-        range: 'Sheet1!G2',
-        valueInputOption: 'USER_ENTERED',
-        resource: {
-            values: [[flightHours]]
-        }
-    }).then((response) => {
-        console.log(`${response.result.updatedCells} cells updated.`);
-        fetchSheetData();
-    }, function(error) {
-        console.error('Error updating Google Sheets:', error);
-    });
-}
+            const mxDate = document.getElementById('mxDate').value;
+            const mxFlightHours = document.getElementById('mxFlightHours').value;
+            const nextServiceDueAt = document.getElementById('nextServiceDueAt').value;
+
+            const selectedRowIndex = aircraftData.findIndex(row => row[0] === selectedAircraft);
+
+            aircraftData[selectedRowIndex][15] = mxDate;
+            aircraftData[selectedRowIndex][16] = mxFlightHours;
+            if (aircraftData[selectedRowIndex][13] === 'manual') {
+                aircraftData[selectedRowIndex][17] = nextServiceDueAt;
+            }
+
+            updateGoogleSheet(selectedRowIndex, mxDate, mxFlightHours, nextServiceDueAt, aircraftData[selectedRowIndex][13] === 'manual');
+            closeUpdateModal();
+        });
+    } else {
+        console.error('Element with ID itemUpdateForm not found');
+    }
+});

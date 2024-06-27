@@ -7,6 +7,7 @@ window.addEventListener('load', () => {
 window.addEventListener('resize', adjustSidebar);
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Event listener for updating flight hours
     const updateForm = document.getElementById('updateForm');
     if (updateForm) {
         updateForm.addEventListener('submit', function(event) {
@@ -18,8 +19,32 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         console.error('Element with ID updateForm not found');
     }
-});
 
+    // Event listener for the item update form
+    const itemUpdateForm = document.getElementById('itemUpdateForm');
+    if (itemUpdateForm) {
+        itemUpdateForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const mxDate = document.getElementById('mxDate').value;
+            const mxFlightHours = document.getElementById('mxFlightHours').value;
+            const nextServiceDueAt = document.getElementById('nextServiceDueAt').value;
+
+            const selectedRowIndex = aircraftData.findIndex(row => row[0] === selectedAircraft);
+
+            aircraftData[selectedRowIndex][7] = mxDate;
+            aircraftData[selectedRowIndex][8] = mxFlightHours;
+            if (aircraftData[selectedRowIndex][2] === 'manual') {
+                aircraftData[selectedRowIndex][9] = nextServiceDueAt;
+            }
+
+            updateGoogleSheet(selectedRowIndex, mxDate, mxFlightHours, nextServiceDueAt);
+            closeUpdateModal();
+        });
+    } else {
+        console.error('Element with ID itemUpdateForm not found');
+    }
+});
 
 function updateFlightHours(flightHours) {
     const nNumber = document.getElementById('registration').innerText;
@@ -30,19 +55,16 @@ function updateFlightHours(flightHours) {
             return;
         }
 
-        // Find the row index of the aircraft
         const rowIndex = sheet.findIndex(row => row[0] === nNumber);
         if (rowIndex === -1) {
             console.error(`Aircraft with nNumber ${nNumber} not found`);
             return;
         }
 
-        // Update flight hours in the correct cell for the aircraft
         console.log(`Old flight hours for ${nNumber}: ${sheet[rowIndex][1]}`);
         sheet[rowIndex][1] = flightHours;
         console.log(`New flight hours for ${nNumber}: ${sheet[rowIndex][1]}`);
 
-        // Save changes to the sheet
         console.log('Saving sheet data:', sheet);
         saveFlightHoursData(sheet);
     }).catch(error => {
@@ -77,8 +99,7 @@ function toggleSidebarMenu() {
 }
 
 function getFlightHoursData() {
-    // Fetch the data from the FlightHours Google Sheet
-    const spreadsheetId = SPREADSHEET_ID; // Use the spreadsheet ID from config.js
+    const spreadsheetId = SPREADSHEET_ID;
     const range = 'FlightHours!A2:B';
     console.log(`Fetching data from spreadsheet ID: ${spreadsheetId}, range: ${range}`);
 
@@ -95,11 +116,9 @@ function getFlightHoursData() {
 }
 
 function saveFlightHoursData(sheet) {
-    // Ensure the sheet data is a 2D array
     const formattedSheet = sheet.map(row => (Array.isArray(row) ? row : [row]));
-    
-    // Save the updated data back to Google Sheets
-    const spreadsheetId = SPREADSHEET_ID; // Use the spreadsheet ID from config.js
+
+    const spreadsheetId = SPREADSHEET_ID;
     const range = 'FlightHours!A2:B';
     console.log(`Saving data to spreadsheet ID: ${spreadsheetId}, range: ${range}`);
 

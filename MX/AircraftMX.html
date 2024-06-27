@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aircraft Maintenance Tracker</title>
     <link rel="stylesheet" href="AircraftMX.css">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; style-src * 'unsafe-inline'; connect-src *;">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="config.js"></script>
     <script src="auth.js"></script>
@@ -49,5 +50,33 @@
             <div id="dashboardReminders"></div>
         </div>
     </div>
+
+    <!-- Update Modal -->
+    <div id="updateModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeUpdateModal()">&times;</span>
+            <div id="modalHeader" class="modal-header"></div>
+            <form id="itemUpdateForm">
+                <div class="form-group">
+                    <label for="mxDate">Date of Maintenance:</label>
+                    <input type="date" id="mxDate" name="mxDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="mxFlightHours">Flight Hours:</label>
+                    <input type="number" step="0.1" id="mxFlightHours" name="mxFlightHours" required>
+                </div>
+                <div class="form-group" id="nextServiceDueContainer" style="display: none;">
+                    <label for="nextServiceDueAt">Date of Next Maintenance:</label>
+                    <input type="date" id="nextServiceDueAt" name="nextServiceDueAt">
+                </div>
+                <button type="submit">Update</button>
+            </form>
+        </div>
+    </div>
+    
+    
+    
+    
+    
 </body>
 </html>
