@@ -1,4 +1,5 @@
 let tokenClient;
+let accessToken;
 
 function handleCredentialResponse(response) {
     console.log("Credential response received:", response);
@@ -11,8 +12,11 @@ function handleCredentialResponse(response) {
                 return;
             }
             console.log("Token response received:", tokenResponse);
-            localStorage.setItem('gapiToken', tokenResponse.access_token);
+            accessToken = tokenResponse.access_token;
+            localStorage.setItem('gapiToken', accessToken);
+            localStorage.setItem('tokenExpiresAt', Date.now() + (tokenResponse.expires_in * 1000));
             fetchSheetData();
+            setInterval(reauthenticate, (tokenResponse.expires_in - 60) * 1000); // Refresh token 1 minute before it expires
         },
     });
     tokenClient.requestAccessToken({ prompt: '' });
@@ -31,7 +35,7 @@ function initializeGapiClient() {
     }).then(function () {
         console.log("Google API client initialized.");
         let token = localStorage.getItem('gapiToken');
-        if (token) {
+        if (token && Date.now() < localStorage.getItem('tokenExpiresAt')) {
             gapi.client.setToken({ access_token: token });
             fetchSheetData();
         } else {
@@ -51,10 +55,16 @@ function gisLoaded() {
     document.getElementById('signin-button').onclick = () => google.accounts.id.prompt();
 }
 
+function reauthenticate() {
+    console.log("Reauthenticating...");
+    tokenClient.requestAccessToken({ prompt: '' });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('signout-button').addEventListener('click', function() {
         console.log("Sign out button clicked.");
         localStorage.removeItem('gapiToken');
+        localStorage.removeItem('tokenExpiresAt');
         google.accounts.id.disableAutoSelect();
         location.reload();
     });

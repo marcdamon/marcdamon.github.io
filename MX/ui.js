@@ -131,7 +131,7 @@ function openUpdateModal(itemsToTrack) {
         document.getElementById('mxDate').value = selectedRow[14]; // Assuming column O is index 14
         document.getElementById('mxFlightHours').value = selectedRow[15]; // Assuming column P is index 15
 
-        if (selectedRow[11] === 'manual') { // Assuming column N is index 11
+        if (selectedRow[12] === 'manual') { // Assuming column M is index 12
             document.getElementById('nextServiceDueContainer').style.display = 'flex';
             document.getElementById('nextServiceDueAt').type = 'date';
             document.getElementById('nextServiceDueAt').value = selectedRow[16]; // Assuming column Q is index 16
@@ -149,7 +149,13 @@ function openUpdateModal(itemsToTrack) {
             const nextServiceDueAt = document.getElementById('nextServiceDueAt').value;
             const rowIndex = aircraftData.findIndex(row => row[13] === itemsToTrack);
 
-            updateGoogleSheet(rowIndex, mxDate, mxFlightHours, nextServiceDueAt, selectedRow[11] === 'manual');
+            aircraftData[rowIndex][14] = mxDate;
+            aircraftData[rowIndex][15] = mxFlightHours;
+            if (aircraftData[rowIndex][12] === 'manual') {
+                aircraftData[rowIndex][16] = nextServiceDueAt;
+            }
+
+            updateGoogleSheet(rowIndex, mxDate, mxFlightHours, nextServiceDueAt, selectedRow[12] === 'manual');
             closeUpdateModal();
         };
     }
@@ -408,16 +414,21 @@ document.addEventListener('DOMContentLoaded', function() {
             const mxFlightHours = document.getElementById('mxFlightHours').value;
             const nextServiceDueAt = document.getElementById('nextServiceDueAt').value;
 
-            const selectedRowIndex = aircraftData.findIndex(row => row[13] === itemsToTrack);
+            const selectedRowIndex = aircraftData.findIndex(row => row[0] === selectedAircraft && row[13] === document.getElementById('modalHeader').textContent);
 
-            aircraftData[selectedRowIndex][14] = mxDate;
-            aircraftData[selectedRowIndex][15] = mxFlightHours;
-            if (aircraftData[selectedRowIndex][11] === 'manual') {
-                aircraftData[selectedRowIndex][16] = nextServiceDueAt;
+            if (selectedRowIndex !== -1) {
+                console.log('Updating row:', selectedRowIndex);
+                aircraftData[selectedRowIndex][14] = mxDate;
+                aircraftData[selectedRowIndex][15] = mxFlightHours;
+                if (aircraftData[selectedRowIndex][12] === 'manual') {
+                    aircraftData[selectedRowIndex][16] = nextServiceDueAt;
+                }
+
+                updateGoogleSheet(selectedRowIndex, mxDate, mxFlightHours, nextServiceDueAt, aircraftData[selectedRowIndex][12] === 'manual');
+                closeUpdateModal();
+            } else {
+                console.error('Row not found for update.');
             }
-
-            updateGoogleSheet(selectedRowIndex, mxDate, mxFlightHours, nextServiceDueAt, aircraftData[selectedRowIndex][11] === 'manual');
-            closeUpdateModal();
         });
     } else {
         console.error('Element with ID itemUpdateForm not found');
