@@ -88,19 +88,21 @@ body {
 .maintenance-container {
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: 10px; /* Adjusts the space between label and value */
+    gap: 25px; /* Adjusts the space between label and value */
     text-align: left; /* Ensure text is left-aligned */
 }
 
 .maintenance-label {
     font-size: 16px;  /* Adjust font size for labels */
     font-weight: bold;
-    margin-bottom: 4px; /* Adjust the spacing between the label and the result */
+    line-height: 1;  /* Adjust line height to reduce space */
+    margin-bottom: 0; /* Remove bottom margin */
 }
 
 .maintenance-value {
     font-size: 16px;  /* Adjust font size for values */
-    margin-bottom: 8px; /* Adjust the spacing between the two sets of labels and results */
+    line-height: 1;  /* Adjust line height to reduce space */
+    margin-bottom: 0; /* Remove bottom margin */
 }
 
 .reminder-content {
@@ -122,27 +124,67 @@ body {
     color: white;
 }
 
+/* Squawks container */
 .squawks-container {
     margin-top: 20px;
+    position: relative;
 }
 
 .squawks-container h2 {
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    margin: 0;
+}
+
+.add-squawk-icon {
+    cursor: pointer;
+    color: #007bff;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 10px;
 }
 
 #squawkInputContainer {
     margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#newSquawk {
+    flex-grow: 1;
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#squawkInputContainer button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+#squawkInputContainer button:hover {
+    background-color: #0056b3;
 }
 
 .squawk-item {
     display: flex;
     align-items: center;
+    margin-top: 10px;
 }
 
 .squawk-item input {
-    margin-left: 10px;
+    margin-right: 10px;
 }
+
+
 
 /* Responsive design */
 @media screen and (max-width: 767px) {
@@ -184,6 +226,7 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-top: 10px;
+    max-width: 600px; /* Match the max width of the reminders */
 }
 
 .flight-hours .left {
@@ -212,6 +255,7 @@ body {
     border-radius: 5px;
     border: 1px solid #ccc;
     height: 28px;
+    font-size: 16px; /* Increase font size for the input */
 }
 
 button[type="submit"] {
@@ -223,6 +267,7 @@ button[type="submit"] {
     cursor: pointer;
     transition: background-color 0.3s;
     height: 40px; /* Ensure the button height matches the input height */
+    font-size: 16px; /* Increase font size for the button */
 }
 
 button[type="submit"]:hover {

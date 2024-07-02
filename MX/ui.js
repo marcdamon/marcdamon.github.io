@@ -219,14 +219,14 @@ function updateSquawks(values) {
     squawksContainer.id = 'squawksContainer';
     const squawksTitle = document.createElement('h2');
     squawksTitle.textContent = 'Squawks';
-    squawksContainer.appendChild(squawksTitle);
 
     const addSquawkIcon = document.createElement('span');
     addSquawkIcon.textContent = 'Add';
-    addSquawkIcon.style.cursor = 'pointer';
-    addSquawkIcon.style.marginLeft = '10px';
+    addSquawkIcon.className = 'add-squawk-icon';
     addSquawkIcon.onclick = openSquawkInput;
     squawksTitle.appendChild(addSquawkIcon);
+
+    squawksContainer.appendChild(squawksTitle);
 
     const squawkInputContainer = document.createElement('div');
     squawkInputContainer.id = 'squawkInputContainer';
@@ -234,11 +234,19 @@ function updateSquawks(values) {
     const squawkInput = document.createElement('input');
     squawkInput.type = 'text';
     squawkInput.id = 'newSquawk';
-    squawkInput.style.width = '100%';
+    squawkInput.placeholder = 'Enter new squawk';
+    squawkInputContainer.appendChild(squawkInput);
+
     const squawkSaveButton = document.createElement('button');
     squawkSaveButton.textContent = 'Save';
-    squawkInputContainer.appendChild(squawkInput);
+    squawkSaveButton.onclick = saveSquawk;
     squawkInputContainer.appendChild(squawkSaveButton);
+
+    const squawkCloseButton = document.createElement('button');
+    squawkCloseButton.textContent = 'Close';
+    squawkCloseButton.onclick = closeSquawkInput;
+    squawkInputContainer.appendChild(squawkCloseButton);
+
     squawksContainer.appendChild(squawkInputContainer);
 
     const squawkList = document.createElement('ol');
@@ -276,6 +284,11 @@ function openSquawkInput() {
     squawkInputContainer.style.display = 'block';
 }
 
+function closeSquawkInput() {
+    const squawkInputContainer = document.getElementById('squawkInputContainer');
+    squawkInputContainer.style.display = 'none';
+}
+
 function saveSquawk() {
     const newSquawk = document.getElementById('newSquawk').value;
     if (newSquawk) {
@@ -304,6 +317,11 @@ function saveSquawk() {
         }
     }
 }
+
+
+
+
+
 
 function markSquawkComplete(squawkIndex) {
     const rowIndex = aircraftData.findIndex(row => row[0] === selectedAircraft);
