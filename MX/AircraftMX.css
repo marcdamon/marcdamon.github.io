@@ -164,6 +164,71 @@ body {
     }
 }
 
+/* Header styling */
+.header {
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 36px; /* Increased font size for the registration */
+    margin: 0;
+}
+
+.header p {
+    font-size: 18px; /* Make and model font size */
+    margin: 0;
+}
+
+.flight-hours {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.flight-hours .left {
+    flex: 1;
+}
+
+.flight-hours .right {
+    display: flex;
+    align-items: center;
+}
+
+.flight-hours h2 {
+    margin: 0 10px 0 0;
+    font-size: 24px; /* Flight hours label font size */
+}
+
+.update-form {
+    display: flex;
+    align-items: center;
+}
+
+.update-form input {
+    width: 80px; /* Keep the width of the input */
+    margin-right: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    height: 28px;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    height: 40px; /* Ensure the button height matches the input height */
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
 /* Modal Styles */
 .modal {
     display: none;

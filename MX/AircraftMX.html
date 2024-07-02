@@ -17,10 +17,7 @@
 <body>
     <div class="sidebar-menu" id="sidebarMenu">
         <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebarMenu()">&times;</a>
-        <div id="aircraftList">
-            <a href="javascript:void(0)" id="dashboardLink">Dashboard</a>
-            <!-- Add aircraft links here dynamically -->
-        </div>
+        <div id="aircraftList"></div>
     </div>
     <span class="open-sidebar" onclick="toggleSidebarMenu()">&#9776;</span>
     <div class="container" id="mainContainer">
@@ -30,16 +27,14 @@
                 <p id="makeModel"></p>
             </div>
             <div class="flight-hours">
-                <h2>Flight Hours: </h2><span id="currentFlightHours">0</span> HRS
+                <h2>Flight Hours: <span id="currentFlightHours">0</span></h2>
+                <form id="updateForm" class="update-form">
+                    <input type="number" step="0.1" id="flightHours" name="flightHours" required>
+                    <button type="submit">Update</button>
+                </form>
             </div>
         </div>
-        <form id="updateForm" class="update-form">
-            <label for="flightHours">Update Flight Hours:</label>
-            <input type="number" step="0.1" id="flightHours" name="flightHours" required>
-            <button type="submit">Update</button>
-        </form>
         <div class="maintenance-reminders">
-            <h2>Maintenance Reminders</h2>
             <div id="maintenanceReminders"></div>
         </div>
         <div class="buttons">
