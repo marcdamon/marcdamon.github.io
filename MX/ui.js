@@ -11,6 +11,8 @@ function updateDisplay(nNumber) {
         updateCurrentFlightHours(aircraft[0]);
         updateMaintenanceReminders(aircraft);
         updateSquawks(aircraft);
+    } else {
+        console.log('No data found for:', nNumber);
     }
 }
 
@@ -68,6 +70,7 @@ function updateMaintenanceReminders(values) {
 
             const reminder = document.createElement('div');
             reminder.className = 'reminder';
+            reminder.onclick = () => openUpdateModal(itemsToTrack);
 
             const header = document.createElement('div');
             header.className = 'reminder-header';
@@ -84,16 +87,8 @@ function updateMaintenanceReminders(values) {
             value.className = 'value';
             value.textContent = remainingTime;
 
-            const updateLink = document.createElement('a');
-            updateLink.href = 'javascript:void(0)';
-            updateLink.textContent = 'Update';
-            updateLink.onclick = () => openUpdateModal(itemsToTrack);
-
-            console.log(`Adding update link for item: ${itemsToTrack}`);
-
             header.appendChild(item);
             header.appendChild(dueLabel);
-            header.appendChild(updateLink);
 
             const content = document.createElement('div');
             content.className = 'reminder-content';
@@ -128,14 +123,16 @@ function openUpdateModal(itemsToTrack) {
     if (selectedRow) {
         document.getElementById('modalHeader').textContent = itemsToTrack;
 
-        document.getElementById('mxDate').value = selectedRow[14]; // Assuming column O is index 14
-        document.getElementById('mxFlightHours').value = selectedRow[15]; // Assuming column P is index 15
+        document.getElementById('mxDate').value = selectedRow[14];
+        document.getElementById('mxFlightHours').value = selectedRow[15];
 
-        if (selectedRow[12] === 'manual') { // Assuming column M is index 12
+        if (selectedRow[12] === 'manual') {
+            console.log('Manual entry detected, showing nextServiceDueContainer');
             document.getElementById('nextServiceDueContainer').style.display = 'flex';
             document.getElementById('nextServiceDueAt').type = 'date';
-            document.getElementById('nextServiceDueAt').value = selectedRow[16]; // Assuming column Q is index 16
+            document.getElementById('nextServiceDueAt').value = selectedRow[16];
         } else {
+            console.log('Non-manual entry, hiding nextServiceDueContainer');
             document.getElementById('nextServiceDueContainer').style.display = 'none';
         }
 
@@ -149,21 +146,35 @@ function openUpdateModal(itemsToTrack) {
             const nextServiceDueAt = document.getElementById('nextServiceDueAt').value;
             const rowIndex = aircraftData.findIndex(row => row[13] === itemsToTrack);
 
-            aircraftData[rowIndex][14] = mxDate;
-            aircraftData[rowIndex][15] = mxFlightHours;
-            if (aircraftData[rowIndex][12] === 'manual') {
-                aircraftData[rowIndex][16] = nextServiceDueAt;
-            }
+            if (rowIndex !== -1) {
+                aircraftData[rowIndex][14] = mxDate;
+                aircraftData[rowIndex][15] = mxFlightHours;
+                if (aircraftData[rowIndex][12] === 'manual') {
+                    aircraftData[rowIndex][16] = nextServiceDueAt;
+                }
 
-            updateGoogleSheet(rowIndex, mxDate, mxFlightHours, nextServiceDueAt, selectedRow[12] === 'manual');
-            closeUpdateModal();
+                updateGoogleSheet(rowIndex, mxDate, mxFlightHours, nextServiceDueAt, selectedRow[12] === 'manual');
+                closeUpdateModal();
+            } else {
+                console.error('Row not found for update.');
+            }
         };
+    } else {
+        console.error('Row not found for modal:', itemsToTrack);
     }
 }
 
 function closeUpdateModal() {
     document.getElementById('updateModal').style.display = 'none';
 }
+
+// Close the modal when clicking outside of it
+window.onclick = function(event) {
+    const modal = document.getElementById('updateModal');
+    if (event.target === modal) {
+        closeUpdateModal();
+    }
+};
 
 async function updateGoogleSheet(rowIndex, mxDate, mxFlightHours, nextServiceDueAt, isManual) {
     const range = isManual ? `Sheet1!O${rowIndex + 2}:Q${rowIndex + 2}` : `Sheet1!O${rowIndex + 2}:P${rowIndex + 2}`;
