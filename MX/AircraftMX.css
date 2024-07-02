@@ -69,32 +69,42 @@ body {
     max-width: 600px;  /* Experiment with this value */
     width: calc(100% - 20px);  /* Ensures it takes the full width available up to the max-width */
     box-sizing: border-box;  /* Ensure padding is included in the width calculation */
+    cursor: pointer;
 }
 
 .reminder-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 
 .item {
-    font-size: 18px;
+    font-size: 24px;  /* Increased font size for the item name */
     font-weight: bold;
+    margin-bottom: 8px; /* Add some space below the item name */
 }
 
-.due-label, .value {
-    font-size: 16px;
+.maintenance-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px; /* Adjusts the space between label and value */
+    text-align: left; /* Ensure text is left-aligned */
+}
+
+.maintenance-label {
+    font-size: 16px;  /* Adjust font size for labels */
+    font-weight: bold;
+    margin-bottom: 4px; /* Adjust the spacing between the label and the result */
+}
+
+.maintenance-value {
+    font-size: 16px;  /* Adjust font size for values */
+    margin-bottom: 8px; /* Adjust the spacing between the two sets of labels and results */
 }
 
 .reminder-content {
-    display: flex;
-    justify-content: space-between;
     margin-top: 10px;
-}
-
-.label {
-    font-size: 14px;
-    font-weight: bold;
 }
 
 .progress-bar {
@@ -143,11 +153,8 @@ body {
     .item {
         font-size: 16px;
     }
-    .due-label, .value {
+    .maintenance-label, .maintenance-value {
         font-size: 14px;
-    }
-    .label {
-        font-size: 12px;
     }
     .progress-bar {
         height: 15px;

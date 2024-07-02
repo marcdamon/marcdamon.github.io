@@ -1,5 +1,5 @@
 let tokenClient;
-let accessToken;
+let refreshToken;
 
 function handleCredentialResponse(response) {
     console.log("Credential response received:", response);
@@ -12,11 +12,10 @@ function handleCredentialResponse(response) {
                 return;
             }
             console.log("Token response received:", tokenResponse);
-            accessToken = tokenResponse.access_token;
-            localStorage.setItem('gapiToken', accessToken);
-            localStorage.setItem('tokenExpiresAt', Date.now() + (tokenResponse.expires_in * 1000));
+            localStorage.setItem('gapiToken', tokenResponse.access_token);
+            localStorage.setItem('gapiRefreshToken', tokenResponse.refresh_token);
             fetchSheetData();
-            setInterval(reauthenticate, (tokenResponse.expires_in - 60) * 1000); // Refresh token 1 minute before it expires
+            scheduleTokenRefresh(tokenResponse.expires_in);
         },
     });
     tokenClient.requestAccessToken({ prompt: '' });
@@ -35,7 +34,7 @@ function initializeGapiClient() {
     }).then(function () {
         console.log("Google API client initialized.");
         let token = localStorage.getItem('gapiToken');
-        if (token && Date.now() < localStorage.getItem('tokenExpiresAt')) {
+        if (token) {
             gapi.client.setToken({ access_token: token });
             fetchSheetData();
         } else {
@@ -55,17 +54,34 @@ function gisLoaded() {
     document.getElementById('signin-button').onclick = () => google.accounts.id.prompt();
 }
 
-function reauthenticate() {
-    console.log("Reauthenticating...");
-    tokenClient.requestAccessToken({ prompt: '' });
+function scheduleTokenRefresh(expiresIn) {
+    const timeout = (expiresIn - 300) * 1000; // Refresh token 5 minutes before it expires
+    setTimeout(refreshAccessToken, timeout);
+}
+
+function refreshAccessToken() {
+    const refreshToken = localStorage.getItem('gapiRefreshToken');
+    if (refreshToken) {
+        tokenClient.requestAccessToken({ refresh_token: refreshToken });
+    } else {
+        console.error("No refresh token available.");
+        google.accounts.id.prompt();
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('signout-button').addEventListener('click', function() {
         console.log("Sign out button clicked.");
         localStorage.removeItem('gapiToken');
-        localStorage.removeItem('tokenExpiresAt');
+        localStorage.removeItem('gapiRefreshToken');
         google.accounts.id.disableAutoSelect();
         location.reload();
     });
+
+    const dashboardLink = document.querySelector("#aircraftList a[href='javascript:void(0)']");
+    if (dashboardLink) {
+        dashboardLink.addEventListener("click", openDashboard);
+    } else {
+        console.error('Dashboard link not found.');
+    }
 });
