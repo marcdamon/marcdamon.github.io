@@ -1,5 +1,4 @@
 let tokenClient;
-let refreshToken;
 
 function handleCredentialResponse(response) {
     console.log("Credential response received:", response);
@@ -13,7 +12,6 @@ function handleCredentialResponse(response) {
             }
             console.log("Token response received:", tokenResponse);
             localStorage.setItem('gapiToken', tokenResponse.access_token);
-            localStorage.setItem('gapiRefreshToken', tokenResponse.refresh_token);
             fetchSheetData();
             scheduleTokenRefresh(tokenResponse.expires_in);
         },
@@ -60,9 +58,13 @@ function scheduleTokenRefresh(expiresIn) {
 }
 
 function refreshAccessToken() {
-    const refreshToken = localStorage.getItem('gapiRefreshToken');
-    if (refreshToken) {
-        tokenClient.requestAccessToken({ refresh_token: refreshToken });
+    const authInstance = gapi.auth2.getAuthInstance();
+    if (authInstance && authInstance.isSignedIn.get()) {
+        authInstance.currentUser.get().reloadAuthResponse().then((authResponse) => {
+            console.log('Token refreshed', authResponse);
+            localStorage.setItem('gapiToken', authResponse.access_token);
+            scheduleTokenRefresh(authResponse.expires_in);
+        });
     } else {
         console.error("No refresh token available.");
         google.accounts.id.prompt();
@@ -107,9 +109,38 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+function fetchSheetData() {
+    gapi.client.sheets.spreadsheets.values.get({
+        spreadsheetId: 'YOUR_SPREADSHEET_ID',
+        range: 'Sheet1!A1:Z1000',
+    }).then(function(response) {
+        const range = response.result;
+        if (range.values.length > 0) {
+            // Process the fetched data
+            console.log('Data fetched successfully');
+        } else {
+            console.log('No data found.');
+        }
+    }, function(response) {
+        console.error('Error fetching data: ' + response.result.error.message);
+    });
+}
 
+function updateGoogleSheet(rowIndex, mxDate, mxFlightHours, nextServiceDueAt, isManual) {
+    const range = isManual ? `Sheet1!O${rowIndex + 2}:Q${rowIndex + 2}` : `Sheet1!O${rowIndex + 2}:P${rowIndex + 2}`;
+    const values = isManual ? [[mxDate, mxFlightHours, nextServiceDueAt]] : [[mxDate, mxFlightHours]];
 
-
-
-
-
+    gapi.client.sheets.spreadsheets.values.update({
+        spreadsheetId: 'YOUR_SPREADSHEET_ID',
+        range: range,
+        valueInputOption: 'USER_ENTERED',
+        resource: {
+            values: values
+        }
+    }).then((response) => {
+        console.log(`${response.result.updatedCells} cells updated.`);
+        fetchSheetData();
+    }, (error) => {
+        console.error('Error updating Google Sheets:', error);
+    });
+}
