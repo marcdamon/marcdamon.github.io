@@ -17,7 +17,9 @@
 <body>
     <div class="sidebar-menu" id="sidebarMenu">
         <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebarMenu()">&times;</a>
-        <div id="aircraftList"></div>
+        <div id="aircraftList">
+            <a href="javascript:void(0)" id="dashboardLink">Dashboard</a>
+        </div>
     </div>
     <span class="open-sidebar" onclick="toggleSidebarMenu()">&#9776;</span>
     <div class="container" id="mainContainer">
@@ -37,6 +39,7 @@
         <div class="maintenance-reminders">
             <div id="maintenanceReminders"></div>
         </div>
+        
         <div class="buttons">
             <button id="signin-button">Sign In</button>
             <button id="signout-button">Sign Out</button>

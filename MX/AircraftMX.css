@@ -59,6 +59,74 @@ body {
     transition: margin-left .5s;
 }
 
+/* Header styling */
+.header {
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 36px; /* Increased font size for the registration */
+    margin: 0;
+}
+
+.header p {
+    font-size: 18px; /* Make and model font size */
+    margin: 0;
+}
+
+.flight-hours {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    max-width: 600px; /* Match the max width of the reminders */
+}
+
+.flight-hours .left {
+    flex: 1;
+}
+
+.flight-hours .right {
+    display: flex;
+    align-items: center;
+}
+
+.flight-hours h2 {
+    margin: 0 10px 0 0;
+    font-size: 24px; /* Flight hours label font size */
+}
+
+.update-form {
+    display: flex;
+    align-items: center;
+}
+
+.update-form input {
+    width: 80px; /* Keep the width of the input */
+    margin-right: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    height: 28px;
+    font-size: 16px; /* Increase font size for the input */
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    height: 40px; /* Ensure the button height matches the input height */
+    font-size: 16px; /* Increase font size for the button */
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
 /* Content styling */
 .reminder {
     background-color: #333;
@@ -75,34 +143,28 @@ body {
 .reminder-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start; /* Align to top */
     width: 100%;
 }
 
 .item {
-    font-size: 24px;  /* Increased font size for the item name */
+    font-size: 20px;  /* Reduced font size */
     font-weight: bold;
     margin-bottom: 8px; /* Add some space below the item name */
 }
 
-.maintenance-container {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 25px; /* Adjusts the space between label and value */
-    text-align: left; /* Ensure text is left-aligned */
+.due-label, .value {
+    display: block;  /* Ensure it is displayed on a new line */
+    margin-bottom: 8px; /* Add space below the due label and value */
 }
 
-.maintenance-label {
-    font-size: 16px;  /* Adjust font size for labels */
-    font-weight: bold;
-    line-height: 1;  /* Adjust line height to reduce space */
-    margin-bottom: 0; /* Remove bottom margin */
+.due-container {
+    text-align: right;
 }
 
-.maintenance-value {
-    font-size: 16px;  /* Adjust font size for values */
-    line-height: 1;  /* Adjust line height to reduce space */
-    margin-bottom: 0; /* Remove bottom margin */
+.update-link {
+    display: block;
+    margin-top: 8px; /* Add some space above the update link */
 }
 
 .reminder-content {
@@ -184,96 +246,6 @@ body {
     margin-right: 10px;
 }
 
-
-
-/* Responsive design */
-@media screen and (max-width: 767px) {
-    .reminder {
-        font-size: 14px;
-        max-width: 100%;  /* Allow the table to take the full width on small screens */
-    }
-    .item {
-        font-size: 16px;
-    }
-    .maintenance-label, .maintenance-value {
-        font-size: 14px;
-    }
-    .progress-bar {
-        height: 15px;
-    }
-    .progress {
-        line-height: 15px;
-    }
-}
-
-/* Header styling */
-.header {
-    margin-bottom: 20px;
-}
-
-.header h1 {
-    font-size: 36px; /* Increased font size for the registration */
-    margin: 0;
-}
-
-.header p {
-    font-size: 18px; /* Make and model font size */
-    margin: 0;
-}
-
-.flight-hours {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-    max-width: 600px; /* Match the max width of the reminders */
-}
-
-.flight-hours .left {
-    flex: 1;
-}
-
-.flight-hours .right {
-    display: flex;
-    align-items: center;
-}
-
-.flight-hours h2 {
-    margin: 0 10px 0 0;
-    font-size: 24px; /* Flight hours label font size */
-}
-
-.update-form {
-    display: flex;
-    align-items: center;
-}
-
-.update-form input {
-    width: 80px; /* Keep the width of the input */
-    margin-right: 10px;
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    height: 28px;
-    font-size: 16px; /* Increase font size for the input */
-}
-
-button[type="submit"] {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    height: 40px; /* Ensure the button height matches the input height */
-    font-size: 16px; /* Increase font size for the button */
-}
-
-button[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
 /* Modal Styles */
 .modal {
     display: none;
@@ -349,16 +321,22 @@ button[type="submit"]:hover {
     width: 30px; /* Reduce the width of the input boxes */
 }
 
-button[type="submit"] {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button[type="submit"]:hover {
-    background-color: #0056b3;
+/* Responsive design */
+@media screen and (max-width: 767px) {
+    .reminder {
+        font-size: 14px;
+        max-width: 100%;  /* Allow the table to take the full width on small screens */
+    }
+    .item {
+        font-size: 16px;
+    }
+    .maintenance-label, .maintenance-value {
+        font-size: 14px;
+    }
+    .progress-bar {
+        height: 15px;
+    }
+    .progress {
+        line-height: 15px;
+    }
 }

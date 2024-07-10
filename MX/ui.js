@@ -3,7 +3,7 @@ function updateDisplay(nNumber) {
     const aircraft = aircraftData.filter(row => row[0] === nNumber);
 
     if (aircraft.length > 0) {
-        console.log('Displaying data for:', nNumber);
+   //     console.log('Displaying data for:', nNumber);
         document.getElementById('mainContainer').style.display = 'block';
         document.getElementById('dashboardContainer').style.display = 'none';
 
@@ -28,6 +28,19 @@ function updateCurrentFlightHours(values) {
     document.getElementById('currentFlightHours').textContent = flightHours;
 }
 
+function getRemainingValue(row) {
+    const isTimeBased = row[11] === 'time'; // Column L (hours/time)
+    return isTimeBased ? parseFloat(row[19]) : parseFloat(row[20]); // Column T (remainingDays) or U (remainingHours)
+}
+
+
+
+
+
+
+
+
+
 function updateMaintenanceReminders(values) {
     const container = document.getElementById('maintenanceReminders');
     container.innerHTML = '';
@@ -36,7 +49,8 @@ function updateMaintenanceReminders(values) {
     const categoryTitles = {
         'MX': 'General Maintenance',
         'LLP': 'Life Limited Parts',
-        'Misc': 'Miscellaneous Items'
+        'Misc': 'Miscellaneous Items',
+        'Databases': 'Database Updates'
     };
 
     console.log("Updating maintenance reminders");
@@ -47,15 +61,17 @@ function updateMaintenanceReminders(values) {
         const itemsToTrack = row[13];
         const remainingTime = row[17];
         const sendReminder = parseFloat(row[18]);
-        const remainingHours = parseFloat(row[21]);
-        const remainingDays = parseFloat(row[20]);
+        const remainingValue = getRemainingValue(row);
         const percentageUsed = parseFloat(row[23]);
         let progressBarColor = '#007bff';
 
-        if (remainingHours <= 0 || remainingDays <= 0) {
+        console.log(`Item: ${itemsToTrack}, Remaining Value: ${remainingValue}, Send Reminder: ${sendReminder}`);
+
+        if (remainingValue <= 0) {
             progressBarColor = 'red';
-        } else if (remainingHours <= sendReminder || remainingDays <= sendReminder) {
+        } else if (remainingValue <= sendReminder) {
             progressBarColor = 'yellow';
+            console.log(`Setting color to yellow for item: ${itemsToTrack}`);
         }
 
         if (itemsToTrack && remainingTime && !isNaN(percentageUsed)) {
@@ -77,35 +93,31 @@ function updateMaintenanceReminders(values) {
             item.className = 'item';
             item.textContent = itemsToTrack;
 
-            const maintenanceContainer = document.createElement('div');
-            maintenanceContainer.className = 'maintenance-container';
-
             const nextMaintenanceLabel = document.createElement('div');
-            nextMaintenanceLabel.className = 'maintenance-label';
+            nextMaintenanceLabel.className = 'label';
             nextMaintenanceLabel.textContent = 'Next:';
 
             const nextMaintenanceValue = document.createElement('div');
-            nextMaintenanceValue.className = 'maintenance-value';
-            nextMaintenanceValue.textContent = row[16];
+            nextMaintenanceValue.className = 'value';
+            nextMaintenanceValue.textContent = row[16]; // Assuming column Q is the nextServiceDueAt
 
-            const dueInLabel = document.createElement('div');
-            dueInLabel.className = 'maintenance-label';
-            dueInLabel.textContent = 'Due In:';
+            const dueLabel = document.createElement('div');
+            dueLabel.className = 'label';
+            dueLabel.textContent = 'Due in:';
 
-            const dueInValue = document.createElement('div');
-            dueInValue.className = 'maintenance-value';
-            dueInValue.textContent = remainingTime;
-
-            maintenanceContainer.appendChild(nextMaintenanceLabel);
-            maintenanceContainer.appendChild(nextMaintenanceValue);
-            maintenanceContainer.appendChild(dueInLabel);
-            maintenanceContainer.appendChild(dueInValue);
-
-            header.appendChild(item);
-            header.appendChild(maintenanceContainer);
+            const value = document.createElement('div');
+            value.className = 'value';
+            value.textContent = remainingTime;
 
             const content = document.createElement('div');
-            content.className = 'reminder-content';
+            content.className = 'maintenance-container';
+            content.appendChild(nextMaintenanceLabel);
+            content.appendChild(nextMaintenanceValue);
+            content.appendChild(dueLabel);
+            content.appendChild(value);
+
+            header.appendChild(item);
+            header.appendChild(content);
 
             const progressBar = document.createElement('div');
             progressBar.className = 'progress-bar';
@@ -116,12 +128,15 @@ function updateMaintenanceReminders(values) {
 
             progressBar.appendChild(progress);
             reminder.appendChild(header);
-            reminder.appendChild(content);
             reminder.appendChild(progressBar);
             container.appendChild(reminder);
         }
     }
 }
+
+
+
+
 
 
 
@@ -140,6 +155,9 @@ window.onclick = function(event) {
         closeUpdateModal();
     }
 };
+
+
+
 
 function openUpdateModal(itemsToTrack) {
     console.log(`Opening update modal for item: ${itemsToTrack}`);
@@ -206,12 +224,18 @@ async function updateGoogleSheet(rowIndex, mxDate, mxFlightHours, nextServiceDue
     }
 }
 
+
+
+
+
+
 function updateSquawks(values) {
     const container = document.getElementById('maintenanceReminders');
 
+    // Remove existing squawks container if it exists
     const existingSquawksContainer = document.getElementById('squawksContainer');
     if (existingSquawksContainer) {
-        container.removeChild(existingSquawksContainer);
+        existingSquawksContainer.remove();
     }
 
     const squawksContainer = document.createElement('div');
@@ -318,11 +342,6 @@ function saveSquawk() {
     }
 }
 
-
-
-
-
-
 function markSquawkComplete(squawkIndex) {
     const rowIndex = aircraftData.findIndex(row => row[0] === selectedAircraft);
     if (rowIndex !== -1) {
@@ -346,6 +365,15 @@ function markSquawkComplete(squawkIndex) {
     }
 }
 
+
+
+
+
+
+
+
+
+
 function openDashboard() {
     document.getElementById('mainContainer').style.display = 'none';
     document.getElementById('dashboardContainer').style.display = 'block';
@@ -356,15 +384,14 @@ function openDashboard() {
     const categoryTitles = {
         'MX': 'General Maintenance',
         'LLP': 'Life Limited Parts',
-        'Misc': 'Miscellaneous Items'
+        'Misc': 'Miscellaneous Items',
+        'Databases': 'Database Updates'
     };
 
     const dashboardItems = aircraftData.filter(row => {
-        const remainingHours = parseFloat(row[21]);
-        const remainingDays = parseFloat(row[20]);
+        const remainingValue = getRemainingValue(row);
         const sendReminder = parseFloat(row[18]);
-
-        return remainingHours <= sendReminder || remainingDays <= sendReminder;
+        return remainingValue <= sendReminder;
     });
 
     let currentAircraft = '';
@@ -377,12 +404,13 @@ function openDashboard() {
         const category = row[10];
         const itemsToTrack = row[13];
         const remainingTime = row[17];
+        const remainingValue = getRemainingValue(row);
         const percentageUsed = parseFloat(row[23]);
         let progressBarColor = '#007bff';
 
-        if (parseFloat(row[21]) <= 0 || parseFloat(row[20]) <= 0) {
+        if (remainingValue <= 0) {
             progressBarColor = 'red';
-        } else if (parseFloat(row[21]) <= parseFloat(row[18]) || parseFloat(row[20]) <= parseFloat(row[18])) {
+        } else if (remainingValue <= parseFloat(row[18])) {
             progressBarColor = 'yellow';
         }
 
@@ -395,6 +423,7 @@ function openDashboard() {
 
         const reminder = document.createElement('div');
         reminder.className = 'reminder';
+        reminder.onclick = () => openUpdateModal(itemsToTrack);
 
         const header = document.createElement('div');
         header.className = 'reminder-header';
@@ -403,26 +432,31 @@ function openDashboard() {
         item.className = 'item';
         item.textContent = itemsToTrack;
 
+        const nextMaintenanceLabel = document.createElement('div');
+        nextMaintenanceLabel.className = 'label';
+        nextMaintenanceLabel.textContent = 'Next:';
+
+        const nextMaintenanceValue = document.createElement('div');
+        nextMaintenanceValue.className = 'value';
+        nextMaintenanceValue.textContent = row[16]; // Assuming column Q is the nextServiceDueAt
+
         const dueLabel = document.createElement('div');
-        dueLabel.className = 'due-label';
+        dueLabel.className = 'label';
         dueLabel.textContent = 'Due in:';
 
         const value = document.createElement('div');
         value.className = 'value';
         value.textContent = remainingTime;
 
-        header.appendChild(item);
-        header.appendChild(dueLabel);
-
         const content = document.createElement('div');
-        content.className = 'reminder-content';
-
-        const label = document.createElement('div');
-        label.className = 'label';
-        label.textContent = 'Next Maintenance:';
-
-        content.appendChild(label);
+        content.className = 'maintenance-container';
+        content.appendChild(nextMaintenanceLabel);
+        content.appendChild(nextMaintenanceValue);
+        content.appendChild(dueLabel);
         content.appendChild(value);
+
+        header.appendChild(item);
+        header.appendChild(content);
 
         const progressBar = document.createElement('div');
         progressBar.className = 'progress-bar';
@@ -433,42 +467,7 @@ function openDashboard() {
 
         progressBar.appendChild(progress);
         reminder.appendChild(header);
-        reminder.appendChild(content);
         reminder.appendChild(progressBar);
         container.appendChild(reminder);
     });
 }
-
-// Ensure the openDashboard function is correctly called from the dashboard link in the sidebar menu.
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('dashboardLink').addEventListener('click', openDashboard);
-
-    const itemUpdateForm = document.getElementById('itemUpdateForm');
-    if (itemUpdateForm) {
-        itemUpdateForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const mxDate = document.getElementById('mxDate').value;
-            const mxFlightHours = document.getElementById('mxFlightHours').value;
-            const nextServiceDueAt = document.getElementById('nextServiceDueAt').value;
-
-            const selectedRowIndex = aircraftData.findIndex(row => row[0] === selectedAircraft && row[13] === document.getElementById('modalHeader').textContent);
-
-            if (selectedRowIndex !== -1) {
-                console.log('Updating row:', selectedRowIndex);
-                aircraftData[selectedRowIndex][14] = mxDate;
-                aircraftData[selectedRowIndex][15] = mxFlightHours;
-                if (aircraftData[selectedRowIndex][12] === 'manual') {
-                    aircraftData[selectedRowIndex][16] = nextServiceDueAt;
-                }
-
-                updateGoogleSheet(selectedRowIndex, mxDate, mxFlightHours, nextServiceDueAt, aircraftData[selectedRowIndex][12] === 'manual');
-                closeUpdateModal();
-            } else {
-                console.error('Row not found for update.');
-            }
-        });
-    } else {
-        console.error('Element with ID itemUpdateForm not found');
-    }
-});

@@ -70,18 +70,46 @@ function refreshAccessToken() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('signout-button').addEventListener('click', function() {
-        console.log("Sign out button clicked.");
-        localStorage.removeItem('gapiToken');
-        localStorage.removeItem('gapiRefreshToken');
-        google.accounts.id.disableAutoSelect();
-        location.reload();
-    });
-
-    const dashboardLink = document.querySelector("#aircraftList a[href='javascript:void(0)']");
+    const dashboardLink = document.getElementById('dashboardLink');
     if (dashboardLink) {
-        dashboardLink.addEventListener("click", openDashboard);
+        dashboardLink.addEventListener('click', openDashboard);
     } else {
         console.error('Dashboard link not found.');
     }
+
+    const itemUpdateForm = document.getElementById('itemUpdateForm');
+    if (itemUpdateForm) {
+        itemUpdateForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const mxDate = document.getElementById('mxDate').value;
+            const mxFlightHours = document.getElementById('mxFlightHours').value;
+            const nextServiceDueAt = document.getElementById('nextServiceDueAt').value;
+
+            const selectedRowIndex = aircraftData.findIndex(row => row[0] === selectedAircraft && row[13] === document.getElementById('modalHeader').textContent);
+
+            if (selectedRowIndex !== -1) {
+                console.log('Updating row:', selectedRowIndex);
+                aircraftData[selectedRowIndex][14] = mxDate;
+                aircraftData[selectedRowIndex][15] = mxFlightHours;
+                if (aircraftData[selectedRowIndex][12] === 'manual') {
+                    aircraftData[selectedRowIndex][16] = nextServiceDueAt;
+                }
+
+                updateGoogleSheet(selectedRowIndex, mxDate, mxFlightHours, nextServiceDueAt, aircraftData[selectedRowIndex][12] === 'manual');
+                closeUpdateModal();
+            } else {
+                console.error('Row not found for update.');
+            }
+        });
+    } else {
+        console.error('Element with ID itemUpdateForm not found');
+    }
 });
+
+
+
+
+
+
+
