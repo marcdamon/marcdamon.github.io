@@ -39,7 +39,7 @@ function initializeGapiClient() {
             gisLoaded();
         }
     }, function(error) {
-        console.error("Error initializing GAPI client:", error.details);
+        console.error("Error initializing GAPI client:", error);
     });
 }
 
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function fetchSheetData() {
     gapi.client.sheets.spreadsheets.values.get({
-        spreadsheetId: 'YOUR_SPREADSHEET_ID',
+        spreadsheetId: SPREADSHEET_ID,
         range: 'Sheet1!A1:Z1000',
     }).then(function(response) {
         const range = response.result;
@@ -131,7 +131,7 @@ function updateGoogleSheet(rowIndex, mxDate, mxFlightHours, nextServiceDueAt, is
     const values = isManual ? [[mxDate, mxFlightHours, nextServiceDueAt]] : [[mxDate, mxFlightHours]];
 
     gapi.client.sheets.spreadsheets.values.update({
-        spreadsheetId: 'YOUR_SPREADSHEET_ID',
+        spreadsheetId: SPREADSHEET_ID,
         range: range,
         valueInputOption: 'USER_ENTERED',
         resource: {
