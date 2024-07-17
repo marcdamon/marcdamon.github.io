@@ -32,19 +32,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const selectedRowIndex = aircraftData.findIndex(row => row[0] === selectedAircraft);
 
-            aircraftData[selectedRowIndex][7] = mxDate;
-            aircraftData[selectedRowIndex][8] = mxFlightHours;
-            if (aircraftData[selectedRowIndex][2] === 'manual') {
-                aircraftData[selectedRowIndex][9] = nextServiceDueAt;
+            // Update the correct indices based on the provided data
+            aircraftData[selectedRowIndex][14] = mxDate; // Assuming MXdate is at index 14
+            aircraftData[selectedRowIndex][15] = mxFlightHours; // Assuming MXflightHours is at index 15
+            if (aircraftData[selectedRowIndex][12] === 'manual') { // Assuming 'manual' column is index 12
+                aircraftData[selectedRowIndex][16] = nextServiceDueAt; // Assuming nextServiceDueAt is at index 16
             }
 
-            updateGoogleSheet(selectedRowIndex, mxDate, mxFlightHours, nextServiceDueAt);
+            updateGoogleSheet(selectedRowIndex, mxDate, mxFlightHours, nextServiceDueAt, aircraftData[selectedRowIndex][12] === 'manual');
             closeUpdateModal();
         });
     } else {
         console.error('Element with ID itemUpdateForm not found');
     }
 });
+
+
+
 
 function updateFlightHours(flightHours) {
     const nNumber = document.getElementById('registration').innerText;

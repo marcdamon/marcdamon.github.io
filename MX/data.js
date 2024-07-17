@@ -68,9 +68,9 @@ function updateAircraftList(data) {
     });
 }
 
-async function updateGoogleSheet(rowIndex, mxDate, mxFlightHours, nextServiceDueAt) {
-    const range = `Sheet1!P${rowIndex + 2}:R${rowIndex + 2}`;
-    const values = [[mxDate, mxFlightHours, nextServiceDueAt]];
+async function updateGoogleSheet(rowIndex, mxDate, mxFlightHours, nextServiceDueAt, isManual) {
+    const range = isManual ? `Sheet1!O${rowIndex + 2}:Q${rowIndex + 2}` : `Sheet1!O${rowIndex + 2}:P${rowIndex + 2}`;
+    const values = isManual ? [[mxDate, mxFlightHours, nextServiceDueAt]] : [[mxDate, mxFlightHours]];
 
     try {
         const response = await gapi.client.sheets.spreadsheets.values.update({
