@@ -284,6 +284,110 @@ function markSquawkComplete(squawkIndex) {
     }
 }
 
+
+
+
+
+// Add this function in ui.js
+function showPersonalItems() {
+    selectedAircraft = null;
+    document.getElementById('mainContainer').style.display = 'none';
+    document.getElementById('dashboardContainer').style.display = 'none';
+    document.getElementById('personalItemsContainer').style.display = 'block';
+
+    updatePersonalItems(personalItemsData);
+}
+
+// Add this function in ui.js to update personal items
+function updatePersonalItems(values) {
+    const container = document.getElementById('personalItemsReminders');
+    container.innerHTML = '';
+
+    let currentCategory = '';
+    const categoryTitles = {
+        'Pilot': 'Pilot Items',
+        'Personal': 'Personal Items'
+    };
+
+    for (let i = 0; i < values.length; i++) {
+        const row = values[i];
+        const category = row[2];
+        const itemsToTrack = row[4];
+        const remainingTime = row[7];
+        const sendReminder = parseFloat(row[8]);
+        const remainingValue = parseFloat(row[9]);
+        const percentageUsed = parseFloat(row[11]);
+        let progressBarColor = '#007bff';
+
+        if (remainingValue <= 0) {
+            progressBarColor = 'red';
+        } else if (remainingValue <= sendReminder) {
+            progressBarColor = 'yellow';
+        }
+
+        if (itemsToTrack && remainingTime && !isNaN(percentageUsed)) {
+            if (category !== currentCategory) {
+                currentCategory = category;
+                const categoryTitle = document.createElement('h2');
+                categoryTitle.textContent = categoryTitles[category] || 'Unknown Category';
+                container.appendChild(categoryTitle);
+            }
+
+            const reminder = document.createElement('div');
+            reminder.className = 'reminder';
+
+            const header = document.createElement('div');
+            header.className = 'reminder-header';
+
+            const item = document.createElement('div');
+            item.className = 'item';
+            item.textContent = itemsToTrack;
+
+            const nextMaintenanceLabel = document.createElement('div');
+            nextMaintenanceLabel.className = 'label';
+            nextMaintenanceLabel.textContent = 'Next:';
+
+            const nextMaintenanceValue = document.createElement('div');
+            nextMaintenanceValue.className = 'value';
+            nextMaintenanceValue.textContent = row[6];
+
+            const dueLabel = document.createElement('div');
+            dueLabel.className = 'label';
+            dueLabel.textContent = 'Due in:';
+
+            const value = document.createElement('div');
+            value.className = 'value';
+            value.textContent = remainingTime;
+
+            const content = document.createElement('div');
+            content.className = 'maintenance-container';
+            content.appendChild(nextMaintenanceLabel);
+            content.appendChild(nextMaintenanceValue);
+            content.appendChild(dueLabel);
+            content.appendChild(value);
+
+            header.appendChild(item);
+            header.appendChild(content);
+
+            const progressBar = document.createElement('div');
+            progressBar.className = 'progress-bar';
+            const progress = document.createElement('div');
+            progress.className = 'progress';
+            progress.style.width = `${percentageUsed}%`;
+            progress.style.backgroundColor = progressBarColor;
+
+            progressBar.appendChild(progress);
+            reminder.appendChild(header);
+            reminder.appendChild(progressBar);
+            container.appendChild(reminder);
+        }
+    }
+}
+
+
+
+
+
 function openDashboard() {
     document.getElementById('mainContainer').style.display = 'none';
     document.getElementById('dashboardContainer').style.display = 'block';

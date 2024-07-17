@@ -1,6 +1,6 @@
 let aircraftData = [];
 let flightHoursData = [];
-let selectedAircraft = null;
+let personalItemsData = []; // Add a variable to hold PersonalItems data
 
 async function fetchSheetData() {
     console.log("Fetching data from Google Sheets...");
@@ -14,10 +14,7 @@ async function fetchSheetData() {
             console.log("Data fetched successfully.");
             aircraftData = sheetRange.values;
             updateAircraftList(aircraftData);
-            if (!selectedAircraft) {
-                selectedAircraft = aircraftData[0][0];
-            }
-            updateDisplay(selectedAircraft); // Ensure the selected aircraft remains the same after updating
+            updateDisplay(aircraftData[0][0]); // Initial display update for first aircraft
         } else {
             console.log("No data found in the specified range.");
         }
@@ -34,9 +31,22 @@ async function fetchSheetData() {
         } else {
             console.log("No flight hours data found in the specified range.");
         }
+
+        // Fetch personal items data
+        const personalItemsResponse = await gapi.client.sheets.spreadsheets.values.get({
+            spreadsheetId: SPREADSHEET_ID,
+            range: 'PersonalItems!A2:K', // Adjust the range based on the PersonalItems sheet structure
+        });
+        const personalItemsRange = personalItemsResponse.result;
+        if (personalItemsRange.values.length > 0) {
+            console.log("Personal items data fetched successfully.");
+            personalItemsData = personalItemsRange.values;
+            console.log("Fetched personal items data:", personalItemsData); // Log the fetched data to the console
+        } else {
+            console.log("No personal items data found in the specified range.");
+        }
     } catch (error) {
         console.error('Error fetching data from Google Sheets:', error.message);
-        throw error; // Ensure the error propagates to be caught in the calling function
     }
 }
 
@@ -50,6 +60,12 @@ function updateAircraftList(data) {
     dashboardLink.textContent = 'Dashboard';
     dashboardLink.onclick = openDashboard;
     aircraftListContainer.appendChild(dashboardLink);
+
+    const personalItemsLink = document.createElement('a');
+    personalItemsLink.href = 'javascript:void(0)';
+    personalItemsLink.textContent = 'Personal Items';
+    personalItemsLink.onclick = showPersonalItems;
+    aircraftListContainer.appendChild(personalItemsLink);
 
     const space = document.createElement('div');
     space.style.height = '10px';
@@ -67,6 +83,7 @@ function updateAircraftList(data) {
         aircraftListContainer.appendChild(listItem);
     });
 }
+
 
 async function updateGoogleSheet(rowIndex, mxDate, mxFlightHours, nextServiceDueAt, isManual) {
     const range = isManual ? `Sheet1!O${rowIndex + 2}:Q${rowIndex + 2}` : `Sheet1!O${rowIndex + 2}:P${rowIndex + 2}`;

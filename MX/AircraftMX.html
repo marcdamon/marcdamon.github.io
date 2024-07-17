@@ -19,6 +19,7 @@
         <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebarMenu()">&times;</a>
         <div id="aircraftList">
             <a href="javascript:void(0)" id="dashboardLink">Dashboard</a>
+            <a href="javascript:void(0)" onclick="showPersonalItems()">Personal Items</a> <!-- Added link -->
         </div>
     </div>
     <span class="open-sidebar" onclick="toggleSidebarMenu()">&#9776;</span>
@@ -49,6 +50,12 @@
         <div class="maintenance-reminders">
             <h2>Dashboard</h2>
             <div id="dashboardReminders"></div>
+        </div>
+    </div>
+    <div class="container" id="personalItemsContainer" style="display:none;">
+        <div class="maintenance-reminders">
+            <h2>Personal Items</h2>
+            <div id="personalItemsReminders"></div>
         </div>
     </div>
 
