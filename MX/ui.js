@@ -1,14 +1,18 @@
 function updateDisplay(nNumber) {
     selectedAircraft = nNumber;
     getFlightHoursData().then(sheet => {
-        const aircraft = sheet.find(row => row[0] === nNumber);
+        const flightHoursEntry = sheet.find(row => row[0] === nNumber);
+        const aircraft = aircraftData.find(row => row[0] === nNumber);
         if (aircraft) {
             document.getElementById('mainContainer').style.display = 'block';
             document.getElementById('dashboardContainer').style.display = 'none';
 
             updateHeader(aircraft);
-            updateCurrentFlightHours(aircraft);
-            // Clear the input box
+            if (flightHoursEntry) {
+                updateCurrentFlightHours(flightHoursEntry);
+            } else {
+                document.getElementById('currentFlightHours').textContent = "N/A";
+            }
             document.getElementById('flightHours').value = '';
             updateMaintenanceReminders(aircraftData.filter(row => row[0] === nNumber));
             updateSquawks(aircraftData.filter(row => row[0] === nNumber));
@@ -31,7 +35,6 @@ function updateCurrentFlightHours(values) {
     const flightHours = values[1];
     document.getElementById('currentFlightHours').textContent = flightHours;
 }
-
 
 function getRemainingValue(row) {
     const isTimeBased = row[11] === 'time';

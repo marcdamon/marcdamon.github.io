@@ -1,5 +1,6 @@
 let aircraftData = [];
 let flightHoursData = [];
+let selectedAircraft = null;
 
 async function fetchSheetData() {
     console.log("Fetching data from Google Sheets...");
@@ -13,7 +14,10 @@ async function fetchSheetData() {
             console.log("Data fetched successfully.");
             aircraftData = sheetRange.values;
             updateAircraftList(aircraftData);
-            updateDisplay(aircraftData[0][0]); // Initial display update for first aircraft
+            if (!selectedAircraft) {
+                selectedAircraft = aircraftData[0][0];
+            }
+            updateDisplay(selectedAircraft); // Ensure the selected aircraft remains the same after updating
         } else {
             console.log("No data found in the specified range.");
         }
@@ -32,10 +36,9 @@ async function fetchSheetData() {
         }
     } catch (error) {
         console.error('Error fetching data from Google Sheets:', error.message);
+        throw error; // Ensure the error propagates to be caught in the calling function
     }
 }
-
-
 
 
 function updateAircraftList(data) {
