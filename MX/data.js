@@ -1,26 +1,42 @@
 let aircraftData = [];
+let flightHoursData = [];
 
 async function fetchSheetData() {
     console.log("Fetching data from Google Sheets...");
     try {
-        const response = await gapi.client.sheets.spreadsheets.values.get({
+        const sheetResponse = await gapi.client.sheets.spreadsheets.values.get({
             spreadsheetId: SPREADSHEET_ID,
             range: 'Sheet1!A2:Z',
         });
-        const range = response.result;
-        if (range.values.length > 0) {
+        const sheetRange = sheetResponse.result;
+        if (sheetRange.values.length > 0) {
             console.log("Data fetched successfully.");
-            console.log("Fetched data:", range.values);
-            aircraftData = range.values;
+            aircraftData = sheetRange.values;
             updateAircraftList(aircraftData);
-            updateDisplay(aircraftData[0][0]);
+            updateDisplay(aircraftData[0][0]); // Initial display update for first aircraft
         } else {
             console.log("No data found in the specified range.");
+        }
+
+        // Fetch flight hours data
+        const flightHoursResponse = await gapi.client.sheets.spreadsheets.values.get({
+            spreadsheetId: SPREADSHEET_ID,
+            range: 'FlightHours!A2:B',
+        });
+        const flightHoursRange = flightHoursResponse.result;
+        if (flightHoursRange.values.length > 0) {
+            console.log("Flight hours data fetched successfully.");
+            flightHoursData = flightHoursRange.values;
+        } else {
+            console.log("No flight hours data found in the specified range.");
         }
     } catch (error) {
         console.error('Error fetching data from Google Sheets:', error.message);
     }
 }
+
+
+
 
 function updateAircraftList(data) {
     const aircraftListContainer = document.getElementById('aircraftList');

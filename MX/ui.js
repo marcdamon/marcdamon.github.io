@@ -1,17 +1,21 @@
 function updateDisplay(nNumber) {
     selectedAircraft = nNumber;
-    const aircraft = aircraftData.filter(row => row[0] === nNumber);
+    getFlightHoursData().then(sheet => {
+        const aircraft = sheet.find(row => row[0] === nNumber);
+        if (aircraft) {
+            document.getElementById('mainContainer').style.display = 'block';
+            document.getElementById('dashboardContainer').style.display = 'none';
 
-    if (aircraft.length > 0) {
-   //     console.log('Displaying data for:', nNumber);
-        document.getElementById('mainContainer').style.display = 'block';
-        document.getElementById('dashboardContainer').style.display = 'none';
-
-        updateHeader(aircraft[0]);
-        updateCurrentFlightHours(aircraft[0]);
-        updateMaintenanceReminders(aircraft);
-        updateSquawks(aircraft);
-    }
+            updateHeader(aircraft);
+            updateCurrentFlightHours(aircraft);
+            // Clear the input box
+            document.getElementById('flightHours').value = '';
+            updateMaintenanceReminders(aircraftData.filter(row => row[0] === nNumber));
+            updateSquawks(aircraftData.filter(row => row[0] === nNumber));
+        }
+    }).catch(error => {
+        console.error('Error fetching flight hours data:', error);
+    });
 }
 
 function updateHeader(values) {
@@ -24,22 +28,15 @@ function updateHeader(values) {
 }
 
 function updateCurrentFlightHours(values) {
-    const flightHours = values[6];
+    const flightHours = values[1];
     document.getElementById('currentFlightHours').textContent = flightHours;
 }
 
+
 function getRemainingValue(row) {
-    const isTimeBased = row[11] === 'time'; // Column L (hours/time)
-    return isTimeBased ? parseFloat(row[19]) : parseFloat(row[20]); // Column T (remainingDays) or U (remainingHours)
+    const isTimeBased = row[11] === 'time';
+    return isTimeBased ? parseFloat(row[19]) : parseFloat(row[20]);
 }
-
-
-
-
-
-
-
-
 
 function updateMaintenanceReminders(values) {
     const container = document.getElementById('maintenanceReminders');
@@ -53,8 +50,6 @@ function updateMaintenanceReminders(values) {
         'Databases': 'Database Updates'
     };
 
-    console.log("Updating maintenance reminders");
-
     for (let i = 0; i < values.length; i++) {
         const row = values[i];
         const category = row[10];
@@ -65,13 +60,10 @@ function updateMaintenanceReminders(values) {
         const percentageUsed = parseFloat(row[23]);
         let progressBarColor = '#007bff';
 
-        console.log(`Item: ${itemsToTrack}, Remaining Value: ${remainingValue}, Send Reminder: ${sendReminder}`);
-
         if (remainingValue <= 0) {
             progressBarColor = 'red';
         } else if (remainingValue <= sendReminder) {
             progressBarColor = 'yellow';
-            console.log(`Setting color to yellow for item: ${itemsToTrack}`);
         }
 
         if (itemsToTrack && remainingTime && !isNaN(percentageUsed)) {
@@ -99,7 +91,7 @@ function updateMaintenanceReminders(values) {
 
             const nextMaintenanceValue = document.createElement('div');
             nextMaintenanceValue.className = 'value';
-            nextMaintenanceValue.textContent = row[16]; // Assuming column Q is the nextServiceDueAt
+            nextMaintenanceValue.textContent = row[16];
 
             const dueLabel = document.createElement('div');
             dueLabel.className = 'label';
@@ -134,68 +126,19 @@ function updateMaintenanceReminders(values) {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Event listener for closing the modal when clicking outside of it
-window.onclick = function(event) {
-    const modal = document.getElementById('updateModal');
-    if (event.target === modal) {
-        closeUpdateModal();
-    }
-};
-
-
-
-
 function openUpdateModal(itemsToTrack) {
-    console.log(`Opening update modal for item: ${itemsToTrack}`);
     const selectedRow = aircraftData.find(row => row[13] === itemsToTrack);
-
     if (selectedRow) {
         document.getElementById('modalHeader').textContent = itemsToTrack;
-
-        document.getElementById('mxDate').value = selectedRow[14]; // Assuming column O is index 14
-        document.getElementById('mxFlightHours').value = selectedRow[15]; // Assuming column P is index 15
-
-        if (selectedRow[12] === 'manual') { // Assuming column M is index 12
+        document.getElementById('mxDate').value = selectedRow[14];
+        document.getElementById('mxFlightHours').value = selectedRow[15];
+        if (selectedRow[12] === 'manual') {
             document.getElementById('nextServiceDueContainer').style.display = 'flex';
-            document.getElementById('nextServiceDueAt').type = 'date';
-            document.getElementById('nextServiceDueAt').value = selectedRow[16]; // Assuming column Q is index 16
+            document.getElementById('nextServiceDueAt').value = selectedRow[16];
         } else {
             document.getElementById('nextServiceDueContainer').style.display = 'none';
         }
-
-        const updateModal = document.getElementById('updateModal');
-        updateModal.style.display = 'block';
-
-        document.getElementById('itemUpdateForm').onsubmit = function(event) {
-            event.preventDefault();
-            const mxDate = document.getElementById('mxDate').value;
-            const mxFlightHours = document.getElementById('mxFlightHours').value;
-            const nextServiceDueAt = document.getElementById('nextServiceDueAt').value;
-            const rowIndex = aircraftData.findIndex(row => row[13] === itemsToTrack);
-
-            aircraftData[rowIndex][14] = mxDate;
-            aircraftData[rowIndex][15] = mxFlightHours;
-            if (aircraftData[rowIndex][12] === 'manual') {
-                aircraftData[rowIndex][16] = nextServiceDueAt;
-            }
-
-            updateGoogleSheet(rowIndex, mxDate, mxFlightHours, nextServiceDueAt, selectedRow[12] === 'manual');
-            closeUpdateModal();
-        };
+        document.getElementById('updateModal').style.display = 'block';
     }
 }
 
@@ -203,36 +146,9 @@ function closeUpdateModal() {
     document.getElementById('updateModal').style.display = 'none';
 }
 
-
-async function updateGoogleSheet(rowIndex, mxDate, mxFlightHours, nextServiceDueAt, isManual) {
-    const range = isManual ? `Sheet1!O${rowIndex + 2}:Q${rowIndex + 2}` : `Sheet1!O${rowIndex + 2}:P${rowIndex + 2}`;
-    const values = isManual ? [[mxDate, mxFlightHours, nextServiceDueAt]] : [[mxDate, mxFlightHours]];
-
-    try {
-        const response = await gapi.client.sheets.spreadsheets.values.update({
-            spreadsheetId: SPREADSHEET_ID,
-            range: range,
-            valueInputOption: 'USER_ENTERED',
-            resource: {
-                values: values
-            }
-        });
-        console.log(`${response.result.updatedCells} cells updated.`);
-        fetchSheetData();
-    } catch (error) {
-        console.error('Error updating Google Sheets:', error);
-    }
-}
-
-
-
-
-
-
 function updateSquawks(values) {
     const container = document.getElementById('maintenanceReminders');
 
-    // Remove existing squawks container if it exists
     const existingSquawksContainer = document.getElementById('squawksContainer');
     if (existingSquawksContainer) {
         existingSquawksContainer.remove();
@@ -365,15 +281,6 @@ function markSquawkComplete(squawkIndex) {
     }
 }
 
-
-
-
-
-
-
-
-
-
 function openDashboard() {
     document.getElementById('mainContainer').style.display = 'none';
     document.getElementById('dashboardContainer').style.display = 'block';
@@ -438,7 +345,7 @@ function openDashboard() {
 
         const nextMaintenanceValue = document.createElement('div');
         nextMaintenanceValue.className = 'value';
-        nextMaintenanceValue.textContent = row[16]; // Assuming column Q is the nextServiceDueAt
+        nextMaintenanceValue.textContent = row[16];
 
         const dueLabel = document.createElement('div');
         dueLabel.className = 'label';
