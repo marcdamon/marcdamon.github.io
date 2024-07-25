@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const selectedRowIndex = aircraftData.findIndex(row => row[0] === selectedAircraft);
 
-            // Update the correct indices based on the provided data
             aircraftData[selectedRowIndex][14] = mxDate; // Assuming MXdate is at index 14
             aircraftData[selectedRowIndex][15] = mxFlightHours; // Assuming MXflightHours is at index 15
             if (aircraftData[selectedRowIndex][12] === 'manual') { // Assuming 'manual' column is index 12
@@ -45,10 +44,23 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         console.error('Element with ID itemUpdateForm not found');
     }
+
+    // Add the event listener for the personal items link
+    const personalItemsLink = document.getElementById('personalItemsLink');
+    if (personalItemsLink) {
+        personalItemsLink.onclick = showPersonalItems;
+    } else {
+        console.error('Element with ID personalItemsLink not found');
+    }
+
+    // Add the event listener for the dashboard link
+    const dashboardLink = document.getElementById('dashboardLink');
+    if (dashboardLink) {
+        dashboardLink.onclick = openDashboard;
+    } else {
+        console.error('Element with ID dashboardLink not found');
+    }
 });
-
-
-
 
 function updateFlightHours(flightHours) {
     const nNumber = document.getElementById('registration').innerText;

@@ -1,25 +1,24 @@
 let aircraftData = [];
 let flightHoursData = [];
-let personalItemsData = []; // Add a variable to hold PersonalItems data
+let personalItemsData = [];
 
 async function fetchSheetData() {
     console.log("Fetching data from Google Sheets...");
     try {
         const sheetResponse = await gapi.client.sheets.spreadsheets.values.get({
             spreadsheetId: SPREADSHEET_ID,
-            range: 'Sheet1!A2:Z',
+            range: 'Sheet1!A2:Z', // Ensure this range covers all needed columns
         });
         const sheetRange = sheetResponse.result;
         if (sheetRange.values.length > 0) {
             console.log("Data fetched successfully.");
             aircraftData = sheetRange.values;
             updateAircraftList(aircraftData);
-            updateDisplay(aircraftData[0][0]); // Initial display update for first aircraft
+            updateDisplay(aircraftData[0][0]);
         } else {
             console.log("No data found in the specified range.");
         }
 
-        // Fetch flight hours data
         const flightHoursResponse = await gapi.client.sheets.spreadsheets.values.get({
             spreadsheetId: SPREADSHEET_ID,
             range: 'FlightHours!A2:B',
@@ -32,22 +31,51 @@ async function fetchSheetData() {
             console.log("No flight hours data found in the specified range.");
         }
 
-        // Fetch personal items data
         const personalItemsResponse = await gapi.client.sheets.spreadsheets.values.get({
             spreadsheetId: SPREADSHEET_ID,
-            range: 'PersonalItems!A2:K', // Adjust the range based on the PersonalItems sheet structure
-        });
+            range: 'PersonalItems!A2:L', // Ensure the range includes all necessary columns
+        });        
         const personalItemsRange = personalItemsResponse.result;
         if (personalItemsRange.values.length > 0) {
             console.log("Personal items data fetched successfully.");
             personalItemsData = personalItemsRange.values;
-            console.log("Fetched personal items data:", personalItemsData); // Log the fetched data to the console
+            console.log("Fetched personal items data:", JSON.stringify(personalItemsData)); // Log the fetched data to the console
         } else {
             console.log("No personal items data found in the specified range.");
         }
     } catch (error) {
         console.error('Error fetching data from Google Sheets:', error.message);
     }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// Logging personal items data
+function fetchPersonalItemsData() {
+    const spreadsheetId = SPREADSHEET_ID;
+    const range = 'PersonalItems!A2:M';
+    console.log(`Fetching personal items data from spreadsheet ID: ${spreadsheetId}, range: ${range}`);
+
+    return gapi.client.sheets.spreadsheets.values.get({
+        spreadsheetId: spreadsheetId,
+        range: range,
+    }).then(response => {
+        const personalItemsData = response.result.values || [];
+        console.log('Fetched personal items data:', personalItemsData);
+        return personalItemsData;
+    }).catch(error => {
+        console.error('Error fetching personal items data:', error);
+        return [];
+    });
 }
 
 

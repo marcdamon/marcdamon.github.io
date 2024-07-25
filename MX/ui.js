@@ -6,6 +6,7 @@ function updateDisplay(nNumber) {
         if (aircraft) {
             document.getElementById('mainContainer').style.display = 'block';
             document.getElementById('dashboardContainer').style.display = 'none';
+            document.getElementById('personalItemsContainer').style.display = 'none';
 
             updateHeader(aircraft);
             if (flightHoursEntry) {
@@ -285,21 +286,36 @@ function markSquawkComplete(squawkIndex) {
 }
 
 
-
-
-
-// Add this function in ui.js
 function showPersonalItems() {
+    console.log("Personal Items link clicked");
     selectedAircraft = null;
     document.getElementById('mainContainer').style.display = 'none';
     document.getElementById('dashboardContainer').style.display = 'none';
-    document.getElementById('personalItemsContainer').style.display = 'block';
+    const personalItemsContainer = document.getElementById('personalItemsContainer');
+    personalItemsContainer.style.display = 'block';
 
-    updatePersonalItems(personalItemsData);
+    const personalItemsReminders = document.getElementById('personalItemsReminders');
+    if (personalItemsReminders) {
+        console.log('Personal items container found:', personalItemsReminders);
+        updatePersonalItems(personalItemsData);
+    } else {
+        console.error('Personal items container not found');
+    }
 }
 
-// Add this function in ui.js to update personal items
+
+
+
+
+
+
+
+
+
+
+
 function updatePersonalItems(values) {
+    console.log("Updating personal items");
     const container = document.getElementById('personalItemsReminders');
     container.innerHTML = '';
 
@@ -309,15 +325,34 @@ function updatePersonalItems(values) {
         'Personal': 'Personal Items'
     };
 
-    for (let i = 0; i < values.length; i++) {
-        const row = values[i];
+    values.forEach(row => {
+        console.log('Processing row:', row); // Log the entire row to inspect its structure
+
         const category = row[2];
         const itemsToTrack = row[4];
         const remainingTime = row[7];
         const sendReminder = parseFloat(row[8]);
         const remainingValue = parseFloat(row[9]);
-        const percentageUsed = parseFloat(row[11]);
+
+        // Adjusted to log all columns in the row
+        for (let i = 0; i < row.length; i++) {
+            console.log(`Column ${i}: ${row[i]}`);
+        }
+
+        let percentageUsedStr = row[11]; // Expected index for percentageUsed
+
+        // Log the raw value for debugging
+        console.log('Raw percentageUsedStr:', percentageUsedStr);
+
+        if (percentageUsedStr === undefined || percentageUsedStr === null || percentageUsedStr.trim() === '') {
+            console.warn('percentageUsedStr is undefined or empty for row:', row);
+            percentageUsedStr = '0%'; // Default to 0% if undefined or empty
+        }
+
+        const percentageUsed = parseFloat(percentageUsedStr.replace('%', '')); // Ensure percentage is correctly parsed
         let progressBarColor = '#007bff';
+
+        console.log(`Processing item: ${itemsToTrack}, category: ${category}, percentageUsed: ${percentageUsed}`);
 
         if (remainingValue <= 0) {
             progressBarColor = 'red';
@@ -331,6 +366,7 @@ function updatePersonalItems(values) {
                 const categoryTitle = document.createElement('h2');
                 categoryTitle.textContent = categoryTitles[category] || 'Unknown Category';
                 container.appendChild(categoryTitle);
+                console.log(`Added category title: ${categoryTitles[category] || 'Unknown Category'}`);
             }
 
             const reminder = document.createElement('div');
@@ -373,16 +409,33 @@ function updatePersonalItems(values) {
             progressBar.className = 'progress-bar';
             const progress = document.createElement('div');
             progress.className = 'progress';
-            progress.style.width = `${percentageUsed}%`;
+            progress.style.width = `${percentageUsed}%`; // Ensure percentage is correctly applied
             progress.style.backgroundColor = progressBarColor;
 
             progressBar.appendChild(progress);
             reminder.appendChild(header);
             reminder.appendChild(progressBar);
             container.appendChild(reminder);
+
+            console.log(`Added reminder: ${itemsToTrack}`);
+        } else {
+            console.error(`Skipping item due to invalid data: itemsToTrack=${itemsToTrack}, remainingTime=${remainingTime}, percentageUsed=${percentageUsed}`);
         }
-    }
+    });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -391,6 +444,7 @@ function updatePersonalItems(values) {
 function openDashboard() {
     document.getElementById('mainContainer').style.display = 'none';
     document.getElementById('dashboardContainer').style.display = 'block';
+    document.getElementById('personalItemsContainer').style.display = 'none';
 
     const container = document.getElementById('dashboardReminders');
     container.innerHTML = '';
