@@ -312,6 +312,29 @@ function showPersonalItems() {
 
 
 
+function formatRemainingDays(days) {
+    const years = Math.floor(days / 365);
+    const months = Math.floor((days % 365) / 30);
+    const remainingDays = days % 30;
+
+    let result = '';
+    if (years > 0) result += `${years} year${years > 1 ? 's' : ''}, `;
+    if (months > 0) result += `${months} month${months > 1 ? 's' : ''}, `;
+    result += `${remainingDays} day${remainingDays > 1 ? 's' : ''}`;
+
+    return result;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 function updatePersonalItems(values) {
@@ -325,31 +348,25 @@ function updatePersonalItems(values) {
         'Personal': 'Personal Items'
     };
 
-    values.forEach(row => {
-        console.log('Processing row:', row); // Log the entire row to inspect its structure
+    values.forEach((row, index) => {
+        console.log('Processing row:', row);
 
         const category = row[2];
         const itemsToTrack = row[4];
-        const remainingTime = row[7];
-        const sendReminder = parseFloat(row[8]);
+        const remainingDays = parseInt(row[8]); // Column I
+        const nextActionDueDate = row[6]; // Next Action Due Date
+        const sendReminder = parseFloat(row[7]);
         const remainingValue = parseFloat(row[9]);
+        let percentageUsedStr = row[11];
 
-        // Adjusted to log all columns in the row
-        for (let i = 0; i < row.length; i++) {
-            console.log(`Column ${i}: ${row[i]}`);
-        }
-
-        let percentageUsedStr = row[11]; // Expected index for percentageUsed
-
-        // Log the raw value for debugging
         console.log('Raw percentageUsedStr:', percentageUsedStr);
 
         if (percentageUsedStr === undefined || percentageUsedStr === null || percentageUsedStr.trim() === '') {
             console.warn('percentageUsedStr is undefined or empty for row:', row);
-            percentageUsedStr = '0%'; // Default to 0% if undefined or empty
+            percentageUsedStr = '0%';
         }
 
-        const percentageUsed = parseFloat(percentageUsedStr.replace('%', '')); // Ensure percentage is correctly parsed
+        const percentageUsed = parseFloat(percentageUsedStr.replace('%', ''));
         let progressBarColor = '#007bff';
 
         console.log(`Processing item: ${itemsToTrack}, category: ${category}, percentageUsed: ${percentageUsed}`);
@@ -360,7 +377,7 @@ function updatePersonalItems(values) {
             progressBarColor = 'yellow';
         }
 
-        if (itemsToTrack && remainingTime && !isNaN(percentageUsed)) {
+        if (itemsToTrack && !isNaN(remainingDays) && !isNaN(percentageUsed)) {
             if (category !== currentCategory) {
                 currentCategory = category;
                 const categoryTitle = document.createElement('h2');
@@ -385,7 +402,7 @@ function updatePersonalItems(values) {
 
             const nextMaintenanceValue = document.createElement('div');
             nextMaintenanceValue.className = 'value';
-            nextMaintenanceValue.textContent = row[6];
+            nextMaintenanceValue.textContent = nextActionDueDate;
 
             const dueLabel = document.createElement('div');
             dueLabel.className = 'label';
@@ -393,7 +410,7 @@ function updatePersonalItems(values) {
 
             const value = document.createElement('div');
             value.className = 'value';
-            value.textContent = remainingTime;
+            value.textContent = formatRemainingDays(remainingDays); // Use formatted remaining days
 
             const content = document.createElement('div');
             content.className = 'maintenance-container';
@@ -409,7 +426,7 @@ function updatePersonalItems(values) {
             progressBar.className = 'progress-bar';
             const progress = document.createElement('div');
             progress.className = 'progress';
-            progress.style.width = `${percentageUsed}%`; // Ensure percentage is correctly applied
+            progress.style.width = `${percentageUsed}%`;
             progress.style.backgroundColor = progressBarColor;
 
             progressBar.appendChild(progress);
@@ -419,10 +436,12 @@ function updatePersonalItems(values) {
 
             console.log(`Added reminder: ${itemsToTrack}`);
         } else {
-            console.error(`Skipping item due to invalid data: itemsToTrack=${itemsToTrack}, remainingTime=${remainingTime}, percentageUsed=${percentageUsed}`);
+            console.error(`Skipping item due to invalid data: itemsToTrack=${itemsToTrack}, remainingDays=${remainingDays}, percentageUsed=${percentageUsed}`);
         }
     });
 }
+
+
 
 
 
