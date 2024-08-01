@@ -286,6 +286,8 @@ function markSquawkComplete(squawkIndex) {
 }
 
 
+let selectedPersonalItemIndex = null;
+
 function showPersonalItems() {
     console.log("Personal Items link clicked");
     selectedAircraft = null;
@@ -303,40 +305,6 @@ function showPersonalItems() {
     }
 }
 
-
-
-
-
-
-
-
-
-
-function formatRemainingDays(days) {
-    const years = Math.floor(days / 365);
-    const months = Math.floor((days % 365) / 30);
-    const remainingDays = days % 30;
-
-    let result = '';
-    if (years > 0) result += `${years} year${years > 1 ? 's' : ''}, `;
-    if (months > 0) result += `${months} month${months > 1 ? 's' : ''}, `;
-    result += `${remainingDays} day${remainingDays > 1 ? 's' : ''}`;
-
-    return result;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
 function updatePersonalItems(values) {
     console.log("Updating personal items");
     const container = document.getElementById('personalItemsReminders');
@@ -353,7 +321,7 @@ function updatePersonalItems(values) {
 
         const category = row[2];
         const itemsToTrack = row[4];
-        const remainingDays = parseInt(row[8]); // Column I
+        const remainingDays = parseInt(row[8]); // Column I for remainingDays
         const nextActionDueDate = row[6]; // Next Action Due Date
         const sendReminder = parseFloat(row[7]);
         const remainingValue = parseFloat(row[9]);
@@ -388,6 +356,7 @@ function updatePersonalItems(values) {
 
             const reminder = document.createElement('div');
             reminder.className = 'reminder';
+            reminder.onclick = () => openPersonalItemUpdateModal(index); // Open modal on click
 
             const header = document.createElement('div');
             header.className = 'reminder-header';
@@ -410,7 +379,7 @@ function updatePersonalItems(values) {
 
             const value = document.createElement('div');
             value.className = 'value';
-            value.textContent = formatRemainingDays(remainingDays); // Use formatted remaining days
+            value.textContent = formatRemainingDays(remainingDays); // Format remaining days
 
             const content = document.createElement('div');
             content.className = 'maintenance-container';
@@ -440,6 +409,73 @@ function updatePersonalItems(values) {
         }
     });
 }
+
+function openPersonalItemUpdateModal(index) {
+    selectedPersonalItemIndex = index;
+    const row = personalItemsData[index];
+    const calcOrManual = row[3];
+
+    document.getElementById('personalItemModalHeader').textContent = row[4]; // Set item name
+
+    document.getElementById('personalLastUpdateDate').value = row[5]; // Date of last update
+
+    if (calcOrManual === 'manual') {
+        document.getElementById('personalDueNextContainer').style.display = 'flex';
+        document.getElementById('personalDueNext').value = row[6]; // Due next
+    } else {
+        document.getElementById('personalDueNextContainer').style.display = 'none';
+    }
+
+    document.getElementById('personalItemUpdateModal').style.display = 'block';
+}
+
+function closePersonalItemUpdateModal() {
+    document.getElementById('personalItemUpdateModal').style.display = 'none';
+}
+
+async function savePersonalItemUpdate() {
+    if (selectedPersonalItemIndex === null) return;
+
+    const mxDate = document.getElementById('personalLastUpdateDate').value;
+    const nextServiceDueAt = document.getElementById('personalDueNext').value;
+    const row = personalItemsData[selectedPersonalItemIndex];
+    const calcOrManual = row[3];
+
+    const range = calcOrManual === 'manual' 
+        ? `PersonalItems!F${selectedPersonalItemIndex + 2}:G${selectedPersonalItemIndex + 2}` 
+        : `PersonalItems!F${selectedPersonalItemIndex + 2}:F${selectedPersonalItemIndex + 2}`;
+    const values = calcOrManual === 'manual' ? [[mxDate, nextServiceDueAt]] : [[mxDate]];
+
+    try {
+        const response = await gapi.client.sheets.spreadsheets.values.update({
+            spreadsheetId: SPREADSHEET_ID,
+            range: range,
+            valueInputOption: 'USER_ENTERED',
+            resource: {
+                values: values
+            }
+        });
+        console.log(`${response.result.updatedCells} cells updated.`);
+        fetchSheetData(); // Refresh data
+        closePersonalItemUpdateModal();
+    } catch (error) {
+        console.error('Error updating Google Sheets:', error);
+    }
+}
+
+function formatRemainingDays(days) {
+    const years = Math.floor(days / 365);
+    const months = Math.floor((days % 365) / 30);
+    const remainingDays = days % 30;
+
+    let result = '';
+    if (years > 0) result += `${years} year${years > 1 ? 's' : ''}, `;
+    if (months > 0) result += `${months} month${months > 1 ? 's' : ''}, `;
+    result += `${remainingDays} day${remainingDays > 1 ? 's' : ''}`;
+
+    return result;
+}
+
 
 
 

@@ -83,5 +83,25 @@
             </form>
         </div>
     </div>
+
+
+    <!-- Personal Item Update Modal -->
+<div id="personalItemUpdateModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="closePersonalItemUpdateModal()">&times;</span>
+        <h2 id="personalItemModalHeader">Update Personal Item</h2>
+        <div>
+            <label for="personalLastUpdateDate">Date of Last Update:</label>
+            <input type="date" id="personalLastUpdateDate">
+        </div>
+        <div id="personalDueNextContainer" style="display: none;">
+            <label for="personalDueNext">Due Next:</label>
+            <input type="date" id="personalDueNext">
+        </div>
+        <button onclick="savePersonalItemUpdate()">Save</button>
+    </div>
+</div>
+
+
 </body>
 </html>
