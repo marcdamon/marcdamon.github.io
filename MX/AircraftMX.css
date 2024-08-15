@@ -25,11 +25,15 @@
     color: #f1f1f1;
 }
 
-#mainContainer, #dashboardContainer, #personalItemsContainer {
+#mainContainer,
+#dashboardContainer,
+#personalItemsContainer,
+#vehicleMaintenanceContainer {
     margin-left: 250px;
     transition: margin-left 0.5s;
     padding: 20px;
     background-color: #000;
+    min-height: 100vh;
 }
 
 @media screen and (max-width: 767px) {
@@ -37,10 +41,15 @@
         width: 0;
         padding-top: 15px;
     }
+
     #sidebarMenu a {
         font-size: 18px;
     }
-    #mainContainer, #dashboardContainer, #personalItemsContainer {
+
+    #mainContainer,
+    #dashboardContainer,
+    #personalItemsContainer,
+    #vehicleMaintenanceContainer {
         margin-left: 0;
         padding: 10px;
     }
@@ -48,14 +57,14 @@
 
 body {
     font-family: "Lato", sans-serif;
-    transition: background-color .5s;
+    transition: background-color 0.5s;
     background-color: #000;
     color: #fff;
 }
 
 .main {
     padding: 16px;
-    transition: margin-left .5s;
+    transition: margin-left 0.5s;
 }
 
 .header {
@@ -150,7 +159,8 @@ button[type="submit"]:hover {
     margin-bottom: 8px;
 }
 
-.due-label, .value {
+.due-label,
+.value {
     display: block;
     margin-bottom: 8px;
 }
@@ -181,6 +191,7 @@ button[type="submit"]:hover {
     text-align: center;
     line-height: 20px;
     color: white;
+    transition: width 0.3s;
 }
 
 .squawks-container {
@@ -268,8 +279,12 @@ button[type="submit"]:hover {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .close {
@@ -312,7 +327,8 @@ button[type="submit"]:hover {
     color: #000;
 }
 
-.form-group input[type="date"], .form-group input[type="number"] {
+.form-group input[type="date"],
+.form-group input[type="number"] {
     width: 30px;
 }
 
@@ -321,16 +337,133 @@ button[type="submit"]:hover {
         font-size: 14px;
         max-width: 100%;
     }
+
     .item {
         font-size: 16px;
     }
-    .maintenance-label, .maintenance-value {
+
+    .maintenance-label,
+    .maintenance-value {
         font-size: 14px;
     }
+
     .progress-bar {
         height: 15px;
     }
+
     .progress {
         line-height: 15px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+/* Vehicle Maintenance Styles */
+.vehicle-header {
+    background-color: #555; /* Adjusted for better contrast */
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    max-width: 600px; /* Match the width of items */
+    width: calc(100% - 20px);
+    box-sizing: border-box;
+}
+
+.vehicle-item {
+    background-color: #333;
+    color: white;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 600px;
+    width: calc(100% - 20px);
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    flex-direction: column; /* Align elements vertically */
+}
+
+.vehicle-item:hover {
+    background-color: #444;
+}
+
+.vehicle-reminder-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.item {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.maintenance-container {
+    display: flex;
+    justify-content: flex-end; /* Align to the right */
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.label,
+.value {
+    display: block;
+    margin-bottom: 8px;
+    text-align: right; /* Align text to the right */
+}
+
+.vehicle-progress-bar {
+    background-color: #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 20px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.vehicle-progress {
+    height: 100%;
+    line-height: 20px;
+    color: white;
+    text-align: center;
+    transition: width 0.3s;
+    white-space: nowrap;
+}
+
+/* Additional styles for responsive design */
+@media screen and (max-width: 767px) {
+    .vehicle-reminder {
+        font-size: 14px;
+        max-width: 100%;
+    }
+
+    .vehicle-item {
+        font-size: 16px;
+    }
+
+    .vehicle-details {
+        font-size: 12px;
+    }
+
+    .vehicle-progress-bar {
+        height: 12px;
+    }
+
+    .vehicle-progress {
+        line-height: 12px;
     }
 }
