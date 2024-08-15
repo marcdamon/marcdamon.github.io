@@ -313,7 +313,8 @@ function updatePersonalItems(values) {
     let currentCategory = '';
     const categoryTitles = {
         'Pilot': 'Pilot Items',
-        'Personal': 'Personal Items'
+        'Personal': 'Personal Items',
+        'Vehicles': 'Vehicle Items'
     };
 
     values.forEach((row, index) => {
@@ -463,6 +464,142 @@ async function savePersonalItemUpdate() {
     }
 }
 
+
+
+
+
+
+
+function showVehicleMaintenance() {
+    console.log("Vehicle Maintenance link clicked");
+    selectedAircraft = null;
+    
+    // Hide all other sections
+    document.getElementById('mainContainer').style.display = 'none';
+    document.getElementById('dashboardContainer').style.display = 'none';
+    document.getElementById('personalItemsContainer').style.display = 'none';
+
+    // Show the vehicle maintenance section
+    const vehicleMaintenanceContainer = document.getElementById('vehicleMaintenanceContainer');
+    vehicleMaintenanceContainer.style.display = 'block';
+
+    const vehicleMaintenanceReminders = document.getElementById('vehicleMaintenanceReminders');
+    if (vehicleMaintenanceReminders) {
+        console.log('Vehicle maintenance container found:', vehicleMaintenanceReminders);
+        updateVehicleMaintenance(vehicleMaintenanceData);
+    } else {
+        console.error('Vehicle maintenance container not found');
+    }
+}
+
+function updateVehicleMaintenance(values) {
+    console.log("Updating vehicle maintenance");
+    const container = document.getElementById('vehicleMaintenanceReminders');
+    container.innerHTML = ''; // Clear existing content
+
+    let currentVehicle = '';
+    values.forEach((row) => {
+        console.log('Processing row:', row);
+
+        const vin = row[0];
+        const year = row[1];
+        const make = row[2];
+        const model = row[3];
+        const trim = row[4];
+        const description = row[11]; // Maintenance Item
+        const usageMetricType = row[9]; // Column J: 'date' or 'usageMetric'
+        const nextServiceDueAt = row[14];
+        const remainingTime = parseFloat(row[15]); // Ensure this is parsed as a number
+        const sendReminder = parseFloat(row[16]);
+        let percentageUsedStr = row[19];
+
+        if (percentageUsedStr === undefined || percentageUsedStr === null || percentageUsedStr.trim() === '') {
+            percentageUsedStr = '0%';
+        }
+
+        const percentageUsed = parseFloat(percentageUsedStr.replace('%', ''));
+        let progressBarColor = '#007bff';
+
+        if (remainingTime <= 0) {
+            progressBarColor = 'red';
+        } else if (remainingTime <= sendReminder) {
+            progressBarColor = 'yellow';
+        }
+
+        // Create a vehicle header if it's a new vehicle
+        const vehicleIdentifier = `${year} ${make} ${model} ${trim}`;
+        if (vehicleIdentifier !== currentVehicle) {
+            currentVehicle = vehicleIdentifier;
+
+            const vehicleHeader = document.createElement('div');
+            vehicleHeader.className = 'vehicle-header';
+            vehicleHeader.textContent = vehicleIdentifier.trim(); // Display vehicle info
+            container.appendChild(vehicleHeader);
+        }
+
+        if (!isNaN(percentageUsed)) {
+            const reminder = document.createElement('div');
+            reminder.className = 'vehicle-item';
+
+            const header = document.createElement('div');
+            header.className = 'vehicle-reminder-header';
+
+            const item = document.createElement('div');
+            item.className = 'item';
+            item.textContent = description || 'General Service';
+
+            const nextMaintenanceLabel = document.createElement('div');
+            nextMaintenanceLabel.className = 'label';
+            nextMaintenanceLabel.textContent = 'Next Service:';
+
+            const nextMaintenanceValue = document.createElement('div');
+            nextMaintenanceValue.className = 'value';
+            nextMaintenanceValue.textContent = nextServiceDueAt;
+
+            const dueLabel = document.createElement('div');
+            dueLabel.className = 'label';
+            dueLabel.textContent = 'Due in:';
+
+            const value = document.createElement('div');
+            value.className = 'value';
+
+            // Determine if it's a date-based or usage-based metric
+            if (usageMetricType === 'date') {
+                value.textContent = formatRemainingDays(remainingTime); // Use formatRemainingDays for date-based metrics
+            } else if (usageMetricType === 'usageMetric') {
+                const unit = row[7] === 'miles' ? 'Miles' : 'Hours'; // Use row[7] for miles or hours
+                value.textContent = `${remainingTime} ${unit}`; // Display miles or hours based on usageMetricType
+            }
+
+            const content = document.createElement('div');
+            content.className = 'maintenance-container';
+            content.appendChild(nextMaintenanceLabel);
+            content.appendChild(nextMaintenanceValue);
+            content.appendChild(dueLabel);
+            content.appendChild(value);
+
+            header.appendChild(item);
+            header.appendChild(content);
+
+            const progressBar = document.createElement('div');
+            progressBar.className = 'vehicle-progress-bar';
+            const progress = document.createElement('div');
+            progress.className = 'vehicle-progress';
+            progress.style.width = `${percentageUsed}%`;
+            progress.style.backgroundColor = progressBarColor;
+
+            progressBar.appendChild(progress);
+            reminder.appendChild(header);
+            reminder.appendChild(progressBar);
+            container.appendChild(reminder);
+
+            console.log(`Added reminder for vehicle: ${make} ${model}`);
+        } else {
+            console.error(`Skipping vehicle due to invalid data: vin=${vin}, remainingTime=${remainingTime}, percentageUsed=${percentageUsed}`);
+        }
+    });
+}
+
 function formatRemainingDays(days) {
     const years = Math.floor(days / 365);
     const months = Math.floor((days % 365) / 30);
@@ -480,8 +617,19 @@ function formatRemainingDays(days) {
 
 
 
+// Function to toggle the display of vehicle items for each vehicle header
+function toggleVehicleItemDisplay(event) {
+    const target = event.currentTarget;
+    const nextSibling = target.nextElementSibling;
+    if (nextSibling && nextSibling.classList.contains('maintenance-container')) {
+        nextSibling.classList.toggle('active');
+    }
+}
 
-
+// Add event listeners to vehicle headers to toggle display on click
+document.querySelectorAll('.vehicle-header').forEach(header => {
+    header.addEventListener('click', toggleVehicleItemDisplay);
+});
 
 
 

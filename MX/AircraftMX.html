@@ -20,6 +20,8 @@
         <div id="aircraftList">
             <a href="javascript:void(0)" id="dashboardLink">Dashboard</a>
             <a href="javascript:void(0)" id="personalItemsLink">Personal Items</a>
+            <a href="javascript:void(0)" onclick="showVehicleMaintenance()">Vehicle Maintenance</a>
+
         </div>
     </div>
     <span class="open-sidebar" onclick="toggleSidebarMenu()">&#9776;</span>
@@ -58,6 +60,13 @@
             <div id="personalItemsReminders">This is a test message to verify rendering.</div>
         </div>
     </div>
+    <div id="vehicleMaintenanceContainer" style="display: none;">
+        <div id="vehicleMaintenanceReminders" class="vehicle-accordion">
+            <!-- Vehicle sections will be appended here dynamically -->
+        </div>
+    </div>
+    
+    
     
     </div>
 
