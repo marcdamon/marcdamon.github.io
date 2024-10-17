@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SF50 Vision Jet Checklist</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+
+    <!-- Main container to hold the two sections side by side -->
+    <div class="container">
+        <!-- Outer frame for the checklist title and content stacked vertically -->
+        <div class="outer-frame checklist-section">
+            <div class="checklist-title-box">
+                <h2 id="checklist-title">Checklist Title</h2> <!-- Title of the checklist -->
+                <div id="checklist-type" class="checklist-type-label"></div> <!-- This is for the label "Warning" or "Emergency" -->
+            </div>
+            
+            
+            <div class="checklist-display">
+                <p id="checklist-description"></p> <!-- Description or instructions -->
+                <ul id="checklist-steps">
+                    <!-- Checklist steps will be dynamically added here -->
+                </ul>
+                <div id="checklist-notes">
+                    <!-- Checklist notes will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Outer frame for the checklist items -->
+        <div class="outer-frame warning-section"> <!-- Added warning-section class here -->
+            <div class="warning-list">
+                <h2>Checklist</h2>
+                <ul id="warning-items">
+                    <!-- Checklists will be dynamically listed here -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include the JavaScript file -->
+    <script src="js.js"></script>
+
+</body>
+</html>

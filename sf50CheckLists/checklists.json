@@ -1,0 +1,371 @@
+{
+    "checklists": {
+      "warnings": [
+        {
+          "title": "AUTO DESCENT Warning",
+          "description": "Aircraft descending to 14,000 ft.",
+          "steps": [
+            {
+              "stepType": "note",
+              "text": "Note: Unless canceled, Safe Return Autoland will activate descending through 15,000 feet pressure altitude and change route to an emergency landing airport. Refer to AFM Section 10: Safety Information, Safe Return Autoland System (if installed)."
+            },
+            {
+              "stepType": "note",
+              "text": "Serials with Safe Return Autoland: Unless canceled, Safe Return Autoland will activate descending through 15,000 feet pressure altitude and change route to an emergency landing airport."
+            },
+            {
+              "stepType": "note",
+              "text": "To cancel auto descent, disconnect the autopilot:"
+            },
+            {
+              "stepType": "substep",
+              "step": "a. AP DISC Button",
+              "action": "PRESS AND RELEASE"
+            },
+            {
+              "stepType": "procedureComplete",
+              "text": "Procedure Complete"
+            }
+          ]
+        },
+        {
+            "title": "CABIN ALTITUDE HIGH Warning",
+            "description": "Cabin high altitude detected.",
+            "steps": [
+              {
+                "stepType": "checkbox",
+                "step": "1. Oxygen Mask",
+                "action": "DON, 100%"
+              },
+              {
+                "stepType": "checkbox",
+                "step": "2. BLEED Switch",
+                "action": "VERIFY BLEED"
+              },
+              {
+                "stepType": "checkbox",
+                "step": "3. MIC SELECT Switch",
+                "action": "MASK MIC"
+              },
+              {
+                "stepType": "checkbox",
+                "step": "4. Perform Emergency Descent checklist as required."
+              },
+              {
+                "stepType": "checkbox",
+                "step": "5. Passenger Oxygen",
+                "action": "ENSURE PASSENGERS ARE RECEIVING OXYGEN"
+              },
+              {
+                "stepType": "special",
+                "symbol": "◆",
+                "text": "If passenger oxygen masks do not deploy:"
+              },
+              {
+                "stepType": "substep",
+                "step": "a. PAX OXY DEPLOY Switch",
+                "action": "ON"
+              },
+              {
+                "stepType": "checkbox",
+                "step": "6. Transponder",
+                "action": "SQUAWK 7700"
+              },
+              {
+                "stepType": "checkbox",
+                "step": "7. CABIN PRESSURE DUMP Button",
+                "action": "PRESS"
+              }
+            ],
+            "procedureComplete": true,
+            "notes": [
+              {
+                "text": "Refer to Section 2: Limitations, 'Oxygen' for oxygen requirements."
+              },
+              {
+                "text": "If the CABIN PRESSURE DUMP is not activated, Emergency Descent Mode (EDM) will activate if the aircraft is at or above 14,900 feet pressure altitude and the cabin altitude is greater than or equal to 15,000 feet."
+              },
+              {
+                "text": "An EDM activation can lead to an automatic activation of Safe Return Autoland. EDM and Safe Return Autoland will not automatically activate if CABIN PRESSURE DUMP is activated. Manual activation of Safe Return Autoland can still be accomplished following CABIN PRESSURE DUMP activation."
+              }
+            ]
+          },
+          {
+            "title": "CABIN DIFF PRESSURE HIGH Warning",
+            "description": "Cabin differential pressure is too high.",
+            "steps": [
+              {
+                "stepType": "checkbox",
+                "step": "1. Oxygen Mask",
+                "action": "DON, 100%"
+              },
+              {
+                "stepType": "checkbox",
+                "step": "2. BLEED Switch",
+                "action": "FRESH"
+              },
+              {
+                "stepType": "checkbox",
+                "step": "3. MIC SELECT Switch",
+                "action": "MASK MIC"
+              },
+              {
+                "stepType": "checkbox",
+                "step": "4. Perform Emergency Descent checklist as required."
+              },
+              {
+                "stepType": "special",
+                "symbol": "◆",
+                "text": "If message persists:"
+              },
+              {
+                "stepType": "substep",
+                "step": "a. Thrust Lever",
+                "action": "REDUCE"
+              },
+              {
+                "stepType": "substep",
+                "step": "b. CABIN PRESSURE DUMP Button",
+                "action": "PRESS"
+              },
+              {
+                "stepType": "procedureComplete",
+                "text": "Procedure Complete"
+              }
+            ],
+            "notes": [
+              {
+                "text": "• NOTE • Autopilot Emergency Descent Mode (EDM) is disabled when the cabin dump switch is activated."
+              },
+              {
+                "text": "Refer to Section 2: Limitations, 'Oxygen' for oxygen requirements."
+              }
+            ]
+          },
+          {
+            "title": "CABIN DUMP Warning",
+            "description": "Cabin pressure dump activated.",
+            "steps": [
+              {
+                "stepType": "note",
+                "text": "• NOTE • If the CABIN PRESSURE DUMP Button was inadvertently activated, it should be deactivated immediately."
+              },
+              {
+                "stepType": "note",
+                "text": "Autopilot Emergency Descent Mode (EDM) is disabled when the cabin dump switch is activated."
+              },
+              {
+                "stepType": "special",
+                "symbol": "◆",
+                "text": "If message is accompanied by CABIN ALTITUDE HIGH Warning:"
+              },
+              {
+                "stepType": "substep",
+                "step": "a. Perform CABIN ALTITUDE HIGH Warning checklist.",
+                "action": ""
+              },
+              {
+                "stepType": "procedureComplete",
+                "text": "Procedure Complete"
+              }
+            ]
+          },
+          {
+            "title": "CAPS ACTIVATED Warning",
+            "description": "CAPS sequence has been activated.",
+            "steps": [
+              {
+                "stepType": "special",
+                "symbol": "◆",
+                "text": "If message is displayed due to CAPS activation (pulling of CAPS Activation Handle):"
+              },
+              {
+                "stepType": "checkbox",
+                "step": "1. Refer to CAPS Activation procedure.",
+                "action": ""
+              },
+              {
+                "stepType": "procedureComplete",
+                "text": "Procedure Complete"
+              },
+              {
+                "stepType": "warning",
+                "text": "• WARNING • Do not press and hold AP DISC Button if CAPS handle has been pulled; if handle has been pulled, parachute will deploy regardless and pressing AP DISC will prevent the aircraft from adequately slowing prior to deployment."
+              },
+              {
+                "stepType": "caution",
+                "text": "CAUTION: Delay of AP DISC Button in response to an automatic flight control malfunction while manually overriding controls may result in excessive pitch out of trim condition."
+              },
+              {
+                "stepType": "special",
+                "symbol": "◆",
+                "text": "If message is displayed but CAPS handle is NOT pulled:"
+              },
+              {
+                "stepType": "substep",
+                "step": "a. AP DISC Button",
+                "action": "PRESS AND HOLD 5 SECONDS"
+              },
+              {
+                "stepType": "procedureComplete",
+                "text": "Procedure Complete"
+              },
+              {
+                "stepType": "warning",
+                "text": "• WARNING • CAPS AP mode will be unavailable for remainder of flight until next power cycle. If CAPS activation is necessary, the pilot must manually reduce airspeed below 135 KIAS and 145 KTAS, whichever is lower, to deploy the parachute."
+              },
+              {
+                "stepType": "note",
+                "text": "Refer to Section 3: Emergency Procedures, 'CAPS Activation' procedure."
+              }
+            ]
+          },
+          {
+            "title": "ENGINE FIRE Warning - In Flight",
+            "description": "Engine fire detected.",
+            "steps": [
+              {
+                "stepType": "checkbox",
+                "step": "1. Thrust Lever",
+                "action": "IDLE"
+              },
+              {
+                "stepType": "checkbox",
+                "step": "2. Pitch for 120 KIAS (APPROX.)"
+              },
+              {
+                "stepType": "checkbox",
+                "step": "3. Wait 15 seconds."
+              },
+              {
+                "stepType": "special",
+                "symbol": "◆",
+                "text": "If ENGINE FIRE Warning remains on, or secondary fire indications are present – probable engine fire:"
+              },
+              {
+                "stepType": "substep",
+                "step": "a. ENGINE FIRE ACKNOWLEDGE Switch",
+                "action": "LIFT GUARD, TOGGLE"
+              },
+              {
+                "stepType": "substep",
+                "step": "b. Left or Right PUSH TO DISCHARGE Button",
+                "action": "PUSH"
+              },
+              {
+                "stepType": "substep",
+                "step": "c. Oxygen Mask",
+                "action": "DON, 100%"
+              },
+              {
+                "stepType": "substep",
+                "step": "d. MIC SELECT Switch",
+                "action": "MASK MIC"
+              },
+              {
+                "stepType": "substep",
+                "step": "e. Engine Knob",
+                "action": "OFF"
+              },
+              {
+                "stepType": "substep",
+                "step": "f. Engine Button",
+                "action": "PRESS (MOMENTARY)"
+              },
+              {
+                "stepType": "substep",
+                "step": "g. GEN 1 and GEN 2 Switches",
+                "action": "OFF"
+              },
+              {
+                "stepType": "substep",
+                "step": "h. Perform Emergency Landing w/o Power checklist."
+              },
+              {
+                "stepType": "procedureComplete",
+                "text": "Procedure Complete"
+              },
+              {
+                "stepType": "special",
+                "symbol": "◆",
+                "text": "If ENGINE FIRE Warning extinguishes and secondary fire indications are not present – probable bleed leak:"
+              },
+              {
+                "stepType": "substep",
+                "step": "a. Thrust Lever",
+                "action": "REDUCE (MINIMUM REQUIRED)"
+              },
+              {
+                "stepType": "substep",
+                "step": "b. Land as soon as possible."
+              },
+              {
+                "stepType": "substep",
+                "step": "c. BLEED Switch",
+                "action": "FRESH"
+              },
+              {
+                "stepType": "substep",
+                "step": "d. Oxygen Masks",
+                "action": "DON, 100%"
+              },
+              {
+                "stepType": "substep",
+                "step": "e. L / R MIC Switches",
+                "action": "MASK MIC"
+              },
+              {
+                "stepType": "substep",
+                "step": "f. Inlet Anti-Ice",
+                "action": "OFF"
+              },
+              {
+                "stepType": "substep",
+                "step": "g. Exit icing conditions."
+              },
+              {
+                "stepType": "substep",
+                "step": "h. Prepare for Emergency Descent, Loss of Cabin Pressure."
+              },
+              {
+                "stepType": "procedureComplete",
+                "text": "Procedure Complete"
+              }
+            ],
+            "notes": [
+              {
+                "text": "• NOTE • An actual engine fire may be accompanied by abnormal or failing engine indications, erratic or rough engine operation, visible flames, or smoke trail from aircraft."
+              },
+              {
+                "text": "Secondary fire indications include N1 / N2 fluctuation, generator failure, or erratic or failing engine indications."
+              },
+              {
+                "text": "A sustained fire may cause the structure to be compromised."
+              },
+              {
+                "text": "Structural failure may cause significant injury or loss of life. Limiting speed, if possible, and avoiding high maneuvering loads may reduce the possibility of structural failure."
+              },
+              {
+                "text": "Refer to Section 2: Limitations, 'Oxygen' for oxygen requirements."
+              }
+            ]
+          }
+          
+
+
+
+
+
+
+
+
+
+          
+          
+          
+          
+          
+      ]
+    }
+  }
+  

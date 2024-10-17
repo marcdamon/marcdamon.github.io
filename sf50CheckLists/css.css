@@ -1,0 +1,159 @@
+/* General styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: black;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px; /* Adds space between the checklist and warning columns */
+}
+
+/* Outer frames for each section */
+.outer-frame {
+    border: 4px solid #00ffff; /* New outer frame */
+    padding: 4px;
+    background-color: black; /* Black background around the inner frame */
+    box-sizing: border-box; /* Ensure padding is inside the height/width */
+}
+
+/* Set widths differently for the checklist and warning list */
+.checklist-section {
+    width: 500px; 
+}
+
+.warning-section {
+    width: 600px; 
+    height: 400px; 
+}
+
+/* Checklist section */
+.checklist-section {
+    display: flex;
+    flex-direction: column; /* Stack title and content vertically */
+    height: 100%; /* Take full height of the outer frame */
+}
+
+.checklist-title-box {
+    border: 2px solid white;
+    padding: 10px;
+    background-color: black;
+    height: 100px;
+    box-sizing: border-box;
+    margin-bottom: 4px;
+    position: relative;
+}
+
+.checklist-type-label {
+    position: absolute;
+    top: 1px; /* Adjust this for more or less space from the top */
+    left: 1px; /* Adjust this for more or less space from the left */
+    padding: 0; /* No extra padding around the text */
+    color: #00ffff; /* Same blue color as the checklist title */
+    font-size: 24px; /* Same size as the checklist title */
+    font-family: 'Arial', sans-serif; /* Match the font of the checklist title */
+    font-weight: normal; /* Same weight as the checklist title */
+    border: none; /* No border */
+    background-color: transparent; /* No background color */
+}
+
+
+
+
+h2#checklist-title {
+    color: #00ffff; /* Title color */
+    margin: 0;
+    padding: 10px 0 0 10px; /* Adjust top and left padding */
+    font-size: 24px; /* Adjust size if needed */
+    margin-top: 12px; /* Adds space below the label */
+}
+
+
+
+
+/* Checklist display box with fixed height and scrolling */
+.checklist-display {
+    border: 2px solid white;
+    padding: 10px;
+    padding-top: 2px;
+    background-color: black;
+    height: 520px; /* Fixed height for the checklist display */
+    overflow-y: auto; /* Enable vertical scrolling */
+    box-sizing: border-box;
+}
+
+h2 {
+    color: #00ffff; /* Title color */   
+    margin: 0;
+    padding-bottom: 10px;
+}
+
+#checklist-steps,
+#warning-items {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.warning-item {
+    padding: 10px;
+    background-color: transparent; /* Removed the gray background */
+    margin-bottom: 5px;
+    cursor: pointer;
+    border: 1px solid white; /* Changed border to white */
+    text-align: center;
+}
+
+.warning-item:hover {
+    background-color: #00dfff;
+    color: black;
+}
+
+.step-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.step-text {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.action-text {
+    white-space: nowrap;
+    color: white;
+}
+
+.special-symbol {
+    color: white;
+    margin-right: 5px;
+    font-size: 1.2em; /* Made the diamond (◆) text larger */
+}
+
+.special-text {
+    flex-grow: 1;
+    color: white;
+    font-size: 1.2em; /* Made the text after the diamond larger */
+}
+
+.note-item {
+    color: #888;
+    font-style: italic;
+}
+
+.procedure-complete {
+    color: white; /* Changed to white */
+    text-align: center;
+    font-weight: bold;
+    padding: 10px 0;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
