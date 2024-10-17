@@ -360,7 +360,7 @@ h2#checklist-title {
 }
 
 .step-text, .action-text, .special-text, .note-item, .procedure-complete {
-    font-size: 24px; /* Adjust size for different text elements in checklist */
+    font-size: 20px; /* Adjust size for different text elements in checklist */
 }
 
 .special-symbol {
@@ -391,7 +391,9 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 0;
+    padding: 5px 0; /* Keep padding inside the step */
+    margin-bottom: 7px; /* Add space between the lines */
+    line-height: 1.5; /* Adjust the line height for better spacing */
 }
 
 .step-text {
@@ -431,3 +433,80 @@ h2 {
 input[type="checkbox"] {
     margin-right: 10px;
 }
+
+
+
+/* Media query for iPad or similar tablet screens */
+@media only screen and (max-width: 1024px) {
+    /* Adjust the size of the container */
+    .container {
+        padding: 10px; /* Reduce padding */
+        gap: 10px; /* Reduce gap between sections */
+    }
+
+    /* Adjust button sizes */
+    .button-left, .button-right {
+        width: 80px; /* Reduce button width */
+        height: 70px; /* Reduce button height */
+        font-size: 16px; /* Reduce button font size */
+    }
+
+    /* Adjust the checklist section */
+    .outer-frame.checklist-section {
+        width: 100%; /* Let it take full width available */
+    }
+
+    .checklist-items-container {
+        width: 100%; /* Take full width on smaller screens */
+        height: 400px; /* Reduce height if necessary */
+    }
+
+    .checklist-title-box {
+        height: 80px; /* Reduce height of title box */
+    }
+
+    .checklist-display {
+        height: 600px; /* Reduce height for checklist display */
+    }
+
+    /* Reduce the font size for checklist items */
+    .step-text, .action-text {
+        font-size: 16px; /* Scale down the text size */
+    }
+
+    /* Adjust font size of checklist titles and labels */
+    h2#checklist-title {
+        font-size: 20px; /* Reduce checklist title font size */
+    }
+
+    .checklist-type-label {
+        font-size: 18px; /* Reduce the label font size */
+    }
+
+    /* Adjust the size of checkboxes */
+    input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Adjust the spacing between checklist items */
+    .step-item {
+        margin-bottom: 8px; /* Slightly reduce margin */
+    }
+
+    /* Reduce the size of the warning list */
+    .warning-section {
+        width: 90%; /* Allow warning section to shrink */
+    }
+
+    /* Reduce the height of the checklist items to fit the smaller screen */
+    .warning-item {
+        height: 50px; /* Reduce height of checklist items */
+        font-size: 16px; /* Scale down text */
+    }
+}
+
+
+
+
+
