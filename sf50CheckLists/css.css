@@ -16,28 +16,291 @@ body {
 
 /* Outer frames for each section */
 .outer-frame {
-    border: 4px solid #00ffff; /* New outer frame */
+    border: 4px solid #ffffff; /* New outer frame */
     padding: 4px;
     background-color: black; /* Black background around the inner frame */
     box-sizing: border-box; /* Ensure padding is inside the height/width */
+    position: relative;
 }
 
-/* Set widths differently for the checklist and warning list */
-.checklist-section {
-    width: 500px; 
+
+
+
+
+input[type="checkbox"] {
+    /* Increase the size of the checkbox */
+    width: 16px;
+    height: 16px;
+    
+    /* Appearance styling */
+    appearance: none; /* Remove the default checkbox styling */
+    background-color: black; /* Set background color */
+    border: 2px solid white; /* Set border to white */
+    border-radius: 3px; /* Optional: Rounded corners */
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
 }
+
+input[type="checkbox"]:checked {
+    /* Custom styling for checked state */
+    background-color: black;
+    border: 2px solid #3cb62e; /* Green border */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%233cb62e' d='M13.6 4.5l-7.1 7.1c-.1.1-.2.2-.4.2s-.3-.1-.4-.2L2.4 8.9c-.2-.2-.2-.5 0-.7s.5-.2.7 0l2.6 2.6 6.8-6.8c.2-.2.5-.2.7 0s.2.6 0 .8z'/%3E%3C/svg%3E");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 20px; /* Adjust the size of the checkmark */
+}
+/* Style the text to change color when the checkbox is checked */
+.step-item.checked .step-text,
+.step-item.checked .action-text {
+    color: #3cb62e; /* Green color for checked text */
+}
+
+
+
+
+
+
+
+
+
+@font-face {
+    font-family: 'Frutiger';
+    src: url('fonts/Frutiger-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Frutiger';
+    src: url('fonts/Frutiger-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* Apply the font to the body and inherit throughout */
+body {
+    font-family: 'Frutiger', sans-serif;
+}
+
+
+
+
+
+
+
 
 .warning-section {
-    width: 600px; 
-    height: 400px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 600px;
+    height: 500px;
+    position: relative;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+
+
+
+
+
+/* Left-side buttons (Emergency, Warning, etc.) */
+.button-stack-left {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 10px; /* Move closer to container */
+    top: 32px; /* Adjusted value to move buttons down */
+}
+
+.button-left {
+    background-color: #45cdff;
+    color: black;
+    width: 100px; /* Reduced width */
+    height: 84px; /* Reduced height */
+    border: none;
+    text-align: center;
+    font-size: 18px;
+    line-height: 18px; /* Adjust the line-height for closer spacing */
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    margin: 3px 0; /* Add margin to separate buttons */
+    padding: 5px; /* Add some padding inside the buttons */
+}
+
+
+/* Right-side buttons (Advisory, Normal) */
+.button-stack-right {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 10px; /* Move closer to container */
+    top: 32px; /* Adjusted value to move buttons down */
+}
+
+.button-stack-right .button-right {
+    background-color: #45cdff;
+    color: black;
+    width: 100px; /* Reduced width */
+    height: 84px; /* Reduced height */
+    border: none;
+    text-align: center;
+    font-size: 18px;
+    line-height: 45px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    margin: 3px 0; /* Add margin to separate buttons */
+}
+
+/* Additional styling for the new bottom-right button */
+.button-right.checklist-options {
+    background-color: black; /* Black background */
+    color: white; /* White text */
+    width: 100px;
+    height: 84px; /* Same size as other buttons */
+    border: 2px solid white; /* White border */
+    text-align: center;
+    font-size: 18px;
+    line-height: 18px; /* Adjust the line-height for closer spacing */
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 182px; /* Add space to move it below the "Normal" button */
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Center the checklist items title */
+.checklist-items-title {
+    text-align: center;
+    font-size: 24px;
+    margin: 0;
+    padding-bottom: 5px;
+    color: white;
+    padding: 5px;
+}
+
+
+
+
+
+
+/* Container for checklist items with a fixed width and border */
+.checklist-items-container {
+    border: 2px solid white; /* White border around the container */
+    padding: 0; /* No extra padding */
+    margin: 0 auto; /* Center the container */
+    width: 370px; /* Fixed width to contain the checklist items */
+    height: 440px; /* Fixed height to show 5 items */
+    overflow-y: auto; /* Enable scrolling */
+    box-sizing: border-box; /* Ensure padding/border are inside the width/height */
+}
+
+/* New wrapper for checklist items with a white border */
+.checklist-items-border {
+    border: 2px solid white;
+    padding: 0; /* Remove extra padding */
+    background-color: black;
+    width: 100%; /* Make sure it takes the full width of the container */
+    box-sizing: border-box;
+    margin-top: 1px;
+}
+
+/* Adjust the height of checklist buttons */
+.warning-item {
+    padding: 10px; /* Adjust padding for the button */
+    background-color: black; /* Black background for list items */
+    margin: px 1; /* Minimal margin between items */
+    cursor: pointer;
+    border: 2px solid #ffffff; /* Match border to the outer frame color */
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    height: 63px; /* Increase height for taller buttons */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% - 4px); /* Ensure buttons take the full width minus border */
+}
+
+
+
+
+
+
+.warning-list {
+    padding: 0;
+    margin: 0;
+    overflow: hidden; /* Ensure no overflow beyond the border */
+}
+
+/* Title above the checklist items */
+.warning-list h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 5px;
+    color: #00ffff; /* Match title color */
+}
+
+
+.warning-item:hover {
+    background-color: #00dfff;
+    color: black;
+}
+.warning-item.highlighted {
+    background-color: #00dfff;
+    color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+#warning-items {
+    margin: 0; /* Remove top and left margin */
+    padding: 0; /* Remove padding */
+    list-style-type: none; /* Ensure no default list styles */
+}
+
+
+
 
 /* Checklist section */
 .checklist-section {
     display: flex;
-    flex-direction: column; /* Stack title and content vertically */
+    flex-direction: column;
     height: 100%; /* Take full height of the outer frame */
 }
+#checklist-type {
+    color: #00ffff; /* Adjust the color to match your design */
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
 
 .checklist-title-box {
     border: 2px solid white;
@@ -51,28 +314,30 @@ body {
 
 .checklist-type-label {
     position: absolute;
-    top: 1px; /* Adjust this for more or less space from the top */
-    left: 1px; /* Adjust this for more or less space from the left */
-    padding: 0; /* No extra padding around the text */
-    color: #00ffff; /* Same blue color as the checklist title */
-    font-size: 24px; /* Same size as the checklist title */
-    font-family: 'Arial', sans-serif; /* Match the font of the checklist title */
-    font-weight: normal; /* Same weight as the checklist title */
-    border: none; /* No border */
-    background-color: transparent; /* No background color */
+    top: 1px;
+    left: 1px;
+    padding: 0;
+    color: #00ffff;
+    font-size: 24px;
+    font-family: 'Arial', sans-serif;
+    font-weight: normal;
+    border: none;
+    background-color: transparent;
 }
-
-
-
 
 h2#checklist-title {
-    color: #00ffff; /* Title color */
+    color: #00ffff;
     margin: 0;
-    padding: 10px 0 0 10px; /* Adjust top and left padding */
-    font-size: 24px; /* Adjust size if needed */
-    margin-top: 12px; /* Adds space below the label */
+    padding: 10px 0 0 10px;
+    font-size: 24px;
+    margin-top: 12px;
 }
 
+
+/* Set widths differently for the checklist and warning list */
+.checklist-section {
+    width: 600px;
+}
 
 
 
@@ -82,37 +347,46 @@ h2#checklist-title {
     padding: 10px;
     padding-top: 2px;
     background-color: black;
-    height: 520px; /* Fixed height for the checklist display */
-    overflow-y: auto; /* Enable vertical scrolling */
+    height: 680px; /* Fixed height for the checklist display */
+    overflow-y: auto;
     box-sizing: border-box;
 }
 
+
+
+/* Adjust the font size of the checklist display section */
+.checklist-display {
+    font-size: 20px; /* Set the desired font size */
+}
+
+.step-text, .action-text, .special-text, .note-item, .procedure-complete {
+    font-size: 24px; /* Adjust size for different text elements in checklist */
+}
+
+.special-symbol {
+    font-size: 2.0em; /* Adjust the size of special symbols */
+}
+
+#checklist-description {
+    font-size: 26px; /* Adjust the font size as needed */
+    line-height: 1.5; /* Adjust line height for better readability */
+}
+
+
+
+
 h2 {
-    color: #00ffff; /* Title color */   
+    color: #00ffff;
     margin: 0;
     padding-bottom: 10px;
 }
 
-#checklist-steps,
-#warning-items {
+#checklist-steps {
     list-style-type: none;
     padding-left: 0;
 }
 
-.warning-item {
-    padding: 10px;
-    background-color: transparent; /* Removed the gray background */
-    margin-bottom: 5px;
-    cursor: pointer;
-    border: 1px solid white; /* Changed border to white */
-    text-align: center;
-}
-
-.warning-item:hover {
-    background-color: #00dfff;
-    color: black;
-}
-
+/* Step items for checklists */
 .step-item {
     display: flex;
     justify-content: space-between;
@@ -148,7 +422,7 @@ h2 {
 }
 
 .procedure-complete {
-    color: white; /* Changed to white */
+    color: white;
     text-align: center;
     font-weight: bold;
     padding: 10px 0;

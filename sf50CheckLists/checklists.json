@@ -1,5 +1,191 @@
 {
     "checklists": {
+        "emergencies": [
+            {
+                "title": "ENGINE FAILURE ON TAKEOFF - LOW ALTITUDE",
+                "description": "Engine failure at low altitude after takeoff.",
+                "steps": [
+                  {
+                    "stepType": "checkbox",
+                    "step": "1. Best Glide or Landing Speed",
+                    "action": "100 KIAS"
+                  },
+                  {
+                    "stepType": "checkbox",
+                    "step": "2. Landing Gear",
+                    "action": "A/R"
+                  },
+                  {
+                    "stepType": "checkbox",
+                    "step": "3. Flaps",
+                    "action": "A/R"
+                  },
+                  {
+                    "stepType": "checkbox",
+                    "step": "4. Land straight ahead."
+                  },
+                  {
+                    "stepType": "special",
+                    "symbol": "◆",
+                    "text": "If time permits:"
+                  },
+                  {
+                    "stepType": "substep",
+                    "step": "a. Engine Knob",
+                    "action": "OFF"
+                  },
+                  {
+                    "stepType": "substep",
+                    "step": "b. Engine Button",
+                    "action": "PRESS (MOMENTARY)"
+                  },
+                  {
+                    "stepType": "substep",
+                    "step": "c. CABIN PRESSURE DUMP Button",
+                    "action": "PRESS"
+                  },
+                  {
+                    "stepType": "substep",
+                    "step": "d. GEN 1 and GEN 2 Switches",
+                    "action": "OFF"
+                  },
+                  {
+                    "stepType": "substep",
+                    "step": "e. BAT 1 and BAT 2 Switches",
+                    "action": "OFF"
+                  },
+                  {
+                    "stepType": "procedureComplete",
+                    "text": "Procedure Complete"
+                  }
+                ],
+                "warnings": [
+                  {
+                    "text": "• WARNING • If engine failure is accompanied by fuel fumes in the cockpit, or if internal engine damage is suspected, lift the guard on the ENGINE FIRE ACKNOWLEDGE switch, toggle the switch, and shut down the engine. Do not attempt a restart."
+                  },
+                  {
+                    "text": "If the engine fails immediately after becoming airborne, abort on the runway if possible. In most cases, when the engine fails below 500 feet AGL, the landing should be made straight ahead, turning only to avoid obstructions. In such a case, lower the nose to maintain flying airspeed and establish a glide attitude. After establishing a glide for landing, perform as many of the checklist items as time permits."
+                  }
+                ],
+                "notes": [
+                  {
+                    "text": "• NOTE • When determined that a forced landing is the safest option, a suitable landing site should be chosen as early as possible so that maximum time will be available to plan and execute the forced landing."
+                  },
+                  {
+                    "text": "While gliding, be aware that use of flaps will reduce glide distance. Flaps should not be selected until landing is assured. Land on the main gear and hold the nose wheel off the ground as long as possible."
+                  }
+                ]
+              },
+              {
+                "title": "Engine Failure In Flight",
+                "description": "Engine failure occurred during flight.",
+                "steps": [
+                  {
+                    "stepType": "checkbox",
+                    "step": "1. Pitch for air start",
+                    "action": "AIRSPEED 120 - 200 KIAS"
+                  },
+                  {
+                    "stepType": "checkbox",
+                    "step": "2. Turn toward possible landing site(s)."
+                  },
+                  {
+                    "stepType": "checkbox",
+                    "step": "3. Oxygen Mask",
+                    "action": "DON, 100%"
+                  },
+                  {
+                    "stepType": "checkbox",
+                    "step": "4. MIC SELECT Switch",
+                    "action": "MASK MIC"
+                  },
+                  {
+                    "stepType": "note",
+                    "text": "• NOTE • Engine can be considered safe to attempt restart if no abnormal, loud noises or vibrations were noted prior to or during shutdown, N1 rotation is observed, and no exceedances."
+                  },
+                  {
+                    "stepType": "special",
+                    "symbol": "◆",
+                    "text": "If engine appears safe to attempt a restart:"
+                  },
+                  {
+                    "stepType": "substep",
+                    "step": "a. Perform Air Start checklist."
+                  },
+                  {
+                    "stepType": "procedureComplete",
+                    "text": "Procedure Complete"
+                  },
+                  {
+                    "stepType": "special",
+                    "symbol": "◆",
+                    "text": "If engine is unsafe to restart:"
+                  },
+                  {
+                    "stepType": "substep",
+                    "step": "a. Engine Knob",
+                    "action": "OFF"
+                  },
+                  {
+                    "stepType": "substep",
+                    "step": "b. Engine Button",
+                    "action": "PRESS (MOMENTARY)"
+                  },
+                  {
+                    "stepType": "substep",
+                    "step": "c. Perform Emergency Landing w/o Power checklist."
+                  },
+                  {
+                    "stepType": "procedureComplete",
+                    "text": "Procedure Complete"
+                  },
+                  {
+                    "stepType": "special",
+                    "symbol": "◆",
+                    "text": "If engine failure is accompanied by fuel fumes in the cockpit, or if internal engine damage is suspected:"
+                  },
+                  {
+                    "stepType": "substep",
+                    "step": "a. ENGINE FIRE ACKNOWLEDGE Switch",
+                    "action": "LIFT GUARD, TOGGLE"
+                  },
+                  {
+                    "stepType": "substep",
+                    "step": "b. Shut down engine. Do not attempt a restart."
+                  },
+                  {
+                    "stepType": "substep",
+                    "step": "c. Perform Emergency Landing w/o Power checklist."
+                  },
+                  {
+                    "stepType": "procedureComplete",
+                    "text": "Procedure Complete"
+                  }
+                ],
+                "warnings": [
+                  {
+                    "text": "• WARNING • If all attempts to restart the engine fail and a forced landing is imminent, select a suitable landing site and prepare for landing. As forced landings on unimproved surfaces are not recommended, CAPS activation may be the safest option."
+                  }
+                ],
+                "notes": [
+                  {
+                    "text": "Refer to Section 3: Emergency Procedures, 'CAPS Activation' checklist."
+                  },
+                  {
+                    "text": "Refer to Section 10: Safety Information, 'Cirrus Airframe Parachute System (CAPS)' for CAPS deployment scenarios and landing considerations."
+                  },
+                  {
+                    "text": "Refer to Section 2: Limitations, 'Oxygen' for oxygen requirements."
+                  }
+                ]
+              }
+              
+              
+
+
+
+
+        ],    
       "warnings": [
         {
           "title": "AUTO DESCENT Warning",
