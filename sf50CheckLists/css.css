@@ -352,8 +352,8 @@ h2#checklist-title {
     padding: 10px;
     padding-top: 2px;
     background-color: black;
-    height: 680px; /* Fixed height for the checklist display */
-    overflow-y: auto;
+    height: 680px; /* Ensure this is set */
+    overflow-y: auto; /* Ensure this is set */
     box-sizing: border-box;
 }
 
@@ -515,3 +515,40 @@ input[type="checkbox"] {
 
 
 
+/* Style for the select button */
+.select-button {
+    position: absolute;
+    bottom: 10px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+    background-color: #45cdff;
+    color: black;
+    width: 100px; /* Match other buttons */
+    height: 84px; /* Match other buttons */
+    border: none;
+    text-align: center;
+    font-size: 18px;
+    line-height: 45px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Adjust the height of the warning-section to accommodate the select button */
+.warning-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 600px;
+    height: 600px; /* Increased height to fit the select button */
+    position: relative;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Adjust the position of button stacks if necessary */
+.button-stack-left {
+    top: 32px; /* Adjust if overlapping occurs */
+}
+
+.button-stack-right {
+    top: 32px; /* Adjust if overlapping occurs */
+}
