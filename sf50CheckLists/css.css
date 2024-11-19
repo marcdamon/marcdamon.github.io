@@ -101,6 +101,11 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
+/* Style for the selected checklist item */
+.selected-item {
+    background-color: #00dfff; /* Same as your hover color */
+    color: ffffff; /* Text color when selected */
+}
 
 
 

@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     let checklistsData = {}; // Store all checklists data
+    let selectedChecklistIndex = null; // Keep track of selected checklist
 
     // Load checklists from JSON
     async function loadChecklists() {
@@ -13,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Automatically display the first checklist from "Warnings" by default
             if (checklistsData.warnings.length > 0) {
-                displayChecklist(checklistsData.warnings[0], 'warning'); // Display the first warning by default
+                displayChecklist(checklistsData.warnings[0], 'warning', 0); // Display the first warning by default
             }
         } catch (error) {
             console.error('Error loading checklists:', error);
@@ -25,16 +26,45 @@ document.addEventListener('DOMContentLoaded', function () {
         const checklistItems = document.getElementById('warning-items');
         checklistItems.innerHTML = ''; // Clear existing list
 
-        checklistType.forEach((item) => {
+        checklistType.forEach((item, index) => {
             const listItem = document.createElement('li');
             listItem.innerText = item.title;
             listItem.classList.add('warning-item');
-            listItem.addEventListener('click', () => displayChecklist(item, checklistType)); // Pass checklist type
+
+            // Add event listener for highlighting the selected checklist
+            listItem.addEventListener('click', () => {
+                displayChecklist(item, checklistType, index);
+                highlightSelectedChecklist(index);
+            });
+
             checklistItems.appendChild(listItem);
         });
+
+        // Automatically highlight the first checklist item by default
+        if (checklistType.length > 0) {
+            highlightSelectedChecklist(0);
+        }
     }
 
-    function displayChecklist(item, type) {
+    function highlightSelectedChecklist(selectedIndex) {
+        const checklistItems = document.querySelectorAll('.warning-item');
+    
+        checklistItems.forEach((item, index) => {
+            // Remove highlight from all items
+            item.classList.remove('selected-item');
+    
+            // Add highlight only to the clicked item
+            if (index === selectedIndex) {
+                console.log(`Highlighting checklist at index: ${index}`); // Log the selected item
+                item.classList.add('selected-item');
+            }
+        });
+    
+        selectedChecklistIndex = selectedIndex; // Update the selected index
+    }
+    
+
+    function displayChecklist(item, type, selectedIndex) {
         const title = document.getElementById('checklist-title');
         const description = document.getElementById('checklist-description');
         const stepsList = document.getElementById('checklist-steps');
@@ -132,20 +162,22 @@ document.addEventListener('DOMContentLoaded', function () {
             completeItem.innerText = "Procedure Complete";
             stepsList.appendChild(completeItem);
         }
+
+        highlightSelectedChecklist(selectedIndex); // Ensure the selected checklist is highlighted
     }
 
-    // Event listeners for the side buttons
+    // Event listeners for the side buttons (no change here, just highlighting specific type for your use case)
     document.querySelector('.button-left[data-type="warning"]').addEventListener('click', function () {
         populateChecklistList(checklistsData.warnings); // Load warnings when "Warning" button is clicked
         if (checklistsData.warnings.length > 0) {
-            displayChecklist(checklistsData.warnings[0], checklistsData.warnings); // Automatically display the first warning when clicked
+            displayChecklist(checklistsData.warnings[0], checklistsData.warnings, 0); // Automatically display the first warning when clicked
         }
     });
 
     document.querySelector('.button-left[data-type="emergency"]').addEventListener('click', function () {
         populateChecklistList(checklistsData.emergencies); // Load emergencies when "Emergency" button is clicked
         if (checklistsData.emergencies.length > 0) {
-            displayChecklist(checklistsData.emergencies[0], checklistsData.emergencies); // Automatically display the first emergency when clicked
+            displayChecklist(checklistsData.emergencies[0], checklistsData.emergencies, 0); // Automatically display the first emergency when clicked
         }
     });
 
@@ -153,35 +185,22 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('.button-left[data-type="abnormal procedures"]').addEventListener('click', function () {
         populateChecklistList(checklistsData.abnormalProcedures);
         if (checklistsData.abnormalProcedures.length > 0) {
-            displayChecklist(checklistsData.abnormalProcedures[0], checklistsData.abnormalProcedures);
+            displayChecklist(checklistsData.abnormalProcedures[0], checklistsData.abnormalProcedures, 0);
         }
     });
 
     document.querySelector('.button-left[data-type="caution a-f"]').addEventListener('click', function () {
         populateChecklistList(checklistsData.cautionAF);
         if (checklistsData.cautionAF.length > 0) {
-            displayChecklist(checklistsData.cautionAF[0], checklistsData.cautionAF);
+            displayChecklist(checklistsData.cautionAF[0], checklistsData.cautionAF, 0);
         }
     });
 
     document.querySelector('.button-left[data-type="caution g-z"]').addEventListener('click', function () {
         populateChecklistList(checklistsData.cautionGZ);
         if (checklistsData.cautionGZ.length > 0) {
-            displayChecklist(checklistsData.cautionGZ[0], checklistsData.cautionGZ);
+            displayChecklist(checklistsData.cautionGZ[0], checklistsData.cautionGZ, 0);
         }
-    });
-
-    // Add listeners for right-side buttons (if you have separate data for Advisory, Normal, etc.)
-    document.querySelector('.button-right[data-type="advisory"]').addEventListener('click', function () {
-        populateChecklistList(checklistsData.advisory);
-    });
-
-    document.querySelector('.button-right[data-type="normal"]').addEventListener('click', function () {
-        populateChecklistList(checklistsData.normal);
-    });
-
-    document.querySelector('.button-right[data-type="checklist options"]').addEventListener('click', function () {
-        console.log('Checklist Options button clicked');
     });
 
     // Initial call to load the checklists
