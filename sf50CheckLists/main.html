@@ -3,66 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SF50 Vision Jet Checklist</title>
+    <title>Aircraft Checklist</title>
     <link rel="stylesheet" href="css.css">
 </head>
 <body>
-
-    <!-- Main container to hold the two sections side by side -->
-<div class="container">
-    
-    <!-- Outer frame for the checklist title and content stacked vertically -->
-    <div class="outer-frame checklist-section">
-        <div class="checklist-title-box">
-            <h2 id="checklist-title">Checklist Title</h2> <!-- Title of the checklist -->
-            <div id="checklist-type" class="checklist-type-label"></div> <!-- This is for the label "Warning" or "Emergency" -->
-        </div>
-        <div class="checklist-display">
-            <p id="checklist-description"></p>
-            <ul id="checklist-steps">
-                <!-- Checklist steps will be dynamically added here -->
-            </ul>
-            <div id="checklist-notes">
-                <!-- Checklist notes will be dynamically added here -->
+    <div class="container">
+        <!-- Checklist Section -->
+        <div class="checklist-section outer-frame">
+            <div class="checklist-title-box">
+                <h2 id="checklist-title">Checklist Title</h2>
+                <div id="checklist-type" class="checklist-type-label">Type Label</div>
+            </div>
+            <div class="checklist-display">
+                <p id="checklist-description">Checklist Description</p>
+                <ul id="checklist-steps">
+                    <li class="step-item">
+                        <span class="step-text">Step 1</span>
+                        <span class="action-text">Action</span>
+                    </li>
+                    <!-- More steps -->
+                </ul>
+                <div id="checklist-notes">
+                    <p class="note-item">Note: Important information here.</p>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Outer frame for the checklist items -->
-    <div class="outer-frame warning-section"> <!-- Make sure buttons are inside the outer-frame -->
-        <!-- Move the title outside the scrollable area -->
-        <h2 class="checklist-items-title">Checklist</h2>
-        
-        <!-- Checklist Items Container -->
-        <div class="checklist-items-container">
-            <div class="warning-list">
+        <!-- Warning Section -->
+        <div class="warning-section outer-frame">
+            <!-- Buttons Container -->
+            <div class="buttons-container">
+                <div class="button-stack-left">
+                    <button class="button-left" data-type="emergency">Emergency</button>
+                    <button class="button-left" data-type="warning">Warning</button>
+                    <button class="button-left" data-type="abnormal procedures">Abnormal Procedures</button>
+                    <button class="button-left" data-type="caution a-f">Caution<br> (A-F)</button>
+                    <button class="button-left" data-type="caution g-z">Caution<br> (G-Z)</button>
+                </div>
+                <div class="button-stack-right">
+                    <button class="button-right" data-type="advisory">Advisory</button>
+                    <button class="button-right" data-type="normal">Normal</button>
+                    <button class="button-right checklist-options" data-type="checklist options">Checklist Options</button>
+                </div>
+            </div>
+
+            <!-- Checklist Items Title -->
+            <h2 class="checklist-items-title">Checklist</h2>
+
+            <!-- Checklist Items Container -->
+            <div class="checklist-items-container">
                 <ul id="warning-items">
-                    <!-- Checklists will be dynamically listed here -->
+                    <li class="warning-item">Checklist 1</li>
+                    <li class="warning-item">Checklist 2</li>
+                    <!-- More checklist items -->
                 </ul>
             </div>
-        </div>
 
-        <!-- Add the select button -->
+            
+            
+        </div>
+        <!-- Select Button -->
         <button id="select-button" class="select-button">Select</button>
-
-        <div class="button-stack-left">
-            <button class="button-left" data-type="emergency">Emergency</button>
-            <button class="button-left" data-type="warning">Warning</button>
-            <button class="button-left" data-type="abnormal procedures">Abnormal Procedures</button>
-            <button class="button-left" data-type="caution a-f">Caution<br> (A-F)</button>
-            <button class="button-left" data-type="caution g-z">Caution<br> (G-Z)</button>
-        </div>
-
-        <div class="button-stack-right">
-            <button class="button-right" data-type="advisory">Advisory</button>
-            <button class="button-right" data-type="normal">Normal</button>
-            <button class="button-right checklist-options" data-type="checklist options">Checklist Options</button>
-        </div>
     </div>
-</div>
 
-<!-- Include the JavaScript file -->
-<script src="js.js"></script>
-
+    <!-- Include the JavaScript file -->
+    <script src="js.js"></script>
 </body>
 </html>
