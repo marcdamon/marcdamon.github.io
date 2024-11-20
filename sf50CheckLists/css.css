@@ -314,6 +314,7 @@ input[type="checkbox"] {
    Select Button
    ======================= */
 /* Select Button */
+/* Select Button */
 .select-button {
     background-color: #45cdff;
     color: black;
@@ -321,15 +322,31 @@ input[type="checkbox"] {
     height: 115px; /* Fixed height */
     border: none;
     text-align: center;
-    font-size: 24px; /* Fixed font size */
+    font-size: 18px; /* Fixed font size */
     cursor: pointer;
     border-radius: 5px;
-    
-    /* Fixed positioning */
     position: fixed;
-    bottom: 20px; /* Distance from the bottom */
-    right: 20px; /* Distance from the right */
-    z-index: 1000; /* Ensure it stays above other elements */
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    
+    /* Prevents certain touch gestures */
+    touch-action: manipulation;
+    
+    /* Prevent font scaling */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    
+    /* Prevent text selection and touch callout */
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    
+    /* Ensure no CSS transforms are applied */
+    transform: none;
+    
+    /* Smooth transition */
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
 }
 
 /* =======================
