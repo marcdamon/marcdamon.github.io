@@ -1,5 +1,3 @@
-
-
 /* CSS Reset */
 * {
     margin: 0;
@@ -10,13 +8,20 @@
 /* =======================
    General Styles
    ======================= */
-   body {
+body {
     font-family: 'Frutiger', sans-serif;
     background-color: black;
     color: white;
     margin: 0;
     padding: 0;
     font-size: 16px; /* Base font size for consistency */
+    
+    /* Prevent text scaling */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    
+    /* Prevent scrolling if not needed */
+    overflow: hidden;
 }
 
 h2 {
@@ -52,6 +57,12 @@ h2 {
     padding: 20px;
     gap: 20px; /* Space between checklist and warning sections */
     box-sizing: border-box;
+    
+    /* Ensure fixed layout */
+    width: 1200px; /* Combined width of checklist and warning sections plus gaps */
+    height: 640px; /* Adjust height as needed */
+    margin: 0 auto; /* Center the container */
+    position: relative;
 }
 
 /* Outer frames for each section */
@@ -114,12 +125,14 @@ h2 {
     font-size: 20px; /* Fixed font size */
     scroll-behavior: smooth; /* Enables smooth scrolling */
     padding-bottom: 20px; /* Adds extra space at the bottom */
-    touch-action: pan-y; /* Restrict touch interactions to vertical panning */
+    
+    /* Prevent touch interactions that could cause zooming */
+    touch-action: manipulation;
 }
 
 #checklist-description {
-    font-size: 26px; /* Adjust the font size as needed */
-    line-height: 1.5; /* Adjust line height for better readability */
+    font-size: 26px; /* Fixed font size */
+    line-height: 1.5; /* Fixed line height for better readability */
 }
 
 #checklist-steps {
@@ -131,29 +144,38 @@ h2 {
 /* Step items for checklists */
 .step-item {
     display: flex;
-    justify-content: flex-start; /* Changed from space-between */
+    justify-content: flex-start; /* Align items to the start */
     align-items: center;
     padding: 5px 0;
     margin-bottom: 7px;
     line-height: 1.5;
     max-width: 100%;
     box-sizing: border-box;
+    
+    /* Prevent text selection */
+    -webkit-user-select: none;
+    user-select: none;
+    
+    /* Prevent touch callout */
+    -webkit-touch-callout: none;
 }
 
+/* Fixed sizes for step texts */
 .step-text {
     flex-grow: 1;
-    margin-right: 5px; /* Reduced from 10px */
+    margin-right: 5px; /* Reduced margin */
     font-size: 18px;
-}
-
-input[type="checkbox"] {
-    margin-right: 5px; /* Ensure it's not too large */
-}
-
-.step-text,
-.action-text {
     word-wrap: break-word;
     max-width: 100%;
+    color: white; /* Ensure text color remains consistent */
+}
+
+.action-text {
+    font-size: 18px;
+    margin-left: 5px; /* Slight spacing from step text */
+    word-wrap: break-word;
+    max-width: 100%;
+    color: white;
 }
 
 .special-symbol {
@@ -165,7 +187,7 @@ input[type="checkbox"] {
 .special-text {
     flex-grow: 1;
     color: white;
-    font-size: 1.2em; /* Made the text after the diamond larger */
+    font-size: 1.2em; /* Made the text after the symbol larger */
 }
 
 .note-item {
@@ -188,20 +210,22 @@ input[type="checkbox"] {
     flex-direction: column;
     align-items: center;
     width: 600px; /* Fixed width */
-    height: 600px; /* Increased height to fit the select button */
+    height: 600px; /* Fixed height */
     position: relative;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Checklist Items Title */
 .checklist-items-title {
     text-align: center;
     font-size: 24px;
     margin: 0;
     padding: 5px;
-    color: white;
+    color: #00ffff; /* Match title color */
 }
 
+/* Checklist Items Container */
 .checklist-items-container {
     border: 2px solid white; /* White border around the container */
     padding: 0; /* No extra padding */
@@ -212,6 +236,7 @@ input[type="checkbox"] {
     box-sizing: border-box;
 }
 
+/* Warning List */
 .warning-list {
     padding: 0;
     margin: 0;
@@ -245,6 +270,13 @@ input[type="checkbox"] {
     justify-content: center;
     align-items: center;
     width: calc(100% - 4px);
+}
+
+/* Highlighted or hovered warning items */
+.warning-item:hover,
+.warning-item.highlighted {
+    background-color: #00dfff;
+    color: black;
 }
 
 /* =======================
@@ -287,19 +319,28 @@ input[type="checkbox"] {
     height: 84px; /* Fixed height */
     border: none;
     text-align: center;
-    font-size: 18px;
+    font-size: 18px; /* Fixed font size */
     cursor: pointer;
     border-radius: 5px;
     margin: 3px 0; /* Consistent margin */
     padding: 5px; /* Padding inside buttons */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease; /* Smooth transitions */
+    
+    /* Prevent touch interactions that could cause zooming */
+    touch-action: manipulation;
+    
+    /* Prevent text selection and touch callout */
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
 }
 
 /* Selected Button Styles */
 .button-left.selected,
 .button-right.selected {
-    background-color: #c6f8ff; 
-    border: 2px solid #45cdff; /* Optional: Add a blue border for emphasis */
+    background-color: #c6f8ff; /* Light blue background */
+    border: 2px solid #45cdff; /* Blue border for emphasis */
+    color: black;
 }
 
 .button-right.checklist-options {
@@ -313,7 +354,6 @@ input[type="checkbox"] {
 /* =======================
    Select Button
    ======================= */
-/* Select Button */
 /* Select Button */
 .select-button {
     background-color: #45cdff;
@@ -354,14 +394,14 @@ input[type="checkbox"] {
    ======================= */
 .selected-item {
     background-color: #0077aa; /* Darker blue */
-    color: #000000; /* Black text */
+    color: #ffffff; /* White text */
 }
 
 /* =======================
    Checkbox Styling
    ======================= */
+/* Remove default checkbox appearance */
 input[type="checkbox"] {
-    /* Appearance styling */
     appearance: none; /* Remove default styling */
     background-color: black;
     border: 2px solid white;
@@ -371,9 +411,17 @@ input[type="checkbox"] {
     cursor: pointer;
     margin-right: 10px; /* Spacing after checkbox */
     
-    /* Size */
+    /* Fixed size */
     width: 16px;
     height: 16px;
+    
+    /* Prevent touch interactions that could cause zooming */
+    touch-action: manipulation;
+    
+    /* Prevent text selection and touch callout */
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
 }
 
 input[type="checkbox"]:checked {
@@ -385,7 +433,17 @@ input[type="checkbox"]:checked {
     background-size: 20px; /* Size of the checkmark */
 }
 
+/* Style for checked step items */
 .step-item.checked .step-text,
 .step-item.checked .action-text {
     color: #3cb62e; /* Green color for checked text */
+}
+
+/* =======================
+   Accessibility Focus Styles
+   ======================= */
+.button-left:focus,
+.button-right:focus,
+.select-button:focus {
+    outline: 3px solid #45cdff; /* Blue outline for focus */
 }
