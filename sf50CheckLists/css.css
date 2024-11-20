@@ -93,14 +93,16 @@ h2 {
     background-color: transparent;
 }
 
+/* Checklist Display */
 .checklist-display {
     border: 2px solid white;
     padding: 10px;
     background-color: black;
     height: 600px; /* Fixed height */
-    overflow-y: auto; /* Scroll if content exceeds height */
+    overflow-y: auto; /* Enable vertical scrolling */
     box-sizing: border-box;
     font-size: 20px; /* Fixed font size */
+    scroll-behavior: smooth; /* Enables smooth scrolling */
 }
 
 #checklist-description {
@@ -227,11 +229,7 @@ h2 {
     width: calc(100% - 4px);
 }
 
-.warning-item:hover,
-.warning-item.highlighted {
-    background-color: #00dfff; /* Light blue */
-    color: black; /* Black text on hover/highlight */
-}
+
 
 /* =======================
    Buttons
@@ -267,8 +265,8 @@ h2 {
 /* Buttons */
 .button-left,
 .button-right {
-    background-color: #45cdff;
-    color: black;
+    background-color: #45cdff; /* Original background color */
+    color: black; /* Original text color */
     width: 100px; /* Fixed width */
     height: 84px; /* Fixed height */
     border: none;
@@ -278,6 +276,14 @@ h2 {
     border-radius: 5px;
     margin: 3px 0; /* Consistent margin */
     padding: 5px; /* Padding inside buttons */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
+}
+
+/* Selected Button Styles */
+.button-left.selected,
+.button-right.selected {
+    background-color: #c6f8ff; 
+    border: 2px solid #45cdff; /* Optional: Add a blue border for emphasis */
 }
 
 .button-right.checklist-options {
