@@ -27,26 +27,36 @@ document.addEventListener('DOMContentLoaded', function () {
     function populateChecklistList(checklistType, typeKey) {
         const checklistItems = document.getElementById('warning-items');
         checklistItems.innerHTML = ''; // Clear existing list
-
+    
         checklistType.forEach((item, index) => {
             const listItem = document.createElement('li');
             listItem.innerText = item.title;
             listItem.classList.add('warning-item');
-
+    
             // Add event listener for highlighting the selected checklist
             listItem.addEventListener('click', () => {
                 displayChecklist(item, typeKey, index);
                 highlightSelectedChecklist(index);
             });
-
+    
             checklistItems.appendChild(listItem);
         });
-
+    
         // Automatically highlight the first checklist item by default
         if (checklistType.length > 0) {
             highlightSelectedChecklist(0);
         }
+    
+        // Reset scroll position of the checklist titles list to the top
+        const checklistContainer = document.querySelector('.checklist-items-container');
+        checklistContainer.scrollTop = 0;
     }
+
+
+
+
+
+    
 
     function highlightSelectedChecklist(selectedIndex) {
         const checklistItems = document.querySelectorAll('.warning-item');
