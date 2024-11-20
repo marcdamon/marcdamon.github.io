@@ -1,9 +1,4 @@
-/* CSS Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
 
 /* =======================
    General Styles
@@ -60,7 +55,7 @@ h2 {
     
     /* Ensure fixed layout */
     width: 1200px; /* Combined width of checklist and warning sections plus gaps */
-    height: 640px; /* Adjust height as needed */
+    height: 760px; /* Adjust height as needed */
     margin: 0 auto; /* Center the container */
     position: relative;
 }
@@ -210,7 +205,7 @@ h2 {
     flex-direction: column;
     align-items: center;
     width: 600px; /* Fixed width */
-    height: 600px; /* Fixed height */
+    height: 550px; /* Fixed height */
     position: relative;
     padding: 0;
     box-sizing: border-box;
@@ -358,8 +353,8 @@ h2 {
 .select-button {
     background-color: #45cdff;
     color: black;
-    width: 115px; /* Fixed width */
-    height: 115px; /* Fixed height */
+    width: 150px; /* Fixed width */
+    height: 50px; /* Fixed height */
     border: none;
     text-align: center;
     font-size: 18px; /* Fixed font size */
