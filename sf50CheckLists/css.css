@@ -295,10 +295,10 @@ body {
 
 /* Checklist section */
 .checklist-section {
-    display: flex;
-    flex-direction: column;
-    height: 100%; /* Take full height of the outer frame */
+    width: 58%; /* Adjusted from 600px to 58% */
 }
+
+
 #checklist-type {
     color: #00ffff; /* Adjust the color to match your design */
     font-size: 24px;
@@ -445,8 +445,11 @@ input[type="checkbox"] {
 @media only screen and (max-width: 1024px) {
     /* Adjust the size of the container */
     .container {
-        padding: 10px; /* Reduce padding */
-        gap: 10px; /* Reduce gap between sections */
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        gap: 20px; /* Adds space between the checklist and warning columns */
+        flex-wrap: wrap; /* Allow items to wrap on smaller screens */
     }
 
     /* Adjust button sizes */
@@ -501,7 +504,8 @@ input[type="checkbox"] {
 
     /* Reduce the size of the warning list */
     .warning-section {
-        width: 90%; /* Allow warning section to shrink */
+        width: 38%; /* Adjusted from 600px to 38% */
+        position: relative; /* Ensure absolute positioning within this container works */
     }
 
     /* Reduce the height of the checklist items to fit the smaller screen */
