@@ -100,9 +100,12 @@ h2 {
     background-color: black;
     height: 600px; /* Fixed height */
     overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
     box-sizing: border-box;
     font-size: 20px; /* Fixed font size */
     scroll-behavior: smooth; /* Enables smooth scrolling */
+    padding-bottom: 20px; /* Adds extra space at the bottom */
+    touch-action: pan-y; /* Restrict touch interactions to vertical panning */
 }
 
 #checklist-description {
@@ -118,6 +121,8 @@ h2 {
 
 /* Step items for checklists */
 .step-item {
+    max-width: 100%; /* Prevents child elements from exceeding container width */
+    box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -126,16 +131,10 @@ h2 {
     line-height: 1.5;
 }
 
-.step-text {
-    flex-grow: 1;
-    margin-right: 10px;
-    font-size: 18px; /* Fixed font size */
-}
-
+.step-text,
 .action-text {
-    white-space: nowrap;
-    color: white;
-    font-size: 18px; /* Fixed font size */
+    word-wrap: break-word; /* Allows text to wrap within the container */
+    max-width: 100%;
 }
 
 .special-symbol {
