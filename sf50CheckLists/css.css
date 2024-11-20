@@ -91,7 +91,7 @@ h2 {
 
 #checklist-title {
     color: #00ffff;
-    margin: 12px 10px 0 10px;
+    margin: 25px 10px 15px 10px; /* Added bottom margin */
     font-size: 24px;
 }
 
@@ -196,6 +196,10 @@ h2 {
     font-weight: bold;
     padding: 10px 0;
 }
+
+#checklist-group-name {
+    margin-bottom: 20px; /* Adjust the value as needed */
+} 
 
 /* =======================
    Warning Section
