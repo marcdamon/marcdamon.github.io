@@ -229,8 +229,6 @@ h2 {
     width: calc(100% - 4px);
 }
 
-
-
 /* =======================
    Buttons
    ======================= */
@@ -305,7 +303,7 @@ h2 {
     height: 150px; /* Fixed height */
     border: none;
     text-align: center;
-    font-size: 18px; /* Fixed font size */
+    font-size: 24px; /* Fixed font size */
     cursor: pointer;
     border-radius: 5px;
     
