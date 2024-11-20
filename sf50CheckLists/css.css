@@ -1,3 +1,12 @@
+
+
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 /* =======================
    General Styles
    ======================= */
@@ -121,19 +130,29 @@ h2 {
 
 /* Step items for checklists */
 .step-item {
-    max-width: 100%; /* Prevents child elements from exceeding container width */
-    box-sizing: border-box;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start; /* Changed from space-between */
     align-items: center;
-    padding: 5px 0; /* Keep padding inside the step */
-    margin-bottom: 7px; /* Add space between the lines */
+    padding: 5px 0;
+    margin-bottom: 7px;
     line-height: 1.5;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.step-text {
+    flex-grow: 1;
+    margin-right: 5px; /* Reduced from 10px */
+    font-size: 18px;
+}
+
+input[type="checkbox"] {
+    margin-right: 5px; /* Ensure it's not too large */
 }
 
 .step-text,
 .action-text {
-    word-wrap: break-word; /* Allows text to wrap within the container */
+    word-wrap: break-word;
     max-width: 100%;
 }
 
