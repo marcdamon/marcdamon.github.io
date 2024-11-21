@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <!-- Existing meta tags -->
-        <meta charset="UTF-8">
-        <!-- Properly configured viewport -->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Aircraft Checklist</title>
-        <link rel="stylesheet" href="css.css">
-    </head>
+<head>
+    <!-- Existing meta tags -->
+    <meta charset="UTF-8">
+    <!-- Properly configured viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aircraft Checklist</title>
+    <link rel="stylesheet" href="css.css">
+</head>
 <body>
     <div class="container">
         <!-- Checklist Section -->
@@ -17,17 +17,19 @@
                 <div id="checklist-type" class="checklist-type-label">Type Label</div>
             </div>
             <div class="checklist-display" id="checklist-container">
-                <p id="checklist-description">Checklist Description</p>
-                <ul id="checklist-steps">
-                    <li class="step-item">
-                        <span class="step-text">Step 1</span>
-                        <span class="action-text">Action</span>
-                    </li>
-                    <!-- More steps -->
-                </ul>
-                <div id="checklist-notes">
-                    <p class="note-item">Note: Important information here.</p>
+                <!-- Scrollable Content -->
+                <div class="scrollable-content">
+                    <p id="checklist-description">Checklist Description</p>
+                    <ul id="checklist-steps">
+                        <!-- Steps will be dynamically generated here -->
+                    </ul>
+                    <div id="checklist-notes">
+                        <p class="note-item">Note: Important information here.</p>
+                    </div>
                 </div>
+                
+                <!-- "Go to Next Checklist?" Button -->
+                <button id="go-next-checklist" class="go-next-checklist">Go to Next Checklist?</button>
             </div>
         </div>
 
@@ -60,12 +62,10 @@
                     <!-- More checklist items -->
                 </ul>
             </div>
-
-            
-            
         </div>
+        
         <!-- Select Button -->
-        <button id="select-button" class="select-button">Select1</button>
+        <button id="select-button" class="select-button">Select</button>
     </div>
 
     <!-- Include the JavaScript file -->

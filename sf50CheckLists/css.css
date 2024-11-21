@@ -44,9 +44,55 @@ h2 {
 }
 
 /* =======================
+   "Go to Next Checklist?" Button Styles
+   ======================= */
+   .go-next-checklist {
+    color: #00dfff; /* Fixed blue color */
+    background: none; /* Transparent background */
+    border: none; /* No border */
+    font-size: 18px; /* Adjust font size as needed */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-family: 'Frutiger', sans-serif; /* Consistent font */
+    padding: 5px 8px; /* Adjusted padding */
+    position: absolute; /* Absolute positioning within checklist-display */
+    bottom: 10px; /* 10px from the bottom */
+    right: 10px; /* 10px from the right */
+    z-index: 1000; /* Ensure it stays above other elements */
+    transition: none; /* Remove color transition */
+    text-decoration: none; /* Remove underline */
+}
+
+/* Remove any styles that change color on hover, focus, or active */
+.go-next-checklist:hover,
+.go-next-checklist:focus,
+.go-next-checklist:active {
+    color: #00dfff; /* Maintain the same blue color */
+    background: none; /* Ensure background remains unchanged */
+    outline: none; /* Remove outline */
+    text-decoration: none; /* Ensure no underline appears */
+}
+
+
+/* =======================
    Container and Layout
    ======================= */
-.container {
+
+/* Prevent Overlapping by Adding Bottom Padding to Checklist Display */
+.checklist-display {
+    display: flex;
+    flex-direction: column;
+    height: 720px; /* Fixed height */
+    border: 2px solid white;
+    padding: 10px;
+    background-color: black;
+    box-sizing: border-box;
+    font-size: 20px; /* Fixed font size */
+    overflow: hidden; /* Prevent scrolling of entire container */
+    position: relative; /* For positioning the button */
+    padding-bottom: 38px; /* Reduced space for the fixed button */
+}
+
+   .container {
     display: flex;
     justify-content: space-between;
     padding: 20px;
@@ -108,22 +154,6 @@ h2 {
     background-color: transparent;
 }
 
-/* Checklist Display */
-.checklist-display {
-    border: 2px solid white;
-    padding: 10px;
-    background-color: black;
-    height: 700px; /* Fixed height */
-    overflow-y: auto; /* Enable vertical scrolling */
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-    box-sizing: border-box;
-    font-size: 20px; /* Fixed font size */
-    scroll-behavior: smooth; /* Enables smooth scrolling */
-    padding-bottom: 20px; /* Adds extra space at the bottom */
-    /* Prevent touch interactions that could cause zooming */
-    touch-action: manipulation;
-}
-
 #checklist-description {
     font-size: 26px; /* Retain existing styles */
     line-height: 1.5; /* Retain existing styles */
@@ -154,6 +184,9 @@ h2 {
     
     /* Prevent touch callout */
     -webkit-touch-callout: none;
+
+     /* Add Scroll Snap Alignment */
+     scroll-snap-align: start; /* Align the start (top) of the item with the container */
 }
 
 /* Fixed sizes for step texts */
@@ -233,7 +266,8 @@ h2 {
     width: 370px; /* Fixed width to contain the checklist items */
     height: 440px; /* Fixed height to show 5 items */
     overflow-y: auto; /* Enable scrolling */
-    box-sizing: border-box;
+    box-sizing: border-box; scroll-snap-type: y mandatory; /* Enable vertical snapping */
+    scroll-behavior: smooth; /* Smooth scrolling behavior */
 }
 
 /* Warning List */
@@ -339,7 +373,7 @@ h2 {
 .button-left.selected,
 .button-right.selected {
     background-color: #c6f8ff; /* Light blue background */
-    border: 2px solid #45cdff; /* Blue border for emphasis */
+    border: 0px solid #45cdff; /* Blue border for emphasis */
     color: black;
 }
 
@@ -446,4 +480,10 @@ input[type="checkbox"]:checked {
 .button-right:focus,
 .select-button:focus {
     outline: 3px solid #45cdff; /* Blue outline for focus */
+}
+
+.scrollable-content {
+    flex: 1; /* Takes up remaining space */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding-bottom: 0px; /* Increased space to prevent overlap */
 }
