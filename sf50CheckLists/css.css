@@ -58,6 +58,7 @@ h2 {
     z-index: 1000; /* Ensure it stays above other elements */
     transition: none; /* Remove color transition */
     text-decoration: none; /* Remove underline */
+    touch-action: manipulation;
 }
 
 /* Remove any styles that change color on hover, focus, or active */

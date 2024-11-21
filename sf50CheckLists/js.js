@@ -5,6 +5,22 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentStepIndex = 0; // Keep track of current step in the checklist
 
     /**
+     * Debounce function to limit the rate at which a function can fire.
+     * @param {Function} func - The function to debounce.
+     * @param {number} delay - The delay in milliseconds.
+     * @returns {Function} - The debounced function.
+     */
+    function debounce(func, delay) {
+        let inDebounce;
+        return function(...args) {
+            if (inDebounce) return;
+            func.apply(this, args);
+            inDebounce = true;
+            setTimeout(() => inDebounce = false, delay);
+        }
+    }
+
+    /**
      * Handles the selection styling for category buttons.
      * Excludes the "Go to Next Checklist?" button to prevent interference.
      * @param {HTMLElement} button - The button element that was clicked.
@@ -135,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Scroll the selected item into view within the checklist list container
                 item.scrollIntoView({
                     behavior: 'smooth',
-                    block: 'nearest', // 'start', 'center', 'end', 'nearest'
+                    block: 'nearest', // Options: 'start', 'center', 'end', 'nearest'
                     inline: 'nearest'
                 });
             }
@@ -481,11 +497,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /**
      * Event listener for the "Go to Next Checklist?" button.
-     * Simplified: No class manipulation.
+     * Debounced to prevent rapid clicks causing zoom.
      */
-    document.getElementById('go-next-checklist').addEventListener('click', function () {
+    document.getElementById('go-next-checklist').addEventListener('click', debounce(function () {
         moveToNextChecklist();
-    });
+    }, 300)); // 300ms debounce delay
 
     // Initial call to load the checklists
     loadChecklists();
