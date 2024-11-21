@@ -197,9 +197,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 checkbox.id = `step-${index}`;
                 stepItem.appendChild(checkbox);
 
-                const stepText = document.createElement('span');
-                stepText.classList.add('step-text');
-                stepText.innerText = step.step;
+                const label = document.createElement('label');
+                label.htmlFor = `step-${index}`; // Ensure the label is correctly linked
+                label.classList.add('step-text');
+                label.innerText = step.step;
+
+                // **Conditional Dots Span**
+                let dots;
+                if (step.action) {
+                    dots = document.createElement('span');
+                    dots.classList.add('dots');
+                }
 
                 const actionText = document.createElement('span');
                 actionText.classList.add('action-text');
@@ -207,14 +215,17 @@ document.addEventListener('DOMContentLoaded', function () {
                     actionText.innerText = step.action;
                 }
 
-                stepItem.appendChild(stepText);
+                stepItem.appendChild(label);
+                if (step.action) {
+                    stepItem.appendChild(dots); // Append dots only if action exists
+                }
                 stepItem.appendChild(actionText);
 
                 // Add event listener for checkbox to toggle text color and auto-scroll
                 checkbox.addEventListener('change', function () {
                     if (this.checked) {
                         stepItem.classList.add('checked'); // Add checked class for styling
-                        stepText.style.color = '#3cb62e'; // Apply green color to text
+                        label.style.color = '#3cb62e'; // Apply green color to text
                         actionText.style.color = '#3cb62e'; // Apply green color to action text
 
                         // Scroll the stepItem into view completely
@@ -225,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         });
                     } else {
                         stepItem.classList.remove('checked'); // Remove checked class
-                        stepText.style.color = 'white'; // Revert text color
+                        label.style.color = 'white'; // Revert text color
                         actionText.style.color = 'white'; // Revert action text color
                     }
                 });
@@ -235,8 +246,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 specialText.innerText = step.text;
                 stepItem.appendChild(specialText);
             } else if (step.stepType === 'procedureComplete') {
-                stepItem.classList.add('procedure-complete');
-                stepItem.innerText = step.text;
+                const completeItem = document.createElement('li');
+                completeItem.classList.add('procedure-complete');
+                completeItem.innerText = step.text;
+                stepsList.appendChild(completeItem);
             } else if (step.stepType === 'warning' || step.stepType === 'caution') {
                 const warningText = document.createElement('span');
                 warningText.classList.add('warning-text');

@@ -1,9 +1,7 @@
-
-
 /* =======================
    General Styles
    ======================= */
-body {
+   body {
     font-family: 'Frutiger', sans-serif;
     background-color: black;
     color: white;
@@ -46,7 +44,7 @@ h2 {
 /* =======================
    "Go to Next Checklist?" Button Styles
    ======================= */
-   .go-next-checklist {
+.go-next-checklist {
     color: #00dfff; /* Fixed blue color */
     background: none; /* Transparent background */
     border: none; /* No border */
@@ -92,7 +90,7 @@ h2 {
     padding-bottom: 38px; /* Reduced space for the fixed button */
 }
 
-   .container {
+.container {
     display: flex;
     justify-content: space-between;
     padding: 20px;
@@ -170,8 +168,7 @@ h2 {
 /* Step items for checklists */
 .step-item {
     display: flex;
-    justify-content: flex-start; /* Align items to the start */
-    align-items: center;
+    align-items: flex-end; /* Align items to the bottom */
     padding: 3px 0;
     margin-bottom: 0px;
     line-height: 1.5;
@@ -185,13 +182,15 @@ h2 {
     /* Prevent touch callout */
     -webkit-touch-callout: none;
 
-     /* Add Scroll Snap Alignment */
-     scroll-snap-align: start; /* Align the start (top) of the item with the container */
+    /* Flex properties for leader dots */
+    /* Removed scroll-snap-align to prevent interference with fixed height */
+    /* scroll-snap-align: start; */ 
 }
 
 /* Fixed sizes for step texts */
 .step-text {
-    flex-grow: 1;
+    /* Changed from flex-grow: 1 to flex-shrink: 0 to prevent stretching */
+    flex-shrink: 0;
     margin-right: 5px; /* Reduced margin */
     font-size: 18px;
     word-wrap: break-word;
@@ -199,7 +198,31 @@ h2 {
     color: white; /* Ensure text color remains consistent */
 }
 
+.dots {
+    flex-grow: 1; /* Allow dots to fill the available space */
+    margin: 0 10px; /* Space between step text and action text */
+    position: relative; /* Positioning context for pseudo-element */
+}
+
+.dots::before {
+    content: '';
+    position: absolute;
+    bottom: 5px; /* Slight upward adjustment */
+    left: 0;
+    right: 0;
+    border-bottom: 3px dotted white; /* Thicker dotted line */
+    
+    /* Enhanced Dot Size and Spacing */
+    background-image: radial-gradient(circle, white 0px, transparent 0px);
+    background-size: 6px 6px; /* Increased size and spacing of dots */
+
+    /* Adjust the transform as needed */
+    transform: translateY(-30%); /* Adjust the percentage to align properly */
+}
+
 .action-text {
+    /* Changed from flex-grow: 0 to flex-shrink: 0 to prevent stretching */
+    flex-shrink: 0;
     font-size: 18px;
     margin-left: 5px; /* Slight spacing from step text */
     word-wrap: break-word;
@@ -266,7 +289,8 @@ h2 {
     width: 370px; /* Fixed width to contain the checklist items */
     height: 440px; /* Fixed height to show 5 items */
     overflow-y: auto; /* Enable scrolling */
-    box-sizing: border-box; scroll-snap-type: y mandatory; /* Enable vertical snapping */
+    box-sizing: border-box;
+    scroll-snap-type: y mandatory; /* Enable vertical snapping */
     scroll-behavior: smooth; /* Smooth scrolling behavior */
 }
 
