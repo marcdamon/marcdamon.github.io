@@ -54,8 +54,8 @@ h2 {
     box-sizing: border-box;
     
     /* Ensure fixed layout */
-    width: 1200px; /* Combined width of checklist and warning sections plus gaps */
-    height: 760px; /* Adjust height as needed */
+    width: 1300px; /* Combined width of checklist and warning sections plus gaps */
+    height: 860px; /* Adjust height as needed */
     margin: 0 auto; /* Center the container */
     position: relative;
 }
@@ -75,7 +75,7 @@ h2 {
 .checklist-section {
     display: flex;
     flex-direction: column;
-    width: 580px; /* Fixed width */
+    width: 680px; /* Fixed width */
     position: relative;
 }
 
@@ -113,21 +113,22 @@ h2 {
     border: 2px solid white;
     padding: 10px;
     background-color: black;
-    height: 600px; /* Fixed height */
+    height: 700px; /* Fixed height */
     overflow-y: auto; /* Enable vertical scrolling */
     overflow-x: hidden; /* Prevent horizontal scrolling */
     box-sizing: border-box;
     font-size: 20px; /* Fixed font size */
     scroll-behavior: smooth; /* Enables smooth scrolling */
     padding-bottom: 20px; /* Adds extra space at the bottom */
-    
     /* Prevent touch interactions that could cause zooming */
     touch-action: manipulation;
 }
 
 #checklist-description {
-    font-size: 26px; /* Fixed font size */
-    line-height: 1.5; /* Fixed line height for better readability */
+    font-size: 26px; /* Retain existing styles */
+    line-height: 1.5; /* Retain existing styles */
+    margin-top: 0px;    /* Adjust as needed */
+    margin-bottom: 10px; /* Adjust as needed */
 }
 
 #checklist-steps {
@@ -141,8 +142,8 @@ h2 {
     display: flex;
     justify-content: flex-start; /* Align items to the start */
     align-items: center;
-    padding: 5px 0;
-    margin-bottom: 7px;
+    padding: 3px 0;
+    margin-bottom: 0px;
     line-height: 1.5;
     max-width: 100%;
     box-sizing: border-box;

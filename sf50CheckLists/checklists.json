@@ -540,7 +540,7 @@
               },
               {
                 "stepType": "checkbox",
-                "step": "7. ENGINE FIRE ACKNOWLEDGE Switch",
+                "step": "7. ENGINE FIRE ACK",
                 "action": "LIFT GUARD, TOGGLE"
               },
               {
@@ -1064,7 +1064,7 @@
               },
               {
                 "stepType": "substep",
-                "step": "a. ENGINE FIRE ACKNOWLEDGE Switch",
+                "step": "a. ENGINE FIRE ACK",
                 "action": "LIFT GUARD, TOGGLE"
               },
               {
@@ -1209,7 +1209,7 @@
               },
               {
                 "stepType": "substep",
-                "step": "a. ENGINE FIRE ACKNOWLEDGE Switch",
+                "step": "a. ENGINE FIRE ACK",
                 "action": "LIFT GUARD, TOGGLE"
               },
               {
@@ -2041,7 +2041,7 @@
                   },
                   {
                     "stepType": "checkbox",
-                    "step": "5. ENGINE FIRE ACKNOWLEDGE Switch",
+                    "step": "5. ENGINE FIRE ACK",
                     "action": "LIFT GUARD, TOGGLE"
                   },
                   {
@@ -2696,7 +2696,7 @@
               },
               {
                 "stepType": "substep",
-                "step": "a. ENGINE FIRE ACKNOWLEDGE Switch",
+                "step": "a. ENGINE FIRE ACK",
                 "action": "LIFT GUARD, TOGGLE"
               },
               {
@@ -2808,7 +2808,7 @@
             "steps": [
               {
                 "stepType": "checkbox",
-                "step": "1. ENGINE FIRE ACKNOWLEDGE Switch",
+                "step": "1. ENGINE FIRE ACK",
                 "action": "LIFT GUARD, TOGGLE"
               },
               {
@@ -3298,7 +3298,7 @@
               },
               {
                 "stepType": "checkbox",
-                "step": "2. ENGINE FIRE ACKNOWLEDGE Switch",
+                "step": "2. ENGINE FIRE ACK",
                 "action": "LIFT GUARD, TOGGLE"
               }
             ],
@@ -5730,7 +5730,7 @@
       },
       {
         "stepType": "substep",
-        "step": "a. ENGINE FIRE ACKNOWLEDGE Switch",
+        "step": "a. ENGINE FIRE ACK",
         "action": "LIFT GUARD, TOGGLE, CLOSE GUARD"
       },
       {
@@ -5748,7 +5748,7 @@
       },
       {
         "stepType": "substep",
-        "step": "a. ENGINE FIRE ACKNOWLEDGE Switch",
+        "step": "a. ENGINE FIRE ACK",
         "action": "CLOSE GUARD, LIFT GUARD, TOGGLE"
       },
       {
