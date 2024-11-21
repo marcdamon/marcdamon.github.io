@@ -54,7 +54,7 @@ h2 {
     box-sizing: border-box;
     
     /* Ensure fixed layout */
-    width: 1300px; /* Combined width of checklist and warning sections plus gaps */
+    width: 1270px; /* Combined width of checklist and warning sections plus gaps */
     height: 860px; /* Adjust height as needed */
     margin: 0 auto; /* Center the container */
     position: relative;
@@ -75,7 +75,7 @@ h2 {
 .checklist-section {
     display: flex;
     flex-direction: column;
-    width: 680px; /* Fixed width */
+    width: 650px; /* Fixed width */
     position: relative;
 }
 
