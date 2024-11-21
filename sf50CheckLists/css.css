@@ -181,10 +181,17 @@ h2 {
     
     /* Prevent touch callout */
     -webkit-touch-callout: none;
+    
+    /* Remove fixed height */
+    /* height: 63px; */ /* Comment out or remove this line */
+}
 
-    /* Flex properties for leader dots */
-    /* Removed scroll-snap-align to prevent interference with fixed height */
-    /* scroll-snap-align: start; */ 
+/* Ensure checklist steps are displayed correctly */
+#checklist-steps {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
 }
 
 /* Fixed sizes for step texts */
@@ -314,7 +321,22 @@ h2 {
     list-style-type: none; /* Ensure no default list styles */
 }
 
+/* Apply box-sizing globally for consistency */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Checklist List Container */
+.checklist-list-container {
+    max-height: 400px; /* Adjust based on your design needs */
+    overflow-y: auto;  /* Enable vertical scrolling */
+    padding-right: 10px; /* Optional: Prevent content from hiding behind scrollbar */
+    box-sizing: border-box;
+}
+
+/* Checklist Items - Default State */
 .warning-item {
+    box-sizing: border-box; /* Ensure padding and border are included in height */
     padding: 10px;
     background-color: black;
     margin: 1px 0;
@@ -323,18 +345,22 @@ h2 {
     text-align: center;
     color: white;
     font-size: 18px; /* Fixed font size */
-    height: 63px; /* Fixed height */
+    height: 86px; /* Fixed height */
     display: flex;
     justify-content: center;
     align-items: center;
-    width: calc(100% - 4px);
+    width: 100%; /* Adjusted to 100% since box-sizing is border-box */
+    border-left: 4px solid transparent; /* Preallocate border space */
+    padding-left: 8px; /* Space between border and text */
+    transition: background-color 0.3s, border-left-color 0.3s; /* Smooth transitions */
 }
 
-/* Highlighted or hovered warning items */
-.warning-item:hover,
-.warning-item.highlighted {
-    background-color: #00dfff;
-    color: black;
+/* Selected Checklist Item */
+.warning-item.selected-item {
+    background-color: #0077aa; /* Light blue background */
+    border-left-color: #007bff; /* Blue left border */
+    /* No changes to padding or height */
+    cursor: pointer; /* Change cursor to pointer on hover */
 }
 
 /* =======================
@@ -450,9 +476,10 @@ h2 {
 /* =======================
    Selected Item Styling
    ======================= */
-.selected-item {
-    background-color: #0077aa; /* Darker blue */
-    color: #ffffff; /* White text */
+   .selected-item {
+    border: 2px solid #00dfff; /* Blue border to highlight selection */
+    border-radius: 2px; /* Slightly rounded corners for aesthetics */
+    padding: 2px; /* Optional: Adds a small padding inside the border */
 }
 
 /* =======================

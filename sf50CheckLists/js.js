@@ -115,20 +115,29 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * Highlights the selected checklist item in the list.
+     * Highlights the selected checklist item in the list and scrolls it into view.
      * @param {number} selectedIndex - Index of the selected checklist.
      */
     function highlightSelectedChecklist(selectedIndex) {
         const checklistItems = document.querySelectorAll('.warning-item');
 
         checklistItems.forEach((item, index) => {
-            // Remove highlight from all items
+            // Remove highlight and ARIA attribute from all items
             item.classList.remove('selected-item');
+            item.setAttribute('aria-selected', 'false');
 
-            // Add highlight only to the selected item
+            // Add highlight and ARIA attribute only to the selected item
             if (index === selectedIndex) {
-                console.log(`Highlighting checklist at index: ${index}`); // Log the selected item
+                console.log(`Highlighting checklist at index: ${index}`);
                 item.classList.add('selected-item');
+                item.setAttribute('aria-selected', 'true');
+
+                // Scroll the selected item into view within the checklist list container
+                item.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest', // 'start', 'center', 'end', 'nearest'
+                    inline: 'nearest'
+                });
             }
         });
 
@@ -224,20 +233,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Add event listener for checkbox to toggle text color and auto-scroll
                 checkbox.addEventListener('change', function () {
                     if (this.checked) {
-                        stepItem.classList.add('checked'); // Add checked class for styling
-                        label.style.color = '#3cb62e'; // Apply green color to text
-                        actionText.style.color = '#3cb62e'; // Apply green color to action text
-
-                        // Scroll the stepItem into view completely
-                        stepItem.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start', // Align the top of the element to the top of the container
-                            inline: 'nearest'
-                        });
+                        markStepAsChecked(index);
                     } else {
-                        stepItem.classList.remove('checked'); // Remove checked class
-                        label.style.color = 'white'; // Revert text color
-                        actionText.style.color = 'white'; // Revert action text color
+                        unmarkStepAsChecked(index);
                     }
                 });
             } else if (step.stepType === 'note' || step.stepType === 'special') {
@@ -278,8 +276,17 @@ document.addEventListener('DOMContentLoaded', function () {
             stepsList.appendChild(completeItem);
         }
 
-        // **Removed class manipulation to prevent color changes**
-        // goNextButton.classList.remove('selected');
+        // Remove 'selected-item' from all steps (in case of reloading)
+        const allSteps = document.querySelectorAll('#checklist-steps .step-item');
+        allSteps.forEach(step => step.classList.remove('selected-item'));
+
+        // Assign 'selected-item' to the first checkbox step
+        const firstCheckboxStep = findNextCheckboxStep(0, allSteps);
+        if (firstCheckboxStep) {
+            firstCheckboxStep.classList.add('selected-item');
+            currentStepIndex = Array.from(allSteps).indexOf(firstCheckboxStep);
+            scrollToSelectedItem(firstCheckboxStep); // Center the first step
+        }
 
         // Scroll the checklist display area to the top
         setTimeout(() => {
@@ -291,6 +298,89 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Highlight the selected checklist in the list
         highlightSelectedChecklist(selectedIndex);
+    }
+
+    /**
+     * Finds the next checklist step that includes a checkbox starting from a given index.
+     * @param {number} startIndex - The index to start searching from.
+     * @param {NodeList} stepItems - The list of step items.
+     * @returns {HTMLElement|null} - The next checkbox step item or null if none found.
+     */
+    function findNextCheckboxStep(startIndex, stepItems) {
+        for (let i = startIndex; i < stepItems.length; i++) {
+            const checkbox = stepItems[i].querySelector('input[type="checkbox"]');
+            if (checkbox) {
+                return stepItems[i];
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Scrolls the selected step item into view, centering it within the scrollable container.
+     * @param {HTMLElement} element - The selected step item element.
+     */
+    function scrollToSelectedItem(element) {
+        if (!element) {
+            console.error('Element to scroll to is not defined.');
+            return;
+        }
+
+        // Use scrollIntoView with 'center' to keep the element in the middle
+        element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center', // Centers the element vertically
+            inline: 'nearest' // No horizontal scrolling
+        });
+
+        console.log(`Scrolled to element:`, element);
+    }
+
+    /**
+     * Marks a step as checked and moves the selection to the next checkbox step.
+     * @param {number} index - The index of the step to mark as checked.
+     */
+    function markStepAsChecked(index) {
+        const stepItems = document.querySelectorAll('#checklist-steps .step-item');
+        const currentStep = stepItems[index];
+        if (currentStep) {
+            currentStep.classList.add('checked'); // Add checked class for styling
+
+            // Remove 'selected-item' from the current step
+            currentStep.classList.remove('selected-item');
+
+            // Find and assign 'selected-item' to the next checkbox step
+            const nextStep = findNextCheckboxStep(index + 1, stepItems);
+            if (nextStep) {
+                nextStep.classList.add('selected-item');
+                currentStepIndex = Array.from(stepItems).indexOf(nextStep);
+
+                // Scroll to the next step, centering it
+                scrollToSelectedItem(nextStep);
+            } else {
+                // If no more checkbox steps, optionally handle end of checklist
+                console.log('All steps completed.');
+            }
+        }
+    }
+
+    /**
+     * Unmarks a step as checked and updates the selection.
+     * @param {number} index - The index of the step to unmark.
+     */
+    function unmarkStepAsChecked(index) {
+        const stepItems = document.querySelectorAll('#checklist-steps .step-item');
+        const step = stepItems[index];
+        if (step) {
+            step.classList.remove('checked'); // Remove checked class
+
+            // Reassign 'selected-item' to this step if it's not already selected
+            if (!step.classList.contains('selected-item')) {
+                step.classList.add('selected-item');
+                currentStepIndex = index;
+                scrollToSelectedItem(step);
+            }
+        }
     }
 
     /**
@@ -375,7 +465,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Trigger the change event
                     checkbox.dispatchEvent(new Event('change'));
                     foundCheckbox = true;
-                    currentStepIndex++;
                     break;
                 }
             }
