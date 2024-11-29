@@ -8345,7 +8345,6 @@
       "normalProcedures": [
         {
           "title": "Before Engine Start",
-          "description": "Ensure all pre-engine start procedures are completed.",
           "steps": [
             {
               "stepType": "checkbox",
@@ -8375,18 +8374,17 @@
             {
               "stepType": "checkbox",
               "step": "External GPU",
-              "action": "AS NEEDED SET 28 VDC, 800 A (MINIMUM), 1000 A (MAXIMUM)"
+              "action": "AS NEEDED SET 28 \nVDC, 800 A (MINIMUM),\n1000 A (MAXIMUM)"
             },
             {
               "stepType": "checkbox",
-              "step": "Verify active FADEC channel is displayed below % thrust indication.",
+              "step": "Verify active FADEC channel is displayed below %\nthrust indication.",
               "action": ""
             }
           ]
         },
         {
   "title": "Engine Start",
-  "description": "Checklist for initiating engine start procedures.",
   "steps": [
     {
       "stepType": "checkbox",
@@ -8430,7 +8428,7 @@
     },
     {
       "stepType": "checkbox",
-      "step": "Verify ENGINE START BAT TEMP or ENGINE START VOLTS CAS message is not displayed.",
+      "step": "Verify ENGINE START BAT TEMP or ENGINE START\n VOLTS CAS message is not displayed.",
       "action": ""
     },
     {
@@ -8442,6 +8440,14 @@
       "stepType": "checkbox",
       "step": "Engine Instruments",
       "action": "MONITOR"
+    },
+    {
+      "stepType": "special",
+      "text": "CAUTION: At 25% N2, ensure positive N1 indication. Be prepared to abort start. If any of the following occur, abort start:"
+    },
+    {
+      "stepType": "special",
+      "text": "• ITT exceeds limits (red line).\n\n• No N1 indication by 25% N2.\n\n• No evidence of lightoff within 8 seconds.\n\n• Low oil pressure after start."
     },
     {
       "stepType": "checkbox",
@@ -8489,17 +8495,13 @@
       "action": "SECURED"
     },
     {
+      "stepType": "special",
+      "text": "Note: The BLEED switch should not be set to BLEED until BAT 1 and BAT 2 have been ON for 2 minutes or more."
+    },
+    {
       "stepType": "checkbox",
       "step": "BLEED Switch",
       "action": "BLEED"
-    }
-  ],
-  "notes": [
-    {
-      "text": "• CAUTION • At 25% N2, ensure positive N1 indication.\nBe prepared to abort start. If any of the following occur, abort start:\n• ITT exceeds limits (red line).\n• No N1 indication by 25% N2.\n• No evidence of lightoff within 8 seconds.\n• Low oil pressure after start."
-    },
-    {
-      "text": "• NOTE • The BLEED switch should not be set to BLEED until BAT 1 and BAT 2 have been ON for 2 minutes or more."
     }
   ]
 },
@@ -8536,6 +8538,14 @@
               "stepType": "checkbox",
               "step": "6. Flight Controls",
               "action": "FREE & CORRECT"
+            },
+            {
+              "stepType": "special",
+              "text": "Caution: If TT2 heat FAIL Caution occurs with Engine IPS On, dispach is not allowed."
+            },
+            {
+              "stepType": "special",
+              "text": "Note: Turn Engine IPS ON if OAT is less than or equal to 41F 95c) with visible moisture or visibility of less than 1 mile."
             },
             {
               "stepType": "checkbox",
@@ -8593,6 +8603,10 @@
               "action": "A/R"
             },
             {
+              "stepType": "special",
+              "text": "CAUTION: Above 41 degrees F (5 degrees C), probe heat may only be ON for 5 minutes (continuous) during ground operations. Extended use in warmer temperatures may damage the composite structure adjacent to the pitot probe."
+            },
+            {
               "stepType": "checkbox",
               "step": "3. PROBE HEAT Switch",
               "action": "ON"
@@ -8624,7 +8638,7 @@
             },
             {
               "stepType": "checkbox",
-              "step": "9. Verify TAKEOFF EMER BAT CAS message is not displayed."
+              "step": "9. Verify TAKEOFF EMER BAT CAS message is not\n displayed."
             },
             {
               "stepType": "checkbox",
@@ -8665,27 +8679,27 @@
             {
               "stepType": "checkbox",
               "step": "6. VR",
-              "action": "80-90 KIAS"
+              "action": "85 KIAS"
             },
             {
               "stepType": "checkbox",
               "step": "7. Pitch Attitude",
-              "action": "10°"
+              "action": "10 DEGREES"
             },
             {
               "stepType": "checkbox",
               "step": "8. Landing Gear",
-              "action": "UP w/ POSITIVE RATE"
+              "action": "UP w/ POSITIVE RATE of CLIMB"
             },
             {
               "stepType": "checkbox",
               "step": "9. Flaps",
-              "action": "UP AT 115 KIAS, CLEAR OF OBSTACLES"
+              "action": "UP AT 115 KIAS, CLEAR\n OF OBSTACLES"
             },
             {
               "stepType": "checkbox",
               "step": "10. Airspeed",
-              "action": "PER CLIMB TABLES"
+              "action": "PER CLIMB TABLE"
             }
           ]
         },
@@ -8716,7 +8730,7 @@
             {
               "stepType": "checkbox",
               "step": "5. Altimeter Transition Altitude",
-              "action": "SET 29.92 INCHES / 1013 MB"
+              "action": "SET 29.92 INCHES /\n 1013 MB"
             }
           ]
         },
@@ -8733,6 +8747,14 @@
               "stepType": "checkbox",
               "step": "2. Ice Protection",
               "action": "A/R"
+            },
+            {
+              "stepType": "special",
+              "text": "In RVSM Airspace: \n\nWing Stab IPS ON:"
+            },
+            {
+            "stepType": "substep",
+      "step": "(1) Contact ATC and notify of non-RVSM status."
             },
             {
               "stepType": "checkbox",
@@ -8829,12 +8851,16 @@
             {
               "stepType": "checkbox",
               "step": "3. Cabin Pressure Diff",
-              "action": "~0 PSI"
+              "action": "APPROX 0 PSI"
             },
             {
               "stepType": "checkbox",
               "step": "4. WINDSHLD IPS Switch",
               "action": "OFF"
+            },
+            {
+              "stepType": "special",
+              "text": "NOTE: IPS fluid decreases flight visibility."
             },
             {
               "stepType": "checkbox",
@@ -8860,12 +8886,12 @@
             {
               "stepType": "checkbox",
               "step": "1. Flaps",
-              "action": "100% (50%, IF AIRFRAME IS ICE CONTAMINATED)"
+              "action": "100% (50%, IF\n AIRFRAME IS ICE\n CONTAMINATED)"
             },
             {
               "stepType": "checkbox",
               "step": "2. Airspeed",
-              "action": "VREF"
+              "action": "VREF (REFER TO\n LANDING\n CONSIDERATIONS TABLE)"
             },
             {
               "stepType": "checkbox",
@@ -8874,7 +8900,7 @@
             },
             {
               "stepType": "special",
-              "symbol": "After landing:"
+              "text": "After landing:"
             },
             {
               "stepType": "substep",
@@ -8900,7 +8926,7 @@
             {
               "stepType": "checkbox",
               "step": "3. Pitch Attitude",
-              "action": "7°"
+              "action": "7 DEGREES"
             },
             {
               "stepType": "checkbox",
@@ -8920,12 +8946,12 @@
             {
               "stepType": "checkbox",
               "step": "7. Flaps",
-              "action": "UP AT 115 KIAS, CLEAR OF OBSTACLES"
+              "action": "UP AT 115 KIAS, CLEAR\n OF OBSTACLES"
             },
             {
               "stepType": "checkbox",
               "step": "8. Climb Out",
-              "action": "RESUME NORMAL CLIMB OUT"
+              "action": "RESUME NORMAL CLIMB\n OUT"
             }
           ]
         },
@@ -8949,6 +8975,11 @@
               "action": "A/R"
             },
             {
+              "stepType": "special",
+              "text": "CAUTION: Above 41 degrees F (5 degrees C), probe heat may only be ON for 5 minutes (continuous) during ground operations. Extended use in warmer temperatures may damage the composite structure adjacent to the pitot probe."
+            },
+           
+            {
               "stepType": "checkbox",
               "step": "4. PROBE HEAT Switch",
               "action": "OFF"
@@ -8964,7 +8995,288 @@
               "action": "CHECK"
             }
           ]
+        },
+        {
+          "title": "Shutdown",
+          "description": "",
+          "steps": [
+            {
+              "stepType": "substep",
+              "step": "1. Thrust Lever",
+              "action": "IDLE"
+            },
+            {
+              "stepType": "substep",
+              "step": "2. ENGINE IPS Switch",
+              "action": "OFF"
+            },
+            {
+              "stepType": "substep",
+              "step": "3. BLEED Switch",
+              "action": "FRESH"
+            },
+            {
+              "stepType": "substep",
+              "step": "4. OXYGEN MASTER",
+              "action": "OFF"
+            },
+            {
+              "stepType": "substep",
+              "step": "5. Lights",
+              "action": "OFF"
+            },
+            {
+              "stepType": "special",
+              "text": "• CAUTION • To avoid unnecessary FADEC System faults, do not remove aircraft power until N2 < 24%."
+            },
+            {
+              "stepType": "substep",
+              "step": "6. GEN 1 and GEN 2",
+              "action": "OFF"
+            },
+            {
+              "stepType": "substep",
+              "step": "7. Engine Knob",
+              "action": "OFF"
+            },
+            {
+              "stepType": "substep",
+              "step": "8. Engine Button",
+              "action": "PRESS"
+            },
+            {
+              "stepType": "substep",
+              "step": "9. N2",
+              "action": "BELOW 24%"
+            },
+            {
+              "stepType": "substep",
+              "step": "10. CAPS Pin",
+              "action": "REPLACE"
+            },
+            {
+              "stepType": "substep",
+              "step": "11. BAT 1 and BAT 2",
+              "action": "OFF"
+            },
+            {
+              "stepType": "substep",
+              "step": "12. Parking Brake",
+              "action": "A/R"
+            },
+              {
+                "stepType": "substep",
+                "step": "13. Egress Door Pin",
+                "action": "REPLACE"
+              },
+              {
+                "stepType": "substep",
+                "step": "14. Airplane",
+                "action": "SECURE"
+              },
+              {
+                "stepType": "substep",
+                "step": "15. Engine Cycles",
+                "action": "COUNT AND RECORD"
+              }
+          ]
+        },
+        {
+          "title": "Icing Conditions Preflight Inspection",
+          "description": "",
+          "steps": [
+            {
+              "stepType": "substep",
+              "step": "1. Cabin"
+            },
+            {
+              "stepType": "substep",
+              "step": "a. Circuit Breakers",
+              "action": "SET"
+            },
+            {
+              "stepType": "substep",
+              "step": "b. BAT 1 and BAT 2",
+              "action": "ON"
+            },
+            {
+              "stepType": "substep",
+              "step": "c. WINDSHLD IPS MAX",
+              "action": "PRESS & HOLD UNTIL \nFLUID EXITS SPRAY BAR"
+            },
+            {
+              "stepType": "substep",
+              "step": "d. IPS Fluid",
+              "action": "VERIFY QUANTITY"
+            },
+            {
+              "stepType": "special",
+              "symbol": "•",
+              "text": "• NOTE • IPS fluid minimum dispatch quantity is 1 U.S. gallon."
+            },
+            {
+              "stepType": "substep",
+              "step": "e. ICE Light",
+              "action": "ON"
+            },
+            {
+              "stepType": "special",
+              "text": "2. Exterior"
+            },
+            {
+              "stepType": "substep",
+              "step": "a. ICE Light",
+              "action": "CHECK"
+            },
+            {
+              "stepType": "substep",
+              "step": "b. Nose Section",
+              "action": "VERIFY EVIDENCE OF IPS FLUID"
+            },
+            {
+              "stepType": "special",
+              "symbol": "•",
+              "text": "• NOTE • Fluid will spray clear of the airframe."
+            },
+            {
+              "stepType": "substep",
+              "step": "c. Engine Inlet",
+              "action": "INSPECT"
+            },
+            {
+              "stepType": "special",
+              "text": "3. Cabin"
+            },
+            {
+              "stepType": "substep",
+              "step": "a. PROBE HEAT Switch",
+              "action": "ON AND CHECK NO CAS\n THEN OFF"
+            },
+            {
+              "stepType": "substep",
+              "step": "b. ICE Light",
+              "action": "OFF"
+            },
+            {
+              "stepType": "substep",
+              "step": "c. BAT 1 and BAT 2 Switches",
+              "action": "OFF"
+            }
+          ]
+        },
+        {
+        "title": "Icing Conditions - Before Takeoff",
+          "description": "",
+          "steps": [
+            {
+              "stepType": "substep",
+              "step": "1. ENGINE IPS Switch",
+              "action": "ON AND CHECK\n OPERATION AND NO\n CAS THEN A/R"
+            },
+            {
+              "stepType": "substep",
+              "step": "2. WING/STAB IPS Switch",
+              "action": "ON AND CHECK\n OPERATION AND NO\n  CAS THEN OFF"
+            }
+          ]
+        },
+        {
+          "title": "IPS Activation",
+          "description": "OAT ≤ 41 °F (5 °C) with visible moisture or visibility less than 1 mile",
+          "steps": [
+            {
+              "stepType": "special",
+              "symbol": "",
+              "text": "In Flight:"
+            },
+            {
+              "stepType": "substep",
+              "step": "1. PROBE HEAT Switch",
+              "action": "ON"
+            },
+            {
+              "stepType": "substep",
+              "step": "2. ENGINE IPS Switch",
+              "action": "ON"
+            },
+            {
+              "stepType": "substep",
+              "step": "3. WING/STAB IPS Switch",
+              "action": "OFF"
+            },
+            {
+              "stepType": "substep",
+              "step": "4. WINDSHLD IPS Switch",
+              "action": "OFF"
+            },
+            {
+              "stepType": "special",
+              "symbol": "",
+              "text": "On Ground:"
+            },
+            {
+              "stepType": "substep",
+              "step": "1. PROBE HEAT Switch",
+              "action": "ON"
+            },
+            {
+              "stepType": "substep",
+              "step": "2. ENGINE IPS Switch",
+              "action": "ON"
+            },
+            {
+              "stepType": "special",
+              "text": "At first sign of ice:"
+            },
+            {
+              "stepType": "special",
+              "symbol": "•",
+              "text": "• WARNING • Ice contamination of the lifting surfaces may result in an inoperable or inadequate stall warning, which may cause an inadvertent stall. The resulting stall may lead to loss of control of the airplane. The WING/STAB IPS switch must remain at the ON position until the entire wing is free of ice accretion and ice is no longer accreting on the aircraft. Stall Warning offset must remain ON until entire airframe is free of ice."
+            },
+            {
+              "stepType": "special",
+              "symbol": "•",
+              "text": "• NOTE • The left wing leading edge is the primary reference area for determining if ice is accumulating on the aircraft. Ice may be visible on other areas of the aircraft as well, such as the forward windshield."
+            },
+            {
+              "stepType": "substep",
+              "step": "1. PROBE HEAT Switch",
+              "action": "ON"
+            },
+            {
+              "stepType": "substep",
+              "step": "2. ENGINE IPS Switch",
+              "action": "ON"
+            },
+            {
+              "stepType": "substep",
+              "step": "3. WING/STAB IPS Switch",
+              "action": "ON"
+            },
+            {
+              "stepType": "special",
+              "symbol": "◆",
+              "text": "In RVSM Airspace:"
+            },
+            {
+              "stepType": "substep",
+              "step": "a. Contact ATC and notify of non-RVSM status."
+            },
+            {
+              "stepType": "special",
+              "symbol": "•",
+              "text": "• NOTE • Verify STALL SPEED HIGH CAS Advisory is present."
+            },
+            {
+              "stepType": "substep",
+              "step": "4. WINDSHLD IPS Switch",
+              "action": "ON"
+            }
+          ]
         }
+
+
+
       
 ]
 
