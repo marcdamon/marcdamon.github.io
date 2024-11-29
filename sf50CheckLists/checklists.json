@@ -9086,8 +9086,8 @@
           "description": "",
           "steps": [
             {
-              "stepType": "substep",
-              "step": "1. Cabin"
+              "stepType": "special",
+              "text": "1. Cabin"
             },
             {
               "stepType": "substep",
