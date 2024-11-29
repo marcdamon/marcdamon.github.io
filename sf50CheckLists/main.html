@@ -21,23 +21,62 @@
                 <div class="scrollable-content">
                     <p id="checklist-description">Checklist Description</p>
                     <ul id="checklist-steps">
+                        <!-- Main Step with Special Text -->
                         <li class="step-item">
-                            <input type="checkbox" id="step-1">
-                            <label for="step-1" class="step-text">Check engine oil</label>
-                            <span class="dots"></span>
-                            <span class="action-text">Add oil</span>
+                            <input type="checkbox" id="step-0-1">
+                            <div class="step-content">
+                                <label for="step-0-1" class="step-label">1. Oxygen Mask</label>
+                                <span class="dots"></span>
+                                <span class="action-text">
+                                    ENSURE PASSENGERS ARE RECEIVING OXYGEN<br>
+                                    RECHECK SYSTEMS
+                                </span>
+                                <span class="special-text">Special Text</span>
+                            </div>
+                        </li>
+    
+                        <!-- Another Step with Special Text Inside Step Label -->
+                        <li class="step-item">
+                            <input type="checkbox" id="step-0-2">
+                            <div class="step-content">
+                                <label for="step-0-2" class="step-label">
+                                    Checklist item with <span class="special-text">Special Text</span> requiring more padding.
+                                </label>
+                                <span class="dots"></span>
+                                <span class="action-text">
+                                    REVIEW AND APPROVE<br>
+                                    CONFIRM STATUS
+                                </span>
+                            </div>
+                        </li>
+    
+                        <!-- Sub-Step Without Special Text -->
+                        <li class="step-item">
+                            <input type="checkbox" id="step-0-5-a">
+                            <div class="step-content">
+                                <label for="step-0-5-a" class="step-label sub-step">a. Thrust Lever</label>
+                                <span class="dots"></span>
+                                <span class="action-text">
+                                    REDUCE<br>
+                                    MONITOR PERFORMANCE
+                                </span>
+                            </div>
                         </li>
                     </ul>
+    
+                    <!-- Additional Steps and Sub-Steps -->
+                    <!-- ... -->
+    
                     <div id="checklist-notes">
                         <p class="note-item">Note: Important information here.</p>
                     </div>
                 </div>
-                
+    
                 <!-- "Go to Next Checklist?" Button -->
                 <button id="go-next-checklist" class="go-next-checklist">Go to Next Checklist?</button>
             </div>
         </div>
-
+    
         <!-- Warning Section -->
         <div class="warning-section outer-frame">
             <!-- Buttons Container -->
@@ -55,10 +94,10 @@
                     <button class="button-right checklist-options" data-type="checklist options">Checklist Options</button>
                 </div>
             </div>
-
+    
             <!-- Checklist Items Title -->
             <h2 class="checklist-items-title">Checklist</h2>
-
+    
             <!-- Checklist Items Container -->
             <div class="checklist-items-container">
                 <ul id="warning-items">
@@ -68,6 +107,7 @@
                 </ul>
             </div>
         </div>
+    </div>
         
         <!-- Select Button -->
         <button id="select-button" class="select-button">Select</button>

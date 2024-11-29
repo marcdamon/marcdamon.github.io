@@ -169,7 +169,8 @@ h2 {
 /* Step items for checklists */
 .step-item {
     display: flex;
-    align-items: flex-end; /* Align items to the bottom */
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    align-items: flex-start; /* Maintain original alignment */
     padding: 3px 0;
     margin-bottom: 0px;
     line-height: 1.5;
@@ -182,28 +183,19 @@ h2 {
     
     /* Prevent touch callout */
     -webkit-touch-callout: none;
-    
-    /* Remove fixed height */
-    /* height: 63px; */ /* Comment out or remove this line */
 }
 
-/* Ensure checklist steps are displayed correctly */
-#checklist-steps {
-    list-style-type: none;
-    padding-left: 0;
-    margin: 0;
-}
-}
 
 /* Fixed sizes for step texts */
-.step-text {
-    /* Changed from flex-grow: 1 to flex-shrink: 0 to prevent stretching */
+.step-label {
+    min-width: 0;
     flex-shrink: 0;
-    margin-right: 5px; /* Reduced margin */
+    margin-right: 5px;
     font-size: 18px;
-    word-wrap: break-word;
+    word-break: break-word;
+    align-items: center;
     max-width: 100%;
-    color: white; /* Ensure text color remains consistent */
+    color: white;
 }
 
 .dots {
@@ -215,7 +207,7 @@ h2 {
 .dots::before {
     content: '';
     position: absolute;
-    bottom: 5px; /* Slight upward adjustment */
+    bottom: -20px; /* Slight upward adjustment */
     left: 0;
     right: 0;
     border-bottom: 3px dotted white; /* Thicker dotted line */
@@ -228,15 +220,29 @@ h2 {
     transform: translateY(-30%); /* Adjust the percentage to align properly */
 }
 
-.action-text {
-    /* Changed from flex-grow: 0 to flex-shrink: 0 to prevent stretching */
-    flex-shrink: 0;
-    font-size: 18px;
-    margin-left: 5px; /* Slight spacing from step text */
-    word-wrap: break-word;
-    max-width: 100%;
-    color: white;
+/* Change dots color to green when the parent step-item is checked */
+.step-item.checked .dots::before {
+    border-bottom-color: #3cb62e; /* Green color for dots */
+    background-image: radial-gradient(circle, #3cb62e 0px, transparent 0px); /* Update dots color if using background-image */
 }
+
+.action-text {
+    /* Push the action-text to the right */
+    margin-left: auto;
+    
+    /* Ensure text within .action-text aligns to the right */
+    text-align: right;
+    
+    /* Allow the action-text to take up necessary width */
+    white-space: normal; /* Allows wrapping */
+    
+    /* Optional: Specify a maximum width to control wrapping */
+    max-width: 200px; /* Adjust as needed */
+}
+
+/* =======================
+   Indentation for Sub-Steps
+   ======================= */
 
 .special-symbol {
     color: white;
@@ -245,9 +251,17 @@ h2 {
 }
 
 .special-text {
-    flex-grow: 1;
+    /* Remove flex-grow */
+    /* flex-grow: 1; */ /* This line is removed */
+
     color: white;
-    font-size: 1.2em; /* Made the text after the symbol larger */
+    font-size: 1.2em; /* Maintain or adjust as needed */
+
+    /* Adjust padding to reasonable values */
+    padding: 25px 0px;/* Top & Bottom: 5px, Left & Right: 10px */
+
+    /* Ensure the element respects padding by changing display */
+    display: inline-block; /* Allows padding to apply correctly */
 }
 
 .note-item {
@@ -257,9 +271,9 @@ h2 {
 
 .procedure-complete {
     color: white;
-    text-align: center;
+    text-align: left;
     font-weight: bold;
-    padding: 10px 0;
+    padding: 20px 0;
 }
 
 #checklist-group-name {
@@ -520,7 +534,7 @@ input[type="checkbox"]:checked {
 }
 
 /* Style for checked step items */
-.step-item.checked .step-text,
+.step-item.checked .step-label,
 .step-item.checked .action-text {
     color: #3cb62e; /* Green color for checked text */
 }
@@ -538,4 +552,26 @@ input[type="checkbox"]:checked {
     flex: 1; /* Takes up remaining space */
     overflow-y: auto; /* Enable vertical scrolling */
     padding-bottom: 0px; /* Increased space to prevent overlap */
+}
+
+.step-label, .action-text {
+    color: inherit; /* Ensure these elements inherit color from the parent */
+    font-size: 18px;
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
+/* Styles for sub-steps */
+.sub-step {
+    margin-left: 25px; /* Indent sub-steps */
+}
+
+/* Style for checked items */
+.step-item.checked {
+    color: #3cb62e; /* Green color for checked steps */
+}
+
+/* Optional: Remove blue focus outline for checkboxes */
+input[type="checkbox"]:focus {
+    outline: none;
 }

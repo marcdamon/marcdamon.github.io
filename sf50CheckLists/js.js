@@ -166,6 +166,13 @@ document.addEventListener('DOMContentLoaded', function () {
      * @param {string} typeKey - Key representing the selected category.
      * @param {number} selectedIndex - Index of the selected checklist.
      */
+
+
+
+
+
+
+    
     function displayChecklist(item, typeKey, selectedIndex) {
         const title = document.getElementById('checklist-title');
         const description = document.getElementById('checklist-description');
@@ -174,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const label = document.getElementById('checklist-type'); // For displaying the "Normal", "Emergency", etc.
         const checklistDisplay = document.querySelector('.checklist-display'); // Existing container
         const goNextButton = document.getElementById('go-next-checklist'); // Reference to the button
-
+    
         // Set the checklist type label based on the passed typeKey
         switch (typeKey) {
             case 'warnings':
@@ -199,66 +206,77 @@ document.addEventListener('DOMContentLoaded', function () {
                 label.innerText = '';
                 break;
         }
-
+    
         // Update global variables
         selectedChecklistType = typeKey;
         selectedChecklistIndex = selectedIndex;
         currentStepIndex = 0; // Reset current step index when a new checklist is displayed
-
+    
         // Update the checklist title and content
         title.innerText = item.title;
         description.innerText = item.description || '';
         stepsList.innerHTML = '';
         notesList.innerHTML = '';
-
+    
+        // Regular expression to detect sub-steps (e.g., "a.", "b.", "C.", etc.)
+        const subStepRegex = /^[a-zA-Z]\./;
+    
         // Render steps
         item.steps.forEach((step, index) => {
-            const stepItem = document.createElement('li');
-            stepItem.classList.add('step-item');
-
             if (step.stepType === 'checkbox' || step.stepType === 'substep') {
+                const stepItem = document.createElement('li');
+                stepItem.classList.add('step-item'); // Common class for all steps
+    
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
-                checkbox.id = `step-${index}`;
+                checkbox.id = `step-${selectedChecklistIndex}-${index}`; // Ensure unique ID
                 stepItem.appendChild(checkbox);
-
-                const label = document.createElement('label');
-                label.htmlFor = `step-${index}`; // Ensure the label is correctly linked
-                label.classList.add('step-text');
-                label.innerText = step.step;
-
+    
+                const labelElement = document.createElement('label');
+                labelElement.htmlFor = `step-${selectedChecklistIndex}-${index}`; // Link label to checkbox
+                labelElement.classList.add('step-label');
+                labelElement.innerText = step.step;
+    
+                // Detect if the step is a sub-step based on its text prefix
+                if (subStepRegex.test(step.step.trim())) {
+                    labelElement.classList.add('sub-step'); // Additional class for indentation
+                }
+    
                 // **Conditional Dots Span**
                 let dots;
                 if (step.action) {
                     dots = document.createElement('span');
                     dots.classList.add('dots');
                 }
-
+    
                 const actionText = document.createElement('span');
                 actionText.classList.add('action-text');
                 if (step.action) {
                     actionText.innerText = step.action;
                 }
-
-                stepItem.appendChild(label);
+    
+                stepItem.appendChild(labelElement);
                 if (step.action) {
                     stepItem.appendChild(dots); // Append dots only if action exists
                 }
                 stepItem.appendChild(actionText);
-
+    
                 // Add event listener for checkbox to toggle text color and auto-scroll
                 checkbox.addEventListener('change', function () {
+                    const stepItem = this.parentElement; // Assuming the checkbox is a direct child of step-item
                     if (this.checked) {
-                        markStepAsChecked(index);
+                        markStepAsChecked(stepItem);
                     } else {
-                        unmarkStepAsChecked(index);
+                        unmarkStepAsChecked(stepItem);
                     }
                 });
+    
+                stepsList.appendChild(stepItem);
             } else if (step.stepType === 'note' || step.stepType === 'special') {
                 const specialText = document.createElement('span');
                 specialText.classList.add('special-text');
                 specialText.innerText = step.text;
-                stepItem.appendChild(specialText);
+                stepsList.appendChild(specialText);
             } else if (step.stepType === 'procedureComplete') {
                 const completeItem = document.createElement('li');
                 completeItem.classList.add('procedure-complete');
@@ -268,12 +286,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 const warningText = document.createElement('span');
                 warningText.classList.add('warning-text');
                 warningText.innerText = step.text;
-                stepItem.appendChild(warningText);
+                stepsList.appendChild(warningText);
             }
-
-            stepsList.appendChild(stepItem);
         });
-
+    
         // Display notes after steps
         if (item.notes && item.notes.length > 0) {
             item.notes.forEach(note => {
@@ -283,7 +299,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 notesList.appendChild(noteItem);
             });
         }
-
+    
         // Add "Procedure Complete" if present
         if (item.procedureComplete) {
             const completeItem = document.createElement('li');
@@ -291,11 +307,11 @@ document.addEventListener('DOMContentLoaded', function () {
             completeItem.innerText = "Procedure Complete";
             stepsList.appendChild(completeItem);
         }
-
+    
         // Remove 'selected-item' from all steps (in case of reloading)
         const allSteps = document.querySelectorAll('#checklist-steps .step-item');
         allSteps.forEach(step => step.classList.remove('selected-item'));
-
+    
         // Assign 'selected-item' to the first checkbox step
         const firstCheckboxStep = findNextCheckboxStep(0, allSteps);
         if (firstCheckboxStep) {
@@ -303,7 +319,7 @@ document.addEventListener('DOMContentLoaded', function () {
             currentStepIndex = Array.from(allSteps).indexOf(firstCheckboxStep);
             scrollToSelectedItem(firstCheckboxStep); // Center the first step
         }
-
+    
         // Scroll the checklist display area to the top
         setTimeout(() => {
             const checklistContent = document.querySelector('.checklist-display');
@@ -311,7 +327,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 checklistContent.scrollTop = 0;
             }
         }, 0);
-
+    
         // Highlight the selected checklist in the list
         highlightSelectedChecklist(selectedIndex);
     }
@@ -356,26 +372,22 @@ document.addEventListener('DOMContentLoaded', function () {
      * Marks a step as checked and moves the selection to the next checkbox step.
      * @param {number} index - The index of the step to mark as checked.
      */
-    function markStepAsChecked(index) {
-        const stepItems = document.querySelectorAll('#checklist-steps .step-item');
-        const currentStep = stepItems[index];
-        if (currentStep) {
-            currentStep.classList.add('checked'); // Add checked class for styling
-
-            // Remove 'selected-item' from the current step
-            currentStep.classList.remove('selected-item');
-
+    function markStepAsChecked(stepItem) {
+        if (stepItem) {
+            stepItem.classList.add('checked'); // Add checked class for styling
+            stepItem.classList.remove('selected-item'); // Remove selected-item class if present
+    
             // Find and assign 'selected-item' to the next checkbox step
-            const nextStep = findNextCheckboxStep(index + 1, stepItems);
+            const stepItems = Array.from(document.querySelectorAll('#checklist-steps .step-item'));
+            const currentIndex = stepItems.indexOf(stepItem);
+            const nextStep = findNextCheckboxStep(currentIndex + 1, stepItems);
+            
             if (nextStep) {
                 nextStep.classList.add('selected-item');
-                currentStepIndex = Array.from(stepItems).indexOf(nextStep);
-
-                // Scroll to the next step, centering it
-                scrollToSelectedItem(nextStep);
+                scrollToSelectedItem(nextStep); // Center the next step
             } else {
-                // If no more checkbox steps, optionally handle end of checklist
                 console.log('All steps completed.');
+                // Optionally, handle the end of the checklist
             }
         }
     }
@@ -384,17 +396,14 @@ document.addEventListener('DOMContentLoaded', function () {
      * Unmarks a step as checked and updates the selection.
      * @param {number} index - The index of the step to unmark.
      */
-    function unmarkStepAsChecked(index) {
-        const stepItems = document.querySelectorAll('#checklist-steps .step-item');
-        const step = stepItems[index];
-        if (step) {
-            step.classList.remove('checked'); // Remove checked class
-
+    function unmarkStepAsChecked(stepItem) {
+        if (stepItem) {
+            stepItem.classList.remove('checked'); // Remove checked class
+    
             // Reassign 'selected-item' to this step if it's not already selected
-            if (!step.classList.contains('selected-item')) {
-                step.classList.add('selected-item');
-                currentStepIndex = index;
-                scrollToSelectedItem(step);
+            if (!stepItem.classList.contains('selected-item')) {
+                stepItem.classList.add('selected-item');
+                scrollToSelectedItem(stepItem);
             }
         }
     }

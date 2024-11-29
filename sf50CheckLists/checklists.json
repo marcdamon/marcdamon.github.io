@@ -2144,10 +2144,6 @@
             },
             {
               "stepType": "note",
-              "text": "Serials with Safe Return Autoland: Unless canceled, Safe Return Autoland will activate descending through 15,000 feet pressure altitude and change route to an emergency landing airport."
-            },
-            {
-              "stepType": "note",
               "text": "To cancel auto descent, disconnect the autopilot:"
             },
             {
@@ -2187,7 +2183,7 @@
               {
                 "stepType": "checkbox",
                 "step": "5. Passenger Oxygen",
-                "action": "ENSURE PASSENGERS ARE RECEIVING OXYGEN"
+                "action": "ENSURE PASSENGERS \nARE RECEIVING OXYGEN"
               },
               {
                 "stepType": "special",
@@ -2210,18 +2206,7 @@
                 "action": "PRESS"
               }
             ],
-            "procedureComplete": true,
-            "notes": [
-              {
-                "text": "Refer to Section 2: Limitations, 'Oxygen' for oxygen requirements."
-              },
-              {
-                "text": "If the CABIN PRESSURE DUMP is not activated, Emergency Descent Mode (EDM) will activate if the aircraft is at or above 14,900 feet pressure altitude and the cabin altitude is greater than or equal to 15,000 feet."
-              },
-              {
-                "text": "An EDM activation can lead to an automatic activation of Safe Return Autoland. EDM and Safe Return Autoland will not automatically activate if CABIN PRESSURE DUMP is activated. Manual activation of Safe Return Autoland can still be accomplished following CABIN PRESSURE DUMP activation."
-              }
-            ]
+            "procedureComplete": true
           },
           {
             "title": "CABIN DIFF PRESSURE HIGH Warning",
@@ -2244,7 +2229,8 @@
               },
               {
                 "stepType": "checkbox",
-                "step": "4. Perform Emergency Descent checklist as required."
+                "step": "4. Perform Emergency Descent checklist as required.",
+                "action": ""
               },
               {
                 "stepType": "special",
@@ -2265,28 +2251,12 @@
                 "stepType": "procedureComplete",
                 "text": "Procedure Complete"
               }
-            ],
-            "notes": [
-              {
-                "text": "• NOTE • Autopilot Emergency Descent Mode (EDM) is disabled when the cabin dump switch is activated."
-              },
-              {
-                "text": "Refer to Section 2: Limitations, 'Oxygen' for oxygen requirements."
-              }
             ]
           },
           {
             "title": "CABIN DUMP Warning",
             "description": "Cabin pressure dump activated.",
             "steps": [
-              {
-                "stepType": "note",
-                "text": "• NOTE • If the CABIN PRESSURE DUMP Button was inadvertently activated, it should be deactivated immediately."
-              },
-              {
-                "stepType": "note",
-                "text": "Autopilot Emergency Descent Mode (EDM) is disabled when the cabin dump switch is activated."
-              },
               {
                 "stepType": "special",
                 "symbol": "◆",
@@ -2321,14 +2291,16 @@
                 "stepType": "procedureComplete",
                 "text": "Procedure Complete"
               },
-              {
-                "stepType": "warning",
-                "text": "• WARNING • Do not press and hold AP DISC Button if CAPS handle has been pulled; if handle has been pulled, parachute will deploy regardless and pressing AP DISC will prevent the aircraft from adequately slowing prior to deployment."
-              },
-              {
-                "stepType": "caution",
-                "text": "CAUTION: Delay of AP DISC Button in response to an automatic flight control malfunction while manually overriding controls may result in excessive pitch out of trim condition."
-              },
+              
+                {
+                  "stepType": "warning",
+                  "text": "• WARNING • Do not press and hold AP DISC Button if CAPS handle has been pulled; if handle has been pulled, parachute will deploy regardless and pressing AP DISC will prevent the aircraft from adequately slowing prior to deployment.\n\n• CAUTION • Delay of AP DISC Button in response to an automatic flight control malfunction while manually overriding controls may result in excessive pitch out of trim condition."
+                },
+                {
+                  "stepType": "caution",
+                  "text": "CAUTION: Delay of AP DISC Button in response to an automatic flight control malfunction while manually overriding controls may result in excessive pitch out of trim condition."
+                },
+            
               {
                 "stepType": "special",
                 "symbol": "◆",
@@ -2430,17 +2402,8 @@
                 "stepType": "procedureComplete",
                 "text": "Procedure Complete"
               }
-            ],
-            "warnings": [
-              {
-                "text": "• WARNING • Stay clear of door if malfunction is believed to have occurred. Ensure seat belts are tightened and secured in order to avoid extraction from aircraft in the event of rapid door opening/decompression. Maneuver with care, avoiding unnecessary accelerations and abrupt maneuvers."
-              }
-            ],
-            "notes": [
-              {
-                "text": "• NOTE • If open door is discovered on takeoff roll, abort takeoff if sufficient runway remains. If already airborne, do not allow efforts to close the door interfere with the primary task of maintaining control of the airplane."
-              }
             ]
+            
           },
           {
             "title": "EMER AUTOLAND ACTIVATING Warning",
@@ -2460,10 +2423,6 @@
                 "stepType": "special",
                 "symbol": "❍",
                 "text": "If Safe Return Autoland activation has proceeded beyond 10-second EMER AUTOLAND ACTIVATING period:"
-              },
-              {
-                "stepType": "note",
-                "text": "• NOTE • Safe Return Autoland will immediately squawk 7700, change the flight plan, and may change the altimeter setting."
               },
               {
                 "stepType": "substep",
@@ -2526,7 +2485,7 @@
               },
               {
                 "stepType": "substep",
-                "step": "(2) Perform Automatic Flight Control Malfunction (Stick Pusher, ESP, USP, Autopilot) checklist."
+                "step": "(2) Perform Automatic Flight Control Malfunction \n(Stick Pusher, ESP, USP, Autopilot) checklist."
               },
               {
                 "stepType": "procedureComplete",
@@ -2540,10 +2499,6 @@
               {
                 "stepType": "substep",
                 "step": "a. No further action is required."
-              },
-              {
-                "stepType": "note",
-                "text": "• NOTE • Refer to Section 8: Handling and Servicing, \"Safe Return Autoland Runway Recovery\"."
               },
               {
                 "stepType": "procedureComplete",
@@ -2576,7 +2531,7 @@
               },
               {
                 "stepType": "substep",
-                "step": "a. Perform GENERATOR 1 CURRENT OR GENERATOR 2 CURRENT procedure prior to performing remainder of EMER BUS VOLTS procedure."
+                "step": "a. Perform GENERATOR 1 CURRENT OR GENERATOR \n2 CURRENT procedure prior to performing \nremainder of EMER BUS VOLTS procedure."
               },
               {
                 "stepType": "special",
@@ -2609,68 +2564,84 @@
                 "action": "VERIFY ON"
               },
               {
-                "stepType": "note",
-                "text": "• NOTE • With GEN 1, GEN 2, and BAT 1 OFF, the autopilot and the displays on the MFD and GTC 3 will be unavailable."
-              },
-              {
                 "stepType": "substep",
                 "step": "f. Land as soon as possible."
               },
               {
                 "stepType": "procedureComplete",
                 "text": "Procedure Complete"
+              },
+              {
+                "stepType": "special",
+                "symbol": "◆",
+                "text": "EMERGENCY BUS CIRCUIT BREAKERS"
+              },
+              {
+                "stepType": "substep",
+                "step": "BATT1 Hot Bus"
+              },
+              {
+                "stepType": "substep",
+                "step": "CONV LIGHTS CB - Interior Lights Controller"
+              },
+              {
+                "stepType": "substep",
+                "step": "Solenoid Pwr"
+              },
+              {
+                "stepType": "substep",
+                "step": "AP CTRL CB (A7) - AP Controller (GMC 707)"
+              },
+              {
+                "stepType": "substep",
+                "step": "FIRE PROT 1 CB (A9) - Fire Bottle 1"
+              },
+              {
+                "stepType": "substep",
+                "step": "FIRE PROT 1 CB (A9) - Fire Prot. CCA LED CREW LIGHTS CB (A11) - Task Light, Copilot CREW LIGHTS CB (A11) - Task Light, Pilot"
+              },
+              {
+                "stepType": "substep",
+                "step": "PROBE HT LEFT CB (A8) - Left Pitot Heat"
+              },
+              {
+                "stepType": "substep",
+                "step": "Pilot Circuit Breaker Panel (Row B)"
+              },
+              {
+                "stepType": "substep",
+                "step": "FIRE PROT 2 CB (B9) - Fire Bottle 2"
+              },
+              {
+                "stepType": "substep",
+                "step": "FIRE PROT 2 CB (B9) - Fuel Shutoff Valve"
+              },
+              {
+                "stepType": "substep",
+                "step": "AHRS 1 CB (B10) - AHRS 1 (GRS79)"
+              },
+              {
+                "stepType": "substep",
+                "step": "ADC 1 CB (B11) - GDC 1"
+              },
+              {
+                "stepType": "substep",
+                "step": "GTC 2A CB (B5) - GTC 2 (pwr A)"
+              },
+              {
+                "stepType": "substep",
+                "step": "GPS NAV GIA 1 CB (B6) - GIA 1 MAIN"
+              },
+              {
+                "stepType": "substep",
+                "step": "PFD A CB (B8) - PFD (pwr A)"
+              },
+              {
+                "stepType": "substep",
+                "step": "COM 1 CB (B7) - GIA 1 COM"
               }
             ],
-            "notes": [
-              {
-                "text": "• NOTE • BAT 2 is designed to power the Emergency Bus for at least 60 minutes."
-              },
-              {
-                "text": "FADEC NO DISPATCH faults will be displayed once normal power is restored. Faults can be cleared using the FADEC fault reset button."
-              },
-              {
-                "text": "FUEL VALVE #2 FAIL Caution will be displayed during normal tank AUTO selection since the secondary valve is not powered by emergency power."
-              },
-              {
-                "text": "• NOTE • With Battery 1, Generator 1, and Generator 2 switched off, power will be removed from the entire main bus, including the hydraulic powerpack. The following equipment will also be inoperative:"
-              },
-              {
-                "text": "• Stick Pusher (Perform STICK PUSHER FAIL Caution checklist)"
-              },
-              {
-                "text": "• Landing gear control (To lower landing gear, perform Alternate Gear Extension checklist)"
-              },
-              {
-                "text": "• Flaps control (Perform Flaps Inoperative Approach/Landing checklist)"
-              },
-              {
-                "text": "• Cabin pressure control (Perform CABIN PRESSURE CTRL FAIL Caution checklist)"
-              },
-              {
-                "text": "• Engine start/shutdown control (To shutdown engine, perform Abnormal Engine Shutdown On Ground checklist)"
-              },
-              {
-                "text": "• Yaw SAS (Perform YAW SAS SERVO Caution checklist)"
-              },
-              {
-                "text": "• Bleed air shutoff and ECS (such as AC Compressor and Fans)"
-              },
-              {
-                "text": "• Redundant equipment (such as Fuel Valve 2, AHRS 2 / ADC 2, Right Pitot Heat, COM 2, and GPS 2)"
-              },
-              {
-                "text": "• Non-essential equipment (such as Electric Fuel Pump, Stick Shaker, Avionics Fan, Anti-collision Lights, Landing Lights, IFE USB, Transponder1, Navigation Lights, Fuel Level, Oil Pressure, Intercom, and Passenger Oxygen)"
-              },
-              {
-                "text": "• Optional equipment (such as Traffic/TCAS, Transponder2, Radar, EVS, ADS-B/UAT, 115VAC PWR, Iridium WIFI Data, DME, XM Data, and Yaw Damper)"
-              },
-              {
-                "text": "• Autopilot Servos, Roll Trim, and electric Pitch Trim"
-              },
-              {
-                "text": "• Ice Protection (Engine, Windshield, WING/STAB, Ice Light, and AOA Heat)"
-              }
-            ]
+            "notes": []
           },
           {
             "title": "ENGINE FIRE Warning - In Flight",
@@ -2783,23 +2754,6 @@
                 "stepType": "procedureComplete",
                 "text": "Procedure Complete"
               }
-            ],
-            "notes": [
-              {
-                "text": "• NOTE • An actual engine fire may be accompanied by abnormal or failing engine indications, erratic or rough engine operation, visible flames, or smoke trail from aircraft."
-              },
-              {
-                "text": "Secondary fire indications include N1 / N2 fluctuation, generator failure, or erratic or failing engine indications."
-              },
-              {
-                "text": "A sustained fire may cause the structure to be compromised."
-              },
-              {
-                "text": "Structural failure may cause significant injury or loss of life. Limiting speed, if possible, and avoiding high maneuvering loads may reduce the possibility of structural failure."
-              },
-              {
-                "text": "Refer to Section 2: Limitations, 'Oxygen' for oxygen requirements."
-              }
             ]
           },
           {
@@ -2836,85 +2790,95 @@
               }
             ],
             "notes": [
-              {
-                "text": "• NOTE • Engine Knob OFF inhibits Electric Fuel Pump."
-              }
             ]
           },
+          
           {
-            "title": "Rejected Takeoff",
-            "description": "",
+            "title": "ENGINE START N1 Warning",
+            "description": "N1 is not indicating rotation.",
             "steps": [
               {
-                "stepType": "checkbox",
-                "step": "1. Brakes",
-                "action": "MAX. PILOT EFFORT W/O SKIDDING"
-              },
-              {
-                "stepType": "checkbox",
-                "step": "2. Thrust Lever",
-                "action": "IDLE"
+                "stepType": "substep",
+                "step": "1. ENGINE START N1",
+                "action": "ABORT START"
               },
               {
                 "stepType": "special",
-                "symbol": "After airplane comes to a complete stop:"
-              },
-              {
-                "stepType": "checkbox",
-                "step": "3. Brakes",
-                "action": "COOL DOWN"
-              },
-              {
-                "stepType": "procedureComplete",
-                "text": "Procedure Complete"
-              }
-            ],
-            "cautions": [
-              {
-                "text": "• CAUTION • For maximum brake effectiveness, retract flaps, hold side stick control full back, and bring the airplane to a stop by smooth, even application of the brakes."
-              },
-              {
-                "text": "Do not set the parking brake following a Rejected Takeoff."
-              },
-              {
-                "text": "A cool down period and brake overheat inspection are required after high-energy braking events. Refer to Section 2: Limitations, Brakes."
-              }
-            ],
-            "notes": [
-              {
-                "text": "• NOTE • Use as much of the remaining runway as needed to safely bring airplane to a stop or to slow airplane sufficiently to turn off runway."
-              },
-              {
-                "text": "Refer to Section 4: Normal Procedures, After Landing."
-              }
-            ]
-          },
-          {
-            "title": "N1 Warning",
-            "description": "N1 speed exceeded.",
-            "steps": [
-              {
-                "stepType": "special",
-                "symbol": "◆",
                 "text": "If in flight:"
               },
               {
                 "stepType": "substep",
-                "step": "a. Thrust Lever",
-                "action": "REDUCE"
+                "step": "a. Increase airspeed and retry start procedure."
               },
               {
-                "stepType": "substep",
-                "step": "b. Monitor N1."
+                "stepType": "procedureComplete",
+                "text": "Procedure Complete"
               },
               {
                 "stepType": "special",
-                "symbol": "❍",
-                "text": "If message persists:"
+                "symbol": "•",
+                "text": "If on ground:"
               },
               {
                 "stepType": "substep",
-                "step": "(1) Land as soon as practicable."
+                "step": "a. Contact Cirrus for disposition."
+              },
+              {
+                "stepType": "procedureComplete",
+                "text": "Procedure Complete"
+              }
+            ],
+            "notes": []
+          },
+          {
+            "title": "EXTERNAL POWER CONNECTED Warning",
+            "description": "External power is connected, set park brake.",
+            "steps": [
+              {
+                "stepType": "special",
+                "symbol": "◆",
+                "text": "On Ground Only:"
+              },
+              {
+                "stepType": "substep",
+                "step": "1. Parking Brake or Brakes",
+                "action": "SET OR HOLD"
+              },
+              {
+                "stepType": "substep",
+                "step": "2. Disconnect external power."
+              },
+              {
+                "stepType": "procedureComplete",
+                "text": "Procedure Complete"
+              }
+            ],
+            "notes": []
+          },
+          {
+            "title": "FADEC CTRL DEGRADED Warning",
+            "description": "Reference FADEC Fault Code Messages.",
+            "steps": [
+              {
+                "stepType": "substep",
+                "step": "1. FADEC Reset via MFD Controller:"
+              },
+              {
+                "stepType": "substep",
+                "step": "a. From Home, touch Aircraft Systems."
+              },
+              {
+                "stepType": "substep",
+                "step": "b. Touch the FADEC Stale Fault Reset Button."
+              },
+              {
+                "stepType": "special",
+                "symbol": "◆",
+                "text": "If message extinguishes:"
+              },
+              {
+                "stepType": "substep",
+                "step": "a. No further action required."
               },
               {
                 "stepType": "procedureComplete",
@@ -2923,18 +2887,285 @@
               {
                 "stepType": "special",
                 "symbol": "◆",
+                "text": "If message persists:"
+              },
+              {
+                "stepType": "special",
+                "text": "WARNING: Possible inaccurate automatic power setting. The engine may exceed or go below allowable engine operating parameters which could ultimately result in loss of thrust. Avoid fast thrust lever movement or rapid thrust setting changes."
+              },
+              {
+                "stepType": "special",
+                "symbol": "❍",
+                "text": "If in flight:"
+              },
+              {
+                "stepType": "substep",
+                "step": "(1) ENG. IPS Switch",
+                "action": "ON"
+              },
+              {
+                "stepType": "substep",
+                "step": "(a) Allow sufficient time for ice to clear from inlet probes."
+              },
+              {
+                "stepType": "substep",
+                "step": "(2) FADEC Reset via MFD Controller:"
+              },
+              {
+                "stepType": "substep",
+                "step": "(a) From Home, touch Aircraft Systems."
+              },
+              {
+                "stepType": "substep",
+                "step": "(b) Touch the FADEC Stale Fault Reset Button."
+              },
+              {
+                "stepType": "substep",
+                "step": "(3) Land as soon as possible."
+              },
+              {
+                "stepType": "procedureComplete",
+                "text": "Procedure Complete"
+              },
+              {
+                "stepType": "special",
+                "symbol": "❍",
                 "text": "If on ground:"
               },
               {
                 "stepType": "substep",
-                "step": "a. Shut down engine. Do not dispatch."
+                "step": "(1) Do not dispatch."
               },
               {
                 "stepType": "procedureComplete",
                 "text": "Procedure Complete"
               }
-            ]
+            ],
+            "notes": []
           },
+          {
+            "title": "FLAPS CAL MODE Warning",
+            "description": "Do not dispatch, flaps system needs service.",
+            "steps": [
+              {
+                "stepType": "special",
+                "text": "On Ground Only"
+              },
+              {
+                "stepType": "substep",
+                "step": "1. Do not dispatch."
+              },
+              {
+                "stepType": "procedureComplete",
+                "text": "Procedure Complete"
+              }
+            ],
+            "notes": []
+          },
+          {
+            "title": "FLAPS ICE Warning",
+            "description": "Full flaps prohibited in icing conditions.",
+            "steps": [
+              {
+                "stepType": "substep",
+                "step": "1. Flaps",
+                "action": "SET UP OR 50%"
+              },
+              {
+                "stepType": "procedureComplete",
+                "text": "Procedure Complete"
+              },
+              {
+                "stepType": "special",
+                "symbol": "•",
+                "text": "WARNING •\nMaximum flap deflection in icing conditions is limited to 50%."
+              }
+            ],
+            "notes": []
+          },
+          {
+            "title": "FUEL FILTER BYPASS Warning",
+            "description": "Fuel filter diff press too high, bypass impending.",
+            "steps": [
+              {
+                "stepType": "substep",
+                "step": "1. Thrust Lever",
+                "action": "REDUCE (MINIMUM REQUIRED)"
+              },
+              {
+                "stepType": "substep",
+                "step": "2. Land as soon as possible."
+              },
+              {
+                "stepType": "procedureComplete",
+                "text": "Procedure Complete"
+              }
+            ],
+            "notes": []
+          },  
+          
+            {
+              "title": "FUEL IMBALANCE Warning",
+              "description": "Fuel imbalance is greater than or equal to 50 gallons.",
+              "steps": [
+                {
+                  "stepType": "substep",
+                  "step": "1. Fuel Quantity/Fuel Remaining",
+                  "action": "COMPARE"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. Refer to EIS for fuel quantity (based on level sensors)."
+                },
+                {
+                  "stepType": "substep",
+                  "step": "2. Fuel Control Switch",
+                  "action": "FULLEST TANK"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "3. Airspeed",
+                  "action": "MAINTAIN FOR \nADEQUATE ROLL \nCONTROL"
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If message extinguishes or imbalance decreases:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. Continue flight."
+                },
+                {
+                  "stepType": "substep",
+                  "step": "b. Fuel Control Switch",
+                  "action": "Auto"
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If message persists or imbalance increases:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. Land as soon as possible."
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                }
+              ],
+              "notes": [
+              ]
+            },
+            {
+              "title": "FUEL LOW LEFT/RIGHT/TOTAL Warning",
+              "description": "Left fuel tank is nearly empty, OR\nRight fuel tank is nearly empty, OR\nTotal fuel quantity is low.",
+              "steps": [
+                {
+                  "stepType": "substep",
+                  "step": "1. Fuel Quantity",
+                  "action": "CHECK"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "2. Fuel Control Switch",
+                  "action": "FULLEST TANK"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "3. Land as soon as possible."
+                },
+                {
+                  "stepType": "substep",
+                  "step": "4. Avoid excessive pitch attitudes and lateral \nacceleration to prevent uncovering the fuel inlet lines \nand possible fuel flow interruption."
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                }
+              ],
+              "notes": []
+            },
+            {
+              "title": "FUEL PRESSURE LOW Warning",
+              "description": "FDU fuel inlet pressure is low.",
+              "steps": [
+                {
+                  "stepType": "substep",
+                  "step": "1. Fuel Control Switch",
+                  "action": "SWITCH TO OTHER TANK"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. Refer to EIS for current tank selection (AUTO \nselection shown in white; LEFT/RIGHT selection \nshown in cyan)."
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If message extinguishes:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. Continue flight."
+                },
+                {
+                  "stepType": "substep",
+                  "step": "b. Fuel Quantity",
+                  "action": "MAINTAIN BALANCE"
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If message persists:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. Land as soon as possible."
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                }
+              ],
+              "notes": []
+            },
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           {
             "title": "N2 Warning",
             "description": "N2 speed exceeded.",
@@ -7632,144 +7863,164 @@
       "normalProcedures": [
         {
           "title": "Before Engine Start",
-          "description": "",
+          "description": "Ensure all pre-engine start procedures are completed.",
           "steps": [
             {
               "stepType": "checkbox",
-              "step": "1. Preflight Inspection",
+              "step": "Preflight Inspection",
               "action": "COMPLETE"
             },
             {
               "stepType": "checkbox",
-              "step": "2. Door",
+              "step": "Door",
               "action": "LATCHED"
             },
             {
               "stepType": "checkbox",
-              "step": "3. Parking Brake",
+              "step": "Parking Brake",
               "action": "A/R"
             },
             {
               "stepType": "checkbox",
-              "step": "4. BAT 1 and BAT 2 Switches",
+              "step": "BAT 1 and BAT 2 Switches",
               "action": "ON"
             },
             {
               "stepType": "checkbox",
-              "step": "5. GEN 1 and GEN 2 Switches",
+              "step": "GEN 1 and GEN 2 Switches",
               "action": "ON"
             },
             {
               "stepType": "checkbox",
-              "step": "6. External GPU",
-              "action": "AS NEEDED"
+              "step": "External GPU",
+              "action": "AS NEEDED SET 28 VDC, 800 A (MINIMUM), 1000 A (MAXIMUM)"
             },
             {
               "stepType": "checkbox",
-              "step": "7. Verify active FADEC channel is displayed below % thrust indication."
+              "step": "Verify active FADEC channel is displayed below % thrust indication.",
+              "action": ""
             }
           ]
         },
         {
-          "title": "Engine Start",
-          "description": "",
-          "steps": [
-            {
-              "stepType": "checkbox",
-              "step": "1. Strobe Lights",
-              "action": "ON"
-            },
-            {
-              "stepType": "checkbox",
-              "step": "2. CAS Messages",
-              "action": "CHECK"
-            },
-            {
-              "stepType": "checkbox",
-              "step": "3. Thrust Lever",
-              "action": "IDLE"
-            },
-            {
-              "stepType": "checkbox",
-              "step": "4. Brakes",
-              "action": "HOLD"
-            },
-            {
-              "stepType": "checkbox",
-              "step": "5. Engine Knob",
-              "action": "RUN"
-            },
-            {
-              "stepType": "checkbox",
-              "step": "6. Fuel Pump",
-              "action": "CHECK"
-            },
-            {
-              "stepType": "checkbox",
-              "step": "7. Verify ENGINE START BAT TEMP or ENGINE START VOLTS CAS message is not displayed."
-            },
-            {
-              "stepType": "checkbox",
-              "step": "8. Engine Button",
-              "action": "PRESS"
-            },
-            {
-              "stepType": "checkbox",
-              "step": "9. Engine Instruments",
-              "action": "MONITOR"
-            },
-            {
-              "stepType": "checkbox",
-              "step": "10. EIS",
-              "action": "CHECK ALL NORMAL"
-            },
-            {
-              "stepType": "checkbox",
-              "step": "11. Engine IPS",
-              "action": "A/R"
-            },
-            {
-              "stepType": "checkbox",
-              "step": "12. ECS Control Panel",
-              "action": "SET"
-            },
-            {
-              "stepType": "checkbox",
-              "step": "13. External GPU",
-              "action": "DISCONNECT"
-            },
-            {
-              "stepType": "checkbox",
-              "step": "14. Oxygen Master Switch",
-              "action": "VERIFY ON"
-            },
-            {
-              "stepType": "checkbox",
-              "step": "15. Avionics Initialization",
-              "action": "ALL INITS COMPLETE"
-            },
-            {
-              "stepType": "checkbox",
-              "step": "16. CAPS Pin",
-              "action": "REMOVE AND STOW"
-            },
-            {
-              "stepType": "checkbox",
-              "step": "17. Passengers",
-              "action": "BRIEF"
-            },
-            {
-              "stepType": "checkbox",
-              "step": "18. Seat Belts",
-              "action": "SECURED"
-            },
-            {
-              "stepType": "checkbox",
-              "step": "19. BLEED Switch",
-              "action": "BLEED"
-            }
-          ]
-        },
+  "title": "Engine Start",
+  "description": "Checklist for initiating engine start procedures.",
+  "steps": [
+    {
+      "stepType": "checkbox",
+      "step": "Strobe Lights",
+      "action": "ON"
+    },
+    {
+      "stepType": "checkbox",
+      "step": "CAS Messages",
+      "action": "CHECK"
+    },
+    {
+      "stepType": "checkbox",
+      "step": "Thrust Lever",
+      "action": "IDLE"
+    },
+    {
+      "stepType": "checkbox",
+      "step": "Brakes",
+      "action": "HOLD"
+    },
+    {
+      "stepType": "checkbox",
+      "step": "Engine Knob",
+      "action": "RUN"
+    },
+    {
+      "stepType": "checkbox",
+      "step": "Fuel Pump",
+      "action": "CHECK"
+    },
+    {
+      "stepType": "substep",
+      "step": "a. Verify FUEL PUMP ON Advisory CAS is displayed.",
+      "action": ""
+    },
+    {
+      "stepType": "substep",
+      "step": "b. Audibly confirm pump is ON.",
+      "action": ""
+    },
+    {
+      "stepType": "checkbox",
+      "step": "Verify ENGINE START BAT TEMP or ENGINE START VOLTS CAS message is not displayed.",
+      "action": ""
+    },
+    {
+      "stepType": "checkbox",
+      "step": "Engine Button",
+      "action": "PRESS"
+    },
+    {
+      "stepType": "checkbox",
+      "step": "Engine Instruments",
+      "action": "MONITOR"
+    },
+    {
+      "stepType": "checkbox",
+      "step": "EIS",
+      "action": "CHECK ALL NORMAL"
+    },
+    {
+      "stepType": "checkbox",
+      "step": "Engine IPS",
+      "action": "A/R"
+    },
+    {
+      "stepType": "checkbox",
+      "step": "ECS Control Panel",
+      "action": "SET"
+    },
+    {
+      "stepType": "checkbox",
+      "step": "External GPU",
+      "action": "DISCONNECT"
+    },
+    {
+      "stepType": "checkbox",
+      "step": "Oxygen Master Switch",
+      "action": "VERIFY ON"
+    },
+    {
+      "stepType": "checkbox",
+      "step": "Avionics Initialization",
+      "action": "ALL INITS COMPLETE"
+    },
+    {
+      "stepType": "checkbox",
+      "step": "CAPS Pin",
+      "action": "REMOVE AND STOW"
+    },
+    {
+      "stepType": "checkbox",
+      "step": "Passengers",
+      "action": "BRIEF"
+    },
+    {
+      "stepType": "checkbox",
+      "step": "Seat Belts",
+      "action": "SECURED"
+    },
+    {
+      "stepType": "checkbox",
+      "step": "BLEED Switch",
+      "action": "BLEED"
+    }
+  ],
+  "notes": [
+    {
+      "text": "• CAUTION • At 25% N2, ensure positive N1 indication.\nBe prepared to abort start. If any of the following occur, abort start:\n• ITT exceeds limits (red line).\n• No N1 indication by 25% N2.\n• No evidence of lightoff within 8 seconds.\n• Low oil pressure after start."
+    },
+    {
+      "text": "• NOTE • The BLEED switch should not be set to BLEED until BAT 1 and BAT 2 have been ON for 2 minutes or more."
+    }
+  ]
+},
         {
           "title": "Before Taxi",
           "description": "",
