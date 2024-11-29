@@ -3138,9 +3138,571 @@
               ],
               "notes": []
             },
+            {
+              "title": "FUEL TEMP LOW Warning",
+              "description": "Fuel temperature below operating limit.",
+              "steps": [
+                {
+                  "stepType": "substep",
+                  "step": "1. Fuel Temperature (L / R)",
+                  "action": "CHECK"
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If in flight:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. Climb or descend to warmer conditions."
+                },
+                {
+                  "stepType": "special",
+                  "text": "• NOTE • Change altitude to increase OAT and increase fuel \ntemperature. Due to temperature inversion, warmer \ntemperatures may be at a higher altitude."
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "❍",
+                  "text": "If message extinguishes:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "(1)Fuel Temperature",
+                  "action": "MONITOR"
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "❍",
+                  "text": "If message persists:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "(1)Land as soon as practicable."
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If on ground:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. Warm aircraft to increase fuel temperature."
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                }
+              ],
+              "notes": []
+            },
+            {
+              "title": "FUEL VALVES BOTH FAIL Warning",
+              "description": "Both fuel control valves have failed.",
+              "steps": [
+                {
+                  "stepType": "substep",
+                  "step": "1. Fuel Quantity",
+                  "action": "CHECK"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "2. Airspeed",
+                  "action": "MAINTAIN FOR \nADEQUATE ROLL \nCONTROL"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "3. Land as soon as possible."
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                }
+              ],
+              "notes": []
+            },
+            {
+              "title": "GENERATOR 1 CURRENT Warning",
+              "description": "Generator 1 current is too high.",
+              "steps": [
+                {
+                  "stepType": "substep",
+                  "step": "1. GEN 1 Switch",
+                  "action": "OFF"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "2. GCU Reset via MFD Controller:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. From Home, touch Aircraft Systems."
+                },
+                {
+                  "stepType": "substep",
+                  "step": "b. Touch the GCU Reset Button."
+                },
+                {
+                  "stepType": "substep",
+                  "step": "3. ECS DISABLE",
+                  "action": "SELECT"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "4. GEN 1 Switch",
+                  "action": "ON"
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If message extinguishes:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. ECS DISABLE",
+                  "action": "DESELECT"
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If message persists:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. GEN 1 Switch",
+                  "action": "OFF"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "b. BAT 1 Switch",
+                  "action": "OFF"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "c. Land as soon as practicable, avoiding IMC or night \nflight as able (reduced power redundancy)."
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                }
+              ],
+              "notes": []
+            },
+            {
+              "title": "GENERATOR 1 OVERVOLTAGE Warning",
+              "description": "Generator 1 voltage is high.",
+              "steps": [
+                {
+                  "stepType": "substep",
+                  "step": "1. GEN 1 Switch",
+                  "action": "OFF"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "2. GCU Reset via MFD Controller:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. From Home, touch Aircraft Systems."
+                },
+                {
+                  "stepType": "substep",
+                  "step": "b. Touch the GCU Reset Button."
+                },
+                {
+                  "stepType": "substep",
+                  "step": "3. ECS DISABLE",
+                  "action": "SELECT"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "4. GEN 1 Switch",
+                  "action": "ON"
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If message extinguishes:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. ECS DISABLE",
+                  "action": "DESELECT"
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If message persists:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. GEN 1 Switch",
+                  "action": "OFF"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "b. BAT 1 Switch",
+                  "action": "OFF"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "c. Land as soon as practicable, avoiding IMC or night \nflight as able (reduced power redundancy)."
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                }
+              ],
+              "notes": []
+            },
+            {
+              "title": "GENERATOR 2 CURRENT Warning",
+              "description": "Generator 2 current is too high.",
+              "steps": [
+                {
+                  "stepType": "substep",
+                  "step": "1. GEN 2 Switch",
+                  "action": "CYCLE"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "2. GEN 2 Amps",
+                  "action": "CHECK WITHIN LIMITS"
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If GEN 2 amps are within limits:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. No further action required."
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If GEN 2 amps are still not within limits:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. GEN 2 Switch",
+                  "action": "OFF"
+                },
+                {
+                  "stepType": "special",
+                  "text": "• NOTE • GEN 1 will support GEN 2 electrical loads."
+                },
+                {
+                  "stepType": "substep",
+                  "step": "b. Land as soon as practicable."
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                }
+              ]
+            },
+            {
+              "title": "GENERATOR 2 OVERVOLTAGE Warning",
+              "description": "Generator 2 voltage is high.",
+              "steps": [
+                {
+                  "stepType": "substep",
+                  "step": "1. GEN 2 Switch",
+                  "action": "CYCLE"
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If message persists:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. GEN 2 Switch",
+                  "action": "OFF"
+                },
+                {
+                  "stepType": "special",
+                  "text": "• NOTE • GEN 1 will support GEN 2 electrical loads."
+                },
+                {
+                  "stepType": "substep",
+                  "step": "b. Land as soon as practicable."
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If message extinguishes:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. No further action required."
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                }
+              ]
+            },
+            {
+              "title": "ITT Warning",
+              "description": "ITT limits exceeded.",
+              "steps": [
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If in flight:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. Thrust Lever",
+                  "action": "REDUCE"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "b. ITT",
+                  "action": "MONITOR"
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "❍",
+                  "text": "If message persists:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "(1)Land as soon as practicable."
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If on ground:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. Shut down engine. Do not dispatch."
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                }
+              ],
+              "notes": []
+            },
+            {
+              "title": "LDG GEAR IS UP Warning",
+              "description": "Landing gear is not down and locked for landing.",
+              "steps": [
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If in flight:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. Landing Gear",
+                  "action": "CHECK DOWN"
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "❍",
+                  "text": "If message persists:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "(1)Perform Alternate Gear Extension checklist."
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If on ground:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. Do not taxi."
+                },
+                {
+                  "stepType": "substep",
+                  "step": "b. Landing Gear",
+                  "action": "CHECK DOWN"
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                }
+              ],
+              "notes": []
+            },
+            {
+              "title": "LDG GEAR SELECTED UP Warning",
+              "description": "Ldg gear should be selected down while on ground.",
+              "steps": [
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If on ground:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. Do not taxi."
+                },
+                {
+                  "stepType": "substep",
+                  "step": "b. Landing Gear",
+                  "action": "SELECT DOWN"
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If in flight:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. Disregard."
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                }
+              ],
+              "notes": []
+            },
+            {
+              "title": "N1 Warning",
+              "description": "N1 speed exceeded.",
+              "steps": [
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If in flight:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. Thrust Lever",
+                  "action": "REDUCE"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "b. Monitor N1."
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "❍",
+                  "text": "If message persists:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "(1)Land as soon as practicable."
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If on ground:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. Shut down engine. Do not dispatch."
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                }
+              ],
+              "notes": []
+            },
+            {
+              "title": "N2 Warning",
+              "description": "N2 speed exceeded.",
+              "steps": [
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If in flight:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. Thrust Lever",
+                  "action": "REDUCE"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "b. Monitor N2."
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "❍",
+                  "text": "If message persists:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "(1)Land as soon as practicable."
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If on ground:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. Shut down engine. Do not dispatch."
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                }
+              ],
+              "notes": []
+            }
+          
           
 
 
+            
+            
+          ],
+       
 
 
 
@@ -3150,365 +3712,11 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          {
-            "title": "N2 Warning",
-            "description": "N2 speed exceeded.",
-            "steps": [
-              {
-                "stepType": "special",
-                "symbol": "◆",
-                "text": "If in flight:"
-              },
-              {
-                "stepType": "substep",
-                "step": "a. Thrust Lever",
-                "action": "REDUCE"
-              },
-              {
-                "stepType": "substep",
-                "step": "b. Monitor N2."
-              },
-              {
-                "stepType": "special",
-                "symbol": "❍",
-                "text": "If message persists:"
-              },
-              {
-                "stepType": "substep",
-                "step": "(1) Land as soon as practicable."
-              },
-              {
-                "stepType": "procedureComplete",
-                "text": "Procedure Complete"
-              },
-              {
-                "stepType": "special",
-                "symbol": "◆",
-                "text": "If on ground:"
-              },
-              {
-                "stepType": "substep",
-                "step": "a. Shut down engine. Do not dispatch."
-              },
-              {
-                "stepType": "procedureComplete",
-                "text": "Procedure Complete"
-              }
-            ]
-          },
-          {
-            "title": "OIL CHIP DETECT Warning",
-            "description": "Engine oil debris detected.",
-            "steps": [
-              {
-                "stepType": "checkbox",
-                "step": "1. Shut down engine. Do not dispatch."
-              },
-              {
-                "stepType": "procedureComplete",
-                "text": "Procedure Complete"
-              }
-            ],
-            "notes": [
-              {
-                "text": "• NOTE • Frequent oil chip detect messages during flight may cause the OIL CHIP DETECT Warning to occur on a subsequent flight. In that event, dispatch is not permitted unless maintenance is performed."
-              }
-            ]
-          },
-          {
-            "title": "OIL FILTER BYPASS Warning",
-            "description": "Oil filter differential pressure too high, bypass impending.",
-            "steps": [
-              {
-                "stepType": "checkbox",
-                "step": "1. Shut down engine. Do not dispatch."
-              },
-              {
-                "stepType": "procedureComplete",
-                "text": "Procedure Complete"
-              }
-            ]
-          },
-          {
-            "title": "OIL PRESSURE Warning",
-            "description": "Engine oil pressure exceedance.",
-            "steps": [
-              {
-                "stepType": "special",
-                "symbol": "◆",
-                "text": "If in flight:"
-              },
-              {
-                "stepType": "substep",
-                "step": "a. Monitor oil system pressure and temperature."
-              },
-              {
-                "stepType": "special",
-                "symbol": "❍",
-                "text": "If message persists:"
-              },
-              {
-                "stepType": "substep",
-                "step": "(1) Thrust Lever",
-                "action": "REDUCE (MINIMUM REQUIRED)"
-              },
-              {
-                "stepType": "substep",
-                "step": "(2) Avoid abrupt thrust lever movements."
-              },
-              {
-                "stepType": "substep",
-                "step": "(3) Land as soon as possible."
-              },
-              {
-                "stepType": "procedureComplete",
-                "text": "Procedure Complete"
-              },
-              {
-                "stepType": "special",
-                "symbol": "◆",
-                "text": "If on ground:"
-              },
-              {
-                "stepType": "substep",
-                "step": "a. Perform Abnormal Engine Shutdown On Ground checklist."
-              },
-              {
-                "stepType": "procedureComplete",
-                "text": "Procedure Complete"
-              }
-            ]
-          },
-          {
-            "title": "OIL TEMPERATURE Warning",
-            "description": "Engine oil temperature exceedance.",
-            "steps": [
-              {
-                "stepType": "checkbox",
-                "step": "1. Thrust Lever",
-                "action": "REDUCE (MINIMUM REQUIRED)"
-              },
-              {
-                "stepType": "checkbox",
-                "step": "2. Monitor oil system pressure and temperature."
-              },
-              {
-                "stepType": "special",
-                "symbol": "◆",
-                "text": "If message persists:"
-              },
-              {
-                "stepType": "substep",
-                "step": "a. Land as soon as possible."
-              },
-              {
-                "stepType": "procedureComplete",
-                "text": "Procedure Complete"
-              }
-            ]
-          },
-          {
-            "title": "STALL WARNING",
-            "description": "Stall warning active.",
-            "steps": [
-              {
-                "stepType": "checkbox",
-                "step": "1. AOA",
-                "action": "REDUCE"
-              },
-              {
-                "stepType": "checkbox",
-                "step": "2. Thrust Lever",
-                "action": "T/O"
-              },
-              {
-                "stepType": "procedureComplete",
-                "text": "Procedure Complete"
-              }
-            ]
-          },
-          {
-            "title": "STICK PUSHER Warning",
-            "description": "Stick pusher active.",
-            "steps": [
-              {
-                "stepType": "checkbox",
-                "step": "1. AOA",
-                "action": "REDUCE"
-              },
-              {
-                "stepType": "checkbox",
-                "step": "2. Thrust Lever",
-                "action": "T/O"
-              },
-              {
-                "stepType": "caution",
-                "text": "• CAUTION • Do not attempt to overpower the stick pusher."
-              },
-              {
-                "stepType": "note",
-                "text": "• NOTE • If airspeed, altitude, power settings, and load factors are within normal limits, and there is no evidence of ice contamination, message should be considered a malfunction."
-              },
-              {
-                "stepType": "special",
-                "symbol": "◆",
-                "text": "If message is determined to be a malfunction:"
-              },
-              {
-                "stepType": "substep",
-                "step": "a. Grip side stick firmly."
-              },
-              {
-                "stepType": "substep",
-                "step": "b. AP DISC Button",
-                "action": "PRESS AND HOLD"
-              },
-              {
-                "stepType": "substep",
-                "step": "c. Airplane Control",
-                "action": "MAINTAIN"
-              },
-              {
-                "stepType": "substep",
-                "step": "d. AP SERVOS CB (A3)",
-                "action": "PULL"
-              },
-              {
-                "stepType": "substep",
-                "step": "e. AP DISC Button",
-                "action": "RELEASE"
-              },
-              {
-                "stepType": "substep",
-                "step": "f. STICK SHAKER CB (B3)",
-                "action": "PULL"
-              },
-              {
-                "stepType": "special",
-                "symbol": "❍",
-                "text": "If in RVSM airspace:"
-              },
-              {
-                "stepType": "substep",
-                "step": "(1) Airplane Control",
-                "action": "MAINTAIN"
-              },
-              {
-                "stepType": "substep",
-                "step": "(2) Exit RVSM airspace."
-              },
-              {
-                "stepType": "substep",
-                "step": "g. Airspeed",
-                "action": "MAINTAIN ABOVE 1.3 Vs"
-              },
-              {
-                "stepType": "substep",
-                "step": "h. Avoid stalls, low airspeed, and uncoordinated or abrupt control inputs."
-              },
-              {
-                "stepType": "substep",
-                "step": "i. Land as soon as practicable."
-              },
-              {
-                "stepType": "procedureComplete",
-                "text": "Procedure Complete"
-              }
-            ],
-            "notes": [
-              {
-                "text": "• NOTE • Autopilot, Stall Warning, and Stick Shaker will be unavailable. Green donut airspeed reference will be unavailable or unreliable. Refer to the following procedures for VREF speeds. Low speed awareness indications on the airspeed tape should be considered unreliable and should not be referenced."
-              },
-              {
-                "text": "Refer to Section 3A: Abnormal Procedures, \"STICK PUSHER FAIL Caution\"."
-              },
-              {
-                "text": "Refer to Section 3A: Abnormal Procedures, \"AOA FAIL Caution\"."
-              },
-              {
-                "text": "Expect CAPS AUTOPILOT INOP CAS. Refer to Section 3A: Abnormal Procedures, \"CAPS AUTOPILOT INOP Advisory\"."
-              }
-            ]
-          },
-          {
-            "title": "TAKEOFF PITCH TRIM Warning",
-            "description": "Pitch trim not in takeoff configuration.",
-            "steps": [
-              {
-                "stepType": "checkbox",
-                "step": "1. Takeoff",
-                "action": "ABORT"
-              },
-              {
-                "stepType": "checkbox",
-                "step": "2. Pitch Trim",
-                "action": "ADJUST TO TAKEOFF (GREEN BAND)"
-              },
-              {
-                "stepType": "procedureComplete",
-                "text": "Procedure Complete"
-              }
-            ]
-          },
-          {
-            "title": "THR LEVER CALIBRATION Warning",
-            "description": "FADEC is in TLA rigging mode.",
-            "steps": [
-              {
-                "stepType": "checkbox",
-                "step": "1. Do not dispatch."
-              },
-              {
-                "stepType": "procedureComplete",
-                "text": "Procedure Complete"
-              }
-            ]
-          },
-          {
-            "title": "TT2 OVERHEAT Warning",
-            "description": "TT2 probes pending overheat.",
-            "steps": [
-              {
-                "stepType": "checkbox",
-                "step": "1. ENG. IPS Switch",
-                "action": "OFF"
-              },
-              {
-                "stepType": "checkbox",
-                "step": "2. Avoid/exit icing conditions."
-              },
-              {
-                "stepType": "procedureComplete",
-                "text": "Procedure Complete"
-              }
-            ]
-          }
-      ],
-
-
+          
       
 
 
-
-
-
-
+      
 
 
 
