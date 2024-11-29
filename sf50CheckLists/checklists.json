@@ -3686,7 +3686,7 @@
                 },
                 {
                   "stepType": "substep",
-                  "step": "a. Shut down engine. Do not dispatch."
+                  "step": "1. Shut down engine. Do not dispatch."
                 },
                 {
                   "stepType": "procedureComplete",
@@ -3694,37 +3694,311 @@
                 }
               ],
               "notes": []
-            }
+            },
+            {
+              "title": "OIL CHIP DETECT Warning",
+              "description": "Engine oil debris detected.",
+              "steps": [
+                {
+                  "stepType": "special",
+                  "text": "On Ground Only"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "1. Shut down engine. Do not dispatch."
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                }
+              ]
+            },
+            {
+              "title": "OIL FILTER BYPASS Warning",
+              "description": "Oil filter diff press too high, bypass impending.",
+              "steps": [
+                {
+                  "stepType": "special",
+                  "text": "On Ground Only"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "1. Shut down engine. Do not dispatch."
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                }
+      ]
+            },
+            {
+              "title": "OIL PRESSURE Warning",
+              "description": "Engine oil pressure exceedance.",
+              "steps": [
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If in flight:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. Monitor oil system pressure and temperature."
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "❍",
+                  "text": "If message persists:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "(1)Thrust Lever",
+                  "action": "REDUCE (MINIMUM REQUIRED)"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "(2)Avoid abrupt thrust lever movements."
+                },
+                {
+                  "stepType": "substep",
+                  "step": "(3)Land as soon as possible."
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If on ground:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. Perform Abnormal Engine Shutdown On Ground checklist."
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                }
+              ]
+            },
+            {
+              "title": "OIL TEMPERATURE Warning",
+              "description": "Engine oil temperature exceedance.",
+              "steps": [
+                {
+                  "stepType": "substep",
+                  "step": "1. Thrust Lever",
+                  "action": "REDUCE (MINIMUM REQUIRED)"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "2. Monitor oil system pressure and temperature."
+                },
+                {
+                  "stepType": "special",
+                  "symbol": "◆",
+                  "text": "If message persists:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. Land as soon as possible."
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                }
+              ]
+            },
+            {
+              "title": "STALL WARNING",
+              "description": "Stall warning active.",
+              "steps": [
+                {
+                  "stepType": "substep",
+                  "step": "1. AOA",
+                  "action": "REDUCE"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "2. Thrust Lever",
+                  "action": "T/O"
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                }
+       ] },
+       {
+        "title": "STICK PUSHER Warning",
+        "description": "Stick pusher active.",
+        "steps": [
+          {
+            "stepType": "substep",
+            "step": "1. AOA",
+            "action": "REDUCE"
+          },
+          {
+            "stepType": "substep",
+            "step": "2. Thrust Lever",
+            "action": "T/O"
+          },
+          {
+            "stepType": "procedureComplete",
+            "text": "Procedure Complete"
+          },
+          {
+            "stepType": "special",
+            "symbol": "•",
+            "text": "• CAUTION • Do not attempt to overpower the stick pusher."
+          },
+          {
+            "stepType": "special",
+            "symbol": "•",
+            "text": "• NOTE • If airspeed, altitude, power settings, and load factors are within normal limits, and there is no evidence of ice contamination, message should be considered a malfunction."
+          },
+          {
+            "stepType": "special",
+            "symbol": "◆",
+            "text": "If message is determined to be a malfunction:"
+          },
+          {
+            "stepType": "substep",
+            "step": "a. Grip side stick firmly."
+          },
+          {
+            "stepType": "substep",
+            "step": "b. AP DISC Button",
+            "action": "PRESS AND HOLD"
+          },
+          {
+            "stepType": "substep",
+            "step": "c. Airplane Control",
+            "action": "MAINTAIN"
+          },
+          {
+            "stepType": "substep",
+            "step": "d. AP SERVOS CB (A3)",
+            "action": "PULL"
+          },
+          {
+            "stepType": "substep",
+            "step": "e. AP DISC Button",
+            "action": "RELEASE"
+          },
+          {
+            "stepType": "substep",
+            "step": "f. STICK SHAKER CB \n(B3)",
+            "action": "PULL"
+          },
+          {
+            "stepType": "special",
+            "symbol": "❍",
+            "text": "If in RVSM airspace:"
+          },
+          {
+            "stepType": "substep",
+            "step": "i. Land as soon as practicable."
+          },
+          {
+            "stepType": "procedureComplete",
+            "text": "Procedure Complete"
+          },
+          {
+            "stepType": "special",
+            "symbol": "•",
+            "text": "VREF Speeds (KIAS)\n\n------------------------------------------------------------\nFLAPS: 4000lb 4500lb 5000lb 5550lb 6000lb\n------------------------------------------------------------\n\nUP or UNKNOWN: 89 95 100 104 109\n\nUP (Ice Contamin. Airframe): 115 122 128 135 140\n\n50%: 82 87 91 96 100\n\n50% (Ice Contamin. Airframe): 98 104 110 115 120\n\n100%: 71 76 81 85 89"
+          }
+        ],
+        "notes": []
+      },
+      {
+        "title": "TAKEOFF PITCH TRIM Warning",
+        "description": "Pitch trim not in takeoff configuration.",
+        "steps": [
+          {
+            "stepType": "special",
+            "text": "On Ground Only"
+          },
+          {
+            "stepType": "substep",
+            "step": "1. Takeoff",
+            "action": "ABORT"
+          },
+          {
+            "stepType": "substep",
+            "step": "2. Pitch Trim",
+            "action": "ADJUST TO TAKEOFF (GREEN BAND)"
+          },
+          {
+            "stepType": "procedureComplete",
+            "text": "Procedure Complete"
+          }
+        ],
+        "notes": []
+      },
+      {
+        "title": "THR LEVER CALIBRATION Warning",
+        "description": "FADEC is in TLA rigging mode.",
+        "steps": [
+          {
+            "stepType": "special",
+            "text": "On Ground Only"
+          },
+          {
+            "stepType": "substep",
+            "step": "1. Do not dispatch."
+          },
+          {
+            "stepType": "procedureComplete",
+            "text": "Procedure Complete"
+          }
+        ],
+        "notes": []
+      },
+      {
+        "title": "TT2 OVERHEAT Warning",
+        "description": "TT2 probes pending overheat.",
+        "steps": [
+          {
+            "stepType": "substep",
+            "step": "1. ENG. IPS Switch",
+            "action": "OFF"
+          },
+          {
+            "stepType": "substep",
+            "step": "2. Avoid/exit icing conditions."
+          },
+          {
+            "stepType": "procedureComplete",
+            "text": "Procedure Complete"
+          }
+        ],
+        "notes": []
+      }
+       
+          
           
           
 
 
             
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             
           ],
        
-
-
-
-
-
-
-
-
-
-          
-      
-
-
-      
-
-
-
-
-
-
-      
-      
         "abnormalProcedures": [
           {
             "title": "Abnormal Engine Shutdown on Ground",
