@@ -864,26 +864,16 @@
                 "stepType": "procedureComplete",
                 "text": "Procedure Complete"
               }
-            ],
-            "warnings": [
-              {
-                "text": "• WARNING • If all attempts to restart the engine fail and a forced landing is imminent, select a suitable landing site and prepare for landing. As forced landings on unimproved surfaces are not recommended, CAPS activation may be the safest option."
-              },
-              {
-                "text": "Refer to Section 3: Emergency Procedures, \"CAPS Activation\" checklist."
-              },
-              {
-                "text": "Refer to Section 10: Safety Information, \"Cirrus Airframe Parachute System (CAPS)\" for CAPS deployment scenarios and landing considerations."
-              },
-              {
-                "text": "When determined that a forced landing is the safest option, a suitable landing site should be chosen as early as possible so that maximum time will be available to plan and execute the forced landing. While gliding, be aware that use of flaps will reduce glide distance. Flaps should not be selected until landing is assured. Land on the main gear and hold the nose wheel off the ground as long as possible."
-              }
             ]
           },
           {
             "title": "Engine Emergency On Takeoff - Speed Below VR",
             "description": "",
             "steps": [
+              {
+                "stepType": "special",
+                "text": "Note: Includes emergencies such as engine failure or fire."
+              },
               {
                 "stepType": "checkbox",
                 "step": "1. Brakes",
@@ -954,7 +944,7 @@
               },
               {
                 "stepType": "special",
-                "symbol": "After airplane comes to a complete stop:"
+                "text": "After airplane comes to a complete stop:"
               },
               {
                 "stepType": "checkbox",
@@ -968,27 +958,13 @@
             ],
             "notes": [
               {
-                "text": "• NOTE • Includes emergencies such as engine failure or fire."
-              },
-              {
-                "text": "Refer to Section 4: Normal Procedures, \"After Landing\"."
-              }
-            ],
-            "cautions": [
-              {
-                "text": "• CAUTION • For maximum brake effectiveness, retract flaps, hold side stick control full back, and bring the airplane to a stop by smooth, even application of the brakes."
-              },
-              {
-                "text": "A cool down period and brake overheat inspection are required after high-energy braking events."
-              },
-              {
-                "text": "Refer to Section 2: Limitations, \"Brakes\"."
+                "text": "CAUTION: For maximum brake effectiveness, retract flaps, hold side stick control full back, and bring the airplane to a stop by smooth, even application of the brakes. A cool down period and brake overheat inspection are required after high-energy braking events. Refer to Section 2: Limitations, \"Brakes\""
               }
             ]
           },
           {
             "title": "Engine Failure In Flight",
-            "description": "Engine failure occurred during flight.",
+            "description": "",
             "steps": [
               {
                 "stepType": "checkbox",
@@ -1011,7 +987,7 @@
               },
               {
                 "stepType": "note",
-                "text": "• NOTE • Engine can be considered safe to attempt restart if no abnormal, loud noises or vibrations were noted prior to or during shutdown, N1 rotation is observed, and no exceedances."
+                "text": "• NOTE • Engine can be considered safe to attempt restart if no abnormal, loud noises or vibrations were noted prior to or during shutdown, N1 rotation is observed, and no exceedances were noted prior to shutdown."
               },
               {
                 "stepType": "special",
@@ -1071,27 +1047,11 @@
                 "stepType": "procedureComplete",
                 "text": "Procedure Complete"
               }
-            ],
-            "warnings": [
-              {
-                "text": "• WARNING • If all attempts to restart the engine fail and a forced landing is imminent, select a suitable landing site and prepare for landing. As forced landings on unimproved surfaces are not recommended, CAPS activation may be the safest option."
-              }
-            ],
-            "notes": [
-              {
-                "text": "Refer to Section 3: Emergency Procedures, 'CAPS Activation' checklist."
-              },
-              {
-                "text": "Refer to Section 10: Safety Information, 'Cirrus Airframe Parachute System (CAPS)' for CAPS deployment scenarios and landing considerations."
-              },
-              {
-                "text": "Refer to Section 2: Limitations, 'Oxygen' for oxygen requirements."
-              }
             ]
           },
               {
                 "title": "ENGINE FAILURE ON TAKEOFF - LOW ALTITUDE",
-                "description": "Engine failure at low altitude after takeoff.",
+                "description": "",
                 "steps": [
                   {
                     "stepType": "checkbox",
@@ -1146,22 +1106,6 @@
                     "stepType": "procedureComplete",
                     "text": "Procedure Complete"
                   }
-                ],
-                "warnings": [
-                  {
-                    "text": "• WARNING • If engine failure is accompanied by fuel fumes in the cockpit, or if internal engine damage is suspected, lift the guard on the ENGINE FIRE ACKNOWLEDGE switch, toggle the switch, and shut down the engine. Do not attempt a restart."
-                  },
-                  {
-                    "text": "If the engine fails immediately after becoming airborne, abort on the runway if possible. In most cases, when the engine fails below 500 feet AGL, the landing should be made straight ahead, turning only to avoid obstructions. In such a case, lower the nose to maintain flying airspeed and establish a glide attitude. After establishing a glide for landing, perform as many of the checklist items as time permits."
-                  }
-                ],
-                "notes": [
-                  {
-                    "text": "• NOTE • When determined that a forced landing is the safest option, a suitable landing site should be chosen as early as possible so that maximum time will be available to plan and execute the forced landing."
-                  },
-                  {
-                    "text": "While gliding, be aware that use of flaps will reduce glide distance. Flaps should not be selected until landing is assured. Land on the main gear and hold the nose wheel off the ground as long as possible."
-                  }
                 ]
               },
               {
@@ -1171,6 +1115,10 @@
                   {
                     "stepType": "checkbox",
                     "step": "1. Land as soon as possible."
+                  },
+                  {
+                    "stepType": "procedureComplete",
+                    "text": "Procedure Complete"
                   },
                   {
                     "stepType": "special",
@@ -1185,27 +1133,27 @@
                     "stepType": "procedureComplete",
                     "text": "Procedure Complete"
                   }
-                ],
-                "warnings": [
-                  {
-                    "text": "• WARNING • If the engine fails immediately after becoming airborne, abort on the runway if possible. In most cases, when the engine fails below 500 feet AGL, the landing should be made straight ahead, turning only to avoid obstructions. In such a case, lower the nose to maintain flying airspeed and establish a glide attitude. After establishing a glide for landing, perform as many of the checklist items as time permits."
-                  }
-                ],
-                "notes": [
-                  {
-                    "text": "• NOTE • When determined that a forced landing is the safest option, a suitable landing site should be chosen as early as possible so that maximum time will be available to plan and execute the forced landing. While gliding, be aware that use of flaps will reduce glide distance. Flaps should not be selected until landing is assured. Land on the main gear and hold the nose wheel off the ground as long as possible."
-                  }
                 ]
               },
               {
                 "title": "Flameout / Precautionary Approach",
                 "description": "",
-                "notes": [
+                "steps": [
                   {
-                    "text": "• NOTE • Gear down and flaps when landing is assured."
+                    "stepType": "special",
+                    "text": "POSITION.....ALTITUDE......AIRSPEED"
                   },
                   {
-                    "text": "Airspeed 110 KIAS (minimum) until short final."
+                    "stepType": "special",
+                    "text": "High-Key......3000 ft AGL......115-130 KIAS"
+                  },
+                  {
+                    "stepType": "special",
+                    "text": "Low-Key......1500 ft AGL......120 KIAS"
+                  },
+                  {
+                    "stepType": "special",
+                    "text": "Base Leg......1000 ft AGL......120 KIAS"
                   }
                 ]
               },
@@ -1231,7 +1179,7 @@
                   {
                     "stepType": "substep",
                     "step": "c. Airspeed",
-                    "action": "MAINTAIN LAST TRIMMED AIRSPEED OR A/R"
+                    "action": "MAINTAIN LAST TRIMMED\n AIRSPEED OR A/R"
                   },
                   {
                     "stepType": "substep",
@@ -1254,20 +1202,20 @@
                   {
                     "stepType": "substep",
                     "step": "a. Pitch and Thrust",
-                    "action": "MAINTAIN ALTITUDE AND FLYING SPEED AS REQUIRED"
+                    "action": "MAINTAIN ALTITUDE AND \nFLYING SPEED AS \nREQUIRED"
                   },
                   {
                     "stepType": "note",
-                    "text": "• NOTE • Expect extremely high stick forces."
+                    "text": "NOTE: Expect extremely high stick forces."
                   },
                   {
-                    "stepType": "substep",
-                    "step": "When safely airborne and clear of obstacles:"
+                    "stepType": "note",
+                    "text": "When safely airborne and clear of obstacles:"
                   },
                   {
                     "stepType": "substep",
                     "step": "b. Flaps",
-                    "action": "PLACE IN POSITION THAT JAM OCCURRED"
+                    "action": "PLACE IN POSITION THAT JAM\n OCCURRED"
                   },
                   {
                     "stepType": "note",
@@ -1332,11 +1280,11 @@
                   },
                   {
                     "stepType": "checkbox",
-                    "step": "3. Make small pitch and power changes and prepare for landing configuration early."
+                    "step": "3. Make small pitch and power changes and prepare\n for landing configuration early."
                   },
                   {
                     "stepType": "special",
-                    "symbol": "After touchdown and after the nose wheel is on the ground:"
+                    "text": "After touchdown and after the nose wheel is on the ground:"
                   },
                   {
                     "stepType": "checkbox",
@@ -1346,10 +1294,6 @@
                   {
                     "stepType": "procedureComplete",
                     "text": "Procedure Complete"
-                  },
-                  {
-                    "stepType": "note",
-                    "text": "• NOTE • Avoid crosswind conditions if possible."
                   }
                 ]
               },
@@ -1364,7 +1308,7 @@
                   },
                   {
                     "stepType": "checkbox",
-                    "step": "2. Maintain directional control on ground, using brakes and ailerons as required."
+                    "step": "2. Maintain directional control on ground, using\n brakes and ailerons as required."
                   },
                   {
                     "stepType": "procedureComplete",
@@ -1394,17 +1338,6 @@
                   {
                     "stepType": "procedureComplete",
                     "text": "Procedure Complete"
-                  }
-                ],
-                "notes": [
-                  {
-                    "text": "• NOTE • BAT 2 is designed to power the Emergency Bus for at least 60 minutes."
-                  },
-                  {
-                    "text": "FADEC NO DISPATCH faults will be displayed once normal power is restored. Faults can be cleared using the FADEC fault reset button."
-                  },
-                  {
-                    "text": "FUEL VALVE #2 FAIL Caution will be displayed during normal tank AUTO selection since the secondary valve is not powered by emergency power."
                   }
                 ]
               },
@@ -1439,7 +1372,7 @@
                   },
                   {
                     "stepType": "note",
-                    "text": "• NOTE • Airspeed is approximately 160 KIAS."
+                    "text": "NOTE: Airspeed is approximately 160 KIAS."
                   },
                   {
                     "stepType": "special",
@@ -1449,7 +1382,7 @@
                   {
                     "stepType": "substep",
                     "step": "a. Power",
-                    "action": "SET N1% PER Section 5: Performance Data, \"Cruise Performance\""
+                    "action": "SET N1% PER Section 5:\n Performance Data, \"Cruise\n Performance\""
                   },
                   {
                     "stepType": "special",
@@ -1463,17 +1396,11 @@
                   },
                   {
                     "stepType": "note",
-                    "text": "• NOTE • Airspeed is approximately 160 KIAS."
+                    "text": "NOTE: Airspeed is approximately 160 KIAS."
                   },
                   {
                     "stepType": "special",
-                    "symbol": "◆",
-                    "text": "Approach:"
-                  },
-                  {
-                    "stepType": "special",
-                    "symbol": "❍",
-                    "text": "Gear UP:"
+                    "text": "Approach:\n\n Gear UP:"
                   },
                   {
                     "stepType": "substep",
@@ -1482,7 +1409,7 @@
                   },
                   {
                     "stepType": "note",
-                    "text": "• NOTE • Airspeed is approximately 120 KIAS."
+                    "text": "NOTE: Airspeed is approximately 120 KIAS."
                   },
                   {
                     "stepType": "special",
@@ -1496,12 +1423,7 @@
                   },
                   {
                     "stepType": "note",
-                    "text": "• NOTE • Refer to VREF Speeds table."
-                  },
-                  {
-                    "stepType": "special",
-                    "symbol": "◆",
-                    "text": "Go Around:"
+                    "text": "NOTE: Refer to VREF Speeds table.\n\n Go Around:"
                   },
                   {
                     "stepType": "substep",
@@ -1510,7 +1432,7 @@
                   },
                   {
                     "stepType": "note",
-                    "text": "• NOTE • Refer to VREF Speeds table."
+                    "text": "NOTE: Refer to VREF Speeds table."
                   },
                   {
                     "stepType": "checkbox",
@@ -1543,6 +1465,10 @@
                   {
                     "stepType": "checkbox",
                     "step": "4. Land as soon as practicable."
+                  },
+                  {
+                    "stepType": "procedureComplete",
+                    "text": "Procedure Complete"
                   },
                   {
                     "stepType": "special",
@@ -1600,11 +1526,6 @@
                     "stepType": "procedureComplete",
                     "text": "Procedure Complete"
                   }
-                ],
-                "notes": [
-                  {
-                    "text": "• NOTE • Refer to Section 3: Emergency Procedures, \"Flameout / Precautionary Approach\"."
-                  }
                 ]
               },
               {
@@ -1661,7 +1582,7 @@
                   },
                   {
                     "stepType": "special",
-                    "symbol": "After airplane comes to a complete stop:"
+                    "text": "After airplane comes to a complete stop:"
                   },
                   {
                     "stepType": "checkbox",
@@ -1671,25 +1592,6 @@
                   {
                     "stepType": "procedureComplete",
                     "text": "Procedure Complete"
-                  }
-                ],
-                "cautions": [
-                  {
-                    "text": "• CAUTION • For maximum brake effectiveness, retract flaps, hold side stick control full back, and bring the airplane to a stop by smooth, even application of the brakes."
-                  },
-                  {
-                    "text": "Do not set the parking brake following a Rejected Takeoff."
-                  },
-                  {
-                    "text": "A cool down period and brake overheat inspection are required after high-energy braking events. Refer to Section 2: Limitations, Brakes."
-                  }
-                ],
-                "notes": [
-                  {
-                    "text": "• NOTE • Use as much of the remaining runway as needed to safely bring airplane to a stop or to slow airplane sufficiently to turn off runway."
-                  },
-                  {
-                    "text": "Refer to Section 4: Normal Procedures, After Landing."
                   }
                 ]
               },
@@ -1766,10 +1668,6 @@
                     "action": "PRESS"
                   },
                   {
-                    "stepType": "note",
-                    "text": "• NOTE • Autopilot Emergency Descent Mode (EDM) is disabled when the cabin dump switch is activated."
-                  },
-                  {
                     "stepType": "checkbox",
                     "step": "8. Perform Emergency Descent checklist as required."
                   },
@@ -1830,7 +1728,7 @@
                   {
                     "stepType": "substep",
                     "step": "g. Oxygen Masks",
-                    "action": "ADJUST TO NORM IF ABLE AND BELOW 20,000 FEET"
+                    "action": "ADJUST TO NORM IF ABLE\n AND BELOW 20,000 FEET"
                   },
                   {
                     "stepType": "procedureComplete",
@@ -1843,24 +1741,11 @@
                   {
                     "stepType": "checkbox",
                     "step": "14. Oxygen Masks",
-                    "action": "ADJUST TO NORM IF ABLE AND BELOW 20,000 FEET"
+                    "action": "ADJUST TO NORM IF ABLE\n AND BELOW 20,000 FEET"
                   },
                   {
                     "stepType": "procedureComplete",
                     "text": "Procedure Complete"
-                  }
-                ],
-                "warnings": [
-                  {
-                    "text": "• WARNING • Regardless of smoke evidence, if there is no visual confirmation that fire has been extinguished following fire suppression and/or smoke evacuation, land as soon as possible."
-                  },
-                  {
-                    "text": "The fire extinguisher should only be used in 2-second blasts, and additional shots should only be used if necessary to extinguish the fire. Inhalation of the complete discharge of the fire extinguisher may result in cardiotoxicity and/or anesthetic effects to the occupants. Occupants shall use emergency oxygen masks during and after fire extinguisher use."
-                  }
-                ],
-                "notes": [
-                  {
-                    "text": "• NOTE • Refer to Section 2: Limitations, \"Oxygen\" for oxygen requirements."
                   }
                 ]
               },
@@ -1893,8 +1778,8 @@
                   },
                   {
                     "stepType": "checkbox",
-                    "step": "6. Left or Right PUSH TO DISCHARGE Button",
-                    "action": "PUSH (REGARDLESS OF ARMED LIGHT)"
+                    "step": "6. L / R PUSH TO DISCHARGE",
+                    "action": "PUSH (REGARDLESS\n OF ARMED LIGHT)"
                   },
                   {
                     "stepType": "checkbox",
@@ -1918,41 +1803,6 @@
                   {
                     "stepType": "procedureComplete",
                     "text": "Procedure Complete"
-                  }
-                ],
-                "notes": [
-                  {
-                    "text": "• NOTE • This condition is identified by complete loss of thrust accompanied by the following:"
-                  },
-                  {
-                    "text": "1. Loud bangs, knocks, vibration, or other noise, or"
-                  },
-                  {
-                    "text": "2. Engine Fire Indication (CAS Warning and/or FIRE light), or"
-                  },
-                  {
-                    "text": "3. Fire Detector Fail (CAS Caution), or"
-                  },
-                  {
-                    "text": "4. Erratic engine indications, such as the following:"
-                  },
-                  {
-                    "text": "   • Indication failure/loss of indication"
-                  },
-                  {
-                    "text": "   • Low or no N1 or N2"
-                  },
-                  {
-                    "text": "   • Low fuel pressure"
-                  },
-                  {
-                    "text": "   • Low or no oil pressure"
-                  },
-                  {
-                    "text": "   • High ITT, fuel flow, or oil temperature"
-                  },
-                  {
-                    "text": "• NOTE • Refer to Section 2: Limitations, \"Oxygen\" for oxygen requirements."
                   }
                 ]
               }
