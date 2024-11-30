@@ -265,8 +265,7 @@ h2 {
 }
 
 .note-item {
-    color: #888;
-    font-style: italic;
+    color: #ffffff;
 }
 
 .procedure-complete {
@@ -352,7 +351,7 @@ h2 {
 /* Checklist Items - Default State */
 .warning-item {
     box-sizing: border-box; /* Ensure padding and border are included in height */
-    padding: 10px;
+    padding: 0px;
     background-color: black;
     margin: 1px 0;
     cursor: pointer;

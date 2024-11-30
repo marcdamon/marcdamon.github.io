@@ -17,7 +17,7 @@
               },
               {
                 "stepType": "checkbox",
-                "step": "3. See Section 2: Limitations, \"Powerplant Limitations\" and Section 2: Limitations, \"Outside Air Temperature Limits\" for corrective actions."
+                "step": "3. See Section 2: Limitations, \"Powerplant Limitations\" \nand Section 2: Limitations, \"Outside Air Temperature Limits\" \nfor corrective actions."
               },
               {
                 "stepType": "procedureComplete",
@@ -25,21 +25,7 @@
               }
             ],
             "notes": [
-              {
-                "text": "• NOTE • An Abnormal Engine Start occurs when:"
-              },
-              {
-                "text": "• there is a failure to accelerate after 30 seconds, or"
-              },
-              {
-                "text": "• there is no N1 indication at 25% N2, or"
-              },
-              {
-                "text": "• there is low oil pressure after start, or"
-              },
-              {
-                "text": "• ITT exceeds limits (red line)."
-              }
+              
             ]
           },
           {
@@ -50,55 +36,57 @@
           {
             "title": "Airspeeds for Emergency Operations",
             "description": "",
-            "data": [
+            "steps": [
               {
-                "category": "Maneuvering Speed",
-                "speeds": [
-                  {
-                    "weight": "6000 lb (2721 kg)",
-                    "speed": "150 KIAS"
-                  }
-                ]
+                "stepType": "special",
+                "text": "Maneuvering Speed"
               },
               {
-                "category": "Emergency Landing",
-                "speeds": [
-                  {
-                    "configuration": "Flaps UP",
-                    "speed": "100 KIAS"
-                  },
-                  {
-                    "configuration": "Flaps 50%",
-                    "speed": "95 KIAS"
-                  },
-                  {
-                    "configuration": "Flaps 100%",
-                    "speed": "90 KIAS"
-                  }
-                ]
+                "stepType": "substep",
+                "step": "6000 lb (2721 kg)",
+                "action": "150 KIAS"
               },
               {
-                "category": "Best Glide (Gear and Flaps: UP)",
-                "speeds": [
-                  {
-                    "weight": "6000 lb (2721 kg)",
-                    "speed": "114 KIAS"
-                  },
-                  {
-                    "weight": "5000 lb (2268 kg)",
-                    "speed": "104 KIAS"
-                  },
-                  {
-                    "weight": "4000 lb (1814 kg)",
-                    "speed": "93 KIAS"
-                  }
-                ]
+                "stepType": "special",
+                "text": "Emergency Landing"
+              },
+              {
+                "stepType": "substep",
+                "step": "Flaps UP",
+                "action": "100 KIAS"
+              },
+              {
+                "stepType": "substep",
+                "step": "Flaps 50%",
+                "action": "95 KIAS"
+              },
+              {
+                "stepType": "substep",
+                "step": "Flaps 100%",
+                "action": "90 KIAS"
+              },
+              {
+                "stepType": "special",
+                "text": "Best Glide (Gear and Flaps: UP)"
+              },
+              {
+                "stepType": "substep",
+                "step": "6000 lb (2721 kg)",
+                "action": "114 KIAS"
+              },
+              {
+                "stepType": "substep",
+                "step": "5000 lb (2268 kg)",
+                "action": "104 KIAS"
+              },
+              {
+                "stepType": "substep",
+                "step": "4000 lb (1814 kg)",
+                "action": "93 KIAS"
               }
+                
             ],
             "notes": [
-              {
-                "text": "• NOTE • In the clean configuration, the VREF green donut indicates the speed for best glide."
-              }
             ]
           },
           {
@@ -215,14 +203,11 @@
                 "text": "Procedure Complete"
               }
             ],
-            "cautions": [
-              {
-                "text": "• CAUTION • Probability of engine restart is greater when N2 < 16%. Do not attempt a restart until N2 < 24%."
-              },
-              {
-                "text": "See Section 2: Limitations, \"Engine Start (In flight)\" for Engine Air Start envelope."
-              }
-            ]
+            "notes": [
+            {
+              "text": "CAUTION\n Probability of engine restart is greater when N2 < 16%. Do not attempt a restart until N2 < 24%.\nSee Section 2: Limitations, \"Engine Start (In flight)\" for Engine Air Start envelope."
+            }
+          ]
           },
           {
             "title": "AUTO DESCENT",
@@ -294,10 +279,6 @@
                 "step": "b. Exit RVSM airspace."
               },
               {
-                "stepType": "note",
-                "text": "• NOTE • Refer to Section 3A: Abnormal Procedures, \"Autopilot Failure\"."
-              },
-              {
                 "stepType": "checkbox",
                 "step": "6. Land as soon as practicable."
               },
@@ -307,96 +288,26 @@
               }
             ],
             "notes": [
-              {
-                "text": "• NOTE • If erroneous AOA indications are observed, green donut airspeed reference will be unavailable or unreliable. Low speed awareness indications on the airspeed tape should be considered unreliable and should not be referenced. Refer to Section 3A: Abnormal Procedures, \"STICK PUSHER FAIL Caution\"."
-              },
-              {
-                "text": "Expect CAPS AUTOPILOT INOP CAS. Refer to Section 3A: Abnormal Procedures, \"CAPS AUTOPILOT INOP Advisory\"."
-              }
             ]
           },
           {
-            "title": "Best Glide (Gear and Flaps: UP)",
+            "title": "Best Glide Speed",
             "description": "",
-            "data": [
-              {
-                "weight": "6000 lb (2721 kg)",
-                "speed": "114 KIAS"
-              },
-              {
-                "weight": "5000 lb (2268 kg)",
-                "speed": "104 KIAS"
-              },
-              {
-                "weight": "4000 lb (1814 kg)",
-                "speed": "93 KIAS"
-              }
-            ],
-            "notes": [
-              {
-                "text": "• NOTE • In the clean configuration, the VREF green donut indicates the speed for best glide."
-              }
-            ]
-          },
-          {
-            "title": "CABIN ALTITUDE HIGH",
-            "description": "Cabin high altitude detected.",
             "steps": [
               {
                 "stepType": "checkbox",
-                "step": "1. Oxygen Mask",
-                "action": "DON, 100%"
+                "step": "6000 lb",
+                "action": "114 KIAS"
               },
               {
                 "stepType": "checkbox",
-                "step": "2. BLEED Switch",
-                "action": "VERIFY BLEED"
+                "step": "5000 lb",
+                "action": "104 KIAS"
               },
               {
                 "stepType": "checkbox",
-                "step": "3. MIC SELECT Switch",
-                "action": "MASK MIC"
-              },
-              {
-                "stepType": "checkbox",
-                "step": "4. Perform Emergency Descent checklist as required."
-              },
-              {
-                "stepType": "checkbox",
-                "step": "5. Passenger Oxygen",
-                "action": "ENSURE PASSENGERS ARE RECEIVING OXYGEN"
-              },
-              {
-                "stepType": "special",
-                "symbol": "◆",
-                "text": "If passenger oxygen masks do not deploy:"
-              },
-              {
-                "stepType": "substep",
-                "step": "a. PAX OXY DEPLOY Switch",
-                "action": "ON"
-              },
-              {
-                "stepType": "checkbox",
-                "step": "6. Transponder",
-                "action": "SQUAWK 7700"
-              },
-              {
-                "stepType": "checkbox",
-                "step": "7. CABIN PRESSURE DUMP Button",
-                "action": "PRESS"
-              },
-              {
-                "stepType": "procedureComplete",
-                "text": "Procedure Complete"
-              }
-            ],
-            "notes": [
-              {
-                "text": "• NOTE • Refer to Section 2: Limitations, 'Oxygen' for oxygen requirements."
-              },
-              {
-                "text": "If the CABIN PRESSURE DUMP is not activated, Emergency Descent Mode (EDM) will activate if the aircraft is at or above 14,900 feet pressure altitude and the cabin altitude is greater than or equal to 15,000 feet. An EDM activation can lead to an automatic activation of Safe Return Autoland. EDM and Safe Return Autoland will not automatically activate if CABIN PRESSURE DUMP is activated. Manual activation of Safe Return Autoland can still be accomplished following CABIN PRESSURE DUMP activation."
+                "step": "4000 lb",
+                "action": "93 KIAS"
               }
             ]
           },
@@ -442,7 +353,7 @@
               {
                 "stepType": "checkbox",
                 "step": "8. Oxygen Mask",
-                "action": "ADJUST TO NORM IF ABLE AND BELOW 20,000 FEET"
+                "action": "ADJUST TO NORM IF ABLE\n AND BELOW 20,000 FEET"
               },
               {
                 "stepType": "special",
@@ -457,28 +368,6 @@
                 "stepType": "procedureComplete",
                 "text": "Procedure Complete"
               }
-            ],
-            "warnings": [
-              {
-                "text": "• WARNING • The fire extinguisher should only be used in 2-second blasts, and additional shots should only be used if necessary to extinguish the fire. Inhalation of the complete discharge of the fire extinguisher may result in cardiotoxicity and/or anesthetic effects to the occupants. Occupants shall use emergency oxygen masks during and after fire extinguisher use."
-              }
-            ],
-            "notes": [
-              {
-                "text": "• NOTE • With BAT and GEN switches OFF, engine will continue to run. However, no electrical power will be available."
-              },
-              {
-                "text": "If the airplane is in IMC, turn GEN 1, GEN 2, and BAT 1 switches OFF. Power from Battery 2 will power all the loads on the Emergency Bus for at least 60 minutes. If airplane is in day VFR conditions and turning off the GEN switches eliminated the fire situation, leave the GEN switches OFF."
-              },
-              {
-                "text": "If the cause of the fire is readily apparent and accessible, use the fire extinguisher to extinguish flames and land as soon as possible."
-              },
-              {
-                "text": "If required to re-activate systems, pause several seconds between activating each system to isolate malfunctioning system. Continue flight to earliest possible landing with malfunctioning system OFF. Activate only the minimum amount of equipment necessary to complete a safe landing."
-              },
-              {
-                "text": "Refer to Section 2: Limitations, \"Oxygen\" for oxygen requirements."
-              }
             ]
           },
           {
@@ -486,29 +375,14 @@
             "description": "",
             "steps": [
               {
-                "stepType": "warning",
-                "text": "• WARNING • The recommended CAPS activation speed is one that is less than 135 KIAS and 145 KTAS, whichever is lower, which will result in immediate parachute deployment once the CAPS handle is pulled. It is important for the operator to make all reasonable efforts to slow to the minimum possible airspeed prior to CAPS activation."
-              },
-              {
-                "stepType": "warning",
-                "text": "If CAPS is activated at speeds higher than 135 KIAS and 145 KTAS, whichever is lower, the system is designed to delay deployment of the parachute until the autopilot slows the airplane to the parachute deployment envelope. Do not attempt to overpower or disconnect the autopilot. The time required for the autopilot to slow the airplane from 250 KIAS to the parachute deployment airspeed has been demonstrated to be approximately 15-24 seconds. Flying at a slower airspeed when CAPS is activated will reduce this time."
-              },
-              {
-                "stepType": "warning",
-                "text": "If the airspeed is still above the maximum deployment speed approximately 30 seconds after CAPS activation, the system will automatically deploy the parachute."
-              },
-              {
-                "stepType": "warning",
-                "text": "CAPS deployment will likely result in damage or loss to the airframe and possible injury to the aircraft occupants. Seat belts must be worn at all times."
-              },
-              {
-                "stepType": "warning",
-                "text": "Jerking or rapidly pulling the CAPS activation handle will greatly increase the pull forces required to activate the rocket. Use a firm and steady pulling motion – a “chin-up” type pull ensures successful activation."
+                "stepType": "checkbox",
+                "step": "1. Airspeed",
+                "action": "REDUCE BELOW 135 KIAS / \n145 KTAS"
               },
               {
                 "stepType": "checkbox",
-                "step": "1. Activation Handle",
-                "action": "PULL DOWN STEADILY WITH BOTH HANDS"
+                "step": "2. Activation Handle",
+                "action": "PULL DOWN STEADILY WITH \nBOTH HANDS"
               },
               {
                 "stepType": "note",
@@ -516,41 +390,41 @@
               },
               {
                 "stepType": "checkbox",
-                "step": "2. Oxygen Mask (above 15,000 feet)",
+                "step": "3. Oxygen Mask (above 15,000 feet)",
                 "action": "DON, 100%"
               },
               {
                 "stepType": "checkbox",
-                "step": "3. PAX OXY DEPLOY Switch",
+                "step": "4. PAX OXY DEPLOY Switch",
                 "action": "ON"
               },
               {
                 "stepType": "checkbox",
-                "step": "4. MIC SELECT Switch",
+                "step": "5. MIC SELECT Switch",
                 "action": "MASK MIC"
               },
               {
                 "stepType": "checkbox",
-                "step": "5. Instruct passengers to don oxygen masks."
+                "step": "6. Instruct passengers to don oxygen masks."
               },
               {
                 "stepType": "checkbox",
-                "step": "6. Passenger Oxygen",
-                "action": "ENSURE PASSENGERS ARE RECEIVING OXYGEN"
+                "step": "7. Passenger Oxygen",
+                "action": "ENSURE PASSENGERS ARE RECEIVING \nOXYGEN"
               },
               {
                 "stepType": "checkbox",
-                "step": "7. ENGINE FIRE ACK",
+                "step": "8. ENGINE FIRE ACK",
                 "action": "LIFT GUARD, TOGGLE"
               },
               {
                 "stepType": "checkbox",
-                "step": "8. ELT",
+                "step": "9. ELT",
                 "action": "VERIFY ON"
               },
               {
                 "stepType": "checkbox",
-                "step": "9. Landing Gear",
+                "step": "10. Landing Gear",
                 "action": "UP"
               },
               {
@@ -559,46 +433,34 @@
               },
               {
                 "stepType": "checkbox",
-                "step": "10. BAT/GEN Switches (below 15,000 ft)",
+                "step": "11. BAT/GEN Switches (below 15,000 ft)",
                 "action": "OFF"
               },
               {
                 "stepType": "checkbox",
-                "step": "11. Loose Items",
+                "step": "12. Loose Items",
                 "action": "SECURE"
               },
               {
                 "stepType": "checkbox",
-                "step": "12. Seat Belts",
+                "step": "13. Seat Belts",
                 "action": "TIGHTEN"
               },
               {
                 "stepType": "checkbox",
-                "step": "13. Assume emergency landing body position."
+                "step": "14. Assume emergency landing body position."
               },
               {
                 "stepType": "special",
-                "symbol": "After airplane comes to a complete stop:"
+                "text": "After airplane comes to a complete stop:"
               },
               {
                 "stepType": "checkbox",
-                "step": "14. Evacuate quickly and move upwind, well clear of the aircraft and parachute."
+                "step": "15. Evacuate quickly and move upwind,well clear of the aircraft\n and parachute."
               },
               {
                 "stepType": "procedureComplete",
                 "text": "Procedure Complete"
-              },
-              {
-                "stepType": "note",
-                "text": "• NOTE • In the event the cabin remains pressurized at touchdown, the egress hatch may not be removable."
-              },
-              {
-                "stepType": "note",
-                "text": "After touchdown with the landing gear up, the lower half of the clamshell cabin door will not completely open with the belly of the aircraft resting on the ground."
-              },
-              {
-                "stepType": "note",
-                "text": "Refer to Section 2: Limitations, \"Oxygen\" for oxygen requirements."
               }
             ]
           },
@@ -609,7 +471,7 @@
               {
                 "stepType": "checkbox",
                 "step": "1. Radio",
-                "action": "TRANSMIT (ATC OR 121.5 MHZ) MAYDAY WITH LOCATION & INTENTIONS"
+                "action": "TRANSMIT (ATC OR 121.5 MHZ)\n MAYDAY WITH LOCATION \n& INTENTIONS"
               },
               {
                 "stepType": "checkbox",
@@ -648,7 +510,7 @@
               },
               {
                 "stepType": "checkbox",
-                "step": "9. Align approach parallel to swells and attempt to touchdown along a wave crest or behind it."
+                "step": "9. Align approach parallel to swells and attempt to touchdown\n along a wave crest or behind it."
               },
               {
                 "stepType": "special",
@@ -662,12 +524,12 @@
               {
                 "stepType": "checkbox",
                 "step": "10. Pitch attitude at water contact",
-                "action": "SLIGHTLY HIGHER THAN NORMAL LANDING ATTITUDE"
+                "action": "SLIGHTLY HIGHER\n THAN NORMAL LANDING\n ATTITUDE"
               },
               {
                 "stepType": "checkbox",
                 "step": "11. Airspeed & Rate of Descent",
-                "action": "REDUCE TO MINIMUM, ABOVE STALL WARNING"
+                "action": "REDUCE TO MINIMUM,\n ABOVE STALL WARNING"
               },
               {
                 "stepType": "checkbox",
@@ -677,7 +539,7 @@
               {
                 "stepType": "checkbox",
                 "step": "13. Water Touchdown",
-                "action": "CONTACT ON CREST OF SWELL, PARALLEL TO MAJOR SWELL"
+                "action": "CONTACT ON CREST OF\n SWELL, PARALLEL TO MAJOR\n SWELL"
               },
               {
                 "stepType": "checkbox",
@@ -686,21 +548,16 @@
               },
               {
                 "stepType": "warning",
-                "text": "• WARNING • Evacuate via either egress window or main cabin door. However, main cabin door evacuation shall be done only via the upper cabin door. To avoid flooding the airplane, do not open lower cabin door."
+                "text": "\nWARNING: Evacuate via either egress window or main cabin door. However, main cabin door evacuation shall be done only via the upper cabin door. To avoid flooding the airplane, do not open lower cabin door.\n\n"
               },
               {
                 "stepType": "checkbox",
                 "step": "15. Flotation Devices (if equipped)",
-                "action": "INFLATE WHEN CLEAR OF AIRPLANE"
+                "action": "INFLATE WHEN CLEAR\n OF AIRPLANE"
               },
               {
                 "stepType": "procedureComplete",
                 "text": "Procedure Complete"
-              }
-            ],
-            "notes": [
-              {
-                "text": "• NOTE • If available, life preservers should be donned and the life raft prepared for immediate evacuation upon touchdown."
               }
             ]
           },
@@ -788,7 +645,7 @@
               },
               {
                 "stepType": "substep",
-                "step": "(2) Perform Automatic Flight Control Malfunction (Stick Pusher, ESP, USP, Autopilot) checklist."
+                "step": "(2) Perform Automatic Flight Control Malfunction (Stick\n Pusher, ESP, USP, Autopilot) checklist."
               },
               {
                 "stepType": "procedureComplete",
@@ -802,10 +659,6 @@
               {
                 "stepType": "substep",
                 "step": "a. No further action is required."
-              },
-              {
-                "stepType": "note",
-                "text": "• NOTE • Refer to Section 8: Handling and Servicing, 'Safe Return Autoland Runway Recovery'."
               },
               {
                 "stepType": "procedureComplete",
@@ -835,7 +688,7 @@
               {
                 "stepType": "checkbox",
                 "step": "4. Airspeed",
-                "action": "INCREASE TO VMO (250 KIAS) / MMO (0.53 Mach) MAXIMUM"
+                "action": "INCREASE TO VMO\n (250 KIAS) / MMO (0.53 Mach)\n MAXIMUM"
               },
               {
                 "stepType": "procedureComplete",
@@ -880,16 +733,6 @@
                 "stepType": "procedureComplete",
                 "text": "Procedure Complete"
               }
-            ],
-            "warnings": [
-              {
-                "text": "• WARNING • While exiting the airplane, make sure evacuation path is clear of aircraft and other hazards."
-              }
-            ],
-            "notes": [
-              {
-                "text": "• NOTE • In instances when the engine cannot be shut off, and has to be left running, set the parking brake prior to evacuating the airplane."
-              }
             ]
           },
           {
@@ -912,7 +755,7 @@
               {
                 "stepType": "checkbox",
                 "step": "4. Radio",
-                "action": "TRANSMIT (ATC OR 121.5 MHZ) MAYDAY WITH LOCATION & INTENTIONS"
+                "action": "TRANSMIT (ATC OR 121.5\n MHZ) MAYDAY WITH LOCATION\n & INTENTIONS"
               },
               {
                 "stepType": "checkbox",
@@ -950,12 +793,12 @@
                 "action": "NORMAL TECHNIQUE"
               },
               {
-                "stepType": "warning",
-                "text": "• WARNING • Refer to Section 3: Emergency Procedures, \"Flameout / Precautionary Approach\" checklist.\nIf a safe landing is not assured by the High-Key/Low-Key approach, consider CAPS procedures."
+                "stepType": "note",
+                "text": "WARNING: Refer to Section 3: Emergency Procedures, \"Flameout / Precautionary Approach\" checklist. If a safe landing is not assured by the High-Key/Low-Key approach, consider CAPS procedures."
               },
               {
                 "stepType": "special",
-                "symbol": "After landing:"
+                "text": "After landing:"
               },
               {
                 "stepType": "substep",
@@ -1001,8 +844,12 @@
                 "action": "MINIMUM CONTROLLABLE AIRSPEED"
               },
               {
+                "stepType": "note",
+                "text": "WARNING: Refer to Section 3: Emergency Procedures, \"Flameout / Precautionary Approach\" checklist. If a safe landing is not assured by the High-Key/Low-Key approach, consider CAPS procedures."
+              },
+              {
                 "stepType": "special",
-                "symbol": "After landing:"
+                "text": "After landing:"
               },
               {
                 "stepType": "substep",
