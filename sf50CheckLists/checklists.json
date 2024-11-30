@@ -229,7 +229,7 @@
             ],
             "notes": [
               {
-                "text": "• NOTE • Aircraft will descend to 14,000 feet, level off for 4 minutes, then descend to 12,500 feet."
+                "text": "Note: Aircraft will descend to 14,000 feet, level off for 4 minutes, then descend to 12,500 feet."
               },
               {
                 "text": "Serials with Safe Return Autoland: Unless canceled, Safe Return Autoland will activate descending through 15,000 feet pressure altitude and change route to an emergency landing airport. Refer to Section 10: Safety Information, 'Safe Return Autoland System (if installed)'."
@@ -386,7 +386,7 @@
               },
               {
                 "stepType": "note",
-                "text": "• NOTE • Wait for plane to stabilize beneath canopy before proceeding."
+                "text": "Note: Wait for plane to stabilize beneath canopy before proceeding."
               },
               {
                 "stepType": "checkbox",
@@ -582,7 +582,7 @@
               },
               {
                 "stepType": "note",
-                "text": "• NOTE • Safe Return Autoland will immediately squawk 7700, change the flight plan, and may change the altimeter setting."
+                "text": "Note: Safe Return Autoland will immediately squawk 7700, change the flight plan, and may change the altimeter setting."
               },
               {
                 "stepType": "substep",
@@ -987,7 +987,7 @@
               },
               {
                 "stepType": "note",
-                "text": "• NOTE • Engine can be considered safe to attempt restart if no abnormal, loud noises or vibrations were noted prior to or during shutdown, N1 rotation is observed, and no exceedances were noted prior to shutdown."
+                "text": "Note: Engine can be considered safe to attempt restart if no abnormal, loud noises or vibrations were noted prior to or during shutdown, N1 rotation is observed, and no exceedances were noted prior to shutdown."
               },
               {
                 "stepType": "special",
@@ -1219,7 +1219,7 @@
                   },
                   {
                     "stepType": "note",
-                    "text": "• NOTE • 100% flaps may alleviate excessive nose-up tendencies following a normal takeoff."
+                    "text": "Note: 100% flaps may alleviate excessive nose-up tendencies following a normal takeoff."
                   },
                   {
                     "stepType": "substep",
@@ -1803,6 +1803,41 @@
                   {
                     "stepType": "procedureComplete",
                     "text": "Procedure Complete"
+                  }
+                ],
+                "notes": [
+                  {
+                    "text": "Note: This condition is identified by complete loss of thrust accompanied by the following:"
+                  },
+                  {
+                    "text": "1. Loud bangs, knocks, vibration, or other noise, or"
+                  },
+                  {
+                    "text": "2. Engine Fire Indication (CAS Warning and/or FIRE light), or"
+                  },
+                  {
+                    "text": "3. Fire Detector Fail (CAS Caution), or"
+                  },
+                  {
+                    "text": "4. Erratic engine indications, such as the following:"
+                  },
+                  {
+                    "text": "   • Indication failure/loss of indication"
+                  },
+                  {
+                    "text": "   • Low or no N1 or N2"
+                  },
+                  {
+                    "text": "   • Low fuel pressure"
+                  },
+                  {
+                    "text": "   • Low or no oil pressure"
+                  },
+                  {
+                    "text": "   • High ITT, fuel flow, or oil temperature"
+                  },
+                  {
+                    "text": "Note: Refer to Section 2: Limitations, \"Oxygen\" for oxygen requirements."
                   }
                 ]
               }
@@ -2855,7 +2890,7 @@
                 },
                 {
                   "stepType": "special",
-                  "text": "• NOTE • Change altitude to increase OAT and increase fuel \ntemperature. Due to temperature inversion, warmer \ntemperatures may be at a higher altitude."
+                  "text": "Note: Change altitude to increase OAT and increase fuel \ntemperature. Due to temperature inversion, warmer \ntemperatures may be at a higher altitude."
                 },
                 {
                   "stepType": "special",
@@ -3106,7 +3141,7 @@
                 },
                 {
                   "stepType": "special",
-                  "text": "• NOTE • GEN 1 will support GEN 2 electrical loads."
+                  "text": "Note: GEN 1 will support GEN 2 electrical loads."
                 },
                 {
                   "stepType": "substep",
@@ -3139,7 +3174,7 @@
                 },
                 {
                   "stepType": "special",
-                  "text": "• NOTE • GEN 1 will support GEN 2 electrical loads."
+                  "text": "Note: GEN 1 will support GEN 2 electrical loads."
                 },
                 {
                   "stepType": "substep",
@@ -3551,7 +3586,7 @@
           {
             "stepType": "special",
             "symbol": "•",
-            "text": "• NOTE • If airspeed, altitude, power settings, and load factors are within normal limits, and there is no evidence of ice contamination, message should be considered a malfunction."
+            "text": "Note: If airspeed, altitude, power settings, and load factors are within normal limits, and there is no evidence of ice contamination, message should be considered a malfunction."
           },
           {
             "stepType": "special",
@@ -3672,34 +3707,34 @@
         ],
         "notes": []
       }
-       
-          
-          
-          
 
-
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
           ],
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
        
         "abnormalProcedures": [
           {
             "title": "Abnormal Engine Shutdown on Ground",
-            "description": "",
+            "description": "If normal engine shutdown is not succesful:",
             "steps": [
               {
                 "stepType": "checkbox",
@@ -3710,77 +3745,128 @@
                 "stepType": "checkbox",
                 "step": "2. ENGINE FIRE ACK",
                 "action": "LIFT GUARD, TOGGLE"
+              },
+              {
+                "stepType": "procedureComplete",
+                "text": "Procedure Complete"
               }
-            ],
-            "cautions": [
-              "Do not press PUSH TO DISCHARGE unless necessary."
-            ],
-            "notes": [
-              "Activating ENGINE FIRE ACKNOWLEDGE shuts fuel to the engine and arms fire bottles."
             ]
           },
           {
             "title": "AFCS Alerts",
             "description": "For more information on AFCS alerts, refer to SF50 Garmin Cockpit Reference Guide.",
             "steps": []
-          },          
+          },
           {
             "title": "Aileron Mistrim Left/Right",
-            "description": "",
+            "description": "Yellow (left/right arrow) AIL annunciator on PFD.",
             "steps": [
               {
-                "stepType": "checkbox",
-                "step": "1. Adjust aileron trim as required."
+                "stepType": "substep",
+                "step": "1. Manipulate aileron trim as required to eliminate\n the mistrim condition."
               },
               {
-                "stepType": "checkbox",
-                "step": "2. If condition persists, disengage autopilot and retrim."
+                "stepType": "special",
+                "symbol": "•",
+                "text": "NOTE: Momentary roll trim input in the direction of mistrim indication will typically correct the condition."
+              },
+              {
+                "stepType": "special",
+                "symbol": "",
+                "text": "If condition persists:"
+              },
+              {
+                "stepType": "substep",
+                "step": "a. Disengage autopilot."
+              },
+              {
+                "stepType": "substep",
+                "step": "b. Retrim aircraft as desired."
+              },
+              {
+                "stepType": "procedureComplete",
+                "text": "Procedure Complete"
               }
-            ],
-            "notes": [
-              "Momentary roll trim input corrects mistrim.",
-              "Prepare for out-of-trim condition if autopilot disengages."
             ]
           },
-          {
-            "title": "Alternate Gear Extension",
-            "description": "",
-            "steps": [
-              {
-                "stepType": "checkbox",
-                "step": "1. Airspeed",
-                "action": "Below 210 KIAS"
-              },
-              {
-                "stepType": "checkbox",
-                "step": "2. LANDING GEAR HYD CB (B4)",
-                "action": "PULL"
-              },
-              {
-                "stepType": "checkbox",
-                "step": "3. Landing Gear Handle",
-                "action": "DOWN"
-              },
-              {
-                "stepType": "checkbox",
-                "step": "4. Alternate Gear Extension Handle",
-                "action": "PULL TO STOP, RESTOW"
-              },
-              {
-                "stepType": "checkbox",
-                "step": "5. Verify",
-                "action": "\"3 Green\" (Down/Locked)"
-              },
-              {
-                "stepType": "checkbox",
-                "step": "6. If gear fails to lock",
-                "action": "Pull handle fully, reduce airspeed/increase G-load, recheck indicators, and consider visual verification."
-              }
-            ],
-            "notes": [
-              "Ensure full travel of the handle for proper extension."
-            ]
-          },
+            {
+              "title": "Alternate Gear Extension",
+              "description": "",
+              "steps": [
+                {
+                  "stepType": "substep",
+                  "step": "1. Airspeed",
+                  "action": "BELOW 210 KIAS"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "2. LANDING GEAR HYD CB (B4)",
+                  "action": "PULL"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "3. Landing Gear Handle",
+                  "action": "DOWN"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "4. Alternate Gear Extension Handle",
+                  "action": "PULL TO STOP,\n RESTOW"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "5. Verify 3 Green, DOWN / LOCKED indications.",
+                  "action": ""
+                },
+                {
+                  "stepType": "special",
+                  "text": "If landing gear is down and locked:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. No further action required.",
+                  "action": ""
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                },
+                {
+                  "stepType": "instruction",
+                  "text": "If landing gear is not down and locked:"
+                },
+                {
+                  "stepType": "substep",
+                  "step": "a. Alternate Gear Extension Handle",
+                  "action": "PULL TO STOP,\n RESTOW"
+                },
+                {
+                  "stepType": "note",
+                  "text": "NOTE: Pull the handle to the end of its available travel to ensure landing gear is fully unlocked."
+                },
+                {
+                  "stepType": "substep",
+                  "step": "b. Reduce airspeed, or increase load factor (g) by\n increasing bank angle to assist in extending/locking\n the gear.",
+                  "action": ""
+                },
+                {
+                  "stepType": "substep",
+                  "step": "c. Check landing gear indications. If landing gear\n indications are still not confirmed down, prepare for\n landing with possible gear issue.",
+                  "action": ""
+                },
+                {
+                  "stepType": "substep",
+                  "step": "d. Perform visual verification of gear position by\n ATC (towered airport), if possible.",
+                  "action": ""
+                },
+                {
+                  "stepType": "procedureComplete",
+                  "text": "Procedure Complete"
+                }
+              ],
+              "notes": [],
+              "cautions": []
+            },
           {
             "title": "Autopilot Abnormal Disconnect",
             "description": "Red AP flashing on PFD; continuous high-low aural tone.",
@@ -3845,34 +3931,49 @@
                 "stepType": "procedureComplete",
                 "text": "Procedure Complete"
               }
-            ],
-            "notes": [
-              {
-                "text": "The autopilot, stick pusher, and ESP are inoperative."
-              }
             ]
           },
-          
-          
           {
             "title": "Communications Failure",
             "description": "",
             "steps": [
               {
                 "stepType": "checkbox",
-                "step": "1. Check switches, controls, frequencies, and circuit breakers."
+                "step": "1. Switches, Controls",
+                "action": "CHECK"
               },
               {
                 "stepType": "checkbox",
-                "step": "2. Use alternate microphones or speakers."
+                "step": "2. Frequency",
+                "action": "Chamge"
               },
               {
                 "stepType": "checkbox",
-                "step": "3. Follow FAR/AIM lost communications procedures if unresolved."
+                "step": "3. Circuit Breakers",
+                "action": "Set"
+              },
+              {
+                "stepType": "checkbox",
+                "step": "4. Headset",
+                "action": "Change or Speaker"
+              },
+              {
+                "stepType": "checkbox",
+                "step": "5. Attempt to use oxygen mask microphone or hand-held\n microphone and cabin speakers."
+              },
+              {
+                "stepType": "special",
+                "text": "If Precipitation-static is experienced during flight:"
+              },
+              {
+                "stepType": "substep",
+                "step": "a. WINDSHIELD IPS",
+                "action": "ON"
+              },
+              {
+                "stepType": "procedureComplete",
+                "text": "Procedure Complete"
               }
-            ],
-            "notes": [
-              "In power failure, COM 1 connects to the pilot’s headset."
             ]
           },
           {
@@ -3898,28 +3999,24 @@
                 "stepType": "checkbox",
                 "step": "4. Engine Button",
                 "action": "PRESS AND HOLD for 15–30 seconds"
+              },
+              {
+                "stepType": "procedureComplete",
+                "text": "Procedure Complete"
               }
-            ],
-            "notes": [
-              "Ensure exhaust is dry before next attempt.",
-              "Adhere to starter duty cycle limitations."
             ]
           },
           {
             "title": "Elevator Mistrim Down",
-            "description": "",
-            "notes": [
-              {
-                "text": "Yellow (down arrow) ELE annunciator on PFD."
-              },
-              {
-                "text": "• NOTE • Be prepared for out of trim condition if AP is disengaged."
-              }
-            ],
+            "description": "Yellow (down arrow) ELE annunciator on PFD.",
             "steps": [
               {
+                "stepType": "special",
+                "text": "Note: Be prepared for out of trim condition if AP is disengaged."
+              },
+              {
                 "stepType": "checkbox",
-                "step": "1. Manipulate elevator trim down to eliminate the mistrim condition."
+                "step": "1. Manipulate elevator trim down to eliminate\n the mistrim condition."
               },
               {
                 "stepType": "special",
@@ -3942,17 +4039,12 @@
           },
           {
             "title": "Elevator Mistrim Up",
-            "description": "",
-            "notes": [
-              {
-                "text": "Yellow (up arrow) ELE annunciator on PFD."
-              },
-              {
-                "text": "• NOTE • Be prepared for out of trim condition if AP is disengaged."
-              }
-            ],
+            "description": "Yellow (up arrow) ELE annunciator on PFD.",
             "steps": [
               {
+                "stepType": "special",
+                "text": "Note: Be prepared for out of trim condition if AP is disengaged."
+              },{
                 "stepType": "checkbox",
                 "step": "1. Manipulate elevator trim up to eliminate the mistrim condition."
               },
@@ -3992,11 +4084,6 @@
               {
                 "stepType": "procedureComplete",
                 "text": "Procedure Complete"
-              }
-            ],
-            "notes": [
-              {
-                "text": "• NOTE • Refer to Section 5: Performance Data, \"Flaps: UP\" for Flaps UP landing distance requirements."
               }
             ]
           },
@@ -4044,11 +4131,11 @@
                 "action": "CYCLE UP, THEN DOWN"
               },
               {
-                "stepType": "substep",
-                "step": "❍ If Landing Gear is down and locked:"
+                "stepType": "special",
+                "text": "If Landing Gear is down and locked:"
               },
               {
-                "stepType": "subsubstep",
+                "stepType": "substep",
                 "step": "(1) Monitor landing gear indications."
               },
               {
@@ -4056,11 +4143,11 @@
                 "text": "Procedure Complete"
               },
               {
-                "stepType": "substep",
-                "step": "❍ If Landing Gear is not down and locked:"
+                "stepType": "special",
+                "text": "If Landing Gear is not down and locked:"
               },
               {
-                "stepType": "subsubstep",
+                "stepType": "substep",
                 "step": "(1) Perform Alternate Gear Extension checklist."
               },
               {
@@ -4069,7 +4156,6 @@
               },
               {
                 "stepType": "special",
-                "symbol": "◆",
                 "text": "If on ground:"
               },
               {
@@ -4085,14 +4171,6 @@
                 "stepType": "procedureComplete",
                 "text": "Procedure Complete"
               }
-            ],
-            "notes": [
-              {
-                "text": "• NOTE • Even though the gear assemblies are functioning properly, the root cause may be a failure of the gear sensors to indicate properly (Down/Up or Locked/Unlocked). If possible, visual verification by ATC (towered airport) can be used to confirm gear position."
-              },
-              {
-                "text": "Failure of the gear sensors to provide proper indication could cause the LDG GEAR FAIL Caution to display."
-              }
             ]
           },
           {
@@ -4106,11 +4184,11 @@
               },
               {
                 "stepType": "substep",
-                "step": "a. Land on the side of runway corresponding to the inoperative brake."
+                "step": "a. Land on the side of runway corresponding to the\n inoperative brake."
               },
               {
                 "stepType": "substep",
-                "step": "b. Maintain directional control using rudder and operational brake."
+                "step": "b. Maintain directional control using rudder and\n operational brake."
               },
               {
                 "stepType": "substep",
@@ -4127,7 +4205,7 @@
               },
               {
                 "stepType": "substep",
-                "step": "a. Divert to the longest, widest runway with the most direct headwind."
+                "step": "a. Divert to the longest, widest runway with the\n most direct headwind."
               },
               {
                 "stepType": "substep",
@@ -4144,11 +4222,6 @@
               {
                 "stepType": "procedureComplete",
                 "text": "Procedure Complete"
-              }
-            ],
-            "notes": [
-              {
-                "text": "• NOTE • Rudder effectiveness will decrease with decreasing airspeed."
               }
             ]
           },
@@ -4171,15 +4244,15 @@
               },
               {
                 "stepType": "substep",
-                "step": "a. Land on the side of the runway corresponding to the good tire."
+                "step": "a. Land on the side of the runway corresponding\n to the good tire."
               },
               {
                 "stepType": "substep",
-                "step": "b. Maintain directional control with the brakes, rudder, and aileron."
+                "step": "b. Maintain directional control with the brakes,\n rudder, and aileron."
               },
               {
                 "stepType": "substep",
-                "step": "c. Do not taxi. Stop the airplane and perform a normal Engine Shutdown."
+                "step": "c. Do not taxi. Stop the airplane and perform a normal\n Engine Shutdown."
               },
               {
                 "stepType": "procedureComplete",
@@ -4200,7 +4273,7 @@
               },
               {
                 "stepType": "substep",
-                "step": "c. Do not taxi. Stop the airplane and perform a normal Engine Shutdown."
+                "step": "c. Do not taxi. Stop the airplane and perform a normal\n Engine Shutdown."
               },
               {
                 "stepType": "procedureComplete",
@@ -4210,20 +4283,12 @@
           },
           {
             "title": "Loss of GPS Navigation",
-            "description": "",
-            "notes": [
-              {
-                "text": "Amber GPS LOI text left of HSI and/or white system message on touchscreen controller."
-              },
-              {
-                "text": "• NOTE • Stick pusher function will be inoperative."
-              }
-            ],
+            "description": "Amber GPS LOI text left of HSI and/or white system message on touchscreen controller.",
             "steps": [
               {
                 "stepType": "checkbox",
                 "step": "1. Navigation",
-                "action": "VISUAL, OR SELECT VOR AND/OR DME"
+                "action": "VISUAL, OR SELECT VOR AND/\nOR DME"
               },
               {
                 "stepType": "checkbox",
@@ -4233,32 +4298,16 @@
                 "stepType": "procedureComplete",
                 "text": "Procedure Complete"
               }
-            ],
-            "notes": [
-              {
-                "text": "• NOTE • Dispatch is not authorized with inoperative GPS, predicted degraded GPS (RAIM prediction), or known GPS outage (NOTAM) expected during the planned flight."
-              }
             ]
           },
           {
             "title": "Pitch Axis Failure",
-            "description": "",
-            "notes": [
-              {
-                "text": "Red PTCH annunciator on PFD."
-              },
-              {
-                "text": "• NOTE • If the pitch axis fails while autopilot is engaged, the autopilot will disengage as indicated by the red AP flashing on the PFD. The autopilot may be re-engaged; however, vertical Flight Director modes must be hand flown."
-              },
-              {
-                "text": "This condition will likely be accompanied by a “STICK PUSHER FAIL” CAS message."
-              }
-            ],
+            "description": "Red PTCH annunciator on PFD.",
             "steps": [
               {
                 "stepType": "checkbox",
                 "step": "1. Altitude",
-                "action": "MONITOR AND MAINTAIN AS POSSIBLE"
+                "action": "MONITOR AND MAINTAIN \nAS POSSIBLE"
               },
               {
                 "stepType": "procedureComplete",
@@ -4268,18 +4317,7 @@
           },
           {
             "title": "Roll Axis Failure",
-            "description": "",
-            "notes": [
-              {
-                "text": "Red ROLL annunciator on PFD."
-              },
-              {
-                "text": "• NOTE • If the roll axis fails while autopilot is engaged, the autopilot will disengage as indicated by the red AP flashing on the PFD. The autopilot may not be re-engaged."
-              },
-              {
-                "text": "ESP is inoperative."
-              }
-            ],
+            "description": "Red ROLL annunciator on PFD.",
             "steps": [
               {
                 "stepType": "checkbox",
@@ -4293,16 +4331,38 @@
             ]
           },
           {
-            "title": "Yaw Axis Failure",
-            "description": "",
-            "notes": [
+            "title": "Wing/Stab IPS Activated in RVSM Airspace",
+            "description": "If Activated by Pilot:",
+            "steps": [
               {
-                "text": "Red YAW annunciator on PFD."
+                "stepType": "substep",
+                "step": "a. Advise ATC of non RVSM status."
               },
               {
-                "text": "• NOTE • The yaw damper will disconnect, but the autopilot may still be used for vertical and lateral guidance. Some lateral mistrim may become apparent, and manual rudder inputs may be required for turn coordination."
-              }
-            ],
+                "stepType": "procedureComplete",
+                "text": "Procedure Complete"
+              },
+              {"stepType": "special",
+              "text": "If activated uncommanded:"
+            },
+            {
+              "stepType": "substep",
+              "step": "a. Verify WING/STAB Switch OFF."
+            },
+            {
+              "stepType": "substep",
+              "step": "b. WING/STAB IPS CB (A6)",
+              "action": "PULL"
+            },
+            {
+              "stepType": "procedureComplete",
+              "text": "Procedure Complete"
+            }
+            ]
+          },
+          {
+            "title": "Yaw Axis Failure",
+            "description": "Red YAW annunciator on PFD.",
             "steps": [
               {
                 "stepType": "checkbox",
@@ -4368,7 +4428,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • Green donut airspeed reference will be unavailable or unreliable."
+        "text": "Note: Green donut airspeed reference will be unavailable or unreliable."
       }
     ]
   },
@@ -4397,7 +4457,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • In case of AOA heat failure during flight in icing conditions, AOA measurements may be erroneous."
+        "text": "Note: In case of AOA heat failure during flight in icing conditions, AOA measurements may be erroneous."
       },
       {
         "text": "Refer to VREF Speeds table."
@@ -4429,7 +4489,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • In case of AOA heat failure during flight in icing conditions, AOA measurements may be erroneous."
+        "text": "Note: In case of AOA heat failure during flight in icing conditions, AOA measurements may be erroneous."
       },
       {
         "text": "Refer to VREF Speeds table."
@@ -4512,7 +4572,7 @@
       },
       {
         "stepType": "note",
-        "text": "• NOTE • Cabin pressurization is no longer functional."
+        "text": "Note: Cabin pressurization is no longer functional."
       },
       {
         "stepType": "procedureComplete",
@@ -4543,7 +4603,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • Refer to Section 2: Limitations, \"Oxygen\" for oxygen requirements."
+        "text": "Note: Refer to Section 2: Limitations, \"Oxygen\" for oxygen requirements."
       }
     ]
   },
@@ -4714,7 +4774,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • If cabin pressure controller fails, CPCS will maintain current cabin altitude."
+        "text": "Note: If cabin pressure controller fails, CPCS will maintain current cabin altitude."
       }
     ]
   },
@@ -4802,7 +4862,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • This CAS message is displayed when bleed supply temperature reaches 250 °F (121 °C)."
+        "text": "Note: This CAS message is displayed when bleed supply temperature reaches 250 °F (121 °C)."
       }
     ]
   },
@@ -4894,7 +4954,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • This CAS message is displayed when bleed supply temperature reaches 270 °F (132 °C)."
+        "text": "Note: This CAS message is displayed when bleed supply temperature reaches 270 °F (132 °C)."
       },
       {
         "text": "Refer to Section 2: Limitations, \"Oxygen\" for oxygen requirements."
@@ -4993,7 +5053,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • When in Temp Backup mode, changes in thrust and aircraft speed affect incoming bleed air temperature."
+        "text": "Note: When in Temp Backup mode, changes in thrust and aircraft speed affect incoming bleed air temperature."
       },
       {
         "text": "Prior to increasing thrust or reducing aircraft speed, it is recommended that the temperature setting be lowered (especially during low altitude level off, landing, and go-around conditions)."
@@ -5024,7 +5084,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • Battery FAIL indicates an internal condition which reduces capability of the battery. Possible conditions include a faulty temperature sensor, disconnected heater, etc."
+        "text": "Note: Battery FAIL indicates an internal condition which reduces capability of the battery. Possible conditions include a faulty temperature sensor, disconnected heater, etc."
       }
     ]
   },
@@ -5079,7 +5139,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • Battery FAULT indicates a condition causing battery to disable charging and/or discharging until corrected. Possible conditions include under-voltage, over-voltage, over-current, short-circuit, and over-temperature."
+        "text": "Note: Battery FAULT indicates a condition causing battery to disable charging and/or discharging until corrected. Possible conditions include under-voltage, over-voltage, over-current, short-circuit, and over-temperature."
       }
     ]
   },
@@ -5107,7 +5167,7 @@
     "description": "Main battery (Bat 1) insufficient charge for reliable engine start.",
     "notes": [
       {
-        "text": "• NOTE • Avoid prolonged battery-only ground operation beyond 20 minutes combined operation, which may result in insufficient capacity for engine start."
+        "text": "Note: Avoid prolonged battery-only ground operation beyond 20 minutes combined operation, which may result in insufficient capacity for engine start."
       },
       {
         "text": "Attempted start with insufficient battery capacity may result in battery low voltage protection circuit activation, which will temporarily make main battery unavailable."
@@ -5142,7 +5202,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • Indicates GEN 1 and GEN 2 failure and is associated with low Main Bus and Essential Bus voltages, GEN 1 and GEN 2 current indications, BAT 1 and BAT 2 discharge, and GEN 1 and GEN 2 Cautions."
+        "text": "Note: Indicates GEN 1 and GEN 2 failure and is associated with low Main Bus and Essential Bus voltages, GEN 1 and GEN 2 current indications, BAT 1 and BAT 2 discharge, and GEN 1 and GEN 2 Cautions."
       }
     ]
   },
@@ -5161,7 +5221,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • Indicates external power is connected."
+        "text": "Note: Indicates external power is connected."
       }
     ]
   },
@@ -5219,7 +5279,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • Consider selecting a destination where the necessary FADEC maintenance can be performed. Failure to do so will prevent further dispatch."
+        "text": "Note: Consider selecting a destination where the necessary FADEC maintenance can be performed. Failure to do so will prevent further dispatch."
       }
     ]
   },
@@ -5438,7 +5498,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • If N2 < 70%, expect increased engine/go-around thrust acceleration time."
+        "text": "Note: If N2 < 70%, expect increased engine/go-around thrust acceleration time."
       }
     ]
   },
@@ -5504,7 +5564,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • To maintain fuel balance, monitor fuel quantity and alternate LEFT/RIGHT selection as needed."
+        "text": "Note: To maintain fuel balance, monitor fuel quantity and alternate LEFT/RIGHT selection as needed."
       }
     ]
   },
@@ -5523,7 +5583,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • Indicates external power is connected."
+        "text": "Note: Indicates external power is connected."
       }
     ]
   },
@@ -5581,7 +5641,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • Consider selecting a destination where the necessary FADEC maintenance can be performed. Failure to do so will prevent further dispatch."
+        "text": "Note: Consider selecting a destination where the necessary FADEC maintenance can be performed. Failure to do so will prevent further dispatch."
       }
     ]
   },
@@ -5836,7 +5896,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • If N2 < 70%, expect increased engine/go-around thrust acceleration time."
+        "text": "Note: If N2 < 70%, expect increased engine/go-around thrust acceleration time."
       }
     ]
   },
@@ -5902,7 +5962,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • To maintain fuel balance, monitor fuel quantity and alternate LEFT/RIGHT selection as needed."
+        "text": "Note: To maintain fuel balance, monitor fuel quantity and alternate LEFT/RIGHT selection as needed."
       }
     ]
   },
@@ -5931,7 +5991,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • AUTO Fuel Control will continue to balance fuel consumption during FUEL LOW LEFT/RIGHT/TOTAL caution."
+        "text": "Note: AUTO Fuel Control will continue to balance fuel consumption during FUEL LOW LEFT/RIGHT/TOTAL caution."
       }
     ]
   },
@@ -6010,7 +6070,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • Message indicates pump has been activated and latched ON. Latch is removed by setting the Fuel Control Switch to LEFT or RIGHT, then to AUTO."
+        "text": "Note: Message indicates pump has been activated and latched ON. Latch is removed by setting the Fuel Control Switch to LEFT or RIGHT, then to AUTO."
       },
       {
         "text": "To maintain fuel balance, monitor fuel quantity and alternate LEFT/RIGHT selection as needed."
@@ -6032,7 +6092,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • Fuel pump has been activated due to normal operations, either due to pilot action (selecting L or R tank) or by the avionics due to entering Start Mode."
+        "text": "Note: Fuel pump has been activated due to normal operations, either due to pilot action (selecting L or R tank) or by the avionics due to entering Start Mode."
       }
     ]
   },
@@ -6112,7 +6172,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • To maintain fuel balance, monitor fuel quantity, and alternate LEFT/RIGHT selection as needed."
+        "text": "Note: To maintain fuel balance, monitor fuel quantity, and alternate LEFT/RIGHT selection as needed."
       }
     ]
   },
@@ -6191,7 +6251,7 @@
       },
       {
         "stepType": "note",
-        "text": "• NOTE • Change altitude to increase OAT and increase fuel temperature. Due to temperature inversion, warmer temperatures may be at a higher altitude and cooler temperatures may be at a lower altitude."
+        "text": "Note: Change altitude to increase OAT and increase fuel temperature. Due to temperature inversion, warmer temperatures may be at a higher altitude and cooler temperatures may be at a lower altitude."
       },
       {
         "stepType": "substep",
@@ -6272,7 +6332,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • To maintain fuel balance, monitor fuel quantity and alternate LEFT/RIGHT selection as needed."
+        "text": "Note: To maintain fuel balance, monitor fuel quantity and alternate LEFT/RIGHT selection as needed."
       }
     ]
   },
@@ -6301,7 +6361,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • The Fuel Control Switch should remain in AUTO position which draws fuel through Fuel Valve #1 which is operating normally. See EIS Display for selected valve position (AUTO)."
+        "text": "Note: The Fuel Control Switch should remain in AUTO position which draws fuel through Fuel Valve #1 which is operating normally. See EIS Display for selected valve position (AUTO)."
       },
       {
         "text": "Avoid using LEFT or RIGHT selection which activates the electric fuel pump and draws fuel through Fuel Valve #2 which has failed."
@@ -6338,7 +6398,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • To maintain fuel balance, monitor fuel quantity and alternate LEFT/RIGHT selection as needed."
+        "text": "Note: To maintain fuel balance, monitor fuel quantity and alternate LEFT/RIGHT selection as needed."
       }
     ]
   }
@@ -6427,7 +6487,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • With Battery 1 and Generator 1 switched off, power will be removed from the entire main bus, including the hydraulic powerpack. The following equipment will also be inoperative:"
+        "text": "Note: With Battery 1 and Generator 1 switched off, power will be removed from the entire main bus, including the hydraulic powerpack. The following equipment will also be inoperative:"
       },
       {
         "text": "• Landing gear control (to lower landing gear, perform Alternate Gear Extension checklist)"
@@ -6485,7 +6545,7 @@
       },
       {
         "stepType": "note",
-        "text": "• NOTE • GEN 1 will support GEN 2 electrical loads."
+        "text": "Note: GEN 1 will support GEN 2 electrical loads."
       },
       {
         "stepType": "substep",
@@ -6517,7 +6577,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • Idle speed is high for ground operation."
+        "text": "Note: Idle speed is high for ground operation."
       },
       {
         "text": "Refer to Section 10: Safety Information, \"Taxiing, Steering, and Braking Practices\"."
@@ -6596,7 +6656,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • FUEL VALVE #2 FAIL Caution CAS will be periodically displayed during normal tank AUTO selection since the secondary valve is not powered by emergency power."
+        "text": "Note: FUEL VALVE #2 FAIL Caution CAS will be periodically displayed during normal tank AUTO selection since the secondary valve is not powered by emergency power."
       },
       {
         "text": "With Battery 1 and Generator 1 switched off, power will be removed from the entire main bus, including the hydraulic powerpack. Landing gear control will also be inoperative. To lower landing gear, perform Alternate Gear Extension checklist."
@@ -6647,7 +6707,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • This CAS message is displayed when the WING/STAB IPS Switch is selected ON without the ENGINE IPS Switch being selected ON."
+        "text": "Note: This CAS message is displayed when the WING/STAB IPS Switch is selected ON without the ENGINE IPS Switch being selected ON."
       }
     ]
   },
@@ -6790,7 +6850,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • This CAS message is displayed when IPS fluid quantity ≤ 0.2 U.S. gallon (0.8 L)."
+        "text": "Note: This CAS message is displayed when IPS fluid quantity ≤ 0.2 U.S. gallon (0.8 L)."
       }
     ]
   },
@@ -6876,7 +6936,7 @@
       },
       {
         "stepType": "note",
-        "text": "• NOTE • Even though the gear assemblies are functioning properly, the root cause may be a failure of the gear sensors to indicate properly (Down/Up or Locked/Unlocked).\nReversing the landing gear handle to the opposite position clears the inhibit of the hydraulic power pack enable (limited to 30 seconds of continuous operation)."
+        "text": "Note: Even though the gear assemblies are functioning properly, the root cause may be a failure of the gear sensors to indicate properly (Down/Up or Locked/Unlocked).\nReversing the landing gear handle to the opposite position clears the inhibit of the hydraulic power pack enable (limited to 30 seconds of continuous operation)."
       },
       {
         "stepType": "special",
@@ -7004,7 +7064,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • Battery FAIL indicates an internal condition which reduces capability of the battery. Possible conditions include a faulty temperature sensor, disconnected heater, etc."
+        "text": "Note: Battery FAIL indicates an internal condition which reduces capability of the battery. Possible conditions include a faulty temperature sensor, disconnected heater, etc."
       }
     ]
   },
@@ -7059,7 +7119,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • Battery FAULT indicates a condition causing battery to disable charging and/or discharging until corrected. Possible conditions include under-voltage, over-voltage, over-current, short-circuit, and over-temperature."
+        "text": "Note: Battery FAULT indicates a condition causing battery to disable charging and/or discharging until corrected. Possible conditions include under-voltage, over-voltage, over-current, short-circuit, and over-temperature."
       }
     ]
   },{
@@ -7077,7 +7137,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • Indicates GEN 1 failure and is associated with low Main Bus voltage, GEN 1 current indications, BAT 1 discharge, and GENERATOR 1 CURRENT Caution."
+        "text": "Note: Indicates GEN 1 failure and is associated with low Main Bus voltage, GEN 1 current indications, BAT 1 discharge, and GENERATOR 1 CURRENT Caution."
       }
     ]
   },
@@ -7086,7 +7146,7 @@
     "description": "Autopilot air data modes are not available.",
     "notes": [
       {
-        "text": "• NOTE • AP may only be engaged in pitch modes."
+        "text": "Note: AP may only be engaged in pitch modes."
       }
     ],
     "steps": [
@@ -7101,7 +7161,7 @@
     "description": "Autopilot vertical modes are not available.",
     "notes": [
       {
-        "text": "• NOTE • AP may only be engaged in lateral modes."
+        "text": "Note: AP may only be engaged in lateral modes."
       }
     ],
     "steps": [
@@ -7213,7 +7273,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • This CAS message is displayed during shutdown procedures."
+        "text": "Note: This CAS message is displayed during shutdown procedures."
       }
     ]
   },
@@ -7232,7 +7292,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • This CAS message is displayed while taxiing after landing."
+        "text": "Note: This CAS message is displayed while taxiing after landing."
       }
     ]
   },
@@ -7533,7 +7593,7 @@
       },
       {
         "stepType": "note",
-        "text": "• NOTE • Select PFD mode on GTC #2 or GTC #3 and select SENSORS menu to select PFD air data source."
+        "text": "Note: Select PFD mode on GTC #2 or GTC #3 and select SENSORS menu to select PFD air data source."
       },
       {
         "stepType": "checkbox",
@@ -7587,7 +7647,7 @@
       },
       {
         "stepType": "note",
-        "text": "• NOTE • Select PFD mode on GTC #2 or GTC #3 and select SENSORS menu to select PFD air data source."
+        "text": "Note: Select PFD mode on GTC #2 or GTC #3 and select SENSORS menu to select PFD air data source."
       },
       {
         "stepType": "checkbox",
@@ -7650,7 +7710,7 @@
       },
       {
         "stepType": "note",
-        "text": "• NOTE • Select PFD mode on GTC #2 or GTC #3 and select SENSORS menu to select PFD attitude source."
+        "text": "Note: Select PFD mode on GTC #2 or GTC #3 and select SENSORS menu to select PFD attitude source."
       },
       {
         "stepType": "checkbox",
@@ -7695,7 +7755,7 @@
       },
       {
         "stepType": "note",
-        "text": "• NOTE • Select PFD mode on GTC #2 or GTC #3 and select SENSORS menu to select PFD attitude source."
+        "text": "Note: Select PFD mode on GTC #2 or GTC #3 and select SENSORS menu to select PFD attitude source."
       },
       {
         "stepType": "checkbox",
@@ -7748,7 +7808,7 @@
     ],
     "notes": [
       {
-        "text": "• NOTE • Green donut airspeed reference will be unavailable or unreliable."
+        "text": "Note: Green donut airspeed reference will be unavailable or unreliable."
       }
     ]
   },{
@@ -8809,7 +8869,7 @@
             {
               "stepType": "special",
               "symbol": "•",
-              "text": "• NOTE • IPS fluid minimum dispatch quantity is 1 U.S. gallon."
+              "text": "Note: IPS fluid minimum dispatch quantity is 1 U.S. gallon."
             },
             {
               "stepType": "substep",
@@ -8833,7 +8893,7 @@
             {
               "stepType": "special",
               "symbol": "•",
-              "text": "• NOTE • Fluid will spray clear of the airframe."
+              "text": "Note: Fluid will spray clear of the airframe."
             },
             {
               "stepType": "substep",
@@ -8933,7 +8993,7 @@
             {
               "stepType": "special",
               "symbol": "•",
-              "text": "• NOTE • The left wing leading edge is the primary reference area for determining if ice is accumulating on the aircraft. Ice may be visible on other areas of the aircraft as well, such as the forward windshield."
+              "text": "Note: The left wing leading edge is the primary reference area for determining if ice is accumulating on the aircraft. Ice may be visible on other areas of the aircraft as well, such as the forward windshield."
             },
             {
               "stepType": "substep",
@@ -8962,7 +9022,7 @@
             {
               "stepType": "special",
               "symbol": "•",
-              "text": "• NOTE • Verify STALL SPEED HIGH CAS Advisory is present."
+              "text": "Note: Verify STALL SPEED HIGH CAS Advisory is present."
             },
             {
               "stepType": "substep",

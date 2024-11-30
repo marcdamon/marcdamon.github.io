@@ -251,16 +251,9 @@ h2 {
 }
 
 .special-text {
-    /* Remove flex-grow */
-    /* flex-grow: 1; */ /* This line is removed */
-
     color: white;
-    font-size: 1.2em; /* Maintain or adjust as needed */
-
-    /* Adjust padding to reasonable values */
-    padding: 25px 0px;/* Top & Bottom: 5px, Left & Right: 10px */
-
-    /* Ensure the element respects padding by changing display */
+    font-size: 18px;
+    padding: 10px 0px;/* Top & Bottom: 5px, Left & Right: 10px */
     display: inline-block; /* Allows padding to apply correctly */
 }
 
