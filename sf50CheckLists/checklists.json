@@ -581,10 +581,6 @@
                 "text": "If Safe Return Autoland activation has proceeded beyond 10-second EMER AUTOLAND ACTIVATING period:"
               },
               {
-                "stepType": "note",
-                "text": "Note: Safe Return Autoland will immediately squawk 7700, change the flight plan, and may change the altimeter setting."
-              },
-              {
                 "stepType": "substep",
                 "step": "(1) Transponder",
                 "action": "SET"
@@ -4398,7 +4394,7 @@
       },
       {
         "stepType": "checkbox",
-        "step": "2. Avoid stalls, low airspeed, and uncoordinated or abrupt control inputs."
+        "step": "2. Avoid stalls, low airspeed, and uncoordinated or abrupt\n control inputs."
       },
       {
         "stepType": "checkbox",
@@ -4407,28 +4403,11 @@
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
-      }
-    ],
-    "warnings": [
-      {
-        "text": "• WARNING • The aircraft is not stall protected. Stalls must be avoided when the AOA is inoperative. Excessive altitude loss may result if the aircraft is stalled. Departure from controlled flight or spin may occur during stall with uncoordinated aileron/rudder inputs."
       },
       {
-        "text": "Stall warning is not operative or reliable."
-      },
-      {
-        "text": "Stick pusher is not operative or reliable."
-      },
-      {
-        "text": "Expect STALL WARNING FAIL or STICK PUSHER FAIL CAS."
-      },
-      {
-        "text": "Stall speeds in turns or increased load factor are higher."
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: Green donut airspeed reference will be unavailable or unreliable."
+        "stepType": "special",
+        "symbol": "•",
+        "text": "VREF Speeds (KIAS)\n\n------------------------------------------------------------\nFLAPS: 4000lb 4500lb 5000lb 5550lb 6000lb\n------------------------------------------------------------\n\nUP or UNKNOWN: 89 95 100 104 109\n\nUP (Ice Contamin. Airframe): 115 122 128 135 140\n\n50%: 82 87 91 96 100\n\n50% (Ice Contamin. Airframe): 98 104 110 115 120\n\n100%: 71 76 81 85 89"
       }
     ]
   },
@@ -4453,46 +4432,6 @@
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: In case of AOA heat failure during flight in icing conditions, AOA measurements may be erroneous."
-      },
-      {
-        "text": "Refer to VREF Speeds table."
-      }
-    ]
-  },
-  {
-    "title": "AOA HEAT FAIL Caution",
-    "description": "AOA heat failure.",
-    "steps": [
-      {
-        "stepType": "checkbox",
-        "step": "1. PROBE HT RIGHT CB (E4)",
-        "action": "CYCLE"
-      },
-      {
-        "stepType": "checkbox",
-        "step": "2. PROBE HT LEFT CB (A8)",
-        "action": "CYCLE"
-      },
-      {
-        "stepType": "checkbox",
-        "step": "3. Avoid/exit icing conditions."
-      },
-      {
-        "stepType": "procedureComplete",
-        "text": "Procedure Complete"
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: In case of AOA heat failure during flight in icing conditions, AOA measurements may be erroneous."
-      },
-      {
-        "text": "Refer to VREF Speeds table."
       }
     ]
   },
@@ -4503,7 +4442,7 @@
       {
         "stepType": "checkbox",
         "step": "1. BLEED Switch",
-        "action": "CYCLE FRESH, BLEED WITHIN < 1 SEC"
+        "action": "CYCLE FRESH, BLEED\n WITHIN < 1 SEC"
       },
       {
         "stepType": "checkbox",
@@ -4571,10 +4510,6 @@
         "step": "a. Descend and land as soon as practicable."
       },
       {
-        "stepType": "note",
-        "text": "Note: Cabin pressurization is no longer functional."
-      },
-      {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
       },
@@ -4599,11 +4534,6 @@
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: Refer to Section 2: Limitations, \"Oxygen\" for oxygen requirements."
       }
     ]
   },
@@ -4639,16 +4569,16 @@
         "step": "b. Verify message is extinguished."
       },
       {
-        "stepType": "substep",
-        "step": "❍ If message persists:"
+        "stepType": "special",
+        "text": "If message persists:"
       },
       {
-        "stepType": "subsubstep",
+        "stepType": "substep",
         "step": "(1) Cabin Altitude",
         "action": "MONITOR"
       },
       {
-        "stepType": "subsubstep",
+        "stepType": "substep",
         "step": "(2) Monitor for CABIN ALTITUDE HIGH Warning."
       },
       {
@@ -4693,7 +4623,7 @@
       {
         "stepType": "checkbox",
         "step": "2. BLEED Switch",
-        "action": "CYCLE FRESH, BLEED WITHIN < 1 SEC"
+        "action": "CYCLE FRESH, BLEED WITHIN\n < 1 SEC"
       },
       {
         "stepType": "special",
@@ -4737,8 +4667,8 @@
         "step": "1. Input destination airport in flight plan."
       },
       {
-        "stepType": "checkbox",
-        "step": "OR"
+        "stepType": "special",
+        "text": "OR"
       },
       {
         "stepType": "checkbox",
@@ -4770,11 +4700,6 @@
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: If cabin pressure controller fails, CPCS will maintain current cabin altitude."
       }
     ]
   },
@@ -4859,11 +4784,6 @@
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
       }
-    ],
-    "notes": [
-      {
-        "text": "Note: This CAS message is displayed when bleed supply temperature reaches 250 °F (121 °C)."
-      }
     ]
   },
   {
@@ -4877,7 +4797,6 @@
       },
       {
         "stepType": "special",
-        "symbol": "◆",
         "text": "If message extinguishes:"
       },
       {
@@ -4890,7 +4809,6 @@
       },
       {
         "stepType": "special",
-        "symbol": "◆",
         "text": "If message persists:"
       },
       {
@@ -4903,61 +4821,53 @@
         "step": "b. Verify message is extinguished."
       },
       {
-        "stepType": "substep",
-        "step": "❍ If message persists:"
+        "stepType": "special",
+        "text": "If message persists:"
       },
       {
-        "stepType": "subsubstep",
+        "stepType": "substep",
         "step": "(1) Thrust Lever",
         "action": "REDUCE AS PRACTICAL"
       },
       {
-        "stepType": "subsubstep",
+        "stepType": "substep",
         "step": "(2) Verify message is extinguished."
       },
       {
-        "stepType": "subsubstep",
-        "step": "❑ If message persists or if TCV CONTROL FAIL is displayed:"
+        "stepType": "special",
+        "text": "If message persists or if TCV CONTROL FAIL is displayed:"
       },
       {
-        "stepType": "subsubsubstep",
+        "stepType": "substep",
         "step": "(a) Oxygen Mask",
         "action": "DON, 100%"
       },
       {
-        "stepType": "subsubsubstep",
+        "stepType": "substep",
         "step": "(b) BLEED Switch",
         "action": "FRESH"
       },
       {
-        "stepType": "subsubsubstep",
+        "stepType": "substep",
         "step": "(c) MIC SELECT Switch",
         "action": "MASK MIC"
       },
       {
-        "stepType": "subsubsubstep",
+        "stepType": "substep",
         "step": "(d) Cabin Altitude",
         "action": "MONITOR"
       },
       {
-        "stepType": "subsubsubstep",
+        "stepType": "substep",
         "step": "(e) Monitor for CABIN ALTITUDE HIGH Warning."
       },
       {
-        "stepType": "subsubsubstep",
+        "stepType": "substep",
         "step": "(f) Land as soon as practicable."
       },
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: This CAS message is displayed when bleed supply temperature reaches 270 °F (132 °C)."
-      },
-      {
-        "text": "Refer to Section 2: Limitations, \"Oxygen\" for oxygen requirements."
       }
     ]
   },
@@ -5005,14 +4915,14 @@
       },
       {
         "stepType": "substep",
-        "step": "b. Monitor for ECS BLEED HOT or ECS BLEED OVERHEAT cautions."
+        "step": "b. Monitor for ECS BLEED HOT or ECS BLEED\n OVERHEAT cautions."
       },
       {
         "stepType": "substep",
-        "step": "❍ If ECS BLEED HOT is displayed:"
+        "step": "If ECS BLEED HOT is displayed:"
       },
       {
-        "stepType": "subsubstep",
+        "stepType": "substep",
         "step": "(1) Perform ECS BLEED HOT caution checklist."
       },
       {
@@ -5020,11 +4930,11 @@
         "text": "Procedure Complete"
       },
       {
-        "stepType": "substep",
-        "step": "❍ If ECS BLEED OVERHEAT is displayed:"
+        "stepType": "special",
+        "text": "If ECS BLEED OVERHEAT is displayed:"
       },
       {
-        "stepType": "subsubstep",
+        "stepType": "substep",
         "step": "(1) Perform ECS BLEED OVERHEAT caution checklist."
       },
       {
@@ -5033,7 +4943,6 @@
       },
       {
         "stepType": "special",
-        "symbol": "◆",
         "text": "If TEMP BACKUP mode engaged unintentionally:"
       },
       {
@@ -5049,14 +4958,6 @@
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: When in Temp Backup mode, changes in thrust and aircraft speed affect incoming bleed air temperature."
-      },
-      {
-        "text": "Prior to increasing thrust or reducing aircraft speed, it is recommended that the temperature setting be lowered (especially during low altitude level off, landing, and go-around conditions)."
       }
     ]
   },
@@ -5075,11 +4976,10 @@
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
-      }
-    ],
-    "cautions": [
+      },
       {
-        "text": "• CAUTION • Emergency battery may be unavailable."
+        "stepType": "special",
+        "text": "CAUTION: Emergency battery may be unavailable."
       }
     ],
     "notes": [
@@ -5130,11 +5030,10 @@
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
-      }
-    ],
-    "cautions": [
+      },
       {
-        "text": "• CAUTION • Emergency battery is unavailable."
+        "stepType": "special",
+        "text": "CAUTION: Emergency battery is unavailable."
       }
     ],
     "notes": [
@@ -5155,28 +5054,16 @@
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
       }
-    ],
-    "cautions": [
-      {
-        "text": "• CAUTION • If start is attempted prior to message extinguishing, the battery may be temporarily inoperative, or it may result in an engine hot start or other faults."
-      }
     ]
   },
   {
-    "title": "ENGINE START VOLTS Caution - On Ground",
+    "title": "ENGINE START VOLTS Caution",
     "description": "Main battery (Bat 1) insufficient charge for reliable engine start.",
-    "notes": [
-      {
-        "text": "Note: Avoid prolonged battery-only ground operation beyond 20 minutes combined operation, which may result in insufficient capacity for engine start."
-      },
-      {
-        "text": "Attempted start with insufficient battery capacity may result in battery low voltage protection circuit activation, which will temporarily make main battery unavailable."
-      },
-      {
-        "text": "Condition will automatically recover after main battery is adequately recharged."
-      }
-    ],
     "steps": [
+      {
+        "stepType": "special",
+        "text": "On Ground Only:"
+      },
       {
         "stepType": "checkbox",
         "step": "1. Battery service, preheat and/or charging is required."
@@ -5193,378 +5080,11 @@
     "steps": [
       {
         "stepType": "checkbox",
-        "step": "1. Perform GENERATOR 1 CURRENT Caution and GENERATOR 2 CURRENT Caution Checklists."
+        "step": "1. Perform GENERATOR 1 CURRENT Caution and\n GENERATOR 2 CURRENT Caution Checklists."
       },
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: Indicates GEN 1 and GEN 2 failure and is associated with low Main Bus and Essential Bus voltages, GEN 1 and GEN 2 current indications, BAT 1 and BAT 2 discharge, and GEN 1 and GEN 2 Cautions."
-      }
-    ]
-  },
-  {
-    "title": "EXTERNAL POWER CONNECTED Caution - On Ground",
-    "description": "External power is connected.",
-    "steps": [
-      {
-        "stepType": "checkbox",
-        "step": "1. Ensure external power is removed before moving airplane."
-      },
-      {
-        "stepType": "procedureComplete",
-        "text": "Procedure Complete"
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: Indicates external power is connected."
-      }
-    ]
-  },
-  {
-    "title": "FADEC NO DISPATCH Caution",
-    "description": "Reference FADEC Fault Code Messages.",
-    "steps": [
-      {
-        "stepType": "checkbox",
-        "step": "1. ENG. IPS Switch (OAT < 50 °F)",
-        "action": "VERIFY ON"
-      },
-      {
-        "stepType": "substep",
-        "step": "a. Allow sufficient time for ice to clear from inlet probes."
-      },
-      {
-        "stepType": "checkbox",
-        "step": "2. FADEC Reset via MFD Controller:"
-      },
-      {
-        "stepType": "substep",
-        "step": "a. From Home, touch Aircraft Systems."
-      },
-      {
-        "stepType": "substep",
-        "step": "b. Touch the FADEC Stale Fault Reset Button."
-      },
-      {
-        "stepType": "special",
-        "symbol": "◆",
-        "text": "If message extinguishes:"
-      },
-      {
-        "stepType": "substep",
-        "step": "a. No further action required."
-      },
-      {
-        "stepType": "procedureComplete",
-        "text": "Procedure Complete"
-      },
-      {
-        "stepType": "special",
-        "symbol": "◆",
-        "text": "If message persists:"
-      },
-      {
-        "stepType": "substep",
-        "step": "a. Continuance of flight is permitted."
-      },
-      {
-        "stepType": "procedureComplete",
-        "text": "Procedure Complete"
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: Consider selecting a destination where the necessary FADEC maintenance can be performed. Failure to do so will prevent further dispatch."
-      }
-    ]
-  },
-  {
-    "title": "FIRE DETECTOR FAIL Caution",
-    "description": "Engine fire detector loop low pressure.",
-    "steps": [
-      {
-        "stepType": "special",
-        "symbol": "◆",
-        "text": "If in flight:"
-      },
-      {
-        "stepType": "substep",
-        "step": "a. Land as soon as practicable."
-      },
-      {
-        "stepType": "procedureComplete",
-        "text": "Procedure Complete"
-      },
-      {
-        "stepType": "special",
-        "symbol": "◆",
-        "text": "If on ground:"
-      },
-      {
-        "stepType": "substep",
-        "step": "a. Do not dispatch."
-      },
-      {
-        "stepType": "procedureComplete",
-        "text": "Procedure Complete"
-      }
-    ]
-  },
-  {
-    "title": "FIRE EXT LOW L-R Caution",
-    "description": "Pressure is low in both fire extinguishers.",
-    "warnings": [
-      {
-        "text": "• WARNING • May result in limited/reduced fire suppressant capability."
-      }
-    ],
-    "steps": [
-      {
-        "stepType": "special",
-        "symbol": "◆",
-        "text": "If in flight:"
-      },
-      {
-        "stepType": "substep",
-        "step": "a. Land as soon as practicable."
-      },
-      {
-        "stepType": "procedureComplete",
-        "text": "Procedure Complete"
-      },
-      {
-        "stepType": "special",
-        "symbol": "◆",
-        "text": "If on ground:"
-      },
-      {
-        "stepType": "substep",
-        "step": "a. Do not dispatch."
-      },
-      {
-        "stepType": "procedureComplete",
-        "text": "Procedure Complete"
-      }
-    ]
-  },
-  {
-    "title": "FLAPS AIRSPEED INHIBIT Caution",
-    "description": "Flaps motion inhibited.",
-    "steps": [
-      {
-        "stepType": "checkbox",
-        "step": "1. Airspeed",
-        "action": "INCREASE OR REDUCE, AS REQUIRED"
-      },
-      {
-        "stepType": "checkbox",
-        "step": "OR"
-      },
-      {
-        "stepType": "checkbox",
-        "step": "2. Flaps",
-        "action": "RETURN TO PREVIOUS POSITION"
-      },
-      {
-        "stepType": "procedureComplete",
-        "text": "Procedure Complete"
-      }
-    ]
-  },
-  {
-    "title": "FLAPS DISAGREE Caution",
-    "description": "Flaps are not within commanded position limits.",
-    "warnings": [
-      {
-        "text": "• WARNING • Flaps motion is inhibited when a flap position disagree condition exists."
-      }
-    ],
-    "steps": [
-      {
-        "stepType": "checkbox",
-        "step": "1. Flaps",
-        "action": "CYCLE TO DESIRED POSITION"
-      },
-      {
-        "stepType": "special",
-        "symbol": "◆",
-        "text": "If message extinguishes:"
-      },
-      {
-        "stepType": "substep",
-        "step": "a. Continue flight."
-      },
-      {
-        "stepType": "procedureComplete",
-        "text": "Procedure Complete"
-      },
-      {
-        "stepType": "special",
-        "symbol": "◆",
-        "text": "If message persists:"
-      },
-      {
-        "stepType": "substep",
-        "step": "a. Flaps",
-        "action": "MONITOR POSITION"
-      },
-      {
-        "stepType": "substep",
-        "step": "❍ If flap position is unknown:"
-      },
-      {
-        "stepType": "subsubstep",
-        "step": "(1) Airspeed",
-        "action": "BELOW 150 KIAS"
-      },
-      {
-        "stepType": "substep",
-        "step": "b. Perform Flaps Inoperative Approach/Landing checklist."
-      },
-      {
-        "stepType": "procedureComplete",
-        "text": "Procedure Complete"
-      }
-    ]
-  },
-  {
-    "title": "FLAPS FAIL Caution",
-    "description": "Flaps system inoperative, OR\nFlaps position sensor miscompare, OR\nFlaps sensors failed, position unknown, OR\nFlaps have not reached the selected position.",
-    "steps": [
-      {
-        "stepType": "checkbox",
-        "step": "1. Place flaps in last known or safe position."
-      },
-      {
-        "stepType": "checkbox",
-        "step": "2. FLAPS CB (C2)",
-        "action": "CYCLE"
-      },
-      {
-        "stepType": "special",
-        "symbol": "◆",
-        "text": "If message persists:"
-      },
-      {
-        "stepType": "substep",
-        "step": "a. Perform Flaps Inoperative Approach/Landing checklist."
-      },
-      {
-        "stepType": "procedureComplete",
-        "text": "Procedure Complete"
-      }
-    ]
-  },
-  {
-    "title": "FLAPS SELECTOR FAIL Caution",
-    "description": "Cannot determine flaps selector position.",
-    "steps": [
-      {
-        "stepType": "checkbox",
-        "step": "1. Perform Flaps Inoperative Approach/Landing checklist."
-      },
-      {
-        "stepType": "procedureComplete",
-        "text": "Procedure Complete"
-      }
-    ]
-  },
-  {
-    "title": "FLIGHT IDLE FAIL Caution",
-    "description": "Engine idle N2 is too low.",
-    "steps": [
-      {
-        "stepType": "checkbox",
-        "step": "1. Maintain at least 70% N2."
-      },
-      {
-        "stepType": "checkbox",
-        "step": "2. Land as soon as practicable."
-      },
-      {
-        "stepType": "procedureComplete",
-        "text": "Procedure Complete"
-      }
-    ],
-    "cautions": [
-      {
-        "text": "• CAUTION • When N2 < 70%, Engine IPS and Wing/Stab IPS will be degraded."
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: If N2 < 70%, expect increased engine/go-around thrust acceleration time."
-      }
-    ]
-  },
-  {
-    "title": "FUEL IMBALANCE Caution",
-    "description": "Fuel imbalance is ≥ 15 Gallons.",
-    "steps": [
-      {
-        "stepType": "checkbox",
-        "step": "1. Fuel Control Switch",
-        "action": "AUTO"
-      },
-      {
-        "stepType": "checkbox",
-        "step": "2. Fuel Quantity/Fuel Remaining",
-        "action": "COMPARE"
-      },
-      {
-        "stepType": "substep",
-        "step": "a. Refer to EIS for fuel quantity (based on level sensors)."
-      },
-      {
-        "stepType": "checkbox",
-        "step": "3. Fuel Control Switch",
-        "action": "FULLEST TANK"
-      },
-      {
-        "stepType": "checkbox",
-        "step": "4. Airspeed",
-        "action": "MAINTAIN FOR ADEQUATE ROLL CONTROL"
-      },
-      {
-        "stepType": "special",
-        "symbol": "◆",
-        "text": "If message extinguishes or imbalance decreases:"
-      },
-      {
-        "stepType": "substep",
-        "step": "a. Continue flight."
-      },
-      {
-        "stepType": "substep",
-        "step": "b. Fuel Control Switch",
-        "action": "AUTO"
-      },
-      {
-        "stepType": "procedureComplete",
-        "text": "Procedure Complete"
-      },
-      {
-        "stepType": "special",
-        "symbol": "◆",
-        "text": "If message persists or imbalance increases:"
-      },
-      {
-        "stepType": "substep",
-        "step": "a. Land as soon as possible."
-      },
-      {
-        "stepType": "procedureComplete",
-        "text": "Procedure Complete"
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: To maintain fuel balance, monitor fuel quantity and alternate LEFT/RIGHT selection as needed."
       }
     ]
   },
@@ -5573,17 +5093,20 @@
     "description": "External power is connected.",
     "steps": [
       {
+        "stepType": "special",
+        "text": "On Ground Only."
+      },
+      {
+        "stepType": "special",
+        "text": "Note: Indicates external power is connected."
+      },
+      {
         "stepType": "checkbox",
         "step": "1. Ensure external power is removed before moving airplane."
       },
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: Indicates external power is connected."
       }
     ]
   },
@@ -5637,11 +5160,6 @@
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: Consider selecting a destination where the necessary FADEC maintenance can be performed. Failure to do so will prevent further dispatch."
       }
     ]
   },
@@ -5715,42 +5233,6 @@
     ]
   },
   {
-    "title": "FIRE EXT LOW L Advisory",
-    "description": "Pressure is low in the left fire extinguisher.",
-    "steps": [
-      {
-        "stepType": "checkbox",
-        "step": "1. Continue flight."
-      },
-      {
-        "stepType": "checkbox",
-        "step": "2. Service aircraft as soon as practical."
-      },
-      {
-        "stepType": "procedureComplete",
-        "text": "Procedure Complete"
-      }
-    ]
-  },
-  {
-    "title": "FIRE EXT LOW R Advisory",
-    "description": "Pressure is low in the right fire extinguisher.",
-    "steps": [
-      {
-        "stepType": "checkbox",
-        "step": "1. Continue flight."
-      },
-      {
-        "stepType": "checkbox",
-        "step": "2. Service aircraft as soon as practical."
-      },
-      {
-        "stepType": "procedureComplete",
-        "text": "Procedure Complete"
-      }
-    ]
-  },
-  {
     "title": "FLAPS AIRSPEED INHIBIT Caution",
     "description": "Flaps motion inhibited.",
     "steps": [
@@ -5803,7 +5285,6 @@
       },
       {
         "stepType": "special",
-        "symbol": "◆",
         "text": "If message persists:"
       },
       {
@@ -5812,11 +5293,11 @@
         "action": "MONITOR POSITION"
       },
       {
-        "stepType": "substep",
-        "step": "❍ If flap position is unknown:"
+        "stepType": "special",
+        "text": "If flap position is unknown:"
       },
       {
-        "stepType": "subsubstep",
+        "stepType": "substep",
         "step": "(1) Airspeed",
         "action": "BELOW 150 KIAS"
       },
@@ -5888,21 +5369,11 @@
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
       }
-    ],
-    "cautions": [
-      {
-        "text": "• CAUTION • When N2 < 70%, Engine IPS and Wing/Stab IPS will be degraded."
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: If N2 < 70%, expect increased engine/go-around thrust acceleration time."
-      }
     ]
   },
   {
     "title": "FUEL IMBALANCE Caution",
-    "description": "Fuel imbalance is ≥ 15 Gallons.",
+    "description": "Fuel imbalance is less than or equal to 15 Gallons.",
     "steps": [
       {
         "stepType": "checkbox",
@@ -5926,7 +5397,7 @@
       {
         "stepType": "checkbox",
         "step": "4. Airspeed",
-        "action": "MAINTAIN FOR ADEQUATE ROLL CONTROL"
+        "action": "MAINTAIN FOR ADEQUATE\n ROLL CONTROL"
       },
       {
         "stepType": "special",
@@ -5959,13 +5430,9 @@
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
       }
-    ],
-    "notes": [
-      {
-        "text": "Note: To maintain fuel balance, monitor fuel quantity and alternate LEFT/RIGHT selection as needed."
-      }
     ]
   },
+  
   {
     "title": "FUEL LOW LEFT/RIGHT/TOTAL Caution",
     "description": "Left fuel quantity is low, OR\nRight fuel quantity is low, OR\nTotal fuel quantity is low.",
@@ -5987,11 +5454,6 @@
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: AUTO Fuel Control will continue to balance fuel consumption during FUEL LOW LEFT/RIGHT/TOTAL caution."
       }
     ]
   },
@@ -6024,7 +5486,7 @@
       },
       {
         "stepType": "substep",
-        "step": "a. Refer to EIS for current tank selection (AUTO selection shown in white; LEFT/RIGHT selection shown in cyan)."
+        "step": "a. Refer to EIS for current tank selection (AUTO selection\n shown in white; LEFT/RIGHT selection shown in cyan)."
       },
       {
         "stepType": "checkbox",
@@ -6067,35 +5529,9 @@
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
       }
-    ],
-    "notes": [
-      {
-        "text": "Note: Message indicates pump has been activated and latched ON. Latch is removed by setting the Fuel Control Switch to LEFT or RIGHT, then to AUTO."
-      },
-      {
-        "text": "To maintain fuel balance, monitor fuel quantity and alternate LEFT/RIGHT selection as needed."
-      }
     ]
   },
-  {
-    "title": "FUEL PUMP ON Advisory",
-    "description": "Fuel pump is ON for normal operations.",
-    "steps": [
-      {
-        "stepType": "checkbox",
-        "step": "1. Advisory only. No further action required."
-      },
-      {
-        "stepType": "procedureComplete",
-        "text": "Procedure Complete"
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: Fuel pump has been activated due to normal operations, either due to pilot action (selecting L or R tank) or by the avionics due to entering Start Mode."
-      }
-    ]
-  },
+
   {
     "title": "FUEL QTY MISCOMPARE Caution",
     "description": "Sensed and totalized fuel quantity disagreement.",
@@ -6154,7 +5590,7 @@
       {
         "stepType": "substep",
         "step": "b. Fuel Control Switch",
-        "action": "FULLEST TANK, LEFT OR RIGHT ONLY"
+        "action": "FULLEST TANK, LEFT OR\n RIGHT ONLY"
       },
       {
         "stepType": "substep",
@@ -6168,11 +5604,6 @@
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: To maintain fuel balance, monitor fuel quantity, and alternate LEFT/RIGHT selection as needed."
       }
     ]
   },
@@ -6201,7 +5632,7 @@
       {
         "stepType": "substep",
         "step": "a. ENGINE FIRE ACK",
-        "action": "LIFT GUARD, TOGGLE, CLOSE GUARD"
+        "action": "LIFT GUARD, TOGGLE,\n CLOSE GUARD"
       },
       {
         "stepType": "substep",
@@ -6219,7 +5650,7 @@
       {
         "stepType": "substep",
         "step": "a. ENGINE FIRE ACK",
-        "action": "CLOSE GUARD, LIFT GUARD, TOGGLE"
+        "action": "CLOSE GUARD, LIFT\n GUARD, TOGGLE"
       },
       {
         "stepType": "substep",
@@ -6259,11 +5690,11 @@
         "action": "MONITOR"
       },
       {
-        "stepType": "substep",
-        "step": "❍ If message extinguishes:"
+        "stepType": "special",
+        "text": "If message extinguishes:"
       },
       {
-        "stepType": "subsubstep",
+        "stepType": "substep",
         "step": "(1) No further action required."
       },
       {
@@ -6271,11 +5702,11 @@
         "text": "Procedure Complete"
       },
       {
-        "stepType": "substep",
-        "step": "❍ If message persists:"
+        "stepType": "special",
+        "text": "If message persists:"
       },
       {
-        "stepType": "subsubstep",
+        "stepType": "substep",
         "step": "(1) Land as soon as practicable."
       },
       {
@@ -6324,16 +5755,6 @@
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
       }
-    ],
-    "cautions": [
-      {
-        "text": "• CAUTION • Avoid AUTO selection, which will draw fuel through Fuel Valve #1 (which has failed)."
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: To maintain fuel balance, monitor fuel quantity and alternate LEFT/RIGHT selection as needed."
-      }
     ]
   },
   {
@@ -6357,14 +5778,6 @@
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: The Fuel Control Switch should remain in AUTO position which draws fuel through Fuel Valve #1 which is operating normally. See EIS Display for selected valve position (AUTO)."
-      },
-      {
-        "text": "Avoid using LEFT or RIGHT selection which activates the electric fuel pump and draws fuel through Fuel Valve #2 which has failed."
       }
     ]
   },
@@ -6394,11 +5807,6 @@
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: To maintain fuel balance, monitor fuel quantity and alternate LEFT/RIGHT selection as needed."
       }
     ]
   }
@@ -6459,7 +5867,6 @@
       },
       {
         "stepType": "special",
-        "symbol": "◆",
         "text": "If GEN 1 does not reset (low GEN 1 Current and Main Bus voltage):"
       },
       {
@@ -6468,41 +5875,21 @@
         "action": "OFF"
       },
       {
-        "stepType": "substep",
-        "step": "❍ If flight conditions permit:"
+        "stepType": "special",
+        "text": "If flight conditions permit:"
       },
       {
-        "stepType": "subsubstep",
+        "stepType": "substep",
         "step": "(1) BAT 1 Switch",
         "action": "OFF"
       },
       {
-        "stepType": "subsubstep",
-        "step": "(2) Land as soon as practicable, avoiding IMC or night flight as able (reduced power redundancy)."
+        "stepType": "substep",
+        "step": "(2) Land as soon as practicable, avoiding IMC or night flight\n as able (reduced power redundancy)."
       },
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: With Battery 1 and Generator 1 switched off, power will be removed from the entire main bus, including the hydraulic powerpack. The following equipment will also be inoperative:"
-      },
-      {
-        "text": "• Landing gear control (to lower landing gear, perform Alternate Gear Extension checklist)"
-      },
-      {
-        "text": "• ECS (such as AC Compressor and Fans)"
-      },
-      {
-        "text": "• Redundant equipment (such as Fuel Valve 2 and AHRS 2 / ADC 2)"
-      },
-      {
-        "text": "• Non-essential equipment (such as Electric Fuel Pump, Stick Shaker, Yaw SAS, Avionics Fan, Nose Landing Lights, and IFE USB)"
-      },
-      {
-        "text": "• Optional equipment (such as Traffic/TCAS, Transponder2, Radar, EVS, 115VAC PWR, and Iridium WIFI Data)"
       }
     ]
   },
@@ -6544,12 +5931,8 @@
         "action": "OFF"
       },
       {
-        "stepType": "note",
-        "text": "Note: GEN 1 will support GEN 2 electrical loads."
-      },
-      {
         "stepType": "substep",
-        "step": "b. Land as soon as practicable, avoiding IMC or night flight as able (reduced power redundancy)."
+        "step": "b. Land as soon as practicable, avoiding IMC or night flight\n as able (reduced power redundancy)."
       },
       {
         "stepType": "procedureComplete",
@@ -6558,9 +5941,78 @@
     ]
   },
   {
-    "title": "GROUND IDLE FAIL Caution - On Ground",
+    "title": "GIA 1 FAIL Caution",
+    "description": "GIA 1 has failed.",
+    "steps": [
+      {
+        "stepType": "checkbox",
+        "step": "1. Avoid stalls, low airspeed, and uncoordinated flight\n or abrupt control inputs."
+      },
+      {
+        "stepType": "checkbox",
+        "step": "2. Navigation",
+        "action": "SELECT GPS 2 OR NAV 2"
+      },
+      {
+        "stepType": "checkbox",
+        "step": "3. Communication",
+        "action": "TUNE AND SELECT COM 2\n AS ACTIVE"
+      },
+      {
+        "stepType": "checkbox",
+        "step": "4. CAS Messages",
+        "action": "ASSESS AND ACKNOWLEDGE"
+      },
+      {
+        "stepType": "checkbox",
+        "step": "5. Fuel Balance",
+        "action": "Maintain"
+      },
+      {
+        "stepType": "substep",
+        "step": "a. Fuel Quanity",
+        "action": "Check"
+      },
+      {
+        "stepType": "checkbox",
+        "step": "6. Flight into icing conditions",
+        "action": "AVOID"
+      },
+      {
+        "stepType": "checkbox",
+        "step": "7. Perform Flaps Inoperative Approach/Landing Checklist.",
+        "action": ""
+      },
+      {
+        "stepType": "checkbox",
+        "step": "8. Perform Alterate Gear Extension checklist.",
+        "action": ""
+      },
+      {
+        "stepType": "checkbox",
+        "step": "9. CABIN PRESSURE DUMP Button\n (below 1500 AGL)",
+        "action": "PRESS"
+      },
+      {
+        "stepType": "checkbox",
+        "step": "10. Land as soon as Practicable",
+        "action": ""
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
+      }
+    ]
+ },
+
+  {
+    "title": "GROUND IDLE FAIL Caution",
     "description": "Ground idle is unavailable.",
     "steps": [
+      {
+        "stepType": "note",
+        "text": "On ground only:"
+      },
       {
         "stepType": "checkbox",
         "step": "1. Do not dispatch."
@@ -6573,14 +6025,6 @@
     "cautions": [
       {
         "text": "• CAUTION • With increased idle speed, idle thrust will be greater than normal. To prevent overheating of brakes, exercise proper taxiing techniques."
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: Idle speed is high for ground operation."
-      },
-      {
-        "text": "Refer to Section 10: Safety Information, \"Taxiing, Steering, and Braking Practices\"."
       }
     ]
   },
