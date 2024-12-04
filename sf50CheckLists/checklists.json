@@ -6057,14 +6057,14 @@
       },
       {
         "stepType": "substep",
-        "step": "b. Wait 2-3 minutes for HYDRAULIC OVERHEAT CAS message to extinguish."
+        "step": "b. Wait 2-3 minutes for HYDRAULIC OVERHEAT\n CAS message to extinguish."
+      },
+      {
+        "stepType": "note",
+        "text": "If HYDRAULIC OVERHEAT CAS message extinguishes:"
       },
       {
         "stepType": "substep",
-        "step": "❍ If HYDRAULIC OVERHEAT CAS message extinguishes:"
-      },
-      {
-        "stepType": "subsubstep",
         "step": "(1) Perform Alternate Gear Extension checklist, as required."
       },
       {
@@ -6072,38 +6072,30 @@
         "text": "Procedure Complete"
       },
       {
-        "stepType": "substep",
-        "step": "❍ If HYDRAULIC OVERHEAT CAS message persists, power pack may still be operating continuously:"
+        "stepType": "note",
+        "text": "If HYDRAULIC OVERHEAT CAS message persists, power pack may still be operating continuously:"
       },
       {
-        "stepType": "subsubstep",
+        "stepType": "substep",
         "step": "(1) BAT 1 Switch",
         "action": "OFF"
       },
       {
-        "stepType": "subsubstep",
+        "stepType": "substep",
         "step": "(2) GEN 1 Switch",
         "action": "OFF"
       },
       {
-        "stepType": "subsubstep",
+        "stepType": "substep",
         "step": "(3) Perform Alternate Gear Extension checklist, as required."
       },
       {
-        "stepType": "subsubstep",
+        "stepType": "substep",
         "step": "(4) Land as soon as practicable."
       },
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: FUEL VALVE #2 FAIL Caution CAS will be periodically displayed during normal tank AUTO selection since the secondary valve is not powered by emergency power."
-      },
-      {
-        "text": "With Battery 1 and Generator 1 switched off, power will be removed from the entire main bus, including the hydraulic powerpack. Landing gear control will also be inoperative. To lower landing gear, perform Alternate Gear Extension checklist."
       }
     ]
   },
@@ -6147,11 +6139,6 @@
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: This CAS message is displayed when the WING/STAB IPS Switch is selected ON without the ENGINE IPS Switch being selected ON."
       }
     ]
   },
@@ -6202,11 +6189,6 @@
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
       }
-    ],
-    "cautions": [
-      {
-        "text": "• CAUTION • Operation above temperature limitations may result in IPS ENG INLET OVERHEAT Caution."
-      }
     ]
   },
   {
@@ -6249,11 +6231,10 @@
       {
         "stepType": "checkbox",
         "step": "1. ENGINE IPS Switch",
-        "action": "CYCLE OFF, ON WITHIN < 1 SEC"
+        "action": "CYCLE OFF, ON WITHIN\n < 1 SEC"
       },
       {
         "stepType": "special",
-        "symbol": "◆",
         "text": "If message extinguishes:"
       },
       {
@@ -6266,7 +6247,6 @@
       },
       {
         "stepType": "special",
-        "symbol": "◆",
         "text": "If message persists:"
       },
       {
@@ -6290,11 +6270,6 @@
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: This CAS message is displayed when IPS fluid quantity ≤ 0.2 U.S. gallon (0.8 L)."
       }
     ]
   },
@@ -6380,7 +6355,7 @@
       },
       {
         "stepType": "note",
-        "text": "Note: Even though the gear assemblies are functioning properly, the root cause may be a failure of the gear sensors to indicate properly (Down/Up or Locked/Unlocked).\nReversing the landing gear handle to the opposite position clears the inhibit of the hydraulic power pack enable (limited to 30 seconds of continuous operation)."
+        "text": "Note: Even though the gear assemblies are functioning properly, the root cause may be a failure of the gear sensors to indicate properly (Down/Up or Locked/Unlocked). Reversing the landing gear handle to the opposite position clears the inhibit of the hydraulic power pack enable (limited to 30 seconds of continuous operation)."
       },
       {
         "stepType": "special",
@@ -6397,7 +6372,6 @@
       },
       {
         "stepType": "special",
-        "symbol": "◆",
         "text": "If message persists:"
       },
       {
@@ -6406,7 +6380,7 @@
       },
       {
         "stepType": "substep",
-        "step": "b. Perform visual verification of gear position by ATC (towered airport), if possible."
+        "step": "b. Perform visual verification of gear position by ATC\n (towered airport), if possible."
       },
       {
         "stepType": "substep",
@@ -6499,6 +6473,10 @@
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
+      },
+      {
+        "stepType": "note",
+        "text": "CAUTION: Air restart may not be possible."
       }
     ],
     "cautions": [
@@ -6554,6 +6532,10 @@
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
+      },
+      {
+        "stepType": "note",
+        "text": "CAUTION: Air restart may not be possible."
       }
     ],
     "cautions": [
@@ -6578,22 +6560,18 @@
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
       }
-    ],
-    "notes": [
-      {
-        "text": "Note: Indicates GEN 1 failure and is associated with low Main Bus voltage, GEN 1 current indications, BAT 1 discharge, and GENERATOR 1 CURRENT Caution."
-      }
     ]
   },
   {
     "title": "NO ADC MODES Caution",
     "description": "Autopilot air data modes are not available.",
     "notes": [
-      {
-        "text": "Note: AP may only be engaged in pitch modes."
-      }
     ],
     "steps": [
+      {
+        "stepType": "note",
+        "text": "Note: AP may only be engaged in pitch modes."
+      },
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
@@ -6604,11 +6582,12 @@
     "title": "NO VERT MODES Caution",
     "description": "Autopilot vertical modes are not available.",
     "notes": [
-      {
-        "text": "Note: AP may only be engaged in lateral modes."
-      }
     ],
     "steps": [
+      {
+        "stepType": "note",
+        "text": "Note: AP may only be engaged in lateral modes."
+      },
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
@@ -6665,7 +6644,7 @@
       {
         "stepType": "substep",
         "step": "a. Altitude",
-        "action": "DESCEND (BELOW 10,000 FT), IF PRACTICAL"
+        "action": "DESCEND (BELOW 10,000 FT),\n IF PRACTICAL"
       },
       {
         "stepType": "procedureComplete",
@@ -6674,9 +6653,13 @@
     ]
   },
   {
-    "title": "OXYGEN ON Caution - On Ground",
+    "title": "OXYGEN ON Caution",
     "description": "Oxygen is on.",
     "steps": [
+      {
+        "stepType": "note",
+        "text": "On ground only:"
+      },
       {
         "stepType": "checkbox",
         "step": "1. OXYGEN MASTER Switch",
@@ -6713,30 +6696,6 @@
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: This CAS message is displayed during shutdown procedures."
-      }
-    ]
-  },
-  {
-    "title": "OXYGEN ON Advisory - On Ground",
-    "description": "Oxygen is on.",
-    "steps": [
-      {
-        "stepType": "checkbox",
-        "step": "1. Advisory only. No further action required."
-      },
-      {
-        "stepType": "procedureComplete",
-        "text": "Procedure Complete"
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: This CAS message is displayed while taxiing after landing."
       }
     ]
   },
@@ -6787,7 +6746,7 @@
       {
         "stepType": "checkbox",
         "step": "1. Altitude",
-        "action": "DESCEND (BELOW 10,000 FT), IF PRACTICAL"
+        "action": "DESCEND (BELOW 10,000 FT),\n IF PRACTICAL"
       },
       {
         "stepType": "checkbox",
@@ -6806,9 +6765,13 @@
     ]
   },
   {
-    "title": "PARK BRAKE Caution - On Ground",
+    "title": "PARK BRAKE Caution",
     "description": "Parking brake is set.",
     "steps": [
+      {
+        "stepType": "note",
+        "text": "On ground only:"
+      },
       {
         "stepType": "checkbox",
         "step": "1. Parking Brake",
@@ -6849,7 +6812,6 @@
       },
       {
         "stepType": "special",
-        "symbol": "◆",
         "text": "If message extinguishes:"
       },
       {
@@ -6862,28 +6824,23 @@
       },
       {
         "stepType": "special",
-        "symbol": "◆",
-        "text": "If message persists:"
+        "text": "If message persists:\n\n If in flight"
       },
       {
         "stepType": "substep",
-        "step": "❍ If in flight:"
-      },
-      {
-        "stepType": "subsubstep",
         "step": "(1) ADC 2",
         "action": "SELECTED ACTIVE"
       },
       {
-        "stepType": "substep",
-        "step": "❑ If ADC 2 is unavailable or if PROBE HEAT FAIL R Caution is also present, and icing encountered:"
+        "stepType": "note",
+        "text": "If ADC 2 is unavailable or if PROBE HEAT FAIL R Caution is also present, and icing encountered:"
       },
       {
-        "stepType": "subsubsubstep",
+        "stepType": "substep",
         "step": "(a) Perform Loss of Reliable Airspeed Indication Checklist."
       },
       {
-        "stepType": "subsubsubstep",
+        "stepType": "substep",
         "step": "(b) Exit icing conditions."
       },
       {
@@ -6891,11 +6848,11 @@
         "text": "Procedure Complete"
       },
       {
-        "stepType": "substep",
-        "step": "❍ If on ground:"
+        "stepType": "note",
+        "text": "If on ground:"
       },
       {
-        "stepType": "subsubstep",
+        "stepType": "substep",
         "step": "(1) Do not dispatch."
       },
       {
@@ -6915,7 +6872,6 @@
       },
       {
         "stepType": "special",
-        "symbol": "◆",
         "text": "If message extinguishes:"
       },
       {
@@ -6928,28 +6884,23 @@
       },
       {
         "stepType": "special",
-        "symbol": "◆",
-        "text": "If message persists:"
+        "text": "If message persists:\n\n If in flight:"
       },
       {
         "stepType": "substep",
-        "step": "❍ If in flight:"
-      },
-      {
-        "stepType": "subsubstep",
         "step": "(1) ADC 1",
         "action": "SELECTED ACTIVE"
       },
       {
-        "stepType": "subsubstep",
-        "step": "❑ If ADC 1 is unavailable or if PROBE HEAT FAIL L Caution is also present, and icing encountered:"
+        "stepType": "substep",
+        "step": "If ADC 1 is unavailable or if PROBE HEAT FAIL L Caution\n is also present, and icing encountered:"
       },
       {
-        "stepType": "subsubsubstep",
+        "stepType": "substep",
         "step": "(a) Perform Loss of Reliable Airspeed Indication Checklist."
       },
       {
-        "stepType": "subsubsubstep",
+        "stepType": "substep",
         "step": "(b) Exit icing conditions."
       },
       {
@@ -6957,11 +6908,11 @@
         "text": "Procedure Complete"
       },
       {
-        "stepType": "substep",
-        "step": "❍ If on ground:"
+        "stepType": "note",
+        "text": "If on ground:"
       },
       {
-        "stepType": "subsubstep",
+        "stepType": "substep",
         "step": "(1) Do not dispatch."
       },
       {
@@ -7116,24 +7067,6 @@
     ]
   },
   {
-    "title": "SFD NO-COMPARE Advisory",
-    "description": "SFD comparison data missing.",
-    "steps": [
-      {
-        "stepType": "checkbox",
-        "step": "1. Exit IMC."
-      },
-      {
-        "stepType": "checkbox",
-        "step": "2. Land as soon as practicable."
-      },
-      {
-        "stepType": "procedureComplete",
-        "text": "Procedure Complete"
-      }
-    ]
-  },
-  {
     "title": "SFD PITCH MISCOMPARE Caution",
     "description": "SFD pitch miscompare.",
     "steps": [
@@ -7234,7 +7167,7 @@
       },
       {
         "stepType": "checkbox",
-        "step": "2. Avoid stalls, low airspeed, and uncoordinated or abrupt control inputs."
+        "step": "2. Avoid stalls, low airspeed, and uncoordinated\n or abrupt control inputs."
       },
       {
         "stepType": "checkbox",
@@ -7243,16 +7176,6 @@
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
-      }
-    ],
-    "warnings": [
-      {
-        "text": "• WARNING • The aircraft may not be stall protected. Stalls must be avoided when the stall warning is inoperative. Excessive altitude loss may result if the aircraft is stalled.\nDeparture from controlled flight or spin may occur during stall with uncoordinated aileron/rudder inputs.\nStall warning is not operative or reliable.\nStick pusher may not be operative or reliable.\nExpect STICK PUSHER FAIL CAS.\nStall speeds in turns or increased load factor are higher."
-      }
-    ],
-    "notes": [
-      {
-        "text": "Note: Green donut airspeed reference will be unavailable or unreliable."
       }
     ]
   },{
@@ -7321,7 +7244,7 @@
       },
       {
         "stepType": "checkbox",
-        "step": "2. Avoid stalls, low airspeed, and uncoordinated or abrupt control inputs."
+        "step": "2. Avoid stalls, low airspeed, and uncoordinated\n or abrupt control inputs."
       },
       {
         "stepType": "checkbox",
@@ -7330,11 +7253,6 @@
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
-      }
-    ],
-    "warnings": [
-      {
-        "text": "• WARNING •\nThe aircraft is not stall protected. Stalls must be avoided when the stick pusher is inoperative. Excessive altitude loss may result if the aircraft is stalled.\nDeparture from controlled flight or spin may occur during stall with uncoordinated aileron/rudder inputs.\nStick pusher is not operative or reliable.\nStall speeds in turns or increased load factor are higher."
       }
     ]
   },
@@ -7393,12 +7311,63 @@
     ]
   },
   {
-    "title": "TCV CONTROL FAIL Caution",
-    "description": "No description provided.",
-    "steps": [],
-    "notes": [
+    "title": "TCV CONTROL FAIL",
+    "description": "TCV motor controller has failed.",
+    "steps": [
       {
-        "text": "Note: No steps were provided for this checklist."
+        "stepType": "checkbox",
+        "step": "1. Cabin Temperature",
+        "action": "MONITOR"
+      },
+      {
+        "stepType": "note",
+        "text": "NOTE: TCV will typically fail open resulting in colder than normal cabin temperatures. In the unlikely event that the TCV does not open upon failure, duct air temperature may be higher than desired and DUCT OVERHEAT Caution may occur."
+      },
+      {
+        "stepType": "note",
+        "text": "If message persists and cabin temperature is warmer than acceptable:"
+      },
+      {
+        "stepType": "substep",
+        "step": "a. Altitude",
+        "action": "DESCEND (BELOW 10,000 FT),\n IF PRACTICAL"
+      },
+      {
+        "stepType": "substep",
+        "step": "b. BLEED Switch",
+        "action": "FRESH"
+      },
+      {
+        "stepType": "substep",
+        "step": "c. CABIN PRESSURE DUMP Button",
+        "action": "PRESS"
+      },
+      {
+        "stepType": "substep",
+        "step": "d. Land as soon as practicable.",
+        "action": ""
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
+      },
+      {
+        "stepType": "note",
+        "text": "If message persists and cabin temperature is colder than acceptable:"
+      },
+      {
+        "stepType": "substep",
+        "step": "a. Altitude",
+        "action": "DESCEND TO WARMER OUTSIDE\n AIR TEMPERATURE,\nIF PRACTICAL"
+      },
+      {
+        "stepType": "substep",
+        "step": "b. Land as soon as practicable.",
+        "action": ""
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
       }
     ]
   },
@@ -7406,11 +7375,12 @@
     "title": "THROTTLE SERVO Caution",
     "description": "Throttle servo has failed.",
     "notes": [
-      {
-        "text": "• NOTE •\nAutothrottle functions, including thrust lock, will be unavailable.\nCAPS activation will require manual retard of thrust lever to IDLE."
-      }
     ],
     "steps": [
+      {
+        "stepType": "note",
+        "text": "NOTE: Autothrottle functions, including thrust lock, will be unavailable. CAPS activation will require manual retard of thrust lever to IDLE."
+      },
       {
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
@@ -7467,21 +7437,6 @@
         "stepType": "procedureComplete",
         "text": "Procedure Complete"
       }
-    ],
-    "warnings": [
-      {
-        "text": "• WARNING •\nIf above 10,000 ft, expect CABIN ALTITUDE Warning and aircraft to depressurize."
-      }
-    ],
-    "cautions": [
-      {
-        "text": "• CAUTION •\nMinimum engine RPM will default to Ground Idle in all configurations. Expect FLIGHT IDLE FAIL Caution with thrust at IDLE thrust in flight."
-      }
-    ],
-    "notes": [
-      {
-        "text": "• NOTE •\nBleed air ground cooling fan will run.\nThe following indications should be ignored:\n• OIL CHIP DETECT Warning (false indication possible if in air)\n• OXYGEN ON Advisory\n• TAKEOFF PITCH TRIM Advisory"
-      }
     ]
   },
   {
@@ -7503,7 +7458,7 @@
       },
       {
         "stepType": "substep",
-        "step": "c. Avoid any unnecessary maneuvers during flight. Limit maneuvers only to those necessary to safely land the aircraft."
+        "step": "c. Avoid any unnecessary maneuvers during flight.\n Limit maneuvers only to those necessary to safely\n land the aircraft."
       },
       {
         "stepType": "procedureComplete",
