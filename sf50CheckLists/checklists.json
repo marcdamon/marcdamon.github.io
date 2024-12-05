@@ -6686,11 +6686,11 @@
         "action": "CYCLE"
       },
       {
-        "stepType": "substep",
-        "step": "❍ If message persists:"
+        "stepType": "note",
+        "text": "If message persists:"
       },
       {
-        "stepType": "subsubstep",
+        "stepType": "substep",
         "step": "(1) Service oxygen bottle as required."
       },
       {
@@ -7479,21 +7479,504 @@
       }
     ]
   }
-
-
-
-  
-
-
-
-
-
-    
-
 ],
 
 
 
+
+
+
+
+
+
+"advisories": [
+  {
+    "title": "CAPS AUTOPILOT INOP",
+    "description": "Minimize CAPS deployment speed.",
+    "steps": [
+      {
+        "stepType": "special",
+        "text": "If in an emergency situation:"
+      },
+      {
+        "stepType": "substep",
+        "step": "a. Airspeed",
+        "action": "MANUALLY REDUCE BELOW\n 135 KIAS AND 145 KTAS\n BEFORE DEPLOYING PARACHUTE"
+      },
+      {
+        "stepType": "substep",
+        "step": "a. Throttle",
+        "action": "ENSURE THROTTLE IS REDUCED\n TO IDLE BEFORE DEPLOYING\n PARACHUTE"
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
+      }
+    ]
+  },
+  {
+    "title": "CAPS MISCOMPARE Advisory",
+    "description": "CAPS service required.",
+    "steps": [
+      {
+        "stepType": "special",
+        "text": "If in flight:"
+      },
+      {
+        "stepType": "substep",
+        "step": "a. Land as soon as practicable.",
+        "action": ""
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
+      },
+      {
+        "stepType": "special",
+        "text": "If on ground:"
+      },
+      {
+        "stepType": "substep",
+        "step": "a. Do not dispatch.",
+        "action": ""
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
+      }
+    ],
+    "notes": [],
+    "cautions": [
+      {
+        "text": "CAPS may be unavailable."
+      }
+    ]
+  },
+  {
+    "title": "DOOR OPEN Advisory",
+    "description": "One or more doors are open. ",
+    "steps": [
+      {
+        "stepType": "special",
+        "text": "On Ground Only:"
+      },
+      {
+        "stepType": "substep",
+        "step": "1. Advisory only. No further action required.",
+        "action": ""
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
+      }
+    ],
+    "notes": [],
+    "cautions": [
+      {
+        "text": "One or more doors are open."
+      }
+    ]
+  },
+  {
+    "title": "EDM DISABLED Advisory",
+    "description": "Emergency Descent Mode is disabled.",
+    "steps": [
+      {
+        "stepType": "checkbox",
+        "step": "1. Advisory only. No further action required.",
+        "action": ""
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
+      }
+    ],
+    "notes": [],
+    "cautions": []
+  },
+  {
+    "title": "ESP FAIL Advisory",
+    "description": "ESP is inoperative.",
+    "steps": [
+      {
+        "stepType": "checkbox",
+        "step": "1. Advisory only. No further action required.",
+        "action": ""
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
+      }
+    ],
+    "notes": [],
+    "cautions": []
+  },
+  {
+    "title": "ESP OFF Advisory",
+    "description": "ESP selected off.",
+    "steps": [
+      {
+        "stepType": "checkbox",
+        "step": "1. Advisory only. No further action required.",
+        "action": ""
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
+      }
+    ],
+    "notes": [],
+    "cautions": []
+  },
+  {
+    "title": "FIRE EXT LOW L Advisory",
+    "description": "Pressure is low in the left fire extinguisher.",
+    "steps": [
+      {
+        "stepType": "checkbox",
+        "step": "1. Continue flight.",
+        "action": ""
+      },
+      {
+        "stepType": "checkbox",
+        "step": "2. Service aircraft as soon as practical.",
+        "action": ""
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
+      }
+    ],
+    "notes": [],
+    "cautions": []
+  },
+  {
+    "title": "FIRE EXT LOW R Advisory",
+    "description": "Pressure is low in the right fire extinguisher.",
+    "steps": [
+      {
+        "stepType": "checkbox",
+        "step": "1. Continue flight.",
+        "action": ""
+      },
+      {
+        "stepType": "checkbox",
+        "step": "2. Service aircraft as soon as practical.",
+        "action": ""
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
+      }
+    ],
+    "notes": [],
+    "cautions": []
+  },
+  {
+    "title": "FUEL PUMP ON Advisory",
+    "description": "Fuel pump is ON for normal operations.",
+    "steps": [
+      {
+        "stepType": "checkbox",
+        "step": "1. Advisory only. No further action required.",
+        "action": ""
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
+      }
+    ],
+    "notes": [],
+    "cautions": []
+  },
+  {
+    "title": "FUEL SHUTOFF Advisory",
+    "description": "Fuel shutoff valve is closed.",
+    "steps": [
+      {
+        "stepType": "substep",
+        "step": "1. ENGINE FIRE ACK Switch",
+        "action": "CLOSE GUARD"
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
+      }
+    ],
+    "notes": [],
+    "cautions": []
+  },
+  {
+    "title": "FUEL TANK BALANCED Advisory",
+    "description": "Fuel tank quantity balance has been detected.",
+    "steps": [
+      {
+        "stepType": "substep",
+        "step": "1. Fuel Control Switch",
+        "action": "AUTO"
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
+      }
+    ],
+    "notes": [],
+    "cautions": []
+  },
+  {
+    "title": "IPS ENG INLET UNDERPRESS Advisory",
+    "description": "Engine IPS bleed flow low with engine at idle.",
+    "steps": [
+      {
+        "stepType": "special",
+        "text": "On ground only: \n\n If in icing conditions:"
+      },
+      {
+        "stepType": "substep",
+        "step": "a. Increase engine thrust to extinguish message.",
+        "action": ""
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
+      }
+    ],
+    "notes": [],
+    "cautions": []
+  },
+  {
+    "title": "IPS FLUID LOW Advisory",
+    "description": "IPS fluid below minimum dispatch quantity.",
+    "steps": [
+      {
+        "stepType": "special",
+        "text": "On ground only:"
+      },
+      {
+        "stepType": "checkbox",
+        "step": "1. Fill IPS fluid as desired.",
+        "action": ""
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
+      }
+    ],
+    "notes": [],
+    "cautions": []
+  },
+  {
+    "title": "MASK MICROPHONE Advisory",
+    "description": "A crew mask microphone is switched on.",
+    "steps": [
+      {
+        "stepType": "special",
+        "text": "If not wearing oxygen mask:"
+      },
+      {
+        "stepType": "substep",
+        "step": "a. Turn MIC selection switch to normal headset position.",
+        "action": ""
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
+      }
+    ],
+    "notes": [],
+    "cautions": []
+  },
+  {
+    "title": "OXYGEN ON Advisory",
+    "description": "Oxygen is on.",
+    "steps": [
+      {
+        "stepType": "special",
+        "text": "On ground only:"
+      },
+      {
+        "stepType": "checkbox",
+        "step": "1. Advisory only. No further action required.",
+        "action": ""
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
+      }
+    ],
+    "notes": [],
+    "cautions": []
+  },
+  {
+    "title": "SFD NO-COMPARE Advisory",
+    "description": "SFD comparison data missing.",
+    "steps": [
+      {
+        "stepType": "checkbox",
+        "step": "1. Exit IMC.",
+        "action": ""
+      },
+      {
+        "stepType": "checkbox",
+        "step": "2. Land as soon as practicable.",
+        "action": ""
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
+      }
+    ],
+    "notes": [],
+    "cautions": []
+  },
+  {
+    "title": "STALL SPEED HIGH Advisory",
+    "description": "Stall protection system adjusted for icing.",
+    "steps": [
+      {
+        "stepType": "special",
+        "text": "If airframe is no longer ice contaminated:"
+      },
+      {
+        "stepType": "substep",
+        "step": "a. IPS Stall Offset Reset via MFD Controller:",
+        "action": ""
+      },
+      {
+        "stepType": "substep",
+        "step": "(1)From Home, touch Aircraft Systems.",
+        "action": ""
+      },
+      {
+        "stepType": "substep",
+        "step": "(2)Touch the IPS Stall Offset Reset Button.",
+        "action": ""
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
+      }
+    ],
+    "notes": [],
+    "cautions": []
+  },
+  {
+    "title": "STARTER ENGAGED Advisory",
+    "description": "Engine start in progress.",
+    "steps": [
+      {
+        "stepType": "note",
+        "text": "NOTE:  Receiving a STARTER ENGAGED CAS Advisory is normal during an engine start."
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
+      }
+    ],
+    "notes": [],
+    "cautions": [
+      {
+        "text": "Receiving a STARTER ENGAGED CAS Advisory is normal during an engine start."
+      }
+    ]
+  },
+  {
+    "title": "SURFACEWATCH FAIL Advisory",
+    "description": "SurfaceWatch failed.",
+    "steps": [
+      {
+        "stepType": "note",
+        "text": "NOTE: SurfaceWatch is unavailable."
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
+      }
+    ],
+    "notes": [],
+    "cautions": [
+      {
+        "text": "SurfaceWatch is unavailable."
+      }
+    ]
+  },
+  {
+    "title": "TAKEOFF PITCH TRIM Advisory",
+    "description": "Pitch trim not in takeoff configuration.",
+    "steps": [
+      {
+        "stepType": "special",
+        "text": "On ground only:"
+      },
+      {
+        "stepType": "checkbox",
+        "step": "1. Advisory only. No further action required.",
+        "action": ""
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
+      }
+    ],
+    "notes": [],
+    "cautions": []
+  },
+  {
+    "title": "TAKEOFF THRUST Advisory",
+    "description": "Engine is in takeoff thrust.",
+    "steps": [
+      {
+        "stepType": "checkbox",
+        "step": "1. Thrust Lever",
+        "action": "MCT"
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
+      }
+    ],
+    "notes": [],
+    "cautions": []
+  },
+  {
+    "title": "WHEEL SPEED FAULT Advisory",
+    "description": "Wheel speed fault detected.",
+    "steps": [
+      {
+        "stepType": "checkbox",
+        "step": "1. Advisory only. No further action required.",
+        "action": ""
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
+      }
+    ],
+    "notes": [],
+    "cautions": []
+  },
+  {
+    "title": "WOW DISAGREE Advisory",
+    "description": "WOW indicating opposite on ground/in air states.",
+    "steps": [
+      {
+        "stepType": "checkbox",
+        "step": "1. Continue flight.",
+        "action": ""
+      },
+      {
+        "stepType": "procedureComplete",
+        "text": "Procedure Complete"
+      }
+    ],
+    "notes": [],
+    "cautions": []
+  }
+
+
+
+          ],
+        
 
 
 

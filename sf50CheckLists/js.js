@@ -202,6 +202,9 @@ document.addEventListener('DOMContentLoaded', function () {
             case 'normalProcedures':
                 label.innerText = 'Normal';
                 break;
+            case 'advisories':
+                label.innerText = 'Advisory';
+                break;
             default:
                 label.innerText = '';
                 break;
@@ -440,6 +443,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         break;
                     case 'normal':
                         mappedTypeKey = 'normalProcedures';
+                        break;
+                     case 'advisory': 
+                        mappedTypeKey = 'advisories';
                         break;
                     // Add more cases if there are more categories
                     default:
