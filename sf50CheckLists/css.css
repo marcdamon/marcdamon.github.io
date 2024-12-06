@@ -662,9 +662,9 @@ input[type="checkbox"]:focus {
 /* Cass Message */
 .cass-message {
     position: fixed;
-    bottom: 65px;
-    right: 142px; /* Approximate center */
-    width: 360px;
+    bottom: 185px;
+    right: 90px; /* Approximate center */
+    width: 460px;
     text-align: center;
     padding: 0px 10px;
     font-size: 20px;
