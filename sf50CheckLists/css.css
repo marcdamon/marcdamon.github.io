@@ -567,3 +567,107 @@ input[type="checkbox"]:checked {
 input[type="checkbox"]:focus {
     outline: none;
 }
+
+
+
+/* Random Issue Button */
+.random-issue-button {
+    background-color: #45cdff;
+    color: black;
+    width: 115px;
+    height: 56px; /* Slightly more than half of 115px */
+    border: none;
+    text-align: center;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    position: fixed;
+    bottom: 77px; /* 20px (clear button space) + 57px (clear button height) = 77px */
+    right: 530px;
+    z-index: 1000;
+    touch-action: manipulation;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    transform: none;
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+/* Clear Button */
+.clear-cass-button {
+    background-color: #45cdff;
+    color: black;
+    width: 115px;
+    height: 52px; /* Slightly less than half of 115px */
+    border: none;
+    text-align: center;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    position: fixed;
+    bottom: 20px; /* Placed at bottom, Random Issue button stacked above it */
+    right: 530px;
+    z-index: 1000;
+    touch-action: manipulation;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    transform: none;
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+
+/* Cass Message */
+.cass-message {
+    position: fixed;
+    bottom: 65px;
+    right: 145px; /* Approximate center */
+    width: 375px;
+    text-align: center;
+    padding: 0px 10px;
+    font-size: 20px;
+    font-weight: bold;
+    border: 2px solid white;
+    border-radius: 0px;
+    display: none;
+}
+
+.cass-message p {
+    margin: 0;          /* Remove default margins */
+    padding: 5px 0;     /* Minimal vertical padding inside paragraph */
+    line-height: 1;     /* Keep line-height tight for minimal spacing */
+}
+
+/* Placeholder styles for each type */
+/* Issue: white outline, black background, white text */
+.cass-issue {
+    border-color: white;
+    background-color: black;
+    color: white;
+}
+
+/* Warning: red box & background, white text */
+.cass-warning {
+    border-color: red;
+    background-color: red;
+    color: white;
+}
+
+/* Caution: yellow box & background, black text */
+.cass-caution {
+    border-color: yellow;
+    background-color: yellow;
+    color: black;
+}
+
+/* Advisory (just choose a placeholder color, e.g., blue):
+   blue background, white text */
+.cass-advisory {
+    border-color: blue;
+    background-color: blue;
+    color: white;
+}

@@ -22,27 +22,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /**
      * Handles the selection styling for category buttons.
-     * Excludes the "Go to Next Checklist?" button to prevent interference.
      * @param {HTMLElement} button - The button element that was clicked.
      */
     function handleButtonSelection(button) {
-        // Select all category buttons (exclude "Go to Next Checklist?" button)
         const allButtons = document.querySelectorAll('.button-left, .button-right');
-
-        // Remove 'selected' class and set 'aria-pressed' to false for all buttons
         allButtons.forEach(btn => {
             btn.classList.remove('selected');
             btn.setAttribute('aria-pressed', 'false');
         });
-
-        // Add 'selected' class and set 'aria-pressed' to true for the clicked button
         button.classList.add('selected');
         button.setAttribute('aria-pressed', 'true');
     }
 
     /**
      * Moves to the next checklist within the current category.
-     * If at the end, wraps around to the first checklist.
      */
     function moveToNextChecklist() {
         const checklistArray = checklistsData[selectedChecklistType];
@@ -50,14 +43,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         selectedChecklistIndex++;
         if (selectedChecklistIndex >= checklistArray.length) {
-            // If at the end of the current category, wrap to the first checklist
             selectedChecklistIndex = 0;
         }
 
-        // Display the next checklist
         displayChecklist(checklistArray[selectedChecklistIndex], selectedChecklistType, selectedChecklistIndex);
-
-        // Highlight the selected checklist in the list
         highlightSelectedChecklist(selectedChecklistIndex);
     }
 
@@ -78,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Automatically display the first checklist from "Normal" by default
             if (checklistsData.normalProcedures.length > 0) {
-                displayChecklist(checklistsData.normalProcedures[0], 'normalProcedures', 0); // Display the first normal procedure by default
+                displayChecklist(checklistsData.normalProcedures[0], 'normalProcedures', 0);
             }
 
             // Highlight the "Normal" button by default
@@ -102,14 +91,13 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     function populateChecklistList(checklistType, typeKey) {
         const checklistItems = document.getElementById('warning-items');
-        checklistItems.innerHTML = ''; // Clear existing list
+        checklistItems.innerHTML = '';
 
         checklistType.forEach((item, index) => {
             const listItem = document.createElement('li');
             listItem.innerText = item.title;
             listItem.classList.add('warning-item');
 
-            // Add event listener for highlighting the selected checklist
             listItem.addEventListener('click', () => {
                 displayChecklist(item, typeKey, index);
                 highlightSelectedChecklist(index);
@@ -118,12 +106,10 @@ document.addEventListener('DOMContentLoaded', function () {
             checklistItems.appendChild(listItem);
         });
 
-        // Automatically highlight the first checklist item by default
         if (checklistType.length > 0) {
             highlightSelectedChecklist(0);
         }
 
-        // Reset scroll position of the checklist titles list to the top
         const checklistContainer = document.querySelector('.checklist-items-container');
         if (checklistContainer) {
             checklistContainer.scrollTop = 0;
@@ -138,51 +124,33 @@ document.addEventListener('DOMContentLoaded', function () {
         const checklistItems = document.querySelectorAll('.warning-item');
 
         checklistItems.forEach((item, index) => {
-            // Remove highlight and ARIA attribute from all items
             item.classList.remove('selected-item');
             item.setAttribute('aria-selected', 'false');
-
-            // Add highlight and ARIA attribute only to the selected item
             if (index === selectedIndex) {
-                console.log(`Highlighting checklist at index: ${index}`);
                 item.classList.add('selected-item');
                 item.setAttribute('aria-selected', 'true');
-
-                // Scroll the selected item into view within the checklist list container
                 item.scrollIntoView({
                     behavior: 'smooth',
-                    block: 'nearest', // Options: 'start', 'center', 'end', 'nearest'
+                    block: 'nearest',
                     inline: 'nearest'
                 });
             }
         });
 
-        selectedChecklistIndex = selectedIndex; // Update the selected index
+        selectedChecklistIndex = selectedIndex;
     }
 
     /**
-     * Displays the selected checklist and manages the "Go to Next Checklist?" button.
-     * @param {Object} item - The checklist item to display.
-     * @param {string} typeKey - Key representing the selected category.
-     * @param {number} selectedIndex - Index of the selected checklist.
+     * Displays the selected checklist.
      */
-
-
-
-
-
-
-    
     function displayChecklist(item, typeKey, selectedIndex) {
         const title = document.getElementById('checklist-title');
         const description = document.getElementById('checklist-description');
         const stepsList = document.getElementById('checklist-steps');
         const notesList = document.getElementById('checklist-notes');
-        const label = document.getElementById('checklist-type'); // For displaying the "Normal", "Emergency", etc.
-        const checklistDisplay = document.querySelector('.checklist-display'); // Existing container
-        const goNextButton = document.getElementById('go-next-checklist'); // Reference to the button
-    
-        // Set the checklist type label based on the passed typeKey
+        const label = document.getElementById('checklist-type');
+        const goNextButton = document.getElementById('go-next-checklist');
+
         switch (typeKey) {
             case 'warnings':
                 label.innerText = 'Warning';
@@ -209,71 +177,64 @@ document.addEventListener('DOMContentLoaded', function () {
                 label.innerText = '';
                 break;
         }
-    
-        // Update global variables
+
         selectedChecklistType = typeKey;
         selectedChecklistIndex = selectedIndex;
-        currentStepIndex = 0; // Reset current step index when a new checklist is displayed
-    
-        // Update the checklist title and content
+        currentStepIndex = 0;
+
         title.innerText = item.title;
         description.innerText = item.description || '';
         stepsList.innerHTML = '';
         notesList.innerHTML = '';
-    
-        // Regular expression to detect sub-steps (e.g., "a.", "b.", "C.", etc.)
+
         const subStepRegex = /^[a-zA-Z]\./;
-    
-        // Render steps
+
         item.steps.forEach((step, index) => {
             if (step.stepType === 'checkbox' || step.stepType === 'substep') {
                 const stepItem = document.createElement('li');
-                stepItem.classList.add('step-item'); // Common class for all steps
-    
+                stepItem.classList.add('step-item');
+
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
-                checkbox.id = `step-${selectedChecklistIndex}-${index}`; // Ensure unique ID
+                checkbox.id = `step-${selectedChecklistIndex}-${index}`;
                 stepItem.appendChild(checkbox);
-    
+
                 const labelElement = document.createElement('label');
-                labelElement.htmlFor = `step-${selectedChecklistIndex}-${index}`; // Link label to checkbox
+                labelElement.htmlFor = `step-${selectedChecklistIndex}-${index}`;
                 labelElement.classList.add('step-label');
                 labelElement.innerText = step.step;
-    
-                // Detect if the step is a sub-step based on its text prefix
+
                 if (subStepRegex.test(step.step.trim())) {
-                    labelElement.classList.add('sub-step'); // Additional class for indentation
+                    labelElement.classList.add('sub-step');
                 }
-    
-                // **Conditional Dots Span**
+
                 let dots;
                 if (step.action) {
                     dots = document.createElement('span');
                     dots.classList.add('dots');
                 }
-    
+
                 const actionText = document.createElement('span');
                 actionText.classList.add('action-text');
                 if (step.action) {
                     actionText.innerText = step.action;
                 }
-    
+
                 stepItem.appendChild(labelElement);
                 if (step.action) {
-                    stepItem.appendChild(dots); // Append dots only if action exists
+                    stepItem.appendChild(dots);
                 }
                 stepItem.appendChild(actionText);
-    
-                // Add event listener for checkbox to toggle text color and auto-scroll
+
                 checkbox.addEventListener('change', function () {
-                    const stepItem = this.parentElement; // Assuming the checkbox is a direct child of step-item
+                    const stepItem = this.parentElement;
                     if (this.checked) {
                         markStepAsChecked(stepItem);
                     } else {
                         unmarkStepAsChecked(stepItem);
                     }
                 });
-    
+
                 stepsList.appendChild(stepItem);
             } else if (step.stepType === 'note' || step.stepType === 'special') {
                 const specialText = document.createElement('span');
@@ -292,8 +253,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 stepsList.appendChild(warningText);
             }
         });
-    
-        // Display notes after steps
+
         if (item.notes && item.notes.length > 0) {
             item.notes.forEach(note => {
                 const noteItem = document.createElement('p');
@@ -302,44 +262,36 @@ document.addEventListener('DOMContentLoaded', function () {
                 notesList.appendChild(noteItem);
             });
         }
-    
-        // Add "Procedure Complete" if present
+
         if (item.procedureComplete) {
             const completeItem = document.createElement('li');
             completeItem.classList.add('procedure-complete');
             completeItem.innerText = "Procedure Complete";
             stepsList.appendChild(completeItem);
         }
-    
-        // Remove 'selected-item' from all steps (in case of reloading)
+
         const allSteps = document.querySelectorAll('#checklist-steps .step-item');
         allSteps.forEach(step => step.classList.remove('selected-item'));
-    
-        // Assign 'selected-item' to the first checkbox step
+
         const firstCheckboxStep = findNextCheckboxStep(0, allSteps);
         if (firstCheckboxStep) {
             firstCheckboxStep.classList.add('selected-item');
             currentStepIndex = Array.from(allSteps).indexOf(firstCheckboxStep);
-            scrollToSelectedItem(firstCheckboxStep); // Center the first step
+            scrollToSelectedItem(firstCheckboxStep);
         }
-    
-        // Scroll the checklist display area to the top
+
         setTimeout(() => {
             const checklistContent = document.querySelector('.checklist-display');
             if (checklistContent) {
                 checklistContent.scrollTop = 0;
             }
         }, 0);
-    
-        // Highlight the selected checklist in the list
+
         highlightSelectedChecklist(selectedIndex);
     }
 
     /**
-     * Finds the next checklist step that includes a checkbox starting from a given index.
-     * @param {number} startIndex - The index to start searching from.
-     * @param {NodeList} stepItems - The list of step items.
-     * @returns {HTMLElement|null} - The next checkbox step item or null if none found.
+     * Finds the next checklist step that includes a checkbox.
      */
     function findNextCheckboxStep(startIndex, stepItems) {
         for (let i = startIndex; i < stepItems.length; i++) {
@@ -352,58 +304,47 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * Scrolls the selected step item into view, centering it within the scrollable container.
-     * @param {HTMLElement} element - The selected step item element.
+     * Scrolls the selected step item into view, centering it.
      */
     function scrollToSelectedItem(element) {
         if (!element) {
             console.error('Element to scroll to is not defined.');
             return;
         }
-
-        // Use scrollIntoView with 'center' to keep the element in the middle
         element.scrollIntoView({
             behavior: 'smooth',
-            block: 'center', // Centers the element vertically
-            inline: 'nearest' // No horizontal scrolling
+            block: 'center',
+            inline: 'nearest'
         });
-
-        console.log(`Scrolled to element:`, element);
     }
 
     /**
-     * Marks a step as checked and moves the selection to the next checkbox step.
-     * @param {number} index - The index of the step to mark as checked.
+     * Marks a step as checked and moves to the next checkbox step.
      */
     function markStepAsChecked(stepItem) {
         if (stepItem) {
-            stepItem.classList.add('checked'); // Add checked class for styling
-            stepItem.classList.remove('selected-item'); // Remove selected-item class if present
-    
-            // Find and assign 'selected-item' to the next checkbox step
+            stepItem.classList.add('checked');
+            stepItem.classList.remove('selected-item');
+
             const stepItems = Array.from(document.querySelectorAll('#checklist-steps .step-item'));
             const currentIndex = stepItems.indexOf(stepItem);
             const nextStep = findNextCheckboxStep(currentIndex + 1, stepItems);
-            
+
             if (nextStep) {
                 nextStep.classList.add('selected-item');
-                scrollToSelectedItem(nextStep); // Center the next step
+                scrollToSelectedItem(nextStep);
             } else {
                 console.log('All steps completed.');
-                // Optionally, handle the end of the checklist
             }
         }
     }
 
     /**
      * Unmarks a step as checked and updates the selection.
-     * @param {number} index - The index of the step to unmark.
      */
     function unmarkStepAsChecked(stepItem) {
         if (stepItem) {
-            stepItem.classList.remove('checked'); // Remove checked class
-    
-            // Reassign 'selected-item' to this step if it's not already selected
+            stepItem.classList.remove('checked');
             if (!stepItem.classList.contains('selected-item')) {
                 stepItem.classList.add('selected-item');
                 scrollToSelectedItem(stepItem);
@@ -412,18 +353,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * Attaches event listeners to all category buttons dynamically.
+     * Attaches event listeners to category buttons.
      */
     function attachButtonListeners() {
         const allButtons = document.querySelectorAll('.button-left, .button-right');
-
         allButtons.forEach(button => {
             button.addEventListener('click', function () {
-                handleButtonSelection(this); // Manage selection styling
-
-                const typeKey = this.getAttribute('data-type'); // Get the data-type attribute
-
-                // Map data-type to the corresponding key in checklistsData
+                handleButtonSelection(this);
+                const typeKey = this.getAttribute('data-type');
                 let mappedTypeKey = '';
                 switch (typeKey) {
                     case 'warning':
@@ -444,36 +381,28 @@ document.addEventListener('DOMContentLoaded', function () {
                     case 'normal':
                         mappedTypeKey = 'normalProcedures';
                         break;
-                     case 'advisory': 
+                    case 'advisory':
                         mappedTypeKey = 'advisories';
                         break;
-                    // Add more cases if there are more categories
                     default:
                         mappedTypeKey = '';
                 }
 
                 if (mappedTypeKey && checklistsData[mappedTypeKey]) {
-                    populateChecklistList(checklistsData[mappedTypeKey], mappedTypeKey); // Load selected category
+                    populateChecklistList(checklistsData[mappedTypeKey], mappedTypeKey);
                     if (checklistsData[mappedTypeKey].length > 0) {
-                        displayChecklist(checklistsData[mappedTypeKey][0], mappedTypeKey, 0); // Display the first checklist in the selected category
+                        displayChecklist(checklistsData[mappedTypeKey][0], mappedTypeKey, 0);
                     }
                 }
             });
         });
     }
 
-    /**
-     * Event listener for the 'Select' button to check off items.
-     */
     document.getElementById('select-button').addEventListener('click', function () {
         checkNextCheckbox();
     });
 
-    /**
-     * Function to check the next unchecked checkbox. If none are left, move to the next checklist.
-     */
     function checkNextCheckbox() {
-        // Get the current checklist array
         let checklistArray = checklistsData[selectedChecklistType];
         if (!checklistArray || checklistArray.length === 0) return;
 
@@ -481,43 +410,91 @@ document.addEventListener('DOMContentLoaded', function () {
         let steps = currentChecklist.steps;
         let stepItems = document.querySelectorAll('#checklist-steps .step-item');
 
-        // Flag to indicate whether we found a checkbox to check
         let foundCheckbox = false;
 
         while (currentStepIndex < steps.length) {
-            // Get the corresponding step item in the DOM
             let stepItem = stepItems[currentStepIndex];
             if (stepItem) {
-                // Find the checkbox in the step item
                 let checkbox = stepItem.querySelector('input[type="checkbox"]');
                 if (checkbox && !checkbox.checked) {
-                    // Check the checkbox
                     checkbox.checked = true;
-                    // Trigger the change event
                     checkbox.dispatchEvent(new Event('change'));
                     foundCheckbox = true;
                     break;
                 }
             }
-            // Move to the next step
             currentStepIndex++;
         }
 
         if (!foundCheckbox) {
-            // At the end of the steps, or no more checkboxes, move to the next checklist
             moveToNextChecklist();
             currentStepIndex = 0;
         }
     }
 
-    /**
-     * Event listener for the "Go to Next Checklist?" button.
-     * Debounced to prevent rapid clicks causing zoom.
-     */
     document.getElementById('go-next-checklist').addEventListener('click', debounce(function () {
         moveToNextChecklist();
-    }, 300)); // 300ms debounce delay
+    }, 300));
 
-    // Initial call to load the checklists
+    // Load the checklists on DOMContentLoaded
     loadChecklists();
+
+    // Now, define the Random Issue button event listener INSIDE DOMContentLoaded
+    document.getElementById('random-issue-button').addEventListener('click', function() {
+        if (!checklistsData) {
+            console.error("Checklists data not loaded");
+            return;
+        }
+        
+        const categoryMapping = [
+            { key: 'issues',       cassClass: 'cass-issue',   weight: 1 },
+            { key: 'warnings',     cassClass: 'cass-warning', weight: 1 },
+            { key: 'advisories',   cassClass: 'cass-advisory', weight: 0.3 },
+            { key: 'cautionAF',    cassClass: 'cass-caution', weight: 1 },
+            { key: 'cautionGZ',    cassClass: 'cass-caution', weight: 1 }
+        ];
+    
+        // Calculate total weight
+        let totalWeight = 0;
+        for (let cat of categoryMapping) {
+            totalWeight += cat.weight;
+        }
+    
+        // Pick a category based on weight
+        const randomNum = Math.random() * totalWeight;
+        let cumulative = 0;
+        let chosenCategory = null;
+    
+        for (let cat of categoryMapping) {
+            cumulative += cat.weight;
+            if (randomNum < cumulative) {
+                chosenCategory = cat;
+                break;
+            }
+        }
+    
+        // Proceed as before
+        const categoryArray = checklistsData[chosenCategory.key];
+        if (!categoryArray || categoryArray.length === 0) {
+            console.warn(`No data found for category ${chosenCategory.key}`);
+            return;
+        }
+    
+        const randomItemIndex = Math.floor(Math.random() * categoryArray.length);
+        const selectedItem = categoryArray[randomItemIndex];
+    
+        const cassMessageEl = document.getElementById('cass-message');
+        const cassTextEl = document.getElementById('cass-text');
+    
+        cassMessageEl.classList.remove('cass-issue', 'cass-warning', 'cass-caution', 'cass-advisory');
+        cassMessageEl.classList.add(chosenCategory.cassClass);
+        cassTextEl.textContent = selectedItem.title;
+        cassMessageEl.style.display = 'block';
+    });
+
+});
+
+document.getElementById('clear-cass-button').addEventListener('click', function() {
+    const cassMessageEl = document.getElementById('cass-message');
+    cassMessageEl.style.display = 'none';
 });

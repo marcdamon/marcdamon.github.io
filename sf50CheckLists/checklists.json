@@ -8913,11 +8913,24 @@
             }
           ]
         }
+      ],
+
+
+
+"issues": [
+  {
+    "title": "Smoke In Cockpit Coming From Right Side Under Dash"
+  },
+  {
+    "title": "Loud Bang Heard From Engine, N1 Is Showing No Movement"
+  }
+]
+        
 
 
 
       
-]
+        
 
 
     }}
