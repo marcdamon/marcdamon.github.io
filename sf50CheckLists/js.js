@@ -1,14 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
     let checklistsData = {}; // Store all checklists data
     let selectedChecklistIndex = 0; // Keep track of selected checklist index
-    let selectedChecklistType = 'normalProcedures'; // Updated default checklist type
+    let selectedChecklistType = 'normalProcedures'; // Default checklist type
     let currentStepIndex = 0; // Keep track of current step in the checklist
+    let memoryItemsHighlighted = false; // Toggle for memory item highlighting
 
     /**
      * Debounce function to limit the rate at which a function can fire.
-     * @param {Function} func - The function to debounce.
-     * @param {number} delay - The delay in milliseconds.
-     * @returns {Function} - The debounced function.
      */
     function debounce(func, delay) {
         let inDebounce;
@@ -22,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /**
      * Handles the selection styling for category buttons.
-     * @param {HTMLElement} button - The button element that was clicked.
      */
     function handleButtonSelection(button) {
         const allButtons = document.querySelectorAll('.button-left, .button-right');
@@ -60,12 +57,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
-            checklistsData = data.checklists; // Store checklists globally
+            checklistsData = data.checklists;
 
             // By default, load normal procedures
             populateChecklistList(checklistsData.normalProcedures, 'normalProcedures');
 
-            // Automatically display the first checklist from "Normal" by default
+            // Automatically display the first checklist from "Normal"
             if (checklistsData.normalProcedures.length > 0) {
                 displayChecklist(checklistsData.normalProcedures[0], 'normalProcedures', 0);
             }
@@ -86,8 +83,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /**
      * Populates the checklist list based on the selected category.
-     * @param {Array} checklistType - Array of checklists for the selected category.
-     * @param {string} typeKey - Key representing the selected category.
      */
     function populateChecklistList(checklistType, typeKey) {
         const checklistItems = document.getElementById('warning-items');
@@ -118,7 +113,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /**
      * Highlights the selected checklist item in the list and scrolls it into view.
-     * @param {number} selectedIndex - Index of the selected checklist.
      */
     function highlightSelectedChecklist(selectedIndex) {
         const checklistItems = document.querySelectorAll('.warning-item');
@@ -149,7 +143,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const stepsList = document.getElementById('checklist-steps');
         const notesList = document.getElementById('checklist-notes');
         const label = document.getElementById('checklist-type');
-        const goNextButton = document.getElementById('go-next-checklist');
 
         switch (typeKey) {
             case 'warnings':
@@ -190,8 +183,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const subStepRegex = /^[a-zA-Z]\./;
 
         item.steps.forEach((step, index) => {
+            let stepItem;
+
             if (step.stepType === 'checkbox' || step.stepType === 'substep') {
-                const stepItem = document.createElement('li');
+                stepItem = document.createElement('li');
                 stepItem.classList.add('step-item');
 
                 const checkbox = document.createElement('input');
@@ -235,22 +230,31 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 });
 
-                stepsList.appendChild(stepItem);
             } else if (step.stepType === 'note' || step.stepType === 'special') {
-                const specialText = document.createElement('span');
-                specialText.classList.add('special-text');
-                specialText.innerText = step.text;
-                stepsList.appendChild(specialText);
+                stepItem = document.createElement('span');
+                stepItem.classList.add('special-text');
+                stepItem.innerText = step.text;
             } else if (step.stepType === 'procedureComplete') {
-                const completeItem = document.createElement('li');
-                completeItem.classList.add('procedure-complete');
-                completeItem.innerText = step.text;
-                stepsList.appendChild(completeItem);
+                stepItem = document.createElement('li');
+                stepItem.classList.add('procedure-complete');
+                stepItem.innerText = step.text;
             } else if (step.stepType === 'warning' || step.stepType === 'caution') {
-                const warningText = document.createElement('span');
-                warningText.classList.add('warning-text');
-                warningText.innerText = step.text;
-                stepsList.appendChild(warningText);
+                stepItem = document.createElement('span');
+                stepItem.classList.add('warning-text');
+                stepItem.innerText = step.text;
+            }
+
+            // If this is a memory item, mark it for potential highlighting
+            if (step.memoryItem && stepItem) {
+                stepItem.dataset.memoryItem = "true";
+                // If memoryItemsHighlighted is currently true, highlight immediately
+                if (memoryItemsHighlighted) {
+                    stepItem.classList.add('memory-item-highlight');
+                }
+            }
+
+            if (stepItem) {
+                stepsList.appendChild(stepItem);
             }
         });
 
@@ -439,7 +443,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Load the checklists on DOMContentLoaded
     loadChecklists();
 
-    // Now, define the Random Issue button event listener INSIDE DOMContentLoaded
+    // Random Issue Button with Weighted Selection
     document.getElementById('random-issue-button').addEventListener('click', function() {
         if (!checklistsData) {
             console.error("Checklists data not loaded");
@@ -460,7 +464,6 @@ document.addEventListener('DOMContentLoaded', function () {
             totalWeight += cat.weight;
         }
     
-        // Pick a category based on weight
         const randomNum = Math.random() * totalWeight;
         let cumulative = 0;
         let chosenCategory = null;
@@ -473,7 +476,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     
-        // Proceed as before
         const categoryArray = checklistsData[chosenCategory.key];
         if (!categoryArray || categoryArray.length === 0) {
             console.warn(`No data found for category ${chosenCategory.key}`);
@@ -492,9 +494,27 @@ document.addEventListener('DOMContentLoaded', function () {
         cassMessageEl.style.display = 'block';
     });
 
-});
+    // Clear Button
+    document.getElementById('clear-cass-button').addEventListener('click', function() {
+        const cassMessageEl = document.getElementById('cass-message');
+        cassMessageEl.style.display = 'none';
+    });
 
-document.getElementById('clear-cass-button').addEventListener('click', function() {
-    const cassMessageEl = document.getElementById('cass-message');
-    cassMessageEl.style.display = 'none';
+    // Memory Items Button - Toggle highlighting in place without re-rendering
+    document.getElementById('memory-items-button').addEventListener('click', function() {
+        memoryItemsHighlighted = !memoryItemsHighlighted;
+        this.textContent = memoryItemsHighlighted ? 'Memory Items Highlighted' : 'Memory Items';
+
+        // Toggle highlight classes on currently displayed memory item steps
+        const displayedItems = document.querySelectorAll('#checklist-steps .step-item, #checklist-steps .special-text, #checklist-steps .procedure-complete, #checklist-steps .warning-text');
+        displayedItems.forEach(stepEl => {
+            if (stepEl.dataset.memoryItem === "true") {
+                if (memoryItemsHighlighted) {
+                    stepEl.classList.add('memory-item-highlight');
+                } else {
+                    stepEl.classList.remove('memory-item-highlight');
+                }
+            }
+        });
+    });
 });

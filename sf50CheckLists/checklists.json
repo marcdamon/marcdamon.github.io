@@ -8,12 +8,14 @@
               {
                 "stepType": "checkbox",
                 "step": "1. Engine Knob",
-                "action": "OFF"
+                "action": "OFF",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
                 "step": "2. Engine Button",
-                "action": "PRESS AND HOLD 15 - 30 SECONDS"
+                "action": "PRESS AND HOLD 15 - 30 SECONDS",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
@@ -242,27 +244,32 @@
             "steps": [
               {
                 "stepType": "checkbox",
-                "step": "1. Grip side stick firmly."
+                "step": "1. Grip side stick firmly.",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
                 "step": "2. AP DISC Button",
-                "action": "PRESS AND HOLD"
+                "action": "PRESS AND HOLD",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
                 "step": "3. Airplane Control",
-                "action": "MAINTAIN"
+                "action": "MAINTAIN",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
                 "step": "4. AP SERVOS CB (A3)",
-                "action": "PULL"
+                "action": "PULL",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
                 "step": "5. AP DISC Button",
-                "action": "RELEASE"
+                "action": "RELEASE",
+                "memoryItem": true
               },
               {
                 "stepType": "special",
@@ -318,17 +325,20 @@
               {
                 "stepType": "checkbox",
                 "step": "1. Oxygen Mask",
-                "action": "DON, EMER"
+                "action": "DON, EMER",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
                 "step": "2. Smoke Goggles (if equipped)",
-                "action": "DON"
+                "action": "DON",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
                 "step": "3. PAX OXY DEPLOY Switch",
-                "action": "ON"
+                "action": "ON",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
@@ -382,7 +392,8 @@
               {
                 "stepType": "checkbox",
                 "step": "2. Activation Handle",
-                "action": "PULL DOWN STEADILY WITH \nBOTH HANDS"
+                "action": "PULL DOWN STEADILY WITH \nBOTH HANDS",
+                "memoryItem": true
               },
               {
                 "stepType": "note",
@@ -567,17 +578,17 @@
             "steps": [
               {
                 "stepType": "special",
-                "symbol": "◆",
-                "text": "If Safe Return Autoland activation is not desired:"
+                "text": "If Safe Return Autoland activation is not desired:",
+                "memoryItem": true
               },
               {
                 "stepType": "substep",
                 "step": "a. AP DISC Button",
-                "action": "PRESS AND HOLD 1 SECOND"
+                "action": "PRESS AND HOLD 1 SECOND",
+                "memoryItem": true
               },
               {
                 "stepType": "special",
-                "symbol": "❍",
                 "text": "If Safe Return Autoland activation has proceeded beyond 10-second EMER AUTOLAND ACTIVATING period:"
               },
               {
@@ -669,22 +680,26 @@
               {
                 "stepType": "checkbox",
                 "step": "1. AP DISC",
-                "action": "PRESS AND RELEASE"
+                "action": "PRESS AND RELEASE",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
                 "step": "2. Thrust Lever",
-                "action": "IDLE"
+                "action": "IDLE",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
                 "step": "3. Pitch",
-                "action": "-20° (APPROX.)"
+                "action": "-20° (APPROX.)",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
                 "step": "4. Airspeed",
-                "action": "INCREASE TO VMO\n (250 KIAS) / MMO (0.53 Mach)\n MAXIMUM"
+                "action": "INCREASE TO VMO\n (250 KIAS) / MMO (0.53 Mach)\n MAXIMUM",
+                "memoryItem": true
               },
               {
                 "stepType": "procedureComplete",
@@ -704,26 +719,31 @@
               {
                 "stepType": "checkbox",
                 "step": "1. Engine Knob",
-                "action": "OFF"
+                "action": "OFF",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
                 "step": "2. Engine Button",
-                "action": "PRESS (MOMENTARY)"
+                "action": "PRESS (MOMENTARY)",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
                 "step": "3. BAT 1 and BAT 2 Switches",
-                "action": "OFF"
+                "action": "OFF",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
                 "step": "4. Parking Brake",
-                "action": "SET"
+                "action": "SET",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
-                "step": "5. Egress aircraft through exits."
+                "step": "5. Egress aircraft through exits.",
+                "memoryItem": true
               },
               {
                 "stepType": "procedureComplete",
@@ -873,12 +893,14 @@
               {
                 "stepType": "checkbox",
                 "step": "1. Brakes",
-                "action": "MAX PILOT EFFORT W/O SKIDDING"
+                "action": "MAX PILOT EFFORT W/O SKIDDING",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
                 "step": "2. Thrust Lever",
-                "action": "IDLE"
+                "action": "IDLE",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
@@ -965,16 +987,19 @@
               {
                 "stepType": "checkbox",
                 "step": "1. Pitch for air start",
-                "action": "AIRSPEED 120 - 200 KIAS"
+                "action": "AIRSPEED 120 - 200 KIAS",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
-                "step": "2. Turn toward possible landing site(s)."
+                "step": "2. Turn toward possible landing site(s).",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
                 "step": "3. Oxygen Mask",
-                "action": "DON, 100%"
+                "action": "DON, 100%",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
@@ -1052,21 +1077,25 @@
                   {
                     "stepType": "checkbox",
                     "step": "1. Best Glide or Landing Speed",
-                    "action": "100 KIAS"
+                    "action": "100 KIAS",
+                    "memoryItem": true
                   },
                   {
                     "stepType": "checkbox",
                     "step": "2. Landing Gear",
-                    "action": "A/R"
+                    "action": "A/R",
+                    "memoryItem": true
                   },
                   {
                     "stepType": "checkbox",
                     "step": "3. Flaps",
-                    "action": "A/R"
+                    "action": "A/R",
+                    "memoryItem": true
                   },
                   {
                     "stepType": "checkbox",
-                    "step": "4. Land straight ahead."
+                    "step": "4. Land straight ahead.",
+                    "memoryItem": true
                   },
                   {
                     "stepType": "special",
@@ -1110,7 +1139,8 @@
                 "steps": [
                   {
                     "stepType": "checkbox",
-                    "step": "1. Land as soon as possible."
+                    "step": "1. Land as soon as possible.",
+                    "memoryItem": true
                   },
                   {
                     "stepType": "procedureComplete",
@@ -1569,12 +1599,14 @@
                   {
                     "stepType": "checkbox",
                     "step": "1. Brakes",
-                    "action": "MAX. PILOT EFFORT W/O SKIDDING"
+                    "action": "MAX. PILOT EFFORT W/O SKIDDING",
+                    "memoryItem": true
                   },
                   {
                     "stepType": "checkbox",
                     "step": "2. Thrust Lever",
-                    "action": "IDLE"
+                    "action": "IDLE",
+                    "memoryItem": true
                   },
                   {
                     "stepType": "special",
@@ -1632,17 +1664,20 @@
                   {
                     "stepType": "checkbox",
                     "step": "1. Oxygen Mask",
-                    "action": "DON, EMER"
+                    "action": "DON, EMER",
+                    "memoryItem": true
                   },
                   {
                     "stepType": "checkbox",
                     "step": "2. Smoke Goggles (if equipped)",
-                    "action": "DON"
+                    "action": "DON",
+                    "memoryItem": true
                   },
                   {
                     "stepType": "checkbox",
                     "step": "3. PAX OXY DEPLOY Switch",
-                    "action": "ON"
+                    "action": "ON",
+                    "memoryItem": true
                   },
                   {
                     "stepType": "checkbox",
@@ -1751,16 +1786,19 @@
                 "steps": [
                   {
                     "stepType": "checkbox",
-                    "step": "1. Pitch for 120 KIAS (APPROX.)"
+                    "step": "1. Pitch for 120 KIAS (APPROX.)",
+                    "memoryItem": true
                   },
                   {
                     "stepType": "checkbox",
-                    "step": "2. Turn toward possible landing site(s)."
+                    "step": "2. Turn toward possible landing site(s).",
+                    "memoryItem": true
                   },
                   {
                     "stepType": "checkbox",
                     "step": "3. Oxygen Mask",
-                    "action": "DON, 100%"
+                    "action": "DON, 100%",
+                    "memoryItem": true
                   },
                   {
                     "stepType": "checkbox",
@@ -1892,7 +1930,8 @@
               {
                 "stepType": "checkbox",
                 "step": "1. Oxygen Mask",
-                "action": "DON, 100%"
+                "action": "DON, 100%",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
@@ -1943,12 +1982,14 @@
               {
                 "stepType": "checkbox",
                 "step": "1. Oxygen Mask",
-                "action": "DON, 100%"
+                "action": "DON, 100%",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
                 "step": "2. BLEED Switch",
-                "action": "FRESH"
+                "action": "FRESH",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
@@ -2007,7 +2048,6 @@
             "steps": [
               {
                 "stepType": "special",
-                "symbol": "◆",
                 "text": "If message is displayed due to CAPS activation (pulling of CAPS Activation Handle):"
               },
               {
@@ -2031,13 +2071,14 @@
             
               {
                 "stepType": "special",
-                "symbol": "◆",
-                "text": "If message is displayed but CAPS handle is NOT pulled:"
+                "text": "If message is displayed but CAPS handle is NOT pulled:",
+                "memoryItem": true
               },
               {
                 "stepType": "substep",
                 "step": "a. AP DISC Button",
-                "action": "PRESS AND HOLD 5 SECONDS"
+                "action": "PRESS AND HOLD 5 SECONDS",
+                "memoryItem": true
               },
               {
                 "stepType": "procedureComplete",
@@ -2140,12 +2181,14 @@
               {
                 "stepType": "special",
                 "symbol": "◆",
-                "text": "If Safe Return Autoland activation is not desired:"
+                "text": "If Safe Return Autoland activation is not desired:",
+                "memoryItem": true
               },
               {
                 "stepType": "substep",
                 "step": "a. AP DISC Button",
-                "action": "PRESS AND HOLD 1 SECOND"
+                "action": "PRESS AND HOLD 1 SECOND",
+                "memoryItem": true
               },
               {
                 "stepType": "special",
@@ -2378,35 +2421,40 @@
               {
                 "stepType": "checkbox",
                 "step": "1. Thrust Lever",
-                "action": "IDLE"
+                "action": "IDLE",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
-                "step": "2. Pitch for 120 KIAS (APPROX.)"
+                "step": "2. Pitch for 120 KIAS (APPROX.)",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
-                "step": "3. Wait 15 seconds."
+                "step": "3. Wait 15 seconds.",
+                "memoryItem": true
               },
               {
                 "stepType": "special",
-                "symbol": "◆",
                 "text": "If ENGINE FIRE Warning remains on, or secondary fire indications are present – probable engine fire:"
               },
               {
                 "stepType": "substep",
                 "step": "a. ENGINE FIRE ACK",
-                "action": "LIFT GUARD, TOGGLE"
+                "action": "LIFT GUARD, TOGGLE",
+                "memoryItem": true
               },
               {
                 "stepType": "substep",
                 "step": "b. Left or Right PUSH TO DISCHARGE Button",
-                "action": "PUSH"
+                "action": "PUSH",
+                "memoryItem": true
               },
               {
                 "stepType": "substep",
                 "step": "c. Oxygen Mask",
-                "action": "DON, 100%"
+                "action": "DON, 100%",
+                "memoryItem": true
               },
               {
                 "stepType": "substep",
@@ -2491,26 +2539,31 @@
               {
                 "stepType": "checkbox",
                 "step": "1. ENGINE FIRE ACK",
-                "action": "LIFT GUARD, TOGGLE"
+                "action": "LIFT GUARD, TOGGLE",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
                 "step": "2. Left or Right PUSH TO DISCHARGE Button",
-                "action": "PUSH"
+                "action": "PUSH",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
                 "step": "3. Engine Knob",
-                "action": "OFF"
+                "action": "OFF",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
                 "step": "4. Engine Button",
-                "action": "PRESS (MOMENTARY)"
+                "action": "PRESS (MOMENTARY)",
+                "memoryItem": true
               },
               {
                 "stepType": "checkbox",
-                "step": "5. Evacuate airplane."
+                "step": "5. Evacuate airplane.",
+                "memoryItem": true
               },
               {
                 "stepType": "procedureComplete",
@@ -2528,7 +2581,8 @@
               {
                 "stepType": "substep",
                 "step": "1. ENGINE START N1",
-                "action": "ABORT START"
+                "action": "ABORT START",
+                "memoryItem": true
               },
               {
                 "stepType": "special",
@@ -3544,12 +3598,14 @@
                 {
                   "stepType": "substep",
                   "step": "1. AOA",
-                  "action": "REDUCE"
+                  "action": "REDUCE",
+                  "memoryItem": true
                 },
                 {
                   "stepType": "substep",
                   "step": "2. Thrust Lever",
-                  "action": "T/O"
+                  "action": "T/O",
+                  "memoryItem": true
                 },
                 {
                   "stepType": "procedureComplete",
@@ -3563,12 +3619,14 @@
           {
             "stepType": "substep",
             "step": "1. AOA",
-            "action": "REDUCE"
+            "action": "REDUCE",
+            "memoryItem": true
           },
           {
             "stepType": "substep",
             "step": "2. Thrust Lever",
-            "action": "T/O"
+            "action": "T/O",
+            "memoryItem": true
           },
           {
             "stepType": "procedureComplete",
@@ -3591,36 +3649,41 @@
           },
           {
             "stepType": "substep",
-            "step": "a. Grip side stick firmly."
+            "step": "a. Grip side stick firmly.",
+            "memoryItem": true
           },
           {
             "stepType": "substep",
             "step": "b. AP DISC Button",
-            "action": "PRESS AND HOLD"
+            "action": "PRESS AND HOLD",
+            "memoryItem": true
           },
           {
             "stepType": "substep",
             "step": "c. Airplane Control",
-            "action": "MAINTAIN"
+            "action": "MAINTAIN",
+            "memoryItem": true
           },
           {
             "stepType": "substep",
             "step": "d. AP SERVOS CB (A3)",
-            "action": "PULL"
+            "action": "PULL",
+            "memoryItem": true
           },
           {
             "stepType": "substep",
             "step": "e. AP DISC Button",
-            "action": "RELEASE"
+            "action": "RELEASE",
+            "memoryItem": true
           },
           {
             "stepType": "substep",
             "step": "f. STICK SHAKER CB \n(B3)",
-            "action": "PULL"
+            "action": "PULL",
+            "memoryItem": true
           },
           {
             "stepType": "special",
-            "symbol": "❍",
             "text": "If in RVSM airspace:"
           },
           {
@@ -3650,7 +3713,8 @@
           {
             "stepType": "substep",
             "step": "1. Takeoff",
-            "action": "ABORT"
+            "action": "ABORT",
+            "memoryItem": true
           },
           {
             "stepType": "substep",
@@ -5673,7 +5737,6 @@
       },
       {
         "stepType": "special",
-        "symbol": "◆",
         "text": "If in flight:"
       },
       {
@@ -5715,7 +5778,6 @@
       },
       {
         "stepType": "special",
-        "symbol": "◆",
         "text": "If on ground:"
       },
       {
@@ -6231,7 +6293,8 @@
       {
         "stepType": "checkbox",
         "step": "1. ENGINE IPS Switch",
-        "action": "CYCLE OFF, ON WITHIN\n < 1 SEC"
+        "action": "CYCLE OFF, ON WITHIN\n < 1 SEC",
+        "memoryItem": true
       },
       {
         "stepType": "special",
@@ -6974,7 +7037,8 @@
       {
         "stepType": "checkbox",
         "step": "1. DISPLAY BACKUP Button",
-        "action": "SELECT"
+        "action": "SELECT",
+        "memoryItem": true
       },
       {
         "stepType": "checkbox",
@@ -7028,7 +7092,8 @@
       {
         "stepType": "checkbox",
         "step": "1. DISPLAY BACKUP Button",
-        "action": "SELECT"
+        "action": "SELECT",
+        "memoryItem": true
       },
       {
         "stepType": "checkbox",
@@ -7073,7 +7138,8 @@
       {
         "stepType": "checkbox",
         "step": "1. DISPLAY BACKUP Button",
-        "action": "SELECT"
+        "action": "SELECT",
+        "memoryItem": true
       },
       {
         "stepType": "checkbox",
@@ -7118,7 +7184,8 @@
       {
         "stepType": "checkbox",
         "step": "1. DISPLAY BACKUP Button",
-        "action": "SELECT"
+        "action": "SELECT",
+        "memoryItem": true
       },
       {
         "stepType": "checkbox",

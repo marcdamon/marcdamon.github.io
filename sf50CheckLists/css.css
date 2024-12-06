@@ -582,8 +582,8 @@ input[type="checkbox"]:focus {
     cursor: pointer;
     border-radius: 5px;
     position: fixed;
-    bottom: 77px; /* 20px (clear button space) + 57px (clear button height) = 77px */
-    right: 530px;
+    bottom: 80px; /* 20px (clear button space) + 57px (clear button height) = 77px */
+    right: 510px;
     z-index: 1000;
     touch-action: manipulation;
     -webkit-text-size-adjust: 100%;
@@ -608,7 +608,31 @@ input[type="checkbox"]:focus {
     border-radius: 5px;
     position: fixed;
     bottom: 20px; /* Placed at bottom, Random Issue button stacked above it */
-    right: 530px;
+    right: 510px;
+    z-index: 1000;
+    touch-action: manipulation;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    transform: none;
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+/* Memory Items Button */
+.memory-items-button {
+    background-color: #45cdff;
+    color: black;
+    width: 115px;
+    height: 115px;
+    border: none;
+    text-align: center;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    position: fixed;
+    right: 390px;
     z-index: 1000;
     touch-action: manipulation;
     -webkit-text-size-adjust: 100%;
@@ -621,12 +645,26 @@ input[type="checkbox"]:focus {
 }
 
 
+
+.memory-items-button {
+    bottom: 20px;  /* Lowest button */
+}
+
+/* Memory item highlight style */
+.memory-item-highlight {
+    background-color: gray; 
+    color: white; /* For contrast */
+}
+
+
+
+
 /* Cass Message */
 .cass-message {
     position: fixed;
     bottom: 65px;
-    right: 145px; /* Approximate center */
-    width: 375px;
+    right: 142px; /* Approximate center */
+    width: 360px;
     text-align: center;
     padding: 0px 10px;
     font-size: 20px;
