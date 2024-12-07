@@ -370,10 +370,10 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
         
         const categoryMapping = [
-            { key: 'issues',       cassClass: 'cass-issue',   weight: .5 },
-            { key: 'warnings',     cassClass: 'cass-warning', weight: 1 },
-            { key: 'advisories',   cassClass: 'cass-advisory', weight: 0.3 },
-            { key: 'cautions',    cassClass: 'cass-caution', weight: 1 },
+            { key: 'issues',     cassClass: 'cass-issue',   weight: 0.5 },
+            { key: 'warnings',   cassClass: 'cass-warning', weight: 1 },
+            { key: 'advisories', cassClass: 'cass-advisory', weight: 0.3 },
+            { key: 'cautions',   cassClass: 'cass-caution', weight: 1 },
         ];
     
         let totalWeight = 0;
@@ -407,7 +407,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     
         cassMessageEl.classList.remove('cass-issue', 'cass-warning', 'cass-caution', 'cass-advisory');
         cassMessageEl.classList.add(chosenCategory.cassClass);
-        cassTextEl.textContent = selectedMessage; // Use the string directly
+        cassTextEl.textContent = selectedMessage;
         cassMessageEl.style.display = 'block';
     });
 
@@ -433,4 +433,40 @@ document.addEventListener('DOMContentLoaded', async function () {
             }
         });
     });
+
+    // Select Button
+    document.getElementById('select-button').addEventListener('click', function () {
+        checkNextCheckbox();
+    });
+
+    function checkNextCheckbox() {
+        let checklistArray = checklistsData[selectedChecklistType];
+        if (!checklistArray || checklistArray.length === 0) return;
+
+        let currentChecklist = checklistArray[selectedChecklistIndex];
+        let steps = currentChecklist.steps;
+        let stepItems = document.querySelectorAll('#checklist-steps .step-item');
+
+        let foundCheckbox = false;
+
+        while (currentStepIndex < steps.length) {
+            let stepItem = stepItems[currentStepIndex];
+            if (stepItem) {
+                let checkbox = stepItem.querySelector('input[type="checkbox"]');
+                if (checkbox && !checkbox.checked) {
+                    checkbox.checked = true;
+                    checkbox.dispatchEvent(new Event('change'));
+                    foundCheckbox = true;
+                    break;
+                }
+            }
+            currentStepIndex++;
+        }
+
+        if (!foundCheckbox) {
+            moveToNextChecklist();
+            currentStepIndex = 0;
+        }
+    }
+
 });
