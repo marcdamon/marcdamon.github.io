@@ -71,6 +71,10 @@ h2 {
     text-decoration: none; /* Ensure no underline appears */
 }
 
+#go-next-checklist.selected-item {
+    border: 2px solid #00dfff;
+    /* Add other highlight styles here if desired */
+}
 
 /* =======================
    Container and Layout
@@ -479,6 +483,37 @@ h2 {
     /* Smooth transition */
     transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
 }
+
+.arrow-buttons-container {
+    position: fixed;
+    bottom: 20px;
+    right: 80px; /* same right as select button for alignment */
+    display: flex;
+    flex-direction: column;
+    /* We'll shift it left by half the select button's width to place it next to select */
+    transform: translateX(-60px); /* about 58px, adjust as needed */
+}
+
+.arrow-button {
+    width: 58px;
+    height: 58px;
+    background-color: #45cdff;
+    border: none;
+    border-radius: 5px;
+    margin: 1px 0; /* small gap */
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+}
+
+/* Highlighted selected item styling remains the same */
+.selected-item {
+    border: 2px solid #00dfff;
+}
+
+
+
 
 /* =======================
    Selected Item Styling

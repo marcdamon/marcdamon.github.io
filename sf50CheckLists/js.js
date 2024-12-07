@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', async function () {
-    let checklistsData = {}; // Store all checklists data
-    let cassData = {};       // Store all CASS messages data
-    let selectedChecklistIndex = 0; 
-    let selectedChecklistType = 'normalProcedures'; 
-    let currentStepIndex = 0; 
-    let memoryItemsHighlighted = false; 
+    let checklistsData = {};
+    let cassData = {};
+    let selectedChecklistIndex = 0;
+    let selectedChecklistType = 'normalProcedures';
+    let currentStepIndex = 0;
+    let memoryItemsHighlighted = false;
+    let noMoreSteps = false; // End-of-checklist flag
 
     async function loadChecklists() {
         const response = await fetch('checklists.json');
@@ -55,6 +56,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         displayChecklist(checklistArray[selectedChecklistIndex], selectedChecklistType, selectedChecklistIndex);
         highlightSelectedChecklist(selectedChecklistIndex);
+        noMoreSteps = false; 
     }
 
     function populateChecklistList(checklistType, typeKey) {
@@ -281,6 +283,56 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
     }
 
+    // Always include go-next-checklist in selectable items
+    function getSelectableItems() {
+        const stepItems = Array.from(document.querySelectorAll('#checklist-steps .step-item'));
+        const nextButton = document.getElementById('go-next-checklist');
+        const items = [...stepItems];
+        if (nextButton) {
+            items.push(nextButton);
+        }
+        return items;
+    }
+
+    function getHighlightedItem() {
+        const items = getSelectableItems();
+        return items.find(item => item.classList.contains('selected-item'));
+    }
+
+    function highlightItem(item) {
+        const items = getSelectableItems();
+        items.forEach(el => el.classList.remove('selected-item'));
+        if (item) {
+            item.classList.add('selected-item');
+            scrollToSelectedItem(item);
+        }
+    }
+
+    function moveHighlightUp() {
+        const items = getSelectableItems();
+        const highlighted = getHighlightedItem();
+        if (!highlighted || items.length === 0) return;
+        const index = items.indexOf(highlighted);
+        if (index > 0) {
+            highlightItem(items[index - 1]);
+        }
+    }
+
+    function moveHighlightDown() {
+        const items = getSelectableItems();
+        const highlighted = getHighlightedItem();
+        if (items.length === 0) return;
+        if (!highlighted) {
+            // If nothing highlighted yet, highlight first item
+            highlightItem(items[0]);
+            return;
+        }
+        const index = items.indexOf(highlighted);
+        if (index < items.length - 1) {
+            highlightItem(items[index + 1]);
+        }
+    }
+
     function markStepAsChecked(stepItem) {
         if (stepItem) {
             stepItem.classList.add('checked');
@@ -291,10 +343,14 @@ document.addEventListener('DOMContentLoaded', async function () {
             const nextStep = findNextCheckboxStep(currentIndex + 1, stepItems);
 
             if (nextStep) {
-                nextStep.classList.add('selected-item');
-                scrollToSelectedItem(nextStep);
+                highlightItem(nextStep);
             } else {
-                console.log('All steps completed.');
+                // Last step checked, highlight go-next-checklist immediately
+                const nextChecklistButton = document.getElementById('go-next-checklist');
+                if (nextChecklistButton) {
+                    nextChecklistButton.classList.add('selected-item');
+                }
+                noMoreSteps = true;
             }
         }
     }
@@ -362,7 +418,10 @@ document.addEventListener('DOMContentLoaded', async function () {
         displayChecklist(checklistsData.normalProcedures[0], 'normalProcedures', 0);
     }
 
-    // Random Issue Button with Weighted Selection using cassData
+    document.getElementById('go-next-checklist').addEventListener('click', function() {
+        moveToNextChecklist();
+    });
+
     document.getElementById('random-issue-button').addEventListener('click', function() {
         if (!cassData) {
             console.error("CASS data not loaded");
@@ -411,13 +470,11 @@ document.addEventListener('DOMContentLoaded', async function () {
         cassMessageEl.style.display = 'block';
     });
 
-    // Clear Button
     document.getElementById('clear-cass-button').addEventListener('click', function() {
         const cassMessageEl = document.getElementById('cass-message');
         cassMessageEl.style.display = 'none';
     });
 
-    // Memory Items Button
     document.getElementById('memory-items-button').addEventListener('click', function() {
         memoryItemsHighlighted = !memoryItemsHighlighted;
         this.textContent = memoryItemsHighlighted ? 'Memory Items Highlighted' : 'Memory Items';
@@ -434,10 +491,44 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
     });
 
-    // Select Button
     document.getElementById('select-button').addEventListener('click', function () {
-        checkNextCheckbox();
+        if (noMoreSteps) {
+            noMoreSteps = false;
+            const nextChecklistButton = document.getElementById('go-next-checklist');
+            if (nextChecklistButton) {
+                nextChecklistButton.classList.remove('selected-item');
+            }
+            moveToNextChecklist();
+        } else {
+            const highlighted = getHighlightedItem();
+            if (highlighted) {
+                if (highlighted.id === 'go-next-checklist') {
+                    moveToNextChecklist();
+                } else {
+                    // Toggle check state of the highlighted step
+                    const checkbox = highlighted.querySelector('input[type="checkbox"]');
+                    if (checkbox) {
+                        if (checkbox.checked) {
+                            // Uncheck the item
+                            checkbox.checked = false;
+                            highlighted.classList.remove('checked');
+                            // Highlight stays on this step
+                        } else {
+                            // Check the item
+                            checkbox.checked = true;
+                            checkbox.dispatchEvent(new Event('change'));
+                        }
+                    }
+                }
+            } else {
+                // If nothing highlighted, just run checkNextCheckbox
+                checkNextCheckbox();
+            }
+        }
     });
+
+    document.getElementById('up-button').addEventListener('click', moveHighlightUp);
+    document.getElementById('down-button').addEventListener('click', moveHighlightDown);
 
     function checkNextCheckbox() {
         let checklistArray = checklistsData[selectedChecklistType];
@@ -462,11 +553,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             }
             currentStepIndex++;
         }
-
-        if (!foundCheckbox) {
-            moveToNextChecklist();
-            currentStepIndex = 0;
-        }
+        // No changes needed here since markStepAsChecked handles end-of-checklist logic
     }
 
 });
