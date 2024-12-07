@@ -273,7 +273,6 @@
               },
               {
                 "stepType": "special",
-                "symbol": "◆",
                 "text": "If in RVSM airspace:"
               },
               {
@@ -3674,12 +3673,6 @@
             "stepType": "substep",
             "step": "e. AP DISC Button",
             "action": "RELEASE",
-            "memoryItem": true
-          },
-          {
-            "stepType": "substep",
-            "step": "f. STICK SHAKER CB \n(B3)",
-            "action": "PULL",
             "memoryItem": true
           },
           {

@@ -1,13 +1,29 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
     let checklistsData = {}; // Store all checklists data
-    let selectedChecklistIndex = 0; // Keep track of selected checklist index
-    let selectedChecklistType = 'normalProcedures'; // Default checklist type
-    let currentStepIndex = 0; // Keep track of current step in the checklist
-    let memoryItemsHighlighted = false; // Toggle for memory item highlighting
+    let cassData = {};       // Store all CASS messages data
+    let selectedChecklistIndex = 0; 
+    let selectedChecklistType = 'normalProcedures'; 
+    let currentStepIndex = 0; 
+    let memoryItemsHighlighted = false; 
 
-    /**
-     * Debounce function to limit the rate at which a function can fire.
-     */
+    async function loadChecklists() {
+        const response = await fetch('checklists.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        checklistsData = data.checklists;
+    }
+
+    async function loadCassMessages() {
+        const response = await fetch('cassMessages.json');
+        if (!response.ok) {
+            throw new Error(`Failed to load CASS messages: ${response.status}`);
+        }
+        const data = await response.json();
+        cassData = data.cassMessages;
+    }
+
     function debounce(func, delay) {
         let inDebounce;
         return function(...args) {
@@ -18,9 +34,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    /**
-     * Handles the selection styling for category buttons.
-     */
     function handleButtonSelection(button) {
         const allButtons = document.querySelectorAll('.button-left, .button-right');
         allButtons.forEach(btn => {
@@ -31,9 +44,6 @@ document.addEventListener('DOMContentLoaded', function () {
         button.setAttribute('aria-pressed', 'true');
     }
 
-    /**
-     * Moves to the next checklist within the current category.
-     */
     function moveToNextChecklist() {
         const checklistArray = checklistsData[selectedChecklistType];
         if (!checklistArray || checklistArray.length === 0) return;
@@ -47,43 +57,6 @@ document.addEventListener('DOMContentLoaded', function () {
         highlightSelectedChecklist(selectedChecklistIndex);
     }
 
-    /**
-     * Loads checklists from the JSON file and initializes the default view.
-     */
-    async function loadChecklists() {
-        try {
-            const response = await fetch('checklists.json');
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const data = await response.json();
-            checklistsData = data.checklists;
-
-            // By default, load normal procedures
-            populateChecklistList(checklistsData.normalProcedures, 'normalProcedures');
-
-            // Automatically display the first checklist from "Normal"
-            if (checklistsData.normalProcedures.length > 0) {
-                displayChecklist(checklistsData.normalProcedures[0], 'normalProcedures', 0);
-            }
-
-            // Highlight the "Normal" button by default
-            const normalButton = document.querySelector('.button-right[data-type="normal"]');
-            if (normalButton) {
-                handleButtonSelection(normalButton);
-            }
-
-            // Attach event listeners to all category buttons after loading checklists
-            attachButtonListeners();
-        } catch (error) {
-            console.error('Error loading checklists:', error);
-            alert('Failed to load checklists. Please try again later.');
-        }
-    }
-
-    /**
-     * Populates the checklist list based on the selected category.
-     */
     function populateChecklistList(checklistType, typeKey) {
         const checklistItems = document.getElementById('warning-items');
         checklistItems.innerHTML = '';
@@ -111,9 +84,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    /**
-     * Highlights the selected checklist item in the list and scrolls it into view.
-     */
     function highlightSelectedChecklist(selectedIndex) {
         const checklistItems = document.querySelectorAll('.warning-item');
 
@@ -134,9 +104,6 @@ document.addEventListener('DOMContentLoaded', function () {
         selectedChecklistIndex = selectedIndex;
     }
 
-    /**
-     * Displays the selected checklist.
-     */
     function displayChecklist(item, typeKey, selectedIndex) {
         const title = document.getElementById('checklist-title');
         const description = document.getElementById('checklist-description');
@@ -244,10 +211,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 stepItem.innerText = step.text;
             }
 
-            // If this is a memory item, mark it for potential highlighting
             if (step.memoryItem && stepItem) {
                 stepItem.dataset.memoryItem = "true";
-                // If memoryItemsHighlighted is currently true, highlight immediately
                 if (memoryItemsHighlighted) {
                     stepItem.classList.add('memory-item-highlight');
                 }
@@ -294,9 +259,6 @@ document.addEventListener('DOMContentLoaded', function () {
         highlightSelectedChecklist(selectedIndex);
     }
 
-    /**
-     * Finds the next checklist step that includes a checkbox.
-     */
     function findNextCheckboxStep(startIndex, stepItems) {
         for (let i = startIndex; i < stepItems.length; i++) {
             const checkbox = stepItems[i].querySelector('input[type="checkbox"]');
@@ -307,9 +269,6 @@ document.addEventListener('DOMContentLoaded', function () {
         return null;
     }
 
-    /**
-     * Scrolls the selected step item into view, centering it.
-     */
     function scrollToSelectedItem(element) {
         if (!element) {
             console.error('Element to scroll to is not defined.');
@@ -322,9 +281,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    /**
-     * Marks a step as checked and moves to the next checkbox step.
-     */
     function markStepAsChecked(stepItem) {
         if (stepItem) {
             stepItem.classList.add('checked');
@@ -343,9 +299,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    /**
-     * Unmarks a step as checked and updates the selection.
-     */
     function unmarkStepAsChecked(stepItem) {
         if (stepItem) {
             stepItem.classList.remove('checked');
@@ -356,9 +309,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    /**
-     * Attaches event listeners to category buttons.
-     */
     function attachButtonListeners() {
         const allButtons = document.querySelectorAll('.button-left, .button-right');
         allButtons.forEach(button => {
@@ -402,63 +352,30 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    document.getElementById('select-button').addEventListener('click', function () {
-        checkNextCheckbox();
-    });
+    await loadChecklists();
+    await loadCassMessages();
 
-    function checkNextCheckbox() {
-        let checklistArray = checklistsData[selectedChecklistType];
-        if (!checklistArray || checklistArray.length === 0) return;
+    attachButtonListeners();
 
-        let currentChecklist = checklistArray[selectedChecklistIndex];
-        let steps = currentChecklist.steps;
-        let stepItems = document.querySelectorAll('#checklist-steps .step-item');
-
-        let foundCheckbox = false;
-
-        while (currentStepIndex < steps.length) {
-            let stepItem = stepItems[currentStepIndex];
-            if (stepItem) {
-                let checkbox = stepItem.querySelector('input[type="checkbox"]');
-                if (checkbox && !checkbox.checked) {
-                    checkbox.checked = true;
-                    checkbox.dispatchEvent(new Event('change'));
-                    foundCheckbox = true;
-                    break;
-                }
-            }
-            currentStepIndex++;
-        }
-
-        if (!foundCheckbox) {
-            moveToNextChecklist();
-            currentStepIndex = 0;
-        }
+    if (checklistsData.normalProcedures && checklistsData.normalProcedures.length > 0) {
+        populateChecklistList(checklistsData.normalProcedures, 'normalProcedures');
+        displayChecklist(checklistsData.normalProcedures[0], 'normalProcedures', 0);
     }
 
-    document.getElementById('go-next-checklist').addEventListener('click', debounce(function () {
-        moveToNextChecklist();
-    }, 300));
-
-    // Load the checklists on DOMContentLoaded
-    loadChecklists();
-
-    // Random Issue Button with Weighted Selection
+    // Random Issue Button with Weighted Selection using cassData
     document.getElementById('random-issue-button').addEventListener('click', function() {
-        if (!checklistsData) {
-            console.error("Checklists data not loaded");
+        if (!cassData) {
+            console.error("CASS data not loaded");
             return;
         }
         
         const categoryMapping = [
-            { key: 'issues',       cassClass: 'cass-issue',   weight: 1 },
+            { key: 'issues',       cassClass: 'cass-issue',   weight: .5 },
             { key: 'warnings',     cassClass: 'cass-warning', weight: 1 },
             { key: 'advisories',   cassClass: 'cass-advisory', weight: 0.3 },
-            { key: 'cautionAF',    cassClass: 'cass-caution', weight: 1 },
-            { key: 'cautionGZ',    cassClass: 'cass-caution', weight: 1 }
+            { key: 'cautions',    cassClass: 'cass-caution', weight: 1 },
         ];
     
-        // Calculate total weight
         let totalWeight = 0;
         for (let cat of categoryMapping) {
             totalWeight += cat.weight;
@@ -476,21 +393,21 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     
-        const categoryArray = checklistsData[chosenCategory.key];
+        const categoryArray = cassData[chosenCategory.key];
         if (!categoryArray || categoryArray.length === 0) {
             console.warn(`No data found for category ${chosenCategory.key}`);
             return;
         }
     
         const randomItemIndex = Math.floor(Math.random() * categoryArray.length);
-        const selectedItem = categoryArray[randomItemIndex];
+        const selectedMessage = categoryArray[randomItemIndex];
     
         const cassMessageEl = document.getElementById('cass-message');
         const cassTextEl = document.getElementById('cass-text');
     
         cassMessageEl.classList.remove('cass-issue', 'cass-warning', 'cass-caution', 'cass-advisory');
         cassMessageEl.classList.add(chosenCategory.cassClass);
-        cassTextEl.textContent = selectedItem.title;
+        cassTextEl.textContent = selectedMessage; // Use the string directly
         cassMessageEl.style.display = 'block';
     });
 
@@ -500,12 +417,11 @@ document.addEventListener('DOMContentLoaded', function () {
         cassMessageEl.style.display = 'none';
     });
 
-    // Memory Items Button - Toggle highlighting in place without re-rendering
+    // Memory Items Button
     document.getElementById('memory-items-button').addEventListener('click', function() {
         memoryItemsHighlighted = !memoryItemsHighlighted;
         this.textContent = memoryItemsHighlighted ? 'Memory Items Highlighted' : 'Memory Items';
 
-        // Toggle highlight classes on currently displayed memory item steps
         const displayedItems = document.querySelectorAll('#checklist-steps .step-item, #checklist-steps .special-text, #checklist-steps .procedure-complete, #checklist-steps .warning-text');
         displayedItems.forEach(stepEl => {
             if (stepEl.dataset.memoryItem === "true") {

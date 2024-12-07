@@ -684,28 +684,28 @@ input[type="checkbox"]:focus {
 /* Issue: white outline, black background, white text */
 .cass-issue {
     border-color: white;
-    background-color: black;
+    background-color: red;
     color: white;
 }
 
 /* Warning: red box & background, white text */
 .cass-warning {
-    border-color: red;
-    background-color: red;
-    color: white;
+    border-color: white;
+    background-color: black;
+    color: red;
 }
 
 /* Caution: yellow box & background, black text */
 .cass-caution {
-    border-color: yellow;
-    background-color: yellow;
-    color: black;
+    border-color: white;
+    background-color: black;
+    color: yellow;
 }
 
 /* Advisory (just choose a placeholder color, e.g., blue):
    blue background, white text */
 .cass-advisory {
-    border-color: blue;
-    background-color: blue;
+    border-color: white;
+    background-color: black;
     color: white;
 }
