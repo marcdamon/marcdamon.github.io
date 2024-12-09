@@ -279,11 +279,20 @@ h2 {
 /* =======================
    Warning Section
    ======================= */
+
+   .hidden-container {
+    height: 820px;
+    width: 652px;
+    border: 0px solid white;
+    position: relative; /* Make this container a positioning context */
+    overflow: hidden; /* If needed, hides elements that overflow the container */
+}
+   
 .warning-section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 650px; /* Fixed width */
+    width: 602px; /* Fixed width */
     height: 550px; /* Fixed height */
     position: relative;
     padding: 0;
@@ -460,9 +469,9 @@ h2 {
     font-size: 18px; /* Fixed font size */
     cursor: pointer;
     border-radius: 5px;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
     z-index: 1000;
     
     /* Prevents certain touch gestures */
@@ -485,9 +494,9 @@ h2 {
 }
 
 .arrow-buttons-container {
-    position: fixed;
-    bottom: 20px;
-    right: 80px; /* same right as select button for alignment */
+    position: absolute;
+    bottom: 0px;
+    right: 60px; /* same right as select button for alignment */
     display: flex;
     flex-direction: column;
     /* We'll shift it left by half the select button's width to place it next to select */
@@ -496,7 +505,7 @@ h2 {
 
 .arrow-button {
     width: 58px;
-    height: 58px;
+    height: 56px;
     background-color: #45cdff;
     border: none;
     border-radius: 5px;
@@ -626,9 +635,9 @@ input[type="checkbox"]:focus {
     font-size: 18px;
     cursor: pointer;
     border-radius: 5px;
-    position: fixed;
-    bottom: 80px; /* 20px (clear button space) + 57px (clear button height) = 77px */
-    right: 510px;
+    position: absolute;
+    bottom: 59px; /* 20px (clear button space) + 57px (clear button height) = 77px */
+    right: 485px;
     z-index: 1000;
     touch-action: manipulation;
     -webkit-text-size-adjust: 100%;
@@ -645,15 +654,15 @@ input[type="checkbox"]:focus {
     background-color: #45cdff;
     color: black;
     width: 115px;
-    height: 52px; /* Slightly less than half of 115px */
+    height: 56px; /* Slightly less than half of 115px */
     border: none;
     text-align: center;
     font-size: 18px;
     cursor: pointer;
     border-radius: 5px;
-    position: fixed;
-    bottom: 20px; /* Placed at bottom, Random Issue button stacked above it */
-    right: 510px;
+    position: absolute;
+    bottom: 0px; /* Placed at bottom, Random Issue button stacked above it */
+    right: 485px;
     z-index: 1000;
     touch-action: manipulation;
     -webkit-text-size-adjust: 100%;
@@ -676,8 +685,9 @@ input[type="checkbox"]:focus {
     font-size: 18px;
     cursor: pointer;
     border-radius: 5px;
-    position: fixed;
-    right: 390px;
+    position: absolute;
+    right: 365px;
+    bottom: 0px;
     z-index: 1000;
     touch-action: manipulation;
     -webkit-text-size-adjust: 100%;
@@ -691,9 +701,6 @@ input[type="checkbox"]:focus {
 
 
 
-.memory-items-button {
-    bottom: 20px;  /* Lowest button */
-}
 
 /* Memory item highlight style */
 .memory-item-highlight {
@@ -706,9 +713,9 @@ input[type="checkbox"]:focus {
 
 /* Cass Message */
 .cass-message {
-    position: fixed;
+    position: absolute;
     bottom: 185px;
-    right: 90px; /* Approximate center */
+    right: 75px; /* Approximate center */
     width: 460px;
     text-align: center;
     padding: 0px 10px;

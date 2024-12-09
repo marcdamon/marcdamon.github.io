@@ -1,27 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Existing meta tags -->
     <meta charset="UTF-8">
-    <!-- Properly configured viewport -->
+    <!-- Viewport meta to prevent zooming on iOS -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Aircraft Checklist</title>
     <link rel="stylesheet" href="css.css">
 </head>
 <body>
     <div class="container">
-        <!-- Checklist Section -->
         <div class="checklist-section outer-frame">
             <div class="checklist-title-box">
                 <h2 id="checklist-title">Checklist Title</h2>
                 <div id="checklist-type" class="checklist-type-label">Type Label</div>
             </div>
             <div class="checklist-display" id="checklist-container">
-                <!-- Scrollable Content -->
                 <div class="scrollable-content">
                     <p id="checklist-description">Checklist Description</p>
                     <ul id="checklist-steps">
-                        <!-- Main Step with Special Text -->
                         <li class="step-item">
                             <input type="checkbox" id="step-0-1">
                             <div class="step-content">
@@ -34,8 +30,6 @@
                                 <span class="special-text">Special Text</span>
                             </div>
                         </li>
-    
-                        <!-- Another Step with Special Text Inside Step Label -->
                         <li class="step-item">
                             <input type="checkbox" id="step-0-2">
                             <div class="step-content">
@@ -49,8 +43,6 @@
                                 </span>
                             </div>
                         </li>
-    
-                        <!-- Sub-Step Without Special Text -->
                         <li class="step-item">
                             <input type="checkbox" id="step-0-5-a">
                             <div class="step-content">
@@ -62,85 +54,63 @@
                                 </span>
                             </div>
                         </li>
+                        <!-- Additional steps as needed -->
                     </ul>
-    
-                    <!-- Additional Steps and Sub-Steps -->
-                    <!-- ... -->
-    
-                    <!-- Cautions Section -->
-                    <div id="checklist-cautions" class="cautions-section">
-                        <!-- Cautions will be dynamically inserted here -->
-                    </div>
 
+                    <div id="checklist-cautions" class="cautions-section"></div>
                     <div id="checklist-notes">
                         <p class="note-item">Note: Important information here.</p>
                     </div>
                 </div>
-    
-                <!-- "Go to Next Checklist?" Button -->
                 <button id="go-next-checklist" class="go-next-checklist">Go to Next Checklist?</button>
             </div>
         </div>
-    
-        <!-- Warning Section -->
-        <div class="warning-section outer-frame">
-            <!-- Buttons Container -->
-            <div class="buttons-container">
-                <div class="button-stack-left">
-                    <button class="button-left" data-type="emergency">Emergency</button>
-                    <button class="button-left" data-type="warning">Warning</button>
-                    <button class="button-left" data-type="abnormal procedures">Abnormal Procedures</button>
-                    <button class="button-left" data-type="caution a-f">Caution<br> (A-F)</button>
-                    <button class="button-left" data-type="caution g-z">Caution<br> (G-Z)</button>
+
+        <!-- New hidden container wrapping warning section and bottom buttons -->
+        <div class="hidden-container">
+            <div class="warning-section outer-frame">
+                <div class="buttons-container">
+                    <div class="button-stack-left">
+                        <button class="button-left" data-type="emergency">Emergency</button>
+                        <button class="button-left" data-type="warning">Warning</button>
+                        <button class="button-left" data-type="abnormal procedures">Abnormal Procedures</button>
+                        <button class="button-left" data-type="caution a-f">Caution<br>(A-F)</button>
+                        <button class="button-left" data-type="caution g-z">Caution<br>(G-Z)</button>
+                    </div>
+                    <div class="button-stack-right">
+                        <button class="button-right" data-type="advisory">Advisory</button>
+                        <button class="button-right" data-type="normal">Normal</button>
+                        <button class="button-right checklist-options" data-type="checklist options">Checklist Options</button>
+                    </div>
                 </div>
-                <div class="button-stack-right">
-                    <button class="button-right" data-type="advisory">Advisory</button>
-                    <button class="button-right" data-type="normal">Normal</button>
-                    <button class="button-right checklist-options" data-type="checklist options">Checklist Options</button>
+                <h2 class="checklist-items-title">Checklist</h2>
+                <div class="checklist-items-container">
+                    <ul id="warning-items">
+                        <li class="warning-item">Checklist 1</li>
+                        <li class="warning-item">Checklist 2</li>
+                        <!-- More checklist items -->
+                    </ul>
                 </div>
             </div>
-    
-            <!-- Checklist Items Title -->
-            <h2 class="checklist-items-title">Checklist</h2>
-    
-            <!-- Checklist Items Container -->
-            <div class="checklist-items-container">
-                <ul id="warning-items">
-                    <li class="warning-item">Checklist 1</li>
-                    <li class="warning-item">Checklist 2</li>
-                    <!-- More checklist items -->
-                </ul>
+
+            <!-- Bottom area inside hidden container -->
+            <div class="bottom-bar">
+                <button id="random-issue-button" class="random-issue-button">Random Issue</button>
+                <button id="clear-cass-button" class="clear-cass-button">Clear</button>
+                <button id="memory-items-button" class="memory-items-button">Memory Items</button>
+                <div class="cass-message" id="cass-message" style="display:none;">
+                    <p id="cass-text">CASS MESSAGE TEXT HERE</p>
+                </div>
+                <button id="select-button" class="select-button">Select</button>
             </div>
-            <!-- After the .checklist-items-container in the .warning-section -->
 
+            <div class="arrow-buttons-container">
+                <button id="up-button" class="arrow-button">&#9650;</button>
+                <button id="down-button" class="arrow-button">&#9660;</button>
+            </div>
         </div>
-        
     </div>
 
-    
-        
-    <div class="bottom-bar">
-        <button id="random-issue-button" class="random-issue-button">Random Issue</button>
-        <!-- Clear Button -->
-        <button id="clear-cass-button" class="clear-cass-button">Clear</button> 
-        <!-- Memory Items Button -->
-<button id="memory-items-button" class="memory-items-button">Memory Items</button>
-        <div class="cass-message" id="cass-message" style="display:none;">
-            <p id="cass-text">CASS MESSAGE TEXT HERE</p>
-        </div>
-        <button id="select-button" class="select-button">Select</button>
-    </div>
-<!-- New Arrow Buttons: Up and Down -->
-<div class="arrow-buttons-container">
-    <button id="up-button" class="arrow-button">&#9650;</button>
-    <button id="down-button" class="arrow-button">&#9660;</button>
-</div>
-
-
-
-
-    
-    <!-- Include the JavaScript file -->
     <script src="js.js"></script>
 </body>
 </html>
