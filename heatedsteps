@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Heated Steps - Servo Control</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    // Replace with your Arduino's IP address (make sure this IP is accessible from your network)
+    const arduinoIP = "192.168.1.123";
+
+    function sendCommand(servo, action) {
+      const url = `http://${arduinoIP}/${servo}/${action}`;
+      // Use fetch to send the command
+      fetch(url)
+        .then(response => response.text())
+        .then(data => console.log("Response:", data))
+        .catch(error => console.error("Error:", error));
+    }
+  </script>
+</head>
+<body>
+  <h1>Heated Steps - Servo Control</h1>
+  
+  <div>
+    <h2>Servo 1</h2>
+    <button onclick="sendCommand('servo1', 'open')">Open Servo 1</button>
+    <button onclick="sendCommand('servo1', 'close')">Close Servo 1</button>
+  </div>
+  
+  <div>
+    <h2>Servo 2</h2>
+    <button onclick="sendCommand('servo2', 'open')">Open Servo 2</button>
+    <button onclick="sendCommand('servo2', 'close')">Close Servo 2</button>
+  </div>
+</body>
+</html>
