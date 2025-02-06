@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>
     // Replace with your Arduino's IP address (make sure this IP is accessible from your network)
-    const arduinoIP = "192.168.1.123";
+    const arduinoIP = "192.168.10.152";
 
     function sendCommand(servo, action) {
       const url = `http://${arduinoIP}/${servo}/${action}`;
