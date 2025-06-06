@@ -24,6 +24,10 @@
   <div class="add-mx-form" id="addMxForm">
     <h3>Add Maintenance Item</h3>
     <select id="mxTypeSelect"></select>
+    <div id="customTitleWrapper" style="display: none;">
+        <label for="customTitle">Custom Title</label>
+        <input type="text" id="customTitle" placeholder="Enter custom name/title" />
+      </div>
     <input type="date" id="mxDate" placeholder="Maintenance Date">
     <input type="number" id="mxFlightHours" placeholder="Flight Hours at Maintenance" step="0.1">
     <input type="text" id="nextServiceDueAt" placeholder="Next Due at (hours)">

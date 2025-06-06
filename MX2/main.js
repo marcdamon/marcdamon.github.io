@@ -1,4 +1,4 @@
-// ✅ Stable working JS with alert threshold, drag-and-drop, sort persistence, and vertical status bar
+// ✅ Stable working JS with conditional custom_title field, sort, alerts, and LLP/Misc support
 
 window.addEventListener('DOMContentLoaded', () => {
     console.log("✅ main.js is running");
@@ -21,17 +21,16 @@ window.addEventListener('DOMContentLoaded', () => {
       let days = to.getDate() - from.getDate();
       if (days < 0) {
         months -= 1;
-        const prevMonth = new Date(to.getFullYear(), to.getMonth(), 0);
-        days += prevMonth.getDate();
+        days += new Date(to.getFullYear(), to.getMonth(), 0).getDate();
       }
       if (months < 0) {
         years -= 1;
         months += 12;
       }
       const parts = [];
-      if (years) parts.push(`${Math.abs(years)} year${Math.abs(years) !== 1 ? 's' : ''}`);
-      if (months) parts.push(`${Math.abs(months)} month${Math.abs(months) !== 1 ? 's' : ''}`);
-      if (days || (!years && !months)) parts.push(`${Math.abs(days)} day${Math.abs(days) !== 1 ? 's' : ''}`);
+      if (years) parts.push(`${years} year${years !== 1 ? 's' : ''}`);
+      if (months) parts.push(`${months} month${months !== 1 ? 's' : ''}`);
+      if (days || (!years && !months)) parts.push(`${days} day${days !== 1 ? 's' : ''}`);
       return parts.join(', ');
     }
   
@@ -55,35 +54,51 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   
     async function loadMaintenanceTypes() {
-      const { data, error } = await supabase.from('maintenance_types').select('*');
-      if (error) return console.error('Error loading maintenance types:', error);
-      maintenanceTypes = data || [];
-      const select = document.getElementById('mxTypeSelect');
-      select.innerHTML = '<option value="">-- Select Type --</option>';
-      data.forEach(type => {
-        const option = document.createElement('option');
-        option.value = type.id;
-        option.textContent = `${type.name} (${type.category})`;
-        select.appendChild(option);
-      });
-    }
+        const { data, error } = await supabase.from('maintenance_types').select('*');
+        if (error) {
+          console.error('Error loading maintenance types:', error);
+          return;
+        }
+      
+        maintenanceTypes = data || [];
+        const select = document.getElementById('mxTypeSelect');
+        select.innerHTML = '<option value="">-- Select Type --</option>';
+      
+        data.forEach(type => {
+          const option = document.createElement('option');
+          option.value = type.id;
+          option.textContent = `${type.name} (${type.category})`;
+          select.appendChild(option);
+        });
+      
+        // 🔄 Listen for dropdown changes to toggle custom title input
+        select.addEventListener('change', (e) => {
+          const selectedType = maintenanceTypes.find(t => t.id === e.target.value);
+          const selectedTypeCategory = selectedType?.category?.toLowerCase() || '';
+          const selectedTypeName = selectedType?.name?.toLowerCase() || '';
+      
+          const shouldShowCustomTitle = 
+            ['llp', 'misc'].includes(selectedTypeCategory) || 
+            selectedTypeName.includes('custom');
+      
+          const wrapper = document.getElementById('customTitleWrapper');
+          if (wrapper) {
+            wrapper.style.display = shouldShowCustomTitle ? 'block' : 'none';
+          }
+        });
+      }
   
     async function onAircraftChange(e) {
       if (e?.target?.value) currentAircraftId = e.target.value;
       if (!currentAircraftId) return;
   
-      const { data: aircraftData } = await supabase
-        .from('assets')
-        .select('flight_hours')
-        .eq('id', currentAircraftId)
-        .single();
-  
+      const { data: aircraftData } = await supabase.from('assets').select('flight_hours').eq('id', currentAircraftId).single();
       currentFlightHours = aircraftData?.flight_hours || 0;
       document.getElementById('flightHoursStatus').textContent = `Current Flight Hours: ${currentFlightHours.toFixed(1)}`;
   
       const { data: mxItems } = await supabase
         .from('maintenance_items')
-        .select('* , maintenance_types(name, category)')
+        .select('*, maintenance_types(name, category)')
         .eq('asset_id', currentAircraftId)
         .order('sort_order', { ascending: true });
   
@@ -102,7 +117,7 @@ window.addEventListener('DOMContentLoaded', () => {
         card.appendChild(dragHandle);
   
         const title = document.createElement('h2');
-        title.textContent = item.maintenance_types?.name || 'Unknown Type';
+        title.textContent = item.custom_title || item.maintenance_types?.name || 'Unknown Type';
   
         const info = document.createElement('div');
         info.className = 'due';
@@ -148,9 +163,11 @@ window.addEventListener('DOMContentLoaded', () => {
         editBtn.className = 'edit-btn bottom-right';
         card.appendChild(editBtn);
   
+        const showCustomTitle = item.custom_title || ['LLP', 'Misc'].includes(item.maintenance_types?.category);
         const editSection = document.createElement('div');
         editSection.className = 'edit-section hidden';
         editSection.innerHTML = `
+          ${showCustomTitle ? `<div class="field"><label>Custom Title:</label><input type="text" value="${item.custom_title || ''}" class="edit-custom-title"></div>` : ''}
           <div class="field"><label>Date of Last MX:</label><input type="date" value="${item.mx_date || ''}" class="edit-date"></div>
           <div class="field"><label>Flight Hours at Last MX:</label><input type="number" value="${item.mx_flight_hours || ''}" step="0.1" class="edit-hours"></div>
           <div class="field" ${isHours ? '' : 'style="display:none"'}><label>Next MX Due at Flight Hours:</label><input type="text" value="${item.next_service_due_at || ''}" class="edit-next-hours"></div>
@@ -165,7 +182,9 @@ window.addEventListener('DOMContentLoaded', () => {
   
         editSection.querySelector('.save-btn').addEventListener('click', async () => {
           const alertValue = parseFloat(editSection.querySelector('.edit-alert-threshold').value);
+          const customTitleInput = editSection.querySelector('.edit-custom-title');
           const updated = {
+            custom_title: customTitleInput ? customTitleInput.value : null,
             mx_date: editSection.querySelector('.edit-date').value,
             mx_flight_hours: parseFloat(editSection.querySelector('.edit-hours').value),
             next_service_due_at: parseFloat(editSection.querySelector('.edit-next-hours').value),
@@ -218,6 +237,7 @@ window.addEventListener('DOMContentLoaded', () => {
     async function addMaintenanceItem() {
       const status = document.getElementById('addMxStatus');
       const typeId = document.getElementById('mxTypeSelect').value;
+      const customTitle = document.getElementById('customTitle').value.trim();
       const mxDate = document.getElementById('mxDate').value;
       const mxHours = parseFloat(document.getElementById('mxFlightHours').value);
       const nextHours = parseFloat(document.getElementById('nextServiceDueAt').value);
@@ -235,6 +255,7 @@ window.addEventListener('DOMContentLoaded', () => {
       const { error } = await supabase.from('maintenance_items').insert({
         asset_id: currentAircraftId,
         maintenance_type_id: typeId,
+        custom_title: customTitle || null,
         mx_date: mxDate,
         mx_flight_hours: isNaN(mxHours) ? null : mxHours,
         next_service_due_at: isNaN(nextHours) ? null : nextHours,
