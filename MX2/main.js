@@ -179,8 +179,21 @@ const categorized = {
       progress.appendChild(fill);
   
       const pill = document.createElement('div');
-      pill.className = 'pill';
-      pill.textContent = 'Active';
+        pill.className = 'pill';
+
+        if (!item.next_service_due_at && !item.next_service_due_date) {
+        pill.classList.add('inactive');
+        pill.textContent = 'Inactive';
+        } else if (status === 'overdue') {
+        pill.classList.add('overdue');
+        pill.textContent = 'Overdue';
+        } else if (status === 'soon') {
+        pill.classList.add('soon');
+        pill.textContent = 'Due Soon';
+        } else {
+        pill.classList.add('ok');
+        pill.textContent = 'Upcoming';
+        }
   
       const editBtn = document.createElement('button');
       editBtn.textContent = '✏️';
@@ -223,8 +236,14 @@ const categorized = {
   
       editSection.querySelector('.delete-btn').addEventListener('click', async () => {
         if (confirm('Are you sure you want to delete this maintenance item?')) {
-          await supabase.from('maintenance_items').delete().eq('id', item.id);
-          await onAircraftChange();
+          console.log('Attempting delete for:', item.id);
+          const { error } = await supabase.from('maintenance_items').delete().eq('id', item.id);
+          if (error) {
+            console.error('❌ Delete failed:', error);
+          } else {
+            console.log('✅ Deleted:', item.id);
+            await onAircraftChange();
+          }
         }
       });
   
@@ -326,5 +345,11 @@ const categorized = {
         }
       });
     };
+
+    document.getElementById('toggleSidebar').addEventListener('click', () => {
+        document.getElementById('sidebar').classList.toggle('collapsed');
+        document.body.classList.toggle('sidebar-collapsed');
+      });
+
     document.body.appendChild(script);
   });
