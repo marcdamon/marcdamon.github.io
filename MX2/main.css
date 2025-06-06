@@ -29,7 +29,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    margin-top: 2rem;
+    margin-top: 4rem;
   }
   
   .nav-btn {
@@ -181,10 +181,15 @@ body {
   .tile-section-header {
     font-size: 1.1rem;
     font-weight: bold;
-    margin: 1.5rem 0 0.5rem 0;
-    padding-left: 1rem; /* ✅ prevents being flush-left */
     color: #66ccff;
     text-transform: uppercase;
+    margin: 1.5rem 0 0.5rem 0;
+    padding-left: 1rem; /* default padding when sidebar is collapsed */
+    transition: padding-left 0.3s ease;
+  }
+  
+  body:not(.sidebar-collapsed) .tile-section-header {
+    padding-left: 50px; /* give it room when sidebar is open */
   }
   
   .pill {
