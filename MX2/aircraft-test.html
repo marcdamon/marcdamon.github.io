@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <script>
+    const supabase = window.supabase.createClient(
+      'https://htapkhvxskvqidtugegq.supabase.co',
+      'your-anon-key-here'
+    );
+
+    supabase.from('assets').select('*').then(({ data, error }) => {
+      console.log("✅ Query to 'assets' succeeded:", data);
+      console.log("❌ Error (if any):", error);
+    });
+  </script>
+</body>
+</html>

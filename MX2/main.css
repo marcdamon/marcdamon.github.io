@@ -1,0 +1,225 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #121212;
+    color: #f1f1f1;
+    padding: 1rem;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  .header select,
+  .update-hours input,
+  .add-mx-form input,
+  .add-mx-form select,
+  .add-mx-form textarea {
+    font-size: 1rem;
+    padding: 0.5rem;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 4px;
+    color: white;
+  }
+  
+  .update-hours {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  .update-hours button,
+  #toggleAddForm,
+  .add-mx-form button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background: #00bfff;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    margin-top: 0.5rem;
+  }
+  
+  #updateStatus {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    padding-top: 1rem;
+  }
+  
+  .card {
+    background: #1f1f1f;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+  }
+  
+  .card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card .due {
+    color: #aaa;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .pill {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    background: #444;
+    color: #fff;
+  }
+  
+  .pill.ok { background: #4caf50; }
+  .pill.soon { background: #ffc107; color: #000; }
+  .pill.overdue { background: #f44336; }
+  
+  .edit-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .edit-section {
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    animation: slideDown 0.2s ease-in-out;
+  }
+  
+  .edit-section.hidden {
+    display: none;
+  }
+  
+  .edit-section .field {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .edit-section label {
+    width: 140px;
+    font-size: 0.85rem;
+    color: #ccc;
+    text-align: right;
+  }
+  
+  .edit-section input,
+  .edit-section textarea {
+    flex: 1;
+    background: #2a2a2a;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 4px;
+    padding: 0.4rem;
+    font-size: 0.9rem;
+  }
+  
+  .edit-section textarea {
+    resize: vertical;
+    min-height: 50px;
+  }
+  
+  .edit-section button {
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 0.4rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .edit-section button:hover {
+    background: #444;
+  }
+  
+  @keyframes slideDown {
+    from { opacity: 0; transform: scaleY(0.95); }
+    to { opacity: 1; transform: scaleY(1); }
+  }
+  
+  /* ADDITIONAL: Hide add form initially */
+  .add-mx-form {
+    margin-top: 2rem;
+    background: #1a1a1a;
+    padding: 1rem;
+    border-radius: 10px;
+    display: none;
+  }
+  
+  .add-mx-form.visible {
+    display: block;
+  }
+  
+  #toggleAddForm {
+    display: block;
+    margin: 0 auto 1rem auto;
+    background: #00bfff;
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .add-mx-form label {
+    font-size: 0.85rem;
+    color: #ccc;
+    margin-top: 0.5rem;
+    display: block;
+  }
+  
+  /* 🔧 NEW: Progress bar styles */
+  .alert-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    border-radius: 6px 0 0 6px;
+  }
+  
+  .alert-fill {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px 0 0 6px;
+  }
+  
+  .alert-fill.ok {
+    background: #4caf50;
+  }
+  
+  .alert-fill.soon {
+    background: #ffc107;
+  }
+  
+  .alert-fill.overdue {
+    background: #f44336;
+  }

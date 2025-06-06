@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aircraft Maintenance Dashboard</title>
+  <link rel="stylesheet" href="main.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <div class="header">
+    <h1>Aircraft Maintenance</h1>
+    <select id="aircraftSelect"></select>
+    <div class="update-hours">
+      <input type="number" id="newFlightHours" placeholder="Enter new flight hours" step="0.1">
+      <button id="updateHoursBtn">Update</button>
+      <div id="flightHoursStatus">Current Flight Hours: —</div>
+    </div>
+  </div>
+
+  <button id="toggleAddForm">+ Add Maintenance Item</button>
+
+  <div class="add-mx-form" id="addMxForm">
+    <h3>Add Maintenance Item</h3>
+    <select id="mxTypeSelect"></select>
+    <input type="date" id="mxDate" placeholder="Maintenance Date">
+    <input type="number" id="mxFlightHours" placeholder="Flight Hours at Maintenance" step="0.1">
+    <input type="text" id="nextServiceDueAt" placeholder="Next Due at (hours)">
+    <input type="date" id="nextServiceDueDate" placeholder="Next Due Date">
+    <label><input type="checkbox" id="autoNextDue"> Auto Calculate Next Due</label>
+    <select id="dueType">
+      <option value="hours">Hours</option>
+      <option value="date">Date</option>
+      <option value="fixed_hours">Fixed Hours</option>
+      <option value="fixed_date">Fixed Date</option>
+    </select>
+    <label for="alertThreshold">Alert Threshold (hrs/days before due)</label>
+<input type="number" id="alertThreshold" placeholder="Default: 30" step="1">
+    <textarea id="squawks" placeholder="Squawks or Notes"></textarea>
+    <button id="addMxBtn">Save Maintenance Item</button>
+    <div id="addMxStatus"></div>
+  </div>
+
+  <div class="grid" id="cardGrid"></div>
+</body>
+</html>

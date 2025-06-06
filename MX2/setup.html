@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Configure Supported Maintenance Types</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #111;
+      color: #eee;
+      padding: 2rem;
+    }
+    h1 {
+      text-align: center;
+    }
+    select, button {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin: 1rem 0;
+    }
+    .checkbox-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .checkbox-item {
+      background: #1e1e1e;
+      border: 1px solid #333;
+      padding: 0.75rem;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Supported Maintenance Setup</h1>
+  <label for="aircraftSelect">Select Aircraft:</label>
+  <select id="aircraftSelect"></select>
+
+  <div class="checkbox-list" id="typeList"></div>
+
+  <button onclick="saveSelections()">Save Selections</button>
+  <div id="status"></div>
+
+  <script>
+    const supabase = window.supabase.createClient(
+      'https://htapkhvxskvqidtugegq.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh0YXBraHZ4c2t2cWlkdHVnZWdxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc5NTEyMjMsImV4cCI6MjA2MzUyNzIyM30.m1VLqQwi_Ch_VbbGm4rzvMguxH7YXn5gExmgYPDqFXU'
+    );
+
+    let currentAircraftId = null;
+    let allTypes = [];
+
+    async function loadAircraft() {
+      const { data, error } = await supabase.from('aircraft').select('*');
+      console.log("Aircraft:", data, error);
+      const select = document.getElementById('aircraftSelect');
+      select.innerHTML = '<option value="">-- Select Aircraft --</option>';
+      data.forEach(ac => {
+        const option = document.createElement('option');
+        option.value = ac.id;
+        option.textContent = `${ac.n_number} (${ac.make} ${ac.model})`;
+        select.appendChild(option);
+      });
+      select.addEventListener('change', onAircraftChange);
+    }
+
+    async function loadTypes() {
+      const { data, error } = await supabase.from('maintenance_types').select('*');
+      allTypes = data;
+      console.log("Maintenance types loaded:", data, error);
+    }
+
+    async function onAircraftChange(e) {
+      currentAircraftId = e.target.value;
+      const container = document.getElementById('typeList');
+      container.innerHTML = '';
+      if (!currentAircraftId) return;
+
+      const { data: supported, error } = await supabase
+        .from('aircraft_supported_types')
+        .select('maintenance_type_id')
+        .eq('aircraft_id', currentAircraftId);
+
+      console.log('Supported types:', supported, error);
+
+      const supportedIds = supported.map(s => s.maintenance_type_id);
+
+      allTypes.forEach(type => {
+        const wrapper = document.createElement('label');
+        wrapper.className = 'checkbox-item';
+        const box = document.createElement('input');
+        box.type = 'checkbox';
+        box.value = type.id;
+        box.checked = supportedIds.includes(type.id);
+        wrapper.appendChild(box);
+        wrapper.appendChild(document.createTextNode(` ${type.name} (${type.category})`));
+        container.appendChild(wrapper);
+      });
+    }
+
+    async function saveSelections() {
+      const status = document.getElementById('status');
+      if (!currentAircraftId) {
+        status.textContent = 'Select an aircraft first.';
+        return;
+      }
+
+      const checked = [...document.querySelectorAll('#typeList input:checked')].map(cb => cb.value);
+
+      // Clear existing
+      const { error: delErr } = await supabase.from('aircraft_supported_types')
+        .delete()
+        .eq('aircraft_id', currentAircraftId);
+
+      if (delErr) {
+        status.textContent = '❌ Failed to clear old entries.';
+        return;
+      }
+
+      // Insert new
+      const rows = checked.map(id => ({
+        aircraft_id: currentAircraftId,
+        maintenance_type_id: id
+      }));
+
+      const { error: insertErr } = await supabase.from('aircraft_supported_types').insert(rows);
+
+      status.textContent = insertErr ? '❌ Save failed.' : '✅ Selections saved.';
+      console.log('Insert result:', insertErr || 'Success');
+    }
+
+    // Initialize
+    loadTypes().then(loadAircraft);
+  </script>
+</body>
+</html>
