@@ -1,4 +1,4 @@
-// ✅ Your stable working JS + alert_threshold support and placeholder for status bar
+// ✅ Stable working JS with alert threshold, drag-and-drop, sort persistence, and vertical status bar
 
 window.addEventListener('DOMContentLoaded', () => {
     console.log("✅ main.js is running");
@@ -83,8 +83,9 @@ window.addEventListener('DOMContentLoaded', () => {
   
       const { data: mxItems } = await supabase
         .from('maintenance_items')
-        .select('id, mx_date, mx_flight_hours, next_service_due_at, next_service_due_date, squawks, due_type, alert_threshold, maintenance_types(name, category)')
-        .eq('asset_id', currentAircraftId);
+        .select('* , maintenance_types(name, category)')
+        .eq('asset_id', currentAircraftId)
+        .order('sort_order', { ascending: true });
   
       const grid = document.getElementById('cardGrid');
       grid.innerHTML = '';
@@ -93,9 +94,16 @@ window.addEventListener('DOMContentLoaded', () => {
       mxItems.forEach(item => {
         const card = document.createElement('div');
         card.className = 'card';
-        
+        card.setAttribute('data-id', item.id);
+  
+        const dragHandle = document.createElement('span');
+        dragHandle.className = 'drag-handle top-right';
+        dragHandle.textContent = '≡';
+        card.appendChild(dragHandle);
+  
         const title = document.createElement('h2');
         title.textContent = item.maintenance_types?.name || 'Unknown Type';
+  
         const info = document.createElement('div');
         info.className = 'due';
         const due = item.next_service_due_date || item.next_service_due_at || 'N/A';
@@ -107,15 +115,13 @@ window.addEventListener('DOMContentLoaded', () => {
         const isDate = item.due_type?.toLowerCase() === 'date';
         const alert = item.alert_threshold || 30;
         let remainingText = '';
-  
         let status = 'ok';
+  
         if (isHours && item.next_service_due_at) {
           const remaining = item.next_service_due_at - currentFlightHours;
           if (remaining < 0) status = 'overdue';
           else if (remaining <= alert) status = 'soon';
-          remainingText = remaining >= 0
-            ? `Next Due In: ${remaining.toFixed(1)} hours`
-            : `Overdue by ${Math.abs(remaining).toFixed(1)} hours`;
+          remainingText = remaining >= 0 ? `Next Due In: ${remaining.toFixed(1)} hours` : `Overdue by ${Math.abs(remaining).toFixed(1)} hours`;
         } else if (isDate && item.next_service_due_date) {
           const dueDate = new Date(item.next_service_due_date);
           const days = Math.ceil((dueDate - today) / (1000 * 60 * 60 * 24));
@@ -124,13 +130,13 @@ window.addEventListener('DOMContentLoaded', () => {
           const direction = days >= 0 ? 'Due in:' : 'Overdue by:';
           remainingText = `${direction} ${getDateDifferenceString(today, dueDate)}`;
         }
+  
         extra.textContent = remainingText || '—';
   
         const progress = document.createElement('div');
         progress.className = 'alert-bar';
         const fill = document.createElement('div');
         fill.className = `alert-fill ${status}`;
-        fill.style.width = status === 'overdue' ? '100%' : '100%';
         progress.appendChild(fill);
   
         const pill = document.createElement('div');
@@ -139,10 +145,11 @@ window.addEventListener('DOMContentLoaded', () => {
   
         const editBtn = document.createElement('button');
         editBtn.textContent = '✏️';
-        editBtn.className = 'edit-btn';
+        editBtn.className = 'edit-btn bottom-right';
+        card.appendChild(editBtn);
+  
         const editSection = document.createElement('div');
         editSection.className = 'edit-section hidden';
-  
         editSection.innerHTML = `
           <div class="field"><label>Date of Last MX:</label><input type="date" value="${item.mx_date || ''}" class="edit-date"></div>
           <div class="field"><label>Flight Hours at Last MX:</label><input type="number" value="${item.mx_flight_hours || ''}" step="0.1" class="edit-hours"></div>
@@ -150,42 +157,27 @@ window.addEventListener('DOMContentLoaded', () => {
           <div class="field" ${isDate ? '' : 'style="display:none"'}><label>Next MX Due Date:</label><input type="date" value="${item.next_service_due_date || ''}" class="edit-next-date"></div>
           <div class="field"><label>Alert Threshold:</label><input type="number" value="${item.alert_threshold ?? ''}" class="edit-alert-threshold"></div>
           <div class="field"><label>Squawks / Notes:</label><textarea class="edit-squawks">${item.squawks || ''}</textarea></div>
-          <div class="field"><button class="save-btn">Save</button><button class="delete-btn">Delete</button><button class="cancel-btn">Cancel</button></div>`;
+          <div class="field"><button class="save-btn">Save</button><button class="delete-btn">Delete</button><button class="cancel-btn">Cancel</button></div>
+        `;
   
-          editBtn.addEventListener('click', () => {
-            editSection.classList.toggle('hidden');
-          });
-          
-          editSection.querySelector('.cancel-btn').addEventListener('click', () => {
-            editSection.classList.add('hidden');
-          });
-          
-          editSection.querySelector('.save-btn').addEventListener('click', async () => {
-            const alertValue = parseFloat(editSection.querySelector('.edit-alert-threshold').value);
-            const updated = {
-              mx_date: editSection.querySelector('.edit-date').value,
-              mx_flight_hours: parseFloat(editSection.querySelector('.edit-hours').value),
-              next_service_due_at: parseFloat(editSection.querySelector('.edit-next-hours').value),
-              next_service_due_date: editSection.querySelector('.edit-next-date').value || null,
-              squawks: editSection.querySelector('.edit-squawks').value,
-              alert_threshold: isNaN(alertValue) ? null : alertValue
-            };
-          
-            const { error } = await supabase
-              .from('maintenance_items')
-              .update(updated)
-              .eq('id', item.id);
-          
-            if (error) {
-              console.error('❌ Failed to update maintenance item:', error);
-            } else {
-              await onAircraftChange();
-            }
-          });
-
-
-
-
+        editBtn.addEventListener('click', () => editSection.classList.toggle('hidden'));
+        editSection.querySelector('.cancel-btn').addEventListener('click', () => editSection.classList.add('hidden'));
+  
+        editSection.querySelector('.save-btn').addEventListener('click', async () => {
+          const alertValue = parseFloat(editSection.querySelector('.edit-alert-threshold').value);
+          const updated = {
+            mx_date: editSection.querySelector('.edit-date').value,
+            mx_flight_hours: parseFloat(editSection.querySelector('.edit-hours').value),
+            next_service_due_at: parseFloat(editSection.querySelector('.edit-next-hours').value),
+            next_service_due_date: editSection.querySelector('.edit-next-date').value || null,
+            squawks: editSection.querySelector('.edit-squawks').value,
+            alert_threshold: isNaN(alertValue) ? null : alertValue
+          };
+          const { error } = await supabase.from('maintenance_items').update(updated).eq('id', item.id);
+          if (error) console.error('❌ Failed to update maintenance item:', error);
+          else await onAircraftChange();
+        });
+  
         editSection.querySelector('.delete-btn').addEventListener('click', async () => {
           if (confirm('Are you sure you want to delete this maintenance item?')) {
             await supabase.from('maintenance_items').delete().eq('id', item.id);
@@ -194,7 +186,6 @@ window.addEventListener('DOMContentLoaded', () => {
         });
   
         card.appendChild(title);
-        card.appendChild(editBtn);
         card.appendChild(info);
         card.appendChild(extra);
         card.appendChild(progress);
@@ -271,4 +262,24 @@ window.addEventListener('DOMContentLoaded', () => {
   
     loadAircraft();
     loadMaintenanceTypes();
+  
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js';
+    script.onload = () => {
+      Sortable.create(document.getElementById('cardGrid'), {
+        handle: '.drag-handle',
+        animation: 150,
+        onEnd: async () => {
+          const cards = document.querySelectorAll('#cardGrid .card');
+          for (let i = 0; i < cards.length; i++) {
+            const id = cards[i].getAttribute('data-id');
+            if (id) {
+              await supabase.from('maintenance_items').update({ sort_order: i }).eq('id', id);
+            }
+          }
+          console.log('✅ Sort order saved');
+        }
+      });
+    };
+    document.body.appendChild(script);
   });

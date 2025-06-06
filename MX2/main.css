@@ -1,4 +1,22 @@
-body {
+.drag-handle {
+    position: absolute;
+    font-size: 1.2rem;
+    color: #888;
+    user-select: none;
+    cursor: grab;
+  }
+  
+  .drag-handle.top-right {
+    top: 10px;
+    right: 10px;
+  }
+  
+  .drag-handle:active {
+    cursor: grabbing;
+  }
+  
+  
+  body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     background: #121212;
@@ -98,13 +116,16 @@ body {
   
   .edit-btn {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    font-size: 1rem;
     background: none;
     border: none;
     color: #aaa;
     cursor: pointer;
-    font-size: 1rem;
+  }
+  
+  .edit-btn.bottom-right {
+    bottom: 10px;
+    right: 10px;
   }
   
   .edit-section {
@@ -230,3 +251,4 @@ body {
   .alert-fill.overdue {
     background: #f44336;
   }
+  
