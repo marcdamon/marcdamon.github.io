@@ -99,6 +99,14 @@
     margin-bottom: 0.5rem;
   }
   
+  .tile-section-header {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 1.5rem 0 0.5rem 0;
+    color: #66ccff;
+    text-transform: uppercase;
+  }
+  
   .pill {
     display: inline-block;
     padding: 0.25rem 0.6rem;
