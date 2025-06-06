@@ -144,10 +144,10 @@ window.addEventListener('DOMContentLoaded', () => {
         editSection.className = 'edit-section hidden';
   
         editSection.innerHTML = `
-          <div class="field"><label>Date of Maintenance:</label><input type="date" value="${item.mx_date || ''}" class="edit-date"></div>
-          <div class="field" ${isHours ? '' : 'style="display:none"'}><label>Next Due at (Hours):</label><input type="text" value="${item.next_service_due_at || ''}" class="edit-next-hours"></div>
-          <div class="field" ${isDate ? '' : 'style="display:none"'}><label>Next Due Date:</label><input type="date" value="${item.next_service_due_date || ''}" class="edit-next-date"></div>
-          <div class="field"><label>Flight Hours at MX:</label><input type="number" value="${item.mx_flight_hours || ''}" step="0.1" class="edit-hours"></div>
+          <div class="field"><label>Date of Last MX:</label><input type="date" value="${item.mx_date || ''}" class="edit-date"></div>
+          <div class="field"><label>Flight Hours at Last MX:</label><input type="number" value="${item.mx_flight_hours || ''}" step="0.1" class="edit-hours"></div>
+          <div class="field" ${isHours ? '' : 'style="display:none"'}><label>Next MX Due at Flight Hours:</label><input type="text" value="${item.next_service_due_at || ''}" class="edit-next-hours"></div>
+          <div class="field" ${isDate ? '' : 'style="display:none"'}><label>Next MX Due Date:</label><input type="date" value="${item.next_service_due_date || ''}" class="edit-next-date"></div>
           <div class="field"><label>Alert Threshold:</label><input type="number" value="${item.alert_threshold ?? ''}" class="edit-alert-threshold"></div>
           <div class="field"><label>Squawks / Notes:</label><textarea class="edit-squawks">${item.squawks || ''}</textarea></div>
           <div class="field"><button class="save-btn">Save</button><button class="delete-btn">Delete</button><button class="cancel-btn">Cancel</button></div>`;
