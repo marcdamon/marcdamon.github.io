@@ -66,11 +66,21 @@
 
     <!-- Vehicles View -->
 <div id="vehiclesView" style="display: none;">
-  <div class="header">
-    <h1>Vehicles</h1>
+    <div class="header">
+      <h1>Vehicles</h1>
+      <div id="vehicleGrid" class="grid"></div>
+    </div>
+  
+    <!-- Vehicle File Upload -->
+    <div class="upload-section">
+      <h3>Upload Documents for Vehicle</h3>
+      <label for="vehicleUploadVin">VIN:</label>
+      <input type="text" id="vehicleUploadVin" placeholder="Enter VIN (must match existing vehicle)">
+      <input type="file" id="vehicleFileInput" multiple />
+      <button id="uploadVehicleFileBtn">Upload Files</button>
+      <div id="uploadVehicleFileStatus"></div>
+    </div>
   </div>
-  <div id="vehicleGrid" class="grid"></div>
-</div>
 
     <!-- Personal Items View -->
     <div id="personalView" style="display: none;">
