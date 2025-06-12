@@ -3,13 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aircraft Maintenance Dashboard</title>
+  <title>Maintenance Dashboard</title>
   <link rel="stylesheet" href="main.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Supabase Init -->
+  <script>
+    window.supabase = window.supabase || window.supabase?.createClient(
+      'https://htapkhvxskvqidtugegq.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh0YXBraHZ4c2t2cWlkdHVnZWdxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc5NTEyMjMsImV4cCI6MjA2MzUyNzIyM30.m1VLqQwi_Ch_VbbGm4rzvMguxH7YXn5gExmgYPDqFXU'
+    );
+  </script>
+
+  <!-- Logic Modules -->
+  <script src="supabase-init.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
   <script src="aircraft.js" defer></script>
-<script src="vehicles.js" defer></script>
-<script src="personal.js" defer></script>
-<script type="module" src="main.js" defer></script>
+  <script src="vehicle_mx.js" defer></script>
+  <script src="vehicles.js" defer></script>
+  <script src="personal.js" defer></script>
+  <script type="module" src="main.js" defer></script>
 </head>
 <body>
   <button id="toggleSidebar" class="collapse-btn">☰</button>
@@ -65,22 +78,40 @@
     </div>
 
     <!-- Vehicles View -->
-<div id="vehiclesView" style="display: none;">
-    <div class="header">
-      <h1>Vehicles</h1>
-      <div id="vehicleGrid" class="grid"></div>
+    <div id="vehiclesView" style="display: none;">
+      <div class="header">
+        <h1>Vehicles</h1>
+        <div id="vehicleGrid" class="grid"></div>
+      </div>
+
+      <!-- Add Vehicle MX Form (DO NOT DUPLICATE THIS) -->
+      <div class="add-mx-form" id="addVehicleMxForm">
+        <h3>Add Vehicle Maintenance Item</h3>
+        <select id="vehicleSelect"></select>
+        <select id="vehicleMxTypeSelect"></select>
+        <div id="vehicleCustomTitleWrapper" style="display:none">
+          <label for="vehicleCustomTitle">Custom Title</label>
+          <input type="text" id="vehicleCustomTitle" placeholder="Enter custom title" />
+        </div>
+        <input type="date" id="vehicleMxDate" placeholder="Maintenance Date" />
+        <input type="number" id="vehicleUsage" placeholder="Usage at maintenance" step="0.1" />
+        <input type="text" id="vehicleNextDue" placeholder="Next Due (miles/hours/date)" />
+        <input type="number" id="vehicleAlertThreshold" placeholder="Alert threshold" />
+        <textarea id="vehicleNotes" placeholder="Notes"></textarea>
+        <button id="saveVehicleMxBtn">Save Maintenance Item</button>
+        <div id="vehicleAddStatus"></div>
+      </div>
+
+      <!-- Upload Section -->
+      <div class="upload-section">
+        <h3>Upload Documents for Vehicle</h3>
+        <label for="vehicleUploadVin">VIN:</label>
+        <input type="text" id="vehicleUploadVin" placeholder="Enter VIN (must match existing vehicle)">
+        <input type="file" id="vehicleFileInput" multiple />
+        <button id="uploadVehicleFileBtn">Upload Files</button>
+        <div id="uploadVehicleFileStatus"></div>
+      </div>
     </div>
-  
-    <!-- Vehicle File Upload -->
-    <div class="upload-section">
-      <h3>Upload Documents for Vehicle</h3>
-      <label for="vehicleUploadVin">VIN:</label>
-      <input type="text" id="vehicleUploadVin" placeholder="Enter VIN (must match existing vehicle)">
-      <input type="file" id="vehicleFileInput" multiple />
-      <button id="uploadVehicleFileBtn">Upload Files</button>
-      <div id="uploadVehicleFileStatus"></div>
-    </div>
-  </div>
 
     <!-- Personal Items View -->
     <div id="personalView" style="display: none;">

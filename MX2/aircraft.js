@@ -4,7 +4,6 @@ window.initAircraftLogic = async function () {
     console.log("✈️ aircraft.js logic initialized");
   
     const supabase = window.supabase;
-  
     let currentAircraftId = null;
     let maintenanceTypes = [];
     let currentFlightHours = 0;
@@ -53,30 +52,6 @@ window.initAircraftLogic = async function () {
       }
     }
   
-    async function loadMaintenanceTypes() {
-      const { data, error } = await supabase.from('maintenance_types').select('*');
-      if (error) return console.error('Error loading maintenance types:', error);
-      maintenanceTypes = data || [];
-  
-      const select = document.getElementById('mxTypeSelect');
-      select.innerHTML = '<option value="">-- Select Type --</option>';
-      data.forEach(type => {
-        const option = document.createElement('option');
-        option.value = type.id;
-        option.textContent = `${type.name} (${type.category})`;
-        select.appendChild(option);
-      });
-  
-      select.addEventListener('change', (e) => {
-        const selectedType = maintenanceTypes.find(t => t.id === e.target.value);
-        const selectedTypeCategory = selectedType?.category?.toLowerCase() || '';
-        const selectedTypeName = selectedType?.name?.toLowerCase() || '';
-        const shouldShowCustomTitle = ['llp', 'misc'].includes(selectedTypeCategory) || selectedTypeName.includes('custom');
-        const wrapper = document.getElementById('customTitleWrapper');
-        if (wrapper) wrapper.style.display = shouldShowCustomTitle ? 'block' : 'none';
-      });
-    }
-  
     async function onAircraftChange(e) {
       if (e?.target?.value) currentAircraftId = e.target.value;
       if (!currentAircraftId) return;
@@ -105,13 +80,19 @@ window.initAircraftLogic = async function () {
       for (const category of ['MX', 'LLP', 'Misc']) {
         if (!categorized[category].length) continue;
   
+        const sectionContainer = document.createElement('div');
+        sectionContainer.className = 'category-section';
+  
         const header = document.createElement('h3');
         header.textContent =
           category === 'MX' ? 'General Maintenance' :
           category === 'LLP' ? 'Life Limited Parts' :
           'Miscellaneous Items';
         header.className = 'tile-section-header';
-        grid.appendChild(header);
+        sectionContainer.appendChild(header);
+  
+        const sortableContainer = document.createElement('div');
+        sortableContainer.className = 'sortable-subgrid';
   
         categorized[category].forEach(item => {
           const card = document.createElement('div');
@@ -229,73 +210,36 @@ window.initAircraftLogic = async function () {
           card.appendChild(progress);
           card.appendChild(pill);
           card.appendChild(editSection);
-          grid.appendChild(card);
+          sortableContainer.appendChild(card);
+        });
+  
+        sectionContainer.appendChild(sortableContainer);
+        grid.appendChild(sectionContainer);
+  
+        Sortable.create(sortableContainer, {
+          handle: '.drag-handle',
+          animation: 150,
+          onEnd: async () => {
+            const cards = sortableContainer.querySelectorAll('.card');
+            for (let i = 0; i < cards.length; i++) {
+              const id = cards[i].getAttribute('data-id');
+              if (id) {
+                await supabase.from('maintenance_items').update({ sort_order: i }).eq('id', id);
+              }
+            }
+            console.log(`✅ Sort order for ${category} saved.`);
+          }
         });
       }
     }
   
-    async function updateFlightHours() {
-      const newHours = parseFloat(document.getElementById('newFlightHours').value);
-      if (!currentAircraftId || isNaN(newHours)) {
-        flightHoursStatus.textContent = '⚠️ Select aircraft and enter a valid number.';
-        return;
-      }
-      const { error } = await supabase.from('assets').update({ flight_hours: newHours }).eq('id', currentAircraftId);
-      if (error) return flightHoursStatus.textContent = '❌ Failed to update flight hours.';
-      flightHoursStatus.textContent = `✅ Flight hours updated to ${newHours.toFixed(1)}`;
-      clearTimeout(resetTimeout);
-      resetTimeout = setTimeout(async () => {
-        await onAircraftChange();
-      }, 2500);
-    }
-  
-    async function addMaintenanceItem() {
-      const status = document.getElementById('addMxStatus');
-      const typeId = document.getElementById('mxTypeSelect').value;
-      const customTitle = document.getElementById('customTitle').value.trim();
-      const mxDate = document.getElementById('mxDate').value;
-      const mxHours = parseFloat(document.getElementById('mxFlightHours').value);
-      const nextHours = parseFloat(document.getElementById('nextServiceDueAt').value);
-      const nextDate = document.getElementById('nextServiceDueDate').value;
-      const autoNext = document.getElementById('autoNextDue').checked;
-      const dueType = document.getElementById('dueType').value;
-      const squawks = document.getElementById('squawks').value;
-      const alertThreshold = parseFloat(document.getElementById('alertThreshold').value);
-  
-      if (!currentAircraftId || !typeId || !mxDate) {
-        status.textContent = '⚠️ Missing required fields';
-        return;
-      }
-  
-      const { error } = await supabase.from('maintenance_items').insert({
-        asset_id: currentAircraftId,
-        maintenance_type_id: typeId,
-        custom_title: customTitle || null,
-        mx_date: mxDate,
-        mx_flight_hours: isNaN(mxHours) ? null : mxHours,
-        next_service_due_at: isNaN(nextHours) ? null : nextHours,
-        next_service_due_date: nextDate || null,
-        auto_next_due: autoNext,
-        due_type: dueType,
-        squawks: squawks,
-        alert_threshold: isNaN(alertThreshold) ? null : alertThreshold
-      });
-  
-      if (error) {
-        console.error('Add error:', error);
-        status.textContent = '❌ Failed to add maintenance item.';
-      } else {
-        status.textContent = '✅ Maintenance item added.';
-        await onAircraftChange();
-      }
-    }
+    await loadAircraft();
+    await loadMaintenanceTypes();
   
     document.getElementById('updateHoursBtn').addEventListener('click', updateFlightHours);
     document.getElementById('addMxBtn').addEventListener('click', addMaintenanceItem);
     document.getElementById('toggleAddForm').addEventListener('click', () => {
       document.getElementById('addMxForm').classList.toggle('visible');
     });
-  
-    await loadAircraft();
-    await loadMaintenanceTypes();
   };
+  
