@@ -32,6 +32,33 @@ window.initAircraftLogic = async function () {
       return parts.join(', ');
     }
   
+    async function loadMaintenanceTypes() {
+      const { data, error } = await supabase
+        .from('maintenance_types')
+        .select('*')
+        .eq('applicable_to', 'Aircraft');
+      if (error) return console.error('Error loading maintenance types:', error);
+      maintenanceTypes = data || [];
+  
+      const select = document.getElementById('mxTypeSelect');
+      select.innerHTML = '<option value="">-- Select Type --</option>';
+      data.forEach(type => {
+        const option = document.createElement('option');
+        option.value = type.id;
+        option.textContent = `${type.name} (${type.category})`;
+        select.appendChild(option);
+      });
+  
+      select.addEventListener('change', (e) => {
+        const selectedType = maintenanceTypes.find(t => t.id === e.target.value);
+        const selectedTypeCategory = selectedType?.category?.toLowerCase() || '';
+        const selectedTypeName = selectedType?.name?.toLowerCase() || '';
+        const shouldShowCustomTitle = ['llp', 'misc'].includes(selectedTypeCategory) || selectedTypeName.includes('custom');
+        const wrapper = document.getElementById('customTitleWrapper');
+        if (wrapper) wrapper.style.display = shouldShowCustomTitle ? 'block' : 'none';
+      });
+    }
+  
     async function loadAircraft() {
       const { data, error } = await supabase.from('assets').select('*').eq('type', 'Aircraft');
       if (error || !data) return console.error('Error loading aircraft:', error);
@@ -158,58 +185,13 @@ window.initAircraftLogic = async function () {
             pill.textContent = 'Upcoming';
           }
   
-          const editBtn = document.createElement('button');
-          editBtn.textContent = '✏️';
-          editBtn.className = 'edit-btn bottom-right';
-          card.appendChild(editBtn);
-  
-          const showCustomTitle = item.custom_title || ['LLP', 'Misc'].includes(item.maintenance_types?.category);
-          const editSection = document.createElement('div');
-          editSection.className = 'edit-section hidden';
-          editSection.innerHTML = `
-            ${showCustomTitle ? `<div class="field"><label>Custom Title:</label><input type="text" value="${item.custom_title || ''}" class="edit-custom-title"></div>` : ''}
-            <div class="field"><label>Date of Last MX:</label><input type="date" value="${item.mx_date || ''}" class="edit-date"></div>
-            <div class="field"><label>Flight Hours at Last MX:</label><input type="number" value="${item.mx_flight_hours || ''}" step="0.1" class="edit-hours"></div>
-            <div class="field" ${isHours ? '' : 'style="display:none"'}><label>Next MX Due at Flight Hours:</label><input type="text" value="${item.next_service_due_at || ''}" class="edit-next-hours"></div>
-            <div class="field" ${isDate ? '' : 'style="display:none"'}><label>Next MX Due Date:</label><input type="date" value="${item.next_service_due_date || ''}" class="edit-next-date"></div>
-            <div class="field"><label>Alert Threshold:</label><input type="number" value="${item.alert_threshold ?? ''}" class="edit-alert-threshold"></div>
-            <div class="field"><label>Squawks / Notes:</label><textarea class="edit-squawks">${item.squawks || ''}</textarea></div>
-            <div class="field"><button class="save-btn">Save</button><button class="delete-btn">Delete</button><button class="cancel-btn">Cancel</button></div>
-          `;
-  
-          editBtn.addEventListener('click', () => editSection.classList.toggle('hidden'));
-          editSection.querySelector('.cancel-btn').addEventListener('click', () => editSection.classList.add('hidden'));
-  
-          editSection.querySelector('.save-btn').addEventListener('click', async () => {
-            const alertValue = parseFloat(editSection.querySelector('.edit-alert-threshold').value);
-            const customTitleInput = editSection.querySelector('.edit-custom-title');
-            const updated = {
-              custom_title: customTitleInput ? customTitleInput.value : null,
-              mx_date: editSection.querySelector('.edit-date').value,
-              mx_flight_hours: parseFloat(editSection.querySelector('.edit-hours').value),
-              next_service_due_at: parseFloat(editSection.querySelector('.edit-next-hours').value),
-              next_service_due_date: editSection.querySelector('.edit-next-date').value || null,
-              squawks: editSection.querySelector('.edit-squawks').value,
-              alert_threshold: isNaN(alertValue) ? null : alertValue
-            };
-            const { error } = await supabase.from('maintenance_items').update(updated).eq('id', item.id);
-            if (error) console.error('❌ Failed to update maintenance item:', error);
-            else await onAircraftChange();
-          });
-  
-          editSection.querySelector('.delete-btn').addEventListener('click', async () => {
-            if (confirm('Are you sure you want to delete this maintenance item?')) {
-              await supabase.from('maintenance_items').delete().eq('id', item.id);
-              await onAircraftChange();
-            }
-          });
-  
           card.appendChild(title);
           card.appendChild(info);
           card.appendChild(extra);
           card.appendChild(progress);
           card.appendChild(pill);
-          card.appendChild(editSection);
+          card.appendChild(dragHandle);
+  
           sortableContainer.appendChild(card);
         });
   
@@ -241,5 +223,7 @@ window.initAircraftLogic = async function () {
     document.getElementById('toggleAddForm').addEventListener('click', () => {
       document.getElementById('addMxForm').classList.toggle('visible');
     });
-  };
   
+    function updateFlightHours() { /* already defined */ }
+    function addMaintenanceItem() { /* already defined */ }
+  };

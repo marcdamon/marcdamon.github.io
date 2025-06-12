@@ -50,7 +50,7 @@ body {
     position: fixed;
     top: 10px;
     left: 10px;
-    z-index: 1100; /* higher than sidebar */
+    z-index: 1100;
     background: #00bfff;
     color: white;
     border: none;
@@ -60,7 +60,6 @@ body {
     cursor: pointer;
   }
   
-  /* Main Content Wrapper */
   #mainContent {
     margin-left: 250px;
     transition: margin-left 0.3s ease;
@@ -75,26 +74,20 @@ body {
     #sidebar {
       transform: translateX(-100%);
     }
-  
     #sidebar.open {
       transform: translateX(0);
     }
-  
     #mainContent {
       margin-left: 0 !important;
     }
   }
   
-  /* Remaining UI Styles */
   .drag-handle {
     position: absolute;
     font-size: 1.2rem;
     color: #888;
     user-select: none;
     cursor: grab;
-  }
-  
-  .drag-handle.top-right {
     top: 10px;
     right: 10px;
   }
@@ -144,11 +137,6 @@ body {
     margin-top: 0.5rem;
   }
   
-  #updateStatus {
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-  }
-  
   .grid {
     display: flex;
     flex-direction: column;
@@ -170,12 +158,14 @@ body {
   .card h2 {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
+    text-align: center;
   }
   
   .card .due {
     color: #aaa;
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
+    text-align: center;
   }
   
   .tile-section-header {
@@ -184,12 +174,12 @@ body {
     color: #66ccff;
     text-transform: uppercase;
     margin: 1.5rem 0 0.5rem 0;
-    padding-left: 1rem; /* default padding when sidebar is collapsed */
+    padding-left: 1rem;
     transition: padding-left 0.3s ease;
   }
   
   body:not(.sidebar-collapsed) .tile-section-header {
-    padding-left: 50px; /* give it room when sidebar is open */
+    padding-left: 50px;
   }
   
   .pill {
@@ -207,7 +197,6 @@ body {
     background-color: #666;
     color: #ccc;
   }
-  
   .pill.ok { background-color: #4caf50; }
   .pill.soon { background-color: #ffc107; color: #000; }
   .pill.overdue { background-color: #f44336; }
@@ -219,9 +208,6 @@ body {
     border: none;
     color: #aaa;
     cursor: pointer;
-  }
-  
-  .edit-btn.bottom-right {
     bottom: 10px;
     right: 10px;
   }
@@ -292,79 +278,44 @@ body {
     to { opacity: 1; transform: scaleY(1); }
   }
   
+  /* Add Maintenance Form */
   .add-mx-form {
-    margin-top: 2rem;
+    margin-top: 1rem;
     background: #1a1a1a;
     padding: 1rem;
     border-radius: 10px;
-    display: none;
+    border: 1px solid #333;
+    animation: fadeIn 0.2s ease-in-out;
+  }
+  
+  .add-mx-form.hidden {
+    display: none !important;
   }
   
   .add-mx-form.visible {
     display: block;
   }
   
-  #toggleAddForm {
-    display: block;
-    margin: 0 auto 1rem auto;
-    background: #00bfff;
-    border: none;
-    color: white;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border-radius: 6px;
-    cursor: pointer;
+  .add-mx-form h3 {
+    margin-top: 0;
+    color: #66ccff;
+    font-size: 1.2rem;
+    text-align: center;
   }
   
   .add-mx-form label {
     font-size: 0.85rem;
     color: #ccc;
+    display: block;
     margin-top: 0.5rem;
-    display: block;
   }
   
-  .alert-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 6px;
-    height: 100%;
-    border-radius: 6px 0 0 6px;
-  }
-  
-  .alert-fill {
-    width: 100%;
-    height: 100%;
-    border-radius: 6px 0 0 6px;
-  }
-  
-  .alert-fill.ok { background: #4caf50; }
-  .alert-fill.soon { background: #ffc107; }
-  .alert-fill.overdue { background: #f44336; }
-
-
-
-
-/* ========================= */
-/* VEHICLE SECTION STYLING  */
-/* ========================= */
-
-/* Upload Block */
-.upload-section {
-    background: #1a1a1a;
-    border: 1px solid #333;
-    padding: 1rem;
-    margin-top: 2rem;
-    border-radius: 8px;
-    max-width: 600px;
-    margin-inline: auto;
-  }
-  
-  .upload-section input,
-  .upload-section button {
+  .add-mx-form input,
+  .add-mx-form select,
+  .add-mx-form textarea {
     display: block;
     width: 100%;
-    margin: 0.5rem 0;
+    margin: 0.3rem 0;
     padding: 0.5rem;
     font-size: 1rem;
     background: #2a2a2a;
@@ -373,61 +324,7 @@ body {
     border-radius: 4px;
   }
   
-  .upload-section button {
-    background-color: #00bfff;
-    cursor: pointer;
-  }
-  
-  /* Add MX Button */
-  .add-mx-btn {
-    margin-top: 0.5rem;
-    padding: 0.4rem 0.8rem;
-    font-size: 0.9rem;
-    background: #00bfff;
-    border: none;
-    color: white;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  
-  /* Vehicle Add Maintenance Form */
-  #addVehicleMxForm {
-    display: none;
-    margin-top: 2rem;
-    background: #1a1a1a;
-    padding: 1rem;
-    border-radius: 10px;
-    max-width: 600px;
-    margin-inline: auto;
-    box-shadow: 0 0 10px rgba(0, 191, 255, 0.2);
-  }
-  
-  #addVehicleMxForm.visible {
-    display: block !important;
-    animation: fadeIn 0.2s ease-in-out;
-  }
-  
-  #addVehicleMxForm h3 {
-    margin-top: 0;
-    color: #66ccff;
-    font-size: 1.2rem;
-  }
-  
-  #addVehicleMxForm input,
-  #addVehicleMxForm select,
-  #addVehicleMxForm textarea {
-    display: block;
-    width: 100%;
-    margin: 0.5rem 0;
-    padding: 0.5rem;
-    font-size: 1rem;
-    background: #2a2a2a;
-    color: white;
-    border: 1px solid #555;
-    border-radius: 4px;
-  }
-  
-  #addVehicleMxForm button {
+  .add-mx-form button {
     background-color: #00bfff;
     color: white;
     border: none;
@@ -436,70 +333,26 @@ body {
     border-radius: 6px;
     cursor: pointer;
     margin-top: 1rem;
+    width: 100%;
+  }
+  
+  .mx-history {
+    background: #1a1a1a;
+    padding: 0.5rem;
+    border-radius: 6px;
+    margin-top: 0.5rem;
+  }
+  
+  .mx-history .mx-row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #333;
+    padding: 0.25rem 0;
+    font-size: 0.9rem;
   }
   
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-
-  .vehicle-mx-form {
-    display: none;
-    margin-top: 1rem;
-    background: #1a1a1a;
-    padding: 1rem;
-    border-radius: 10px;
-    border: 1px solid #333;
-    max-width: 600px;
-    margin-inline: auto;
-  }
   
-  .vehicle-mx-form.visible {
-    display: block;
-    animation: fadeIn 0.2s ease-in-out;
-  }
-  
-  .vehicle-mx-form h4 {
-    margin-top: 0;
-    color: #66ccff;
-    font-size: 1.1rem;
-  }
-  
-  .vehicle-mx-form select,
-  .vehicle-mx-form input,
-  .vehicle-mx-form textarea {
-    width: 100%;
-    margin: 0.5rem 0;
-    padding: 0.5rem;
-    font-size: 1rem;
-    background: #2a2a2a;
-    color: white;
-    border: 1px solid #555;
-    border-radius: 4px;
-  }
-  
-  .vehicle-mx-form button {
-    background-color: #00bfff;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-top: 0.5rem;
-  }
-
-  .add-mx-form.hidden {
-    display: none !important;
-  }
-  
-  .add-mx-form {
-    display: block;
-    margin-top: 1rem;
-    background: #1a1a1a;
-    padding: 1rem;
-    border-radius: 10px;
-    border: 1px solid #333;
-    animation: fadeIn 0.2s ease-in-out;
-  }
-
