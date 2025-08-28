@@ -356,3 +356,50 @@ body {
     to   { opacity: 1; transform: translateY(0); }
   }
   
+  /* Aircraft-specific overrides */
+#aircraftPage .add-mx-form {
+    max-width: 500px;
+    margin: 1.5rem auto 0 auto;
+    width: 100%;
+  }
+  
+  #aircraftPage .add-mx-form.hidden {
+    display: none !important;
+  }
+  #aircraftPage .add-mx-form.visible {
+    display: block;
+  }
+  
+  #aircraftPage .card {
+    max-width: 600px;
+  }
+  
+  #aircraftPage .edit-section {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Vehicle-specific overrides */
+  #vehiclesPage .add-mx-form {
+    max-width: 700px;
+    margin: 2rem auto 0 auto;
+    width: 100%;
+  }
+  
+  #vehiclesPage .add-mx-form.hidden {
+    display: none !important;
+  }
+  #vehiclesPage .add-mx-form.visible {
+    display: block;
+  }
+  
+  #vehiclesPage .card {
+    max-width: 700px;
+  }
+  
+  #vehiclesPage .edit-section {
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+  }
