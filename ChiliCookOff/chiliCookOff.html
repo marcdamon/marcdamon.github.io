@@ -303,18 +303,25 @@
       text-align: center;
     }
 
-    .error {
-      color: #fed7d7;
-      font-size: 0.85rem;
-      margin-bottom: 6px;
+    .success, .error {
+      font-size: 0.9rem;
       text-align: center;
+      border-radius: 12px;
+      padding: 10px 14px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.35);
+      pointer-events: auto; /* allow copying text if needed */
     }
 
     .success {
-      color: #c6f6d5;
-      font-size: 0.85rem;
-      margin-bottom: 6px;
-      text-align: center;
+      background: #22543d;
+      color: #e6fffa;
+      border: 1px solid #38a169;
+    }
+
+    .error {
+      background: #742a2a;
+      color: #fed7d7;
+      border: 1px solid #f56565;
     }
 
     .submit-btn {
@@ -335,6 +342,36 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.25);
     }
 
+    .reset-btn {
+      margin-top: 8px;
+      width: 100%;
+      padding: 6px;
+      border-radius: 999px;
+      border: 1px dashed rgba(255,255,255,0.6);
+      font-size: 0.75rem;
+      background: transparent;
+      color: #fefcbf;
+      cursor: pointer;
+      opacity: 0.7;
+      position: relative;
+      z-index: 10; /* make sure it's above main content but below toast *
+    }
+
+    .reset-btn:hover {
+      opacity: 1;
+    }
+
+        /* Toast container – fixed near bottom center */
+        #message {
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999999; /* stays on top */
+  width: min(420px, 90vw);
+  pointer-events: none;
+}
+
     @media (max-width: 480px) {
       body {
         padding: 10px;
@@ -343,6 +380,9 @@
         grid-template-columns: 1fr;
       }
     }
+    body {
+  padding-bottom: 80px; /* keeps bottom UI elements visible above toast */
+}
   </style>
 </head>
 <body>
@@ -368,12 +408,12 @@
           </ol>
         </div>
 
-    <div id="status" class="status-bar"></div>
-    <div id="message"></div>
+        <div id="status" class="status-bar"></div>
 
-    <div class="chili-grid" id="chiliGrid"></div>
+        <div class="chili-grid" id="chiliGrid"></div>
+        
+        <div class="top3-panel">
 
-    <div class="top3-panel">
       <h2>Your Top 3</h2>
       <div class="small-text">
         Stars are just for you. Only your 1st, 2nd, and 3rd choices count for the contest.
@@ -397,7 +437,15 @@
       </div>
     </div>
 
+    <div id="message"></div>
+
+
     <button class="submit-btn" id="submitBtn">Submit my vote</button>
+   
+
+    <button class="reset-btn" id="resetDeviceBtn" type="button">
+      Host:
+    </button>
   </div>
 
   <script>
@@ -424,6 +472,9 @@
     const firstSelect = document.getElementById("firstSelect");
     const secondSelect = document.getElementById("secondSelect");
     const thirdSelect = document.getElementById("thirdSelect");
+
+    const submitBtn = document.getElementById("submitBtn");
+    const resetDeviceBtn = document.getElementById("resetDeviceBtn");
 
     // ratingMap: chiliId -> 0..5
     const ratingMap = new Map();
@@ -633,22 +684,43 @@
       try {
         postVoteViaForm(vote);
         showSuccess("Thanks! Your vote has been recorded.");
+
+        // mark this device as having voted
+        localStorage.setItem("chiliVoteSubmitted", "1");
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Vote submitted";
       } catch (err) {
         console.error(err);
         showError("Sorry, there was a problem saving your vote. Please tell the host.");
       }
     }
 
-    document.getElementById("submitBtn").addEventListener("click", submitVote);
+    submitBtn.addEventListener("click", submitVote);
 
-    // Initial render
-    renderChiliCards();
-    renderStatus();
-    updateDropdownOptions();
+// Host reset: clear device lock
+resetDeviceBtn.addEventListener("click", () => {
+  const ok = confirm("Host only: clear this device's vote and allow another submission?");
+  if (!ok) return;
+  localStorage.removeItem("chiliVoteSubmitted");
+  // simple reset: reload page
+  location.reload();
+});
 
-    [firstSelect, secondSelect, thirdSelect].forEach(select => {
-      select.addEventListener("change", updateDropdownOptions);
-    });
+// Initial render
+renderChiliCards();
+renderStatus();
+updateDropdownOptions();
+
+[firstSelect, secondSelect, thirdSelect].forEach(select => {
+  select.addEventListener("change", updateDropdownOptions);
+});
+
+// Lock out if this device already voted
+if (localStorage.getItem("chiliVoteSubmitted") === "1") {
+  showSuccess("This device has already submitted a vote. If this is a new voter, ask Marc or Christy to clear this message.'.");
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Vote already submitted";
+}
   </script>
 </body>
 </html>
