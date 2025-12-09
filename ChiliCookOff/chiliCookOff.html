@@ -184,7 +184,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>Holiday Chili Showdown Verion 5 🌶️</h1>
+    <h1>Holiday Chili Showdown Version 7🌶️</h1>
     <div class="subtitle">Rate as you taste, then choose your Top 3</div>
 
     <div class="instructions">
@@ -229,7 +229,8 @@
   </div>
 
   <script>
-    const WEB_APP_URL = 'https://script.google.com/macros/library/d/1PHY8Eh_cTZqTTNkhYdKvP-gxbeA0Z_FBqa3JYcWP8goqPluG6bfxeC9o/2';
+    // REPLACE THIS with your Web App /exec URL
+    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbx_1di_mud4nXbfxoLYlKWxwmKQKEuo6_J_62oGVUcxbcEJf9yI5jvdj7ML5jywMjp_fA/exec';
 
     const chilis = [
       { id: 1, name: "Rudolph's Revenge" },
@@ -392,7 +393,34 @@
       msgBox.innerHTML = `<div class="success">${text}</div>`;
     }
 
-    async function submitVote() {
+    // Hidden-form POST to avoid CORS headaches
+    function postVoteViaForm(vote) {
+      let iframe = document.getElementById('hidden_iframe_for_post');
+      if (!iframe) {
+        iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.name = 'hidden_iframe_for_post';
+        iframe.id = 'hidden_iframe_for_post';
+        document.body.appendChild(iframe);
+      }
+
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = WEB_APP_URL;
+      form.target = 'hidden_iframe_for_post';
+
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'payload';
+      input.value = JSON.stringify(vote);
+      form.appendChild(input);
+
+      document.body.appendChild(form);
+      form.submit();
+      document.body.removeChild(form);
+    }
+
+    function submitVote() {
       msgBox.innerHTML = "";
 
       const first = firstSelect.value;
@@ -431,71 +459,12 @@
       };
 
       try {
-        async function submitVote() {
-  msgBox.innerHTML = "";
-
-  const first = firstSelect.value;
-  const second = secondSelect.value;
-  const third = thirdSelect.value;
-
-  if (!first || !second || !third) {
-    showError("Please select a chili for 1st, 2nd, and 3rd place.");
-    return;
-  }
-  if (first === second || first === third || second === third) {
-    showError("Each place must be a different chili.");
-    return;
-  }
-
-  const ids = [first, second, third].map(v => parseInt(v, 10));
-  for (const id of ids) {
-    if ((ratingMap.get(id) || 0) === 0) {
-      showError("You can only vote for chilis you rated with at least 1 star.");
-      return;
-    }
-  }
-
-  const ratingsObj = {};
-  ratingMap.forEach((val, key) => {
-    if (val > 0) ratingsObj[key] = val;
-  });
-
-  const vote = {
-    eventId: 'holiday_2025',
-    first: ids[0],
-    second: ids[1],
-    third: ids[2],
-    ratings: ratingsObj,
-    submittedAt: new Date().toISOString()
-  };
-
-  try {
-    // Fire-and-forget: no-cors so the browser doesn't block on CORS
-    await fetch(WEB_APP_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: {
-        // This may get downgraded to text/plain by the browser in no-cors mode,
-        // but Apps Script will still see the body in e.postData.contents.
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(vote)
-    });
-
-    // We can't read the response in no-cors mode, so if we got here,
-    // we just assume it worked.
-    showSuccess("Thanks! Your vote has been recorded.");
-  } catch (err) {
-    console.error(err);
-    showError("Sorry, there was a problem saving your vote. Please tell the host.");
-  }
-}
-
+        postVoteViaForm(vote);
         showSuccess("Thanks! Your vote has been recorded.");
-    } catch (err) {
-  console.error(err);
-  showError("Error saving vote: " + (err.message || err.toString()));
-}
+      } catch (err) {
+        console.error(err);
+        showError("Sorry, there was a problem saving your vote. Please tell the host.");
+      }
     }
 
     document.getElementById("submitBtn").addEventListener("click", submitVote);
