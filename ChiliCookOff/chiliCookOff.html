@@ -303,26 +303,28 @@
       text-align: center;
     }
 
-    .success, .error {
-      font-size: 0.9rem;
-      text-align: center;
-      border-radius: 12px;
-      padding: 10px 14px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.35);
-      pointer-events: auto; /* allow copying text if needed */
-    }
+    .success,
+.error {
+  font-size: 0.9rem;
+  text-align: center;
+  border-radius: 12px;
+  padding: 12px 16px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.35);
+  pointer-events: auto;
+  margin-bottom: 8px;       /* <— THIS gives space between stacked messages */
+}
 
-    .success {
-      background: #22543d;
-      color: #e6fffa;
-      border: 1px solid #38a169;
-    }
+.success {
+  background: #22543d;
+  color: #e6fffa;
+  border: 1px solid #38a169;
+}
 
-    .error {
-      background: #742a2a;
-      color: #fed7d7;
-      border: 1px solid #f56565;
-    }
+.error {
+  background: #742a2a;
+  color: #fed7d7;
+  border: 1px solid #f56565;
+}
 
     .submit-btn {
       width: 100%;
