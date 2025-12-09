@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Holiday Chili Showdown - Vote</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 16px;
+      background: #f7f4ef;
+      color: #222;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 4px;
+    }
+    .subtitle {
+      text-align: center;
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 16px;
+    }
+    .instructions {
+      background: #fff;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+      font-size: 0.9rem;
+    }
+    .instructions ol {
+      padding-left: 20px;
+      margin: 8px 0;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #e8e8e8;
+      color: #555;
+      margin-left: 4px;
+    }
+    .chili-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .chili-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 10px 12px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+      border: 2px solid transparent;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 120px;
+    }
+    .chili-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+    .chili-number {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .chili-name {
+      font-size: 0.9rem;
+      color: #444;
+    }
+    .chili-meta {
+      font-size: 0.75rem;
+      color: #777;
+      margin-bottom: 6px;
+    }
+    .stars {
+      display: inline-flex;
+      gap: 2px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      user-select: none;
+    }
+    .star {
+      padding: 0 2px;
+    }
+    .star.filled {
+      color: #d69e2e;
+    }
+    .star.empty {
+      color: #ccc;
+    }
+
+    .top3-panel {
+      background: #fffdf6;
+      border-radius: 10px;
+      padding: 14px 16px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+      border: 1px solid #f0e0b0;
+      margin-bottom: 12px;
+    }
+    .top3-panel h2 {
+      margin: 0 0 6px;
+      font-size: 1.05rem;
+    }
+    .top3-row {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .place-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .place-label.first { color: #b8860b; }
+    .place-label.second { color: #708090; }
+    .place-label.third { color: #8b4513; }
+
+    select {
+      width: 100%;
+      padding: 6px 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 0.9rem;
+      background: #fff;
+    }
+
+    .small-text {
+      font-size: 0.8rem;
+      color: #666;
+      margin-top: 4px;
+    }
+    .status-bar {
+      font-size: 0.8rem;
+      color: #555;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .error {
+      color: #b00020;
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+    .success {
+      color: #1b6e3c;
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+    .submit-btn {
+      width: 100%;
+      padding: 10px;
+      border-radius: 999px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: #c53030;
+      color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .submit-btn:active {
+      transform: translateY(1px);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+    @media (max-width: 480px) {
+      .top3-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Holiday Chili Showdown 🌶️</h1>
+    <div class="subtitle">Rate as you taste, then choose your Top 3</div>
+
+    <div class="instructions">
+      <strong>How it works:</strong>
+      <ol>
+        <li>As you taste each chili, tap the stars to rate it (1–5). This is just to help you remember what you liked.</li>
+        <li>When you’re ready, pick your <strong>1st, 2nd, and 3rd place</strong> from the chilis you rated.</li>
+        <li>Only chilis with at least 1 star will show up in the Top 3 dropdowns.</li>
+      </ol>
+    </div>
+
+    <div id="status" class="status-bar"></div>
+    <div id="message"></div>
+
+    <div class="chili-grid" id="chiliGrid"></div>
+
+    <div class="top3-panel">
+      <h2>Your Top 3</h2>
+      <div class="small-text">
+        Stars are just for you. Only your 1st, 2nd, and 3rd choices count for the contest.
+      </div>
+
+      <div class="top3-row">
+        <div class="place-label first">🥇 1st place</div>
+        <div><select id="firstSelect"><option value="">Select chili</option></select></div>
+      </div>
+      <div class="top3-row">
+        <div class="place-label second">🥈 2nd place</div>
+        <div><select id="secondSelect"><option value="">Select chili</option></select></div>
+      </div>
+      <div class="top3-row">
+        <div class="place-label third">🥉 3rd place</div>
+        <div><select id="thirdSelect"><option value="">Select chili</option></select></div>
+      </div>
+
+      <div class="small-text">
+        You can’t pick the same chili more than once.
+      </div>
+    </div>
+
+    <button class="submit-btn" id="submitBtn">Submit my vote</button>
+  </div>
+
+  <script>
+    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbx_1di_mud4nXbfxoLYlKWxwmKQKEuo6_J_62oGVUcxbcEJf9yI5jvdj7ML5jywMjp_fA/exec';
+
+    const chilis = [
+      { id: 1, name: "Rudolph's Revenge" },
+      { id: 2, name: "Grandma's Secret Weapon" },
+      { id: 3, name: "North Pole Night Fire" },
+      { id: 4, name: "Frostbite Firestorm" },
+      { id: 5, name: "Santa's Smoke Bomb" },
+      { id: 6, name: "Elves Only Chili" },
+      { id: 7, name: "Blizzard Burner" },
+      { id: 8, name: "Mistletoe Madness" },
+      { id: 9, name: "Snow Day Surprise" },
+      { id: 10, name: "Holiday Heatwave" }
+    ];
+
+    const chiliGrid = document.getElementById("chiliGrid");
+    const statusBar = document.getElementById("status");
+    const msgBox = document.getElementById("message");
+
+    const firstSelect = document.getElementById("firstSelect");
+    const secondSelect = document.getElementById("secondSelect");
+    const thirdSelect = document.getElementById("thirdSelect");
+
+    // ratingMap: chiliId -> 0..5
+    const ratingMap = new Map();
+
+    function renderStatus() {
+      const ratedCount = Array.from(ratingMap.values()).filter(v => v > 0).length;
+      statusBar.textContent = `You have rated ${ratedCount} of ${chilis.length} chilis.`;
+    }
+
+    function createStarElement(chiliId, starValue) {
+      const span = document.createElement("span");
+      span.className = "star empty";
+      span.textContent = "★";
+      span.addEventListener("click", () => {
+        setRating(chiliId, starValue);
+      });
+      return span;
+    }
+
+    function setRating(chiliId, value) {
+      ratingMap.set(chiliId, value);
+      updateStars(chiliId);
+      updateDropdownOptions();
+      renderStatus();
+    }
+
+    function updateStars(chiliId) {
+      const rating = ratingMap.get(chiliId) || 0;
+      const card = document.querySelector(`.chili-card[data-id="${chiliId}"]`);
+      if (!card) return;
+      const stars = card.querySelectorAll(".star");
+      stars.forEach((starEl, index) => {
+        const starValue = index + 1;
+        if (starValue <= rating) {
+          starEl.classList.add("filled");
+          starEl.classList.remove("empty");
+        } else {
+          starEl.classList.add("empty");
+          starEl.classList.remove("filled");
+        }
+      });
+    }
+
+    function renderChiliCards() {
+      chiliGrid.innerHTML = "";
+      chilis.forEach(chili => {
+        ratingMap.set(chili.id, 0);
+
+        const card = document.createElement("div");
+        card.className = "chili-card";
+        card.dataset.id = chili.id;
+
+        const header = document.createElement("div");
+        header.className = "chili-header";
+
+        const num = document.createElement("div");
+        num.className = "chili-number";
+        num.textContent = `Chili #${chili.id}`;
+
+        const badge = document.createElement("span");
+        badge.className = "badge";
+        badge.textContent = "🌶️";
+
+        header.appendChild(num);
+        header.appendChild(badge);
+
+        const name = document.createElement("div");
+        name.className = "chili-name";
+        name.textContent = chili.name;
+
+        const meta = document.createElement("div");
+        meta.className = "chili-meta";
+        meta.textContent = "Tap 1–5 stars to rate this chili.";
+
+        const starsContainer = document.createElement("div");
+        starsContainer.className = "stars";
+
+        for (let i = 1; i <= 5; i++) {
+          const starEl = createStarElement(chili.id, i);
+          starsContainer.appendChild(starEl);
+        }
+
+        card.appendChild(header);
+        card.appendChild(name);
+        card.appendChild(meta);
+        card.appendChild(starsContainer);
+        chiliGrid.appendChild(card);
+      });
+    }
+
+    function getRatedChilis() {
+      return chilis.filter(c => (ratingMap.get(c.id) || 0) > 0);
+    }
+
+    function resetSelectOptions(selectEl, label) {
+      selectEl.innerHTML = "";
+      const opt = document.createElement("option");
+      opt.value = "";
+      opt.textContent = label;
+      selectEl.appendChild(opt);
+    }
+
+    function updateDropdownOptions() {
+      const rated = getRatedChilis();
+      const chosenIds = new Set(
+        [firstSelect.value, secondSelect.value, thirdSelect.value].filter(Boolean)
+      );
+
+      function fillSelect(selectEl, label) {
+        const current = selectEl.value;
+        resetSelectOptions(selectEl, label);
+
+        rated.forEach(chili => {
+          if (!chosenIds.has(chili.id.toString()) || current === chili.id.toString()) {
+            const opt = document.createElement("option");
+            const rating = ratingMap.get(chili.id) || 0;
+            const starsText = "★".repeat(rating) + "☆".repeat(5 - rating);
+            opt.value = chili.id;
+            opt.textContent = `#${chili.id} – ${chili.name} (${starsText})`;
+            selectEl.appendChild(opt);
+          }
+        });
+
+        if (current && [...selectEl.options].some(o => o.value === current)) {
+          selectEl.value = current;
+        }
+      }
+
+      fillSelect(firstSelect, "Select chili");
+      fillSelect(secondSelect, "Select chili");
+      fillSelect(thirdSelect, "Select chili");
+    }
+
+    function showError(text) {
+      msgBox.innerHTML = `<div class="error">${text}</div>`;
+    }
+
+    function showSuccess(text) {
+      msgBox.innerHTML = `<div class="success">${text}</div>`;
+    }
+
+    async function submitVote() {
+      msgBox.innerHTML = "";
+
+      const first = firstSelect.value;
+      const second = secondSelect.value;
+      const third = thirdSelect.value;
+
+      if (!first || !second || !third) {
+        showError("Please select a chili for 1st, 2nd, and 3rd place.");
+        return;
+      }
+      if (first === second || first === third || second === third) {
+        showError("Each place must be a different chili.");
+        return;
+      }
+
+      const ids = [first, second, third].map(v => parseInt(v, 10));
+      for (const id of ids) {
+        if ((ratingMap.get(id) || 0) === 0) {
+          showError("You can only vote for chilis you rated with at least 1 star.");
+          return;
+        }
+      }
+
+      const ratingsObj = {};
+      ratingMap.forEach((val, key) => {
+        if (val > 0) ratingsObj[key] = val;
+      });
+
+      const vote = {
+        eventId: 'holiday_2025',
+        first: ids[0],
+        second: ids[1],
+        third: ids[2],
+        ratings: ratingsObj,
+        submittedAt: new Date().toISOString()
+      };
+
+      try {
+        const res = await fetch(WEB_APP_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(vote)
+        });
+
+        let data;
+        try {
+          data = await res.json();
+        } catch {
+          data = { status: 'ok' };
+        }
+
+        if (!res.ok || data.status !== 'ok') {
+          throw new Error(data && data.message ? data.message : 'Error saving vote');
+        }
+
+        showSuccess("Thanks! Your vote has been recorded.");
+      } catch (err) {
+        console.error(err);
+        showError("Sorry, there was a problem saving your vote. Please tell the host.");
+      }
+    }
+
+    document.getElementById("submitBtn").addEventListener("click", submitVote);
+
+    // Initial render
+    renderChiliCards();
+    renderStatus();
+    updateDropdownOptions();
+
+    [firstSelect, secondSelect, thirdSelect].forEach(select => {
+      select.addEventListener("change", updateDropdownOptions);
+    });
+  </script>
+</body>
+</html>
