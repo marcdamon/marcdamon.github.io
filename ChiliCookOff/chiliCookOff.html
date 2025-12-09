@@ -446,13 +446,14 @@
 
         if (!res.ok || data.status !== 'ok') {
           throw new Error(data && data.message ? data.message : 'Error saving vote');
+          
         }
 
         showSuccess("Thanks! Your vote has been recorded.");
-      } catch (err) {
-        console.error(err);
-        showError("Sorry, there was a problem saving your vote. Please tell the host.");
-      }
+    } catch (err) {
+  console.error(err);
+  showError("Error saving vote: " + (err.message || err.toString()));
+}
     }
 
     document.getElementById("submitBtn").addEventListener("click", submitVote);
