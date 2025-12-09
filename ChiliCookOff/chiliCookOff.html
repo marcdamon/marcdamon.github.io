@@ -431,23 +431,65 @@
       };
 
       try {
-        const res = await fetch(WEB_APP_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(vote)
-        });
+        async function submitVote() {
+  msgBox.innerHTML = "";
 
-        let data;
-        try {
-          data = await res.json();
-        } catch {
-          data = { status: 'ok' };
-        }
+  const first = firstSelect.value;
+  const second = secondSelect.value;
+  const third = thirdSelect.value;
 
-        if (!res.ok || data.status !== 'ok') {
-          throw new Error(data && data.message ? data.message : 'Error saving vote');
-          
-        }
+  if (!first || !second || !third) {
+    showError("Please select a chili for 1st, 2nd, and 3rd place.");
+    return;
+  }
+  if (first === second || first === third || second === third) {
+    showError("Each place must be a different chili.");
+    return;
+  }
+
+  const ids = [first, second, third].map(v => parseInt(v, 10));
+  for (const id of ids) {
+    if ((ratingMap.get(id) || 0) === 0) {
+      showError("You can only vote for chilis you rated with at least 1 star.");
+      return;
+    }
+  }
+
+  const ratingsObj = {};
+  ratingMap.forEach((val, key) => {
+    if (val > 0) ratingsObj[key] = val;
+  });
+
+  const vote = {
+    eventId: 'holiday_2025',
+    first: ids[0],
+    second: ids[1],
+    third: ids[2],
+    ratings: ratingsObj,
+    submittedAt: new Date().toISOString()
+  };
+
+  try {
+    // Fire-and-forget: no-cors so the browser doesn't block on CORS
+    await fetch(WEB_APP_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        // This may get downgraded to text/plain by the browser in no-cors mode,
+        // but Apps Script will still see the body in e.postData.contents.
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(vote)
+    });
+
+    // We can't read the response in no-cors mode, so if we got here,
+    // we just assume it worked.
+    showSuccess("Thanks! Your vote has been recorded.");
+  } catch (err) {
+    console.error(err);
+    showError("Sorry, there was a problem saving your vote. Please tell the host.");
+  }
+}
 
         showSuccess("Thanks! Your vote has been recorded.");
     } catch (err) {
